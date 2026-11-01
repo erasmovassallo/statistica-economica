@@ -1,46 +1,25 @@
-# Statistica Economica con R, Python e SAS (VERSIONE IN BOZZA DI PROVA)
+# Statistica Economica con R, Python e SAS
 
-Edizione online, bilingue (italiano/inglese), del volume *Statistica Economica con R* di Erasmo Vassallo, con gli esempi in **R**, **Python** e **SAS**.
+Edizione online ampliata basata sul volume *Statistica Economica con R* (2018) di Erasmo Vassallo. Il sito propone contenuti in italiano e in inglese. Ogni esempio è sviluppato in **R**, **Python** e **SAS**. Codice e risultati R e Python sono verificati e riprodotti online, mentre il codice SAS è basato su una licenza proprietaria con installazione locale non riproducibile su GitHub; alcune istruzioni SAS potrebbero risultare differenti dalla versione SasOnDemand.
 
-Sito: https://erasmovassallo.github.io/statistica-economica/
+**Sito:** https://erasmovassallo.github.io/statistica-economica/
 
-## Struttura
+## Contenuto del Repository
 
 ```
-_quarto.yml                 configurazione del sito (menu, lingue, stile)
-index.qmd                   home (inglese)
-preface.qmd                 prefazione (inglese)
-chapters/                   capitoli in inglese
-it/                         versione italiana (home, prefazione, capitoli/)
-data/                       file di dati usati nel testo
-images/                     figure statiche
-assets/sas.xml              evidenziazione della sintassi SAS
-styles.css                  stile
-.github/workflows/          pubblicazione automatica su GitHub Pages
+- `it/` – pagine in italiano
+- `chapters/` – pagine in inglese
+- `data/` – file di dati usati negli esempi
+- `images/` – immagini statiche
+- `_quarto.yml` – configurazione del sito (Quarto)
 ```
 
-## Aggiungere un capitolo (solo per analisi interna... da rimuovere...)
+## Versione e licenza
 
-1. Creare `it/capitoli/02-....qmd` e `chapters/02-....qmd` (copiare la struttura del capitolo 1).
-2. Aggiungerli alle due barre laterali in `_quarto.yml`.
-3. Ogni esempio va in un blocco a schede:
+Versione: 1.0 - versione preliminare soggetta a frequente aggiornamento
+Licenza: (in corso di definizione)
 
-   ````markdown
-   ::: {.panel-tabset group="language"}
-   ### R
-   ```{r}
-   ...
-   ```
-   ### Python
-   ```{python}
-   ...
-   ```
-   ### SAS
-   ```sas
-   ...
-   ```
-   :::
-   ````
+## Autore
 
-   Il codice R e Python (blocchi `{r}` e `{python}`) viene eseguito; il codice SAS (blocchi `sas`, senza graffe) viene solo mostrato.
-
+Erasmo Vassallo
+Università degli Studi di Palermo
