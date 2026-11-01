@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3 Numeri indice e deflazione – Statistica Economica · Economic Statistics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../it/capitoli/04-serie-storiche.html" rel="next">
+<link href="../../it/capitoli/02-aggregati-economici.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-86fc916b84669629367aabb2a24c5117.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-13715bb0a6d20bd8e399adc380af65d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Statistica Economica · Economic Statistics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ricerca"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../it/index.html" aria-current="page"> 
+<span class="menu-text">Italiano</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/erasmovassallo/statistica-economica"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/03-numeri-indice.html">3 Numeri indice e deflazione</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/prefazione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capitoli</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/01-per-iniziare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Per iniziare: nozioni di R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/02-aggregati-economici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Aggregati economici e conti nazionali</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/03-numeri-indice.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3 Numeri indice e deflazione</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/04-serie-storiche.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Approccio decompositivo alle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/05-modelli-lineari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Specificazione di modelli lineari economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/06-modelli-stocastici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Modelli stocastici per l’analisi delle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/07-poverta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 Povertà e distribuzione dei redditi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/08-produzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 Produzione e produttività di sistemi economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/09-efficienza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 Efficienza statistica dei processi produttivi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/10-carte-controllo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 Carte di controllo statistico per l’analisi di qualità</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/11-serie-finanziarie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 Modelli statistici per le serie economiche finanziarie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/12-altri-esempi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 Altri esempi applicativi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliografia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/autore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L’autore</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#sec-ni-semplici" id="toc-sec-ni-semplici" class="nav-link active" data-scroll-target="#sec-ni-semplici">3.1 Numeri indice semplici</a></li>
+  <li><a href="#sec-paasche-laspeyres" id="toc-sec-paasche-laspeyres" class="nav-link" data-scroll-target="#sec-paasche-laspeyres">3.2 Indici di Paasche e di Laspeyres</a></li>
+  <li><a href="#sec-indici-prezzo" id="toc-sec-indici-prezzo" class="nav-link" data-scroll-target="#sec-indici-prezzo">3.3 Indici di prezzo, Fisher e indici concatenati</a></li>
+  <li><a href="#sec-esempio-ni" id="toc-sec-esempio-ni" class="nav-link" data-scroll-target="#sec-esempio-ni">3.4 Un esempio di calcolo</a></li>
+  <li><a href="#sec-inflazione" id="toc-sec-inflazione" class="nav-link" data-scroll-target="#sec-inflazione">3.5 Inflazione, potere d’acquisto e coefficienti di rivalutazione</a></li>
+  <li><a href="#sec-deflazione" id="toc-sec-deflazione" class="nav-link" data-scroll-target="#sec-deflazione">3.6 Deflazionare una serie storica</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/03-numeri-indice.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/03-numeri-indice.html">3 Numeri indice e deflazione</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">3 Numeri indice e deflazione</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-ni-semplici" class="level2">
+<h2 class="anchored" data-anchor-id="sec-ni-semplici">3.1 Numeri indice semplici</h2>
+<p>Il confronto di aggregati nel tempo o nello spazio richiede l’omogeneità delle grandezze comparate: non possiamo confrontare il prezzo dei sigari toscani in lire con quello di un altro tipo di sigari in euro, oppure confrontare velocità in km orari e in miglia orarie. I numeri indice aiutano a compiere confronti tra variabili poiché sono indipendenti dall’unità di misura: diremo che il numero indice è un numero puro. Ovviamente esistono molteplici possibilità di costruire un numero indice; dipende dalle esigenze conoscitive dello studioso.</p>
+<p>Supponiamo di voler confrontare il numero di delitti commessi contro la persona in due città, diciamo A e B. La città A ha un numero di delitti per 100 persone che hanno subito l’evento pari a 30, mentre la seconda pari a 60 (sempre su 100). Evidentemente A è meno “pericolosa” di B, se i delitti sono una proxy dei livelli di sicurezza di una comunità. La prima città è meno pericolosa del <span class="math inline">\((30/60 - 1) \cdot 100 = (0{,}5-1) \cdot 100 = -50\%\)</span>, cioè della metà. Questo rapporto è un numero indice, un numero puro che esprime una variazione relativa indipendente dall’unità di misura di partenza. E ancora: di quanto sono aumentati in percentuale i delitti per 100 persone offese nella città A, se essi sono passati da 20 nel 2000 a 40 nel 2008? La risposta è immediata: <span class="math inline">\((40/20 - 1) \cdot 100 = (2-1) \cdot 100 = +100\%\)</span>, sono raddoppiati. In questo modo il confronto di aggregati e variabili può essere fatto agevolmente sia nello spazio sia nel tempo e, poiché il denominatore del numero indice rappresenta la base di raffronto, nel caso del tempo è usualmente indicato il periodo meno recente, in modo che la variazione venga letta in maniera intuitiva dal periodo più lontano a quello più vicino.</p>
+<p>Continuiamo il nostro esempio scegliendo un prodotto, per esempio la carne suina consumata da una certa famiglia in una data area territoriale per un qualsivoglia periodo. Se la famiglia Rossi acquistava 1 kg di carne alla settimana l’anno scorso e oggi ne acquista 2 kg, allora <span class="math inline">\((2/1 - 1) \cdot 100 = 100\%\)</span> sarà l’incremento del consumo di carne (ipotizzando che la quantità acquistata corrisponda all’effettivo consumo del bene); in altri termini, se <span class="math inline">\(q\)</span> rappresenta la quantità, si può scrivere <span class="math inline">\(q_{1}/q_{0}\)</span>, dove 0 e 1 indicano i due periodi di tempo. Allo stesso modo, per il 2008 ma per due famiglie diverse, avremo <span class="math inline">\(q_{famiglia1}/q_{famiglia2}\)</span>. Un ragionamento analogo a quello sulle quantità può farsi per i prezzi della carne in due anni diversi o nello stesso anno per le solite due famiglie; quindi scriveremo <span class="math inline">\(p_{1}/p_{0}\)</span> oppure <span class="math inline">\(p_{famiglia1}/p_{famiglia2}\)</span>. Questi sono esempi di numeri indice semplici, cioè che considerano un solo bene (o servizio): un semplice rapporto.</p>
+<p>Possiamo essere interessati non soltanto al confronto del prezzo o della quantità di carne acquistata, ma anche al valore complessivo del bene. Ci può allora interessare il confronto tra la spesa in carne di un anno e l’analoga spesa nell’anno successivo della nostra famiglia Rossi. Il valore di questa spesa dipende dalle oscillazioni del prezzo a parità di quantità acquistata, oppure dalla variazione delle quantità a parità di prezzo, ovvero dalle variazioni sia di prezzo sia di quantità. Il valore di un nostro acquisto è ovviamente il prodotto del prezzo unitario per le quantità acquistate: il valore della spesa di 5 kg di carne è <span class="math inline">\(q\cdot p\)</span>, cioè 5 kg moltiplicato per il prezzo di 1 kg di carne. Quindi, il valore della nostra spesa è in genere</p>
+<p><span class="math display">\[
+V=p\cdot q
+\tag{3.1}
+\]</span></p>
+<p>Il confronto tra due anni è ottenuto con il solito rapporto, e per i tempi 0 e 1 avremo</p>
+<p><span class="math display">\[
+p_{1}q_{1}/p_{0}q_{0}
+\tag{3.2}
+\]</span></p>
+<p>mentre nello spazio, tra le aree <span class="math inline">\(r\)</span> e <span class="math inline">\(s\)</span>, varrà</p>
+<p><span class="math display">\[
+p_{r}q_{r}/p_{s}q_{s}
+\tag{3.3}
+\]</span></p>
+<p>Dedichiamo attenzione ai confronti nel tempo, perché più interessanti per ciò che diremo più avanti; tutto risulterà valido anche per i confronti spaziali.</p>
+<p>Dire che per la famiglia Rossi la spesa settimanale in carne tra il 2007 e il 2008 è passata da 25 a 36 euro ha un’importanza limitata; questo valore è cresciuto del <span class="math inline">\((36/25-1) \cdot 100 = 44\%\)</span>: a cosa è dovuto l’aumento? La famiglia Rossi ha deciso di acquistare quantità maggiori di carne a parità di prezzo, i prezzi sono aumentati a parità di quantità, oppure sono cresciuti sia i prezzi sia le quantità? Ben consci che l’uno avrebbe potuto accrescersi e l’altro ridursi, o viceversa.</p>
+<p>Dunque, accertare da cosa dipenda la variazione di valore nel tempo, se dalle quantità e/o dai prezzi e in quale misura, assume chiaro rilievo. Se scoprissimo che in realtà i prezzi sono cresciuti e la quantità di carne acquistata si è ridotta, ma non al punto da compensare la prima variazione, sapremmo che la nostra famiglia Rossi sta consumando meno carne anche se spende di più; al contrario, l’informazione iniziale sull’incremento del valore della spesa da 25 a 36 avrebbe intuitivamente spinto a credere in un consumo maggiore di carne. Le variazioni di prezzi e quantità vanno, perciò, adeguatamente separate.</p>
+<p>Per far questo occorre definire due valori virtuali, combinando prezzi e quantità dei due diversi periodi 0 e 1:</p>
+<p><span class="math display">\[
+V'=p_{1}q_{0} \quad \text{e} \quad V''=p_{0}q_{1}
+\tag{3.4}
+\]</span></p>
+<p>Confrontando il periodo 1 con questi due valori virtuali, avremo</p>
+<p><span class="math display">\[
+V/V'=p_{1}q_{1}/p_{1}q_{0} \quad \text{da cui} \quad V/V'=q_{1}/q_{0}
+\tag{3.5}
+\]</span></p>
+<p>e ancora</p>
+<p><span class="math display">\[
+V/V''=p_{1}q_{1}/p_{0}q_{1} \quad \text{da cui} \quad V/V''=p_{1}/p_{0}
+\tag{3.6}
+\]</span></p>
+<p>Dunque, informazioni sulla variazione delle quantità si avranno mantenendo costanti i prezzi, mentre informazioni sulla variazione dei prezzi si avranno mantenendo costanti le quantità tra i periodi 0 e 1. Il primo è un indice di quantità, il secondo è un indice di prezzo. Possiamo generalizzare questo principio ai numeri indice complessi, cioè a quelli che considerano più beni e/o servizi.</p>
+</section>
+<section id="sec-paasche-laspeyres" class="level2">
+<h2 class="anchored" data-anchor-id="sec-paasche-laspeyres">3.2 Indici di Paasche e di Laspeyres</h2>
+<p>Per <span class="math inline">\(n\)</span> prodotti avremo</p>
+<p><span class="math display">\[
+I_{q}^{P}=\sum_{i=1}^{n} p_{i1}q_{i1} \Big/ \sum_{i=1}^{n} p_{i1}q_{i0} \qquad \text{(indice di quantità di Paasche)}
+\tag{3.7}
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+I_{p}^{P}=\sum_{i=1}^{n} p_{i1}q_{i1} \Big/ \sum_{i=1}^{n} p_{i0}q_{i1} \qquad \text{(indice di prezzo di Paasche)}
+\tag{3.8}
+\]</span></p>
+<p>Notiamo che nel primo caso abbiamo mantenuto costanti al tempo 1 i prezzi <span class="math inline">\(p\)</span>, mentre nel secondo caso le quantità <span class="math inline">\(q\)</span>. Questa configurazione caratterizza i numeri indice di Paasche <span class="math inline">\(I^{P}\)</span>.</p>
+<p>Tuttavia, in genere, come termine di riferimento è preferito il periodo meno recente (0 nel nostro caso), sia perché risulta più facile disporre di dati meno recenti, sia perché la costruzione e l’interpretazione dell’indice appaiono più intuitive. Quindi</p>
+<p><span class="math display">\[
+I_{q}^{L}=\sum_{i=1}^{n} p_{i0}q_{i1} \Big/ \sum_{i=1}^{n} p_{i0}q_{i0} \qquad \text{(indice di quantità di Laspeyres)}
+\tag{3.9}
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+I_{p}^{L}=\sum_{i=1}^{n} p_{i1}q_{i0} \Big/ \sum_{i=1}^{n} p_{i0}q_{i0} \qquad \text{(indice di prezzo di Laspeyres)}
+\tag{3.10}
+\]</span></p>
+<p>Notiamo che stavolta il valore virtuale <span class="math inline">\(V'\)</span> o <span class="math inline">\(V''\)</span> è posto a numeratore; questa è la configurazione tipica degli indici di Laspeyres <span class="math inline">\(I^{L}\)</span>.</p>
+</section>
+<section id="sec-indici-prezzo" class="level2">
+<h2 class="anchored" data-anchor-id="sec-indici-prezzo">3.3 Indici di prezzo, Fisher e indici concatenati</h2>
+<p>Concentriamo l’attenzione soltanto sugli indici di prezzo, particolarmente interessanti poiché consentono utili considerazioni circa l’inflazione, cioè la variazione relativa del livello generale dei prezzi registrata in una comunità in uno specifico intervallo di tempo.</p>
+<p>Con riferimento a un dato gruppo di prodotti o a un generico paniere rappresentativo delle spese per consumo di certe famiglie, quando in un periodo i prezzi tendono ad aumentare (dinamica usuale nell’economia di una nazione), il consumatore finirà per sostituire i beni e/o servizi il cui prezzo è cresciuto con altri prodotti dai prezzi più bassi; quindi ridurrà le quantità acquistate e consumate dei primi e accrescerà quelle dei secondi. L’indice dei prezzi di Laspeyres tenderà verso valori più alti, mentre l’indice di Paasche verso valori più bassi, e diremo che il primo è affetto da tendenziosità positiva e il secondo da tendenziosità negativa, poiché Laspeyres sovrastima l’inflazione e Paasche la sottostima. Infatti l’indice dei prezzi, fornendo al lettore informazioni sull’andamento dei prezzi per il tramite di una particolare media ponderata rispetto alle quantità, di fatto misura, per il periodo e il territorio presi in esame, la dinamica generale dei prezzi del paniere di beni e/o servizi considerato.</p>
+<p>Va ricordato che né il prodotto tra l’indice dei prezzi e quello delle quantità di Laspeyres, né quello tra gli indici di prezzo e di quantità di Paasche, forniscono l’indice di valore</p>
+<p><span class="math display">\[
+I_{v}=\sum_{i=1}^{n} p_{i1}q_{i1} \Big/ \sum_{i=1}^{n} p_{i0}q_{i0}
+\tag{3.11}
+\]</span></p>
+<p>È facile dimostrare che soltanto il prodotto dell’indice dei prezzi dell’uno per quello di quantità dell’altro, e viceversa, è in grado di restituire il numero indice di valore. Non vale neanche la proprietà di transitività: l’indice dei prezzi tra 0 e <span class="math inline">\(n\)</span> non è uguale alla combinazione di quelli tra 0 e <span class="math inline">\(t\)</span> e tra <span class="math inline">\(t\)</span> e <span class="math inline">\(n\)</span>, dove <span class="math inline">\(t&lt;n\)</span>. I numeri indice semplici, invece, posseggono anche queste proprietà. Il ricorso a un terzo indice, quello di Fisher, consente quantomeno di risolvere la tendenziosità di Laspeyres e Paasche, calcolandone una media geometrica</p>
+<p><span class="math display">\[
+I_{p}^{F}=(I_{p}^{L}\cdot I_{p}^{P})^{1/2} \quad \text{e} \quad I_{q}^{F}=(I_{q}^{L}\cdot I_{q}^{P})^{1/2}
+\tag{3.12}
+\]</span></p>
+<p>Il ricorso all’indice di Fisher risolve anche il problema della ricomposizione dell’indice di valore, poiché</p>
+<p><span class="math display">\[
+I_{v}^{F}=I_{p}^{F}\cdot I_{q}^{F}
+\tag{3.13}
+\]</span></p>
+<p>Lo svantaggio maggiore consiste nel tempo di elaborazione e nella necessità di disporre di parecchia informazione, dovendosi calcolare sia Laspeyres sia Paasche e poi la loro media geometrica.</p>
+<p>L’ISTAT, come gran parte degli Istituti Centrali di Statistica, preferisce ricorrere all’indice di Laspeyres che, ricordiamo, in linea teorica non rispetta il principio di transitività (o circolarità). Va però evidenziato che dal 2005 il nostro Istituto di Statistica adotta numeri indice a catena, come da nuove direttive europee. Questo implica un continuo aggiornamento dell’anno di riferimento e il superamento del vecchio indice a base fissa. In altre parole, di anno in anno viene costruito un nuovo indice dei prezzi basato sull’anno precedente e, con la tecnica del concatenamento, l’indice per esempio tra il tempo 1 e il tempo 3 è ottenuto come prodotto degli indici tra i tempi 1 e 2 e tra 2 e 3. In termini generali,</p>
+<p><span class="math display">\[
+{}_{0}I_{t}={}_{0}I_{r}\cdot{}_{r}I_{s}\cdot{}_{s}I_{t} \qquad \text{con } r&lt;s&lt;t
+\tag{3.14}
+\]</span></p>
+<p>Naturalmente il calcolo del corrispondente indice a base fissa tra i tempi 1 e 3 non coinciderà con quello ottenuto per concatenamento, ma di ciò non ci si preoccupa più; in questo modo il problema dell’assenza di transitività dell’indice perde di significato.</p>
+</section>
+<section id="sec-esempio-ni" class="level2">
+<h2 class="anchored" data-anchor-id="sec-esempio-ni">3.4 Un esempio di calcolo</h2>
+<p>Carichiamo i dati di fantasia della Tabella 3.1, contenuti nel file <em>numeroindice.csv</em> e riferibili a prezzi in euro e quantità in unità di quattro beni in tre anni qualsiasi.</p>
+<table class="caption-top table">
+<caption>Tabella 3.1 – Prezzi e quantità in tre anni di quattro prodotti</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">q0</th>
+<th style="text-align: right;">p1</th>
+<th style="text-align: right;">q1</th>
+<th style="text-align: right;">p2</th>
+<th style="text-align: right;">q2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">a</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">b</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">c</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">d</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<p>Il comando <code>V0=sum(p0*q0)</code> calcola il valore per il tempo 0; analogamente si procede per i tempi 1 e 2. Da notare l’uso del simbolo <code>=</code> invece della tradizionale assegnazione <code>&lt;-</code>, nonché di <code>;</code> per la visualizzazione compatta del risultato.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/numeroindice.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(ni)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>V0<span class="ot">=</span><span class="fu">sum</span>(p0<span class="sc">*</span>q0)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>V1<span class="ot">=</span><span class="fu">sum</span>(p1<span class="sc">*</span>q1)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>V2<span class="ot">=</span><span class="fu">sum</span>(p2<span class="sc">*</span>q2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>V0;V1;V2</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> pd.read_csv(<span class="st">"data/numeroindice.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p0, q0, p1, q1, p2, q2 <span class="op">=</span> (ni[c] <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"p0"</span>, <span class="st">"q0"</span>, <span class="st">"p1"</span>, <span class="st">"q1"</span>, <span class="st">"p2"</span>, <span class="st">"q2"</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>V0 <span class="op">=</span> (p0 <span class="op">*</span> q0).<span class="bu">sum</span>()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> (p1 <span class="op">*</span> q1).<span class="bu">sum</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>V2 <span class="op">=</span> (p2 <span class="op">*</span> q2).<span class="bu">sum</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(V0, V1, V2)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>45 68 111</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">import</span> <span class="kw">datafile</span>=<span class="st">"data/numeroindice.csv"</span> <span class="kw">out</span>=ni <span class="kw">dbms</span>=dlm <span class="kw">replace</span>;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delimiter</span>=<span class="st">";"</span>; <span class="kw">getnames</span>=yes;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* i valori aggregati si ottengono come somme di prodotti */</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span>;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  create table valori as</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  select <span class="bu">sum</span>(p0*q0) as V0, <span class="bu">sum</span>(p1*q1) as V1, <span class="bu">sum</span>(p2*q2) as V2,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>         <span class="bu">sum</span>(p0*q1) as V01, <span class="bu">sum</span>(p1*q0) as V10</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  from ni;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=valori noobs; <span class="kw">var</span> V0 V1 V2; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Studiamo le variazioni di valore intervenute nel corso del tempo.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Iv1 <span class="ot">&lt;-</span> ((V1<span class="sc">/</span>V0)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Iv2 <span class="ot">&lt;-</span> ((V2<span class="sc">/</span>V1)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Iv1,<span class="dv">2</span>);<span class="fu">round</span>(Iv2,<span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51.11</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 63.24</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Iv1 <span class="op">=</span> ((V1 <span class="op">/</span> V0) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Iv2 <span class="op">=</span> ((V2 <span class="op">/</span> V1) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(Iv1, <span class="dv">2</span>), <span class="bu">round</span>(Iv2, <span class="dv">2</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>51.11 63.24</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> valori;</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> valori;</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  Iv1 = <span class="bu">round</span>(((V1/V0) - <span class="dv">1</span>) * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  Iv2 = <span class="bu">round</span>(((V2/V1) - <span class="dv">1</span>) * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=valori noobs; <span class="kw">var</span> Iv1 Iv2; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Dal tempo 0 al tempo 1 il valore dell’acquisto è cresciuto da 45 a 68 euro, con un aumento di circa il 51%, e persino del 63% tra il tempo 1 e il tempo 2; questi sono i numeri indice di valore al tempo 1 e al tempo 2.</p>
+<p>Costruiamo gli indici di prezzo e di quantità di tipo Laspeyres e Paasche in base 100. Da notare l’ultima istruzione, che consente di visualizzare in un’unica riga i valori arrotondati senza decimali.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>V01 <span class="ot">&lt;-</span> <span class="fu">sum</span>(p0<span class="sc">*</span>q1)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>V10 <span class="ot">&lt;-</span> <span class="fu">sum</span>(p1<span class="sc">*</span>q0)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>IqL <span class="ot">&lt;-</span> (V01<span class="sc">/</span>V0)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>IpL <span class="ot">&lt;-</span> (V10<span class="sc">/</span>V0)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>IqP <span class="ot">&lt;-</span> (V1<span class="sc">/</span>V10)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>IpP <span class="ot">&lt;-</span> (V1<span class="sc">/</span>V01)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(IqL,IqP,IpL,IpP),<span class="dv">0</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 113 106 142 133</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>V01 <span class="op">=</span> (p0 <span class="op">*</span> q1).<span class="bu">sum</span>()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>V10 <span class="op">=</span> (p1 <span class="op">*</span> q0).<span class="bu">sum</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>IqL <span class="op">=</span> (V01 <span class="op">/</span> V0) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>IpL <span class="op">=</span> (V10 <span class="op">/</span> V0) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>IqP <span class="op">=</span> (V1 <span class="op">/</span> V10) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>IpP <span class="op">=</span> (V1 <span class="op">/</span> V01) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>([IqL, IqP, IpL, IpP], <span class="dv">0</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[113. 106. 142. 133.]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> indici;</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> valori;</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  IqL = (V01/V0)*<span class="dv">100</span>;</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  IpL = (V10/V0)*<span class="dv">100</span>;</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  IqP = (V1/V10)*<span class="dv">100</span>;</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  IpP = (V1/V01)*<span class="dv">100</span>;</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=indici noobs; <span class="kw">var</span> IqL IqP IpL IpP; <span class="kw">format</span> IqL IqP IpL IpP <span class="dv">5.0</span>; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Pertanto, tra il tempo 0 e 1, a fronte di un aumento di valore del 51%, i prezzi sono variati del 42% secondo Laspeyres e del 33% secondo Paasche; le quantità sono invece variate del 13% e del 6% rispettivamente per i due tipi di indici. Nella realtà, le differenze tra Laspeyres e Paasche non risultano tanto elevate quanto questo esempio ha messo in evidenza. La ricomposizione dell’indice di valore è immediata.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>((((IqL<span class="sc">*</span>IpP)<span class="sc">/</span><span class="dv">100</span>)<span class="sc">-</span><span class="dv">100</span>),<span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51.11</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>((((IqP<span class="sc">*</span>IpL)<span class="sc">/</span><span class="dv">100</span>)<span class="sc">-</span><span class="dv">100</span>),<span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51.11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(IqL <span class="op">*</span> IpP <span class="op">/</span> <span class="dv">100</span> <span class="op">-</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="bu">round</span>(IqP <span class="op">*</span> IpL <span class="op">/</span> <span class="dv">100</span> <span class="op">-</span> <span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>51.11 51.11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> indici;</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> indici;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  ric1 = <span class="bu">round</span>(IqL*IpP/<span class="dv">100</span> - <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  ric2 = <span class="bu">round</span>(IqP*IpL/<span class="dv">100</span> - <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=indici noobs; <span class="kw">var</span> ric1 ric2; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Semplice è la costruzione degli indici di prezzo, quantità e valore di Fisher.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>IpF <span class="ot">&lt;-</span> (IpL<span class="sc">*</span>IpP)<span class="sc">^</span>(<span class="fl">0.5</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>IqF <span class="ot">&lt;-</span> (IqL<span class="sc">*</span>IqP)<span class="sc">^</span>(<span class="fl">0.5</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(((IqF<span class="sc">*</span>IpF<span class="sc">/</span><span class="dv">100</span>)<span class="sc">-</span><span class="dv">100</span>),<span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51.11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>IpF <span class="op">=</span> (IpL <span class="op">*</span> IpP) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>IqF <span class="op">=</span> (IqL <span class="op">*</span> IqP) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(IqF <span class="op">*</span> IpF <span class="op">/</span> <span class="dv">100</span> <span class="op">-</span> <span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>51.11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> indici;</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> indici;</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  IpF = <span class="bu">sqrt</span>(IpL*IpP);</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  IqF = <span class="bu">sqrt</span>(IqL*IqP);</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  IvF = <span class="bu">round</span>(IqF*IpF/<span class="dv">100</span> - <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=indici noobs; <span class="kw">var</span> IpF IqF IvF; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>La ripetizione dei calcoli per l’intervallo tra gli anni 1 e 2 è lasciata al lettore.</p>
+<p>Notiamo, ancora, che l’indice concatenato dei prezzi di Laspeyres tra l’anno iniziale (0) e quello finale (2) segnala un aumento del 107%, contro il 116% ottenuto con il calcolo diretto. Di nuovo, la forte differenza nei numeri è dovuta alla specificità dell’esempio proposto poiché, nella realtà, l’indice concatenato non appare mai troppo distante dall’indice ottenuto con il calcolo diretto.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>IpL01 <span class="ot">&lt;-</span> <span class="fu">sum</span>(p1<span class="sc">*</span>q0)<span class="sc">/</span><span class="fu">sum</span>(p0<span class="sc">*</span>q0)       <span class="co"># Laspeyres tra 0 e 1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>IpL12 <span class="ot">&lt;-</span> <span class="fu">sum</span>(p2<span class="sc">*</span>q1)<span class="sc">/</span><span class="fu">sum</span>(p1<span class="sc">*</span>q1)       <span class="co"># Laspeyres tra 1 e 2</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>IpL02 <span class="ot">&lt;-</span> <span class="fu">sum</span>(p2<span class="sc">*</span>q0)<span class="sc">/</span><span class="fu">sum</span>(p0<span class="sc">*</span>q0)       <span class="co"># Laspeyres diretto tra 0 e 2</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">concatenato =</span> (IpL01<span class="sc">*</span>IpL12 <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">diretto     =</span> (IpL02 <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>), <span class="dv">0</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>concatenato     diretto 
+        107         116 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(ni)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>IpL01 <span class="op">=</span> (p1 <span class="op">*</span> q0).<span class="bu">sum</span>() <span class="op">/</span> (p0 <span class="op">*</span> q0).<span class="bu">sum</span>()   <span class="co"># Laspeyres tra 0 e 1</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>IpL12 <span class="op">=</span> (p2 <span class="op">*</span> q1).<span class="bu">sum</span>() <span class="op">/</span> (p1 <span class="op">*</span> q1).<span class="bu">sum</span>()   <span class="co"># Laspeyres tra 1 e 2</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>IpL02 <span class="op">=</span> (p2 <span class="op">*</span> q0).<span class="bu">sum</span>() <span class="op">/</span> (p0 <span class="op">*</span> q0).<span class="bu">sum</span>()   <span class="co"># Laspeyres diretto tra 0 e 2</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"concatenato:"</span>, <span class="bu">round</span>((IpL01 <span class="op">*</span> IpL12 <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>), <span class="st">" diretto:"</span>, <span class="bu">round</span>((IpL02 <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>concatenato: 107  diretto: 116</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span>;</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  select (<span class="bu">sum</span>(p1*q0)/<span class="bu">sum</span>(p0*q0)) * (<span class="bu">sum</span>(p2*q1)/<span class="bu">sum</span>(p1*q1)) * <span class="dv">100</span> - <span class="dv">100</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>           as concatenato <span class="kw">format</span>=<span class="dv">5.0</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="bu">sum</span>(p2*q0)/<span class="bu">sum</span>(p0*q0) * <span class="dv">100</span> - <span class="dv">100</span> as diretto <span class="kw">format</span>=<span class="dv">5.0</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  from ni;</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-inflazione" class="level2">
+<h2 class="anchored" data-anchor-id="sec-inflazione">3.5 Inflazione, potere d’acquisto e coefficienti di rivalutazione</h2>
+<p>I dati sull’andamento dei prezzi vengono pubblicati dall’ISTAT mensilmente, sia in forma tendenziale sia congiunturale. Nel mese di febbraio 2009 l’indice nazionale dei prezzi al consumo per l’intera collettività (NIC), comprensivo dei tabacchi, è stato pari a 137,0 (base 1995=100), registrando una variazione di +0,2% rispetto al mese di gennaio 2009 (variazione congiunturale) e una variazione di +1,6% rispetto allo stesso mese dell’anno precedente (variazione tendenziale): questa è una misura dell’inflazione per il mese di febbraio 2009 su febbraio 2008. Se invece volessimo riferirci al FOI con un dato aggiornato al 2018, potremmo osservare un numero indice di 102,9 nel mese di agosto 2018 rispetto alla base 100 fissata all’anno 2015: quindi un incremento del 2,9% rispetto al periodo scelto come base. Tornando al NIC, nella nostra valutazione storica, la crisi internazionale, che ha compresso consumi e produzione, e la sostanziale riduzione dei prezzi delle materie prime energetiche hanno fatto registrare un consistente rallentamento nella crescita di tutti i prezzi: nel corso del 2008 (rispetto al 2007) la media annua dell’inflazione si attestava al 3,3%, con punte del 4% per il solo terzo trimestre. È interessante notare che in anni recenti la dinamica dei prezzi si è attestata su valori più contenuti; per esempio, il dato tendenziale di settembre 2018 riferibile al NIC mostra una crescita dell’1,5% su base annua (un po’ più bassa dell’1,6% fatto registrare ad agosto 2018).</p>
+<p>La conoscenza dell’andamento dei prezzi è particolarmente utile per non confondere le variazioni di un aggregato con le sue oscillazioni reali, dove per reali qui si intende al netto dell’effetto dei prezzi. Supponiamo di voler studiare la spesa per consumo di pane in un quartiere di Palermo tra gli anni 2007 e 2008: 10.000 euro nel primo anno e 12.000 euro nel secondo; l’aumento registrato è del 20%. Ma quanta parte di questo incremento è dovuta all’effetto dei prezzi? Se scoprissimo che i prezzi del pane hanno totalmente determinato l’incremento di valore del consumo, potremmo concludere che nel quartiere non si è in realtà mangiato più pane. Si potrebbe persino ipotizzare che l’aumento dei prezzi abbia compensato una riduzione delle quantità vendute e, pertanto, che l’incremento della spesa per consumo nasconda una riduzione in termini reali del pane venduto.</p>
+<p>Dunque, per una corretta interpretazione del dato risulta necessario scorporare gli effetti di prezzo, anche se quasi mai l’utente finale dispone di informazioni adeguate per singolo prodotto o tipologia di prodotti; in gran parte dei casi, pur con alcune rilevanti eccezioni, ci si accontenta di una misura valida per l’insieme dei prezzi. Questa è la strada che viene usualmente seguita per scorporare l’effetto dei prezzi e ottenere un aggregato in termini reali.</p>
+<p>In particolare, oltre al NIC, l’ISTAT calcola un indice dei prezzi al consumo per le famiglie di operai e impiegati (FOI); il FOI al netto dei tabacchi viene utilizzato per adeguare affitti, assegni di mantenimento, ecc. Tale indice a febbraio 2009 è risultato uguale a 134,5 con base 1995=100, con una variazione tendenziale su febbraio 2008 di +1,5%, mentre l’indice annuo per il 2007 e per il 2008 è stato rispettivamente 130,0 e 134,2, con una variazione di +3,23%. Pertanto, a parità di valuta posseduta, tra il 2007 e il 2008 il potere d’acquisto si è ridotto di circa il 3%. Considerazioni simili possono svolgersi con dati riferiti a periodi a noi più recenti.</p>
+<p>A questo punto è possibile conoscere di quanto si è ridotto il valore, per esempio, di 1000 euro a causa dell’erosione dei prezzi tra il 2007 e il 2008. L’indice 2008 su 2007 (quindi ribasato sul 2007) sarà <span class="math inline">\((134{,}2/130{,}0) \cdot 100 = 103{,}23\)</span>; pertanto, <span class="math inline">\((1000 / 103{,}23) \cdot 100 = 968{,}70\)</span> euro è ciò che “realmente” ci resta dei 1000 euro iniziali. In modo più semplice, <span class="math inline">\(1000 / (1 + 3{,}23\%) = 1000 / (1 + 0{,}0323) = 968{,}70\)</span>. Con analogo ragionamento, se volessimo scoprire il valore di 1000 euro del 2008 riferiti al 2007, basterebbe moltiplicare 1000 per <span class="math inline">\((1+0{,}0323)\)</span>, cioè per quel coefficiente 1,0323 noto come “coefficiente di rivalutazione monetaria”.</p>
+<p>A tal proposito, la Tabella 3.2 riporta i coefficienti di rivalutazione per alcuni anni; la serie più ampia è riportata nel file <em>rivalutazione.csv</em>.</p>
+<table class="caption-top table">
+<caption>Tabella 3.2 – Coefficienti di rivalutazione in alcuni anni</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Anno</th>
+<th style="text-align: right;">Coeff. rivalutazione</th>
+<th style="text-align: center;">Anno</th>
+<th style="text-align: right;">Coeff. rivalutazione</th>
+<th style="text-align: center;">Anno</th>
+<th style="text-align: right;">Coeff. rivalutazione</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1861</td>
+<td style="text-align: right;">8513,9146</td>
+<td style="text-align: center;">1938</td>
+<td style="text-align: right;">1606,0294</td>
+<td style="text-align: center;">2001</td>
+<td style="text-align: right;">1,1659</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1862</td>
+<td style="text-align: right;">8462,3152</td>
+<td style="text-align: center;">1939</td>
+<td style="text-align: right;">1538,0943</td>
+<td style="text-align: center;">2002</td>
+<td style="text-align: right;">1,1383</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1863</td>
+<td style="text-align: right;">8715,8677</td>
+<td style="text-align: center;">1940</td>
+<td style="text-align: right;">1317,9932</td>
+<td style="text-align: center;">2003</td>
+<td style="text-align: right;">1,1109</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1864</td>
+<td style="text-align: right;">8962,0154</td>
+<td style="text-align: center;">1941</td>
+<td style="text-align: right;">1139,0782</td>
+<td style="text-align: center;">2004</td>
+<td style="text-align: right;">1,0893</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1865</td>
+<td style="text-align: right;">9114,1123</td>
+<td style="text-align: center;">1942</td>
+<td style="text-align: right;">985,5181</td>
+<td style="text-align: center;">2005</td>
+<td style="text-align: right;">1,0710</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1866</td>
+<td style="text-align: right;">9019,9096</td>
+<td style="text-align: center;">1943</td>
+<td style="text-align: right;">587,6608</td>
+<td style="text-align: center;">2006</td>
+<td style="text-align: right;">1,0501</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1867</td>
+<td style="text-align: right;">8803,7957</td>
+<td style="text-align: center;">1944</td>
+<td style="text-align: right;">132,2387</td>
+<td style="text-align: center;">2007</td>
+<td style="text-align: right;">1,0323</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1868</td>
+<td style="text-align: right;">8462,3152</td>
+<td style="text-align: center;">1945</td>
+<td style="text-align: right;">67,1419</td>
+<td style="text-align: center;">2008</td>
+<td style="text-align: right;">1,0000</td>
+</tr>
+</tbody>
+</table>
+<p>In sostanza, se fossimo in grado di tornare indietro nel tempo, con un euro del 2008 avremmo nel 1861 un potere d’acquisto pari a circa 8.514 euro, oppure a 67 euro nel 1945; naturalmente il coefficiente è pari a 1 nel 2008, qui base di riferimento dell’intera serie.</p>
+<p>I coefficienti di rivalutazione sono utili per deflazionare gli aggregati, eliminando da essi gli effetti dei prezzi come segnalati dall’indice FOI senza tabacchi. Anche se per semplicità tali coefficienti vengono adoperati per la maggior parte degli aggregati espressi in valuta, sarebbe logicamente corretto limitarne l’uso alle poste di consumo, utilizzando indici o deflatori specifici per le altre poste di domanda, nonché altri per quelle di offerta e produzione; ad esempio, per il PIL è disponibile uno specifico deflatore implicito.</p>
+</section>
+<section id="sec-deflazione" class="level2">
+<h2 class="anchored" data-anchor-id="sec-deflazione">3.6 Deflazionare una serie storica</h2>
+<p>Carichiamo i dati contenuti in <em>rivalutazione.csv</em>, attribuendo al vettore risultante dei nomi (gli anni) che consentano di trovare facilmente il coefficiente per gli anni di interesse, nell’esempio il 2007 e il 2008.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>rival <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/rivalutazione.csv"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(rival)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>coff <span class="ot">&lt;-</span> <span class="fu">as.array</span>(coeffrival)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(coff) <span class="ot">&lt;-</span> anni</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>coff[<span class="st">"2007"</span>]; coff[<span class="st">"2008"</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  2007 
+1.0323 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2008 
+   1 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>rival <span class="op">=</span> pd.read_csv(<span class="st">"data/rivalutazione.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>coff <span class="op">=</span> pd.Series(rival[<span class="st">"coeffrival"</span>].to_numpy(), index<span class="op">=</span>rival[<span class="st">"anni"</span>])</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coff[<span class="dv">2007</span>], coff[<span class="dv">2008</span>])</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0323 1.0</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> rival;</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">infile</span> <span class="st">"data/rivalutazione.csv"</span> dlm=<span class="st">";"</span> firstobs=<span class="dv">2</span> dsd;</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> anni coeffrival :commax12. consfam :commax12.;   <span class="co">/* la virgola è il separatore decimale */</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=rival noobs; <span class="kw">where</span> anni in (<span class="dv">2007</span>, <span class="dv">2008</span>); <span class="kw">var</span> anni coeffrival; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Rileviamo il consumo nazionale <span class="math inline">\(C\)</span> di cui alla Tabella 2.2 (cfr. Capitolo 2): 1.210.281 milioni di euro correnti (cioè non deflazionati) nel 2007, che corrisponderebbero a un consumo di 1.249.373 se i prezzi fossero quelli del 2008.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">1210281</span>; coff[<span class="st">"2007"</span>]<span class="sc">*</span>C</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   2007 
+1249373 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="dv">1210281</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coff[<span class="dv">2007</span>] <span class="op">*</span> C)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1249373.0763</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> _null_;</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> rival;</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> anni = <span class="dv">2007</span>;</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  C = <span class="dv">1210281</span>;</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  C2008 = coeffrival * C;</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">put</span> C2008= comma12.;</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Nel file <em>rivalutazione.csv</em> è contenuta anche la serie nazionale della spesa per consumo delle famiglie residenti, in milioni di euro correnti, dal 1970 al 2007. Utilizzando i coefficienti <code>coff</code> deflazioniamo questa spesa con prezzi fissati a quelli del 2000; è quindi necessario procedere preliminarmente a un cambio di base dal 2008 al 2000.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>coff00 <span class="ot">&lt;-</span> coff<span class="sc">/</span>coff[<span class="st">"2000"</span>]</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>cons00 <span class="ot">&lt;-</span> consfam<span class="sc">*</span>coff00; cons <span class="ot">&lt;-</span> <span class="fu">as.array</span>(consfam)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cons) <span class="ot">&lt;-</span> anni; cons00[<span class="st">"2007"</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    2007 
+776343.6 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>cons[<span class="st">"2007"</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    2007 
+900281.8 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>coff00 <span class="op">=</span> coff <span class="op">/</span> coff[<span class="dv">2000</span>]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>cons <span class="op">=</span> pd.Series(rival[<span class="st">"consfam"</span>].to_numpy(), index<span class="op">=</span>rival[<span class="st">"anni"</span>])</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>cons00 <span class="op">=</span> cons <span class="op">*</span> coff00</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cons00[<span class="dv">2007</span>], cons[<span class="dv">2007</span>])</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>776343.582106758 900281.8</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* cambio di base: si divide per il coefficiente del 2000 */</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span> noprint;</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  select coeffrival <span class="kw">into</span> :c2000 from rival <span class="kw">where</span> anni = <span class="dv">2000</span>;</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> rival;</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> rival;</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  coff00 = coeffrival / &amp;c2000;</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  cons00 = consfam * coff00;</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=rival noobs; <span class="kw">where</span> anni = <span class="dv">2007</span>; <span class="kw">var</span> anni consfam cons00; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>La spesa, pari a 900.282 milioni di euro nel 2007, diviene in termini reali 776.344 milioni di euro a prezzi 2000, essendo la differenza spiegata dall’agire dei prezzi tra il 2000 e il 2007, pari a circa il 16%.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>((coff[<span class="st">"2000"</span>]<span class="sc">/</span>coff[<span class="st">"2007"</span>])<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    2000 
+15.96435 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(((coff[<span class="dv">2000</span>] <span class="op">/</span> coff[<span class="dv">2007</span>]) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>15.964351448222413</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span>;</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  select (a.coeffrival / b.coeffrival - <span class="dv">1</span>) * <span class="dv">100</span> as var_prezzi</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  from rival a, rival b</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> a.anni = <span class="dv">2000</span> and b.anni = <span class="dv">2007</span>;</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Naturalmente il cambio di base incide sul livello dei consumi soltanto in termini assoluti, quindi il tasso di crescita dell’aggregato reale tra due anni qualsiasi è indipendente dalla base scelta per compiere la deflazione: avremo sempre un tasso di variazione di +183,7% nell’intero intervallo tra il 1970 e il 2007, a prescindere dall’anno base scelto per la valutazione a prezzi costanti.</p>
+<p>La Figura 3.1 confronta la spesa corrente e quella deflazionata in base 2000 per l’intervallo 1970-2007. Notiamo l’uso delle funzioni di disegno <code>plot()</code>, <code>lines()</code> e <code>abline()</code> e del comando <code>complete.cases()</code>, utile, nel nostro caso, per eliminare i dati mancanti precedenti al 1970 e successivi al 2007.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>cons2000 <span class="ot">&lt;-</span> cons00[<span class="fu">complete.cases</span>(cons00)]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>conscorr <span class="ot">&lt;-</span> cons[<span class="fu">complete.cases</span>(cons)]</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(conscorr, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">xlab=</span><span class="st">"anni"</span>, <span class="at">ylab=</span><span class="st">"consumo"</span>,</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"consumo corrente e costante 2000"</span>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(cons2000, <span class="at">type=</span><span class="st">"o"</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>(<span class="dv">2000-1970</span><span class="sc">+</span><span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="03-numeri-indice_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figura 3.1 – Consumo corrente (linea continua) e consumo costante a prezzi 2000 (linea punteggiata) in Italia dal 1970 al 2007 (milioni di euro)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>cons2000 <span class="op">=</span> cons00.dropna()</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>conscorr <span class="op">=</span> cons.dropna()</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>plt.plot(conscorr.index, conscorr, <span class="st">"-"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>plt.plot(cons2000.index, cons2000, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">2000</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"anni"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"consumo"</span>)</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"consumo corrente e costante 2000"</span>)</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="03-numeri-indice_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 3.1 – Consumo corrente (linea continua) e consumo costante a prezzi 2000 (linea punteggiata) in Italia dal 1970 al 2007 (milioni di euro)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=rival;</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> <span class="dv">1970</span> &lt;= anni &lt;= <span class="dv">2007</span>;</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"consumo corrente e costante 2000"</span>;</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=anni y=consfam / lineattrs=(pattern=solid color=black) legendlabel=<span class="st">"corrente"</span>;</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=anni y=cons00  / markers lineattrs=(color=black) legendlabel=<span class="st">"costante 2000"</span>;</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  refline <span class="dv">2000</span> / axis=x lineattrs=(pattern=dash);</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  xaxis <span class="kw">label</span>=<span class="st">"anni"</span>; yaxis <span class="kw">label</span>=<span class="st">"consumo"</span>;</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Nella Figura 3.1 la serie della spesa corrente per consumo è segnalata da una linea continua, mentre quella deflazionata a prezzi 2000 è indicata da una linea punteggiata; le due si incrociano nel 31° anno della serie, appunto il 2000, in cui i valori correnti e costanti coincidono. Prima dell’anno base la serie corrente è al di sotto di quella costante, dopo l’anno base è al di sopra: i prezzi precedenti al 2000 sono più bassi, mentre i prezzi successivi sono più alti di quelli registrati nel periodo base (nel tempo i prezzi crescono sempre, anche se con diverse velocità).</p>
+<p>Per una migliore rappresentazione grafica delle serie del consumo corrente, del consumo reale e dei prezzi, costruiamo tre serie di numeri indice a base fissa 1970=100, che rappresentiamo graficamente con alcune opzioni di disegno il cui approfondimento è lasciato come esercizio al lettore (Figura 3.2); notiamo che abbiamo chiesto a <strong>R</strong> di non utilizzare la visualizzazione grafica di default, ma di consentire la personalizzazione da parte dell’utente.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>NIconscorr <span class="ot">&lt;-</span> conscorr<span class="sc">/</span>conscorr[<span class="st">"1970"</span>]<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>NIcons2000 <span class="ot">&lt;-</span> cons2000<span class="sc">/</span>cons2000[<span class="st">"1970"</span>]<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>deflatori <span class="ot">&lt;-</span> conscorr<span class="sc">/</span>cons2000</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>NIdeflatori <span class="ot">&lt;-</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  deflatori<span class="sc">/</span>deflatori[<span class="st">"1970"</span>]<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(NIconscorr, <span class="at">pch=</span><span class="dv">1</span>, <span class="at">type=</span><span class="st">"o"</span>,</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">1</span>, <span class="at">axes=</span><span class="cn">FALSE</span>, <span class="at">ann=</span><span class="cn">FALSE</span>)</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(NIcons2000, <span class="at">pch=</span><span class="dv">2</span>, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(NIdeflatori, <span class="at">pch=</span><span class="dv">3</span>, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">lty=</span><span class="dv">3</span>)</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">38</span>, <span class="at">lab=</span><span class="fu">c</span>(<span class="dv">1970</span><span class="sc">:</span><span class="dv">2007</span>))</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">las=</span><span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>,<span class="dv">3000</span>,<span class="dv">4000</span>,<span class="dv">4500</span>))</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">"NI Consumo"</span>, <span class="at">xlab=</span><span class="st">"Anni"</span>, <span class="at">ylab=</span><span class="st">"Numeri Indice"</span>)</span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">1</span>, <span class="dv">4500</span>, <span class="fu">c</span>(<span class="st">"NI corrente"</span>,<span class="st">"NI costante"</span>,</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>       <span class="st">"NI deflatori"</span>), <span class="at">pch=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="03-numeri-indice_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figura 3.2 – Numeri indice a base fissa 1970=100</figcaption>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(rival)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>NIconscorr <span class="op">=</span> conscorr <span class="op">/</span> conscorr[<span class="dv">1970</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>NIcons2000 <span class="op">=</span> cons2000 <span class="op">/</span> cons2000[<span class="dv">1970</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>deflatori <span class="op">=</span> conscorr <span class="op">/</span> cons2000</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>NIdeflatori <span class="op">=</span> deflatori <span class="op">/</span> deflatori[<span class="dv">1970</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>plt.plot(NIconscorr.index, NIconscorr, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>, markersize<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"NI corrente"</span>)</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>plt.plot(NIcons2000.index, NIcons2000, <span class="st">"^--"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>, markersize<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"NI costante"</span>)</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>plt.plot(NIdeflatori.index, NIdeflatori, <span class="st">"+:"</span>, color<span class="op">=</span><span class="st">"black"</span>, markersize<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">"NI deflatori"</span>)</span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> plt.yticks([<span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">3000</span>, <span class="dv">4000</span>, <span class="dv">4500</span>])</span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"NI Consumo"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Anni"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Numeri Indice"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="03-numeri-indice_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 3.2 – Numeri indice a base fissa 1970=100</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* numeri indice 1970=100 */</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> ni_cons;</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> rival;</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> <span class="dv">1970</span> &lt;= anni &lt;= <span class="dv">2007</span>;</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">retain</span> base_corr base_cost base_defl;</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  deflatori = consfam / cons00;</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> anni = <span class="dv">1970</span> <span class="kw">then</span> <span class="kw">do</span>;</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    base_corr = consfam; base_cost = cons00; base_defl = deflatori;</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span>;</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  NIconscorr  = consfam   / base_corr * <span class="dv">100</span>;</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>  NIcons2000  = cons00    / base_cost * <span class="dv">100</span>;</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>  NIdeflatori = deflatori / base_defl * <span class="dv">100</span>;</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=ni_cons;</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"NI Consumo"</span>;</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=anni y=NIconscorr  / markers lineattrs=(pattern=solid) legendlabel=<span class="st">"NI corrente"</span>;</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=anni y=NIcons2000  / markers lineattrs=(pattern=dash)  legendlabel=<span class="st">"NI costante"</span>;</span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=anni y=NIdeflatori / markers lineattrs=(pattern=dot)   legendlabel=<span class="st">"NI deflatori"</span>;</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>  xaxis <span class="kw">label</span>=<span class="st">"Anni"</span>; yaxis <span class="kw">label</span>=<span class="st">"Numeri Indice"</span> values=(<span class="dv">100</span> <span class="dv">500</span> <span class="dv">1000</span> <span class="dv">2000</span> <span class="dv">3000</span> <span class="dv">4000</span> <span class="dv">4500</span>);</span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Torna in cima</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/erasmovassallo\.github\.io\/statistica-economica\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../it/capitoli/02-aggregati-economici.html" class="pagination-link" aria-label="2 Aggregati economici e conti nazionali">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2 Aggregati economici e conti nazionali</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../it/capitoli/04-serie-storiche.html" class="pagination-link" aria-label="4 Approccio decompositivo alle serie storiche">
+        <span class="nav-page-text">4 Approccio decompositivo alle serie storiche</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2018–2026 Erasmo Vassallo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/03-numeri-indice.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

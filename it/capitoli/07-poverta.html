@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7 Povertà e distribuzione dei redditi – Statistica Economica · Economic Statistics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../it/capitoli/08-produzione.html" rel="next">
+<link href="../../it/capitoli/06-modelli-stocastici.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-86fc916b84669629367aabb2a24c5117.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-13715bb0a6d20bd8e399adc380af65d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Statistica Economica · Economic Statistics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ricerca"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../it/index.html" aria-current="page"> 
+<span class="menu-text">Italiano</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/erasmovassallo/statistica-economica"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/07-poverta.html">7 Povertà e distribuzione dei redditi</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/prefazione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capitoli</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/01-per-iniziare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Per iniziare: nozioni di R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/02-aggregati-economici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Aggregati economici e conti nazionali</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/03-numeri-indice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Numeri indice e deflazione</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/04-serie-storiche.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Approccio decompositivo alle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/05-modelli-lineari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Specificazione di modelli lineari economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/06-modelli-stocastici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Modelli stocastici per l’analisi delle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/07-poverta.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">7 Povertà e distribuzione dei redditi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/08-produzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 Produzione e produttività di sistemi economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/09-efficienza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 Efficienza statistica dei processi produttivi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/10-carte-controllo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 Carte di controllo statistico per l’analisi di qualità</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/11-serie-finanziarie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 Modelli statistici per le serie economiche finanziarie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/12-altri-esempi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 Altri esempi applicativi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliografia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/autore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L’autore</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#sec-poverta" id="toc-sec-poverta" class="nav-link active" data-scroll-target="#sec-poverta">7.1 Povertà relativa e povertà assoluta</a></li>
+  <li><a href="#sec-incidenza" id="toc-sec-incidenza" class="nav-link" data-scroll-target="#sec-incidenza">7.2 L’incidenza della povertà in Italia</a></li>
+  <li><a href="#sec-scale" id="toc-sec-scale" class="nav-link" data-scroll-target="#sec-scale">7.3 Linee di povertà e scale di equivalenza</a></li>
+  <li><a href="#sec-indici-poverta" id="toc-sec-indici-poverta" class="nav-link" data-scroll-target="#sec-indici-poverta">7.4 Indici di povertà: diffusione, intensità e Sen</a></li>
+  <li><a href="#sec-gini" id="toc-sec-gini" class="nav-link" data-scroll-target="#sec-gini">7.5 La concentrazione: curva di Lorenz e indice di Gini</a></li>
+  <li><a href="#sec-altri-indici" id="toc-sec-altri-indici" class="nav-link" data-scroll-target="#sec-altri-indici">7.6 Altri indici di concentrazione</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/07-poverta.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/07-poverta.html">7 Povertà e distribuzione dei redditi</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">7 Povertà e distribuzione dei redditi</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-poverta" class="level2">
+<h2 class="anchored" data-anchor-id="sec-poverta">7.1 Povertà relativa e povertà assoluta</h2>
+<p>Una definizione di povertà implica un certo arbitrio da parte del ricercatore. Le definizioni più importanti attengono a un concetto di povertà relativa e a uno di povertà assoluta. Nel primo caso è scelta una soglia di povertà che dipende dal livello di benessere della comunità; per esempio, se una famiglia composta da due persone adulte senza figli ha un livello di reddito disponibile (netto), ovvero un livello di spesa per consumo, inferiore a quello medio delle famiglie italiane, si dirà (relativamente) povera. Una famiglia povera in termini assoluti, invece, non sarà in grado di acquistare uno specifico paniere di beni e/o servizi essenziali. Tra povertà assoluta e povertà relativa esiste una molteplicità di definizioni intermedie, la cui rilevanza è comunque più teorica che empirica. Non a caso, tra le nazioni più industrializzate la nozione di povertà relativa è quella maggiormente adottata, anche con finalità di policy. Al contrario, nei Paesi in via di sviluppo si fa ampio riferimento alla povertà assoluta, poiché in genere si è specificamente interessati a politiche di sostegno alimentare per ampie fasce della popolazione.</p>
+<p>In un approccio storico, i dati ISTAT per l’anno 2007 segnalano in condizioni di povertà relativa circa 2 milioni e 653 mila famiglie, l’11% delle famiglie residenti nel 2007, mentre gli individui poveri ammontavano a 7 milioni e 542 mila, il 13% dell’intera popolazione.</p>
+<p>La stima della percentuale di famiglie e persone povere sul totale delle famiglie e persone residenti viene generalmente calcolata sulla base di una soglia convenzionale (linea di povertà), che individua il valore di spesa per consumi al di sotto del quale una famiglia viene definita povera in termini relativi. La soglia di povertà per una famiglia di due componenti adulti (riferimento standard) è rappresentata dalla spesa media mensile per persona, che nel 2007 era pari a 986,35 euro (1,6% in più rispetto al 2006). Le famiglie composte da due persone che hanno una spesa media mensile pari o inferiore a tale valore vengono classificate come relativamente povere. Per famiglie di diversa numerosità (e composizione) il valore della linea di povertà si ottiene applicando una scala di equivalenza che tiene conto della presenza di alcune economie di scala; per esempio, la spesa per l’illuminazione o quella per il riscaldamento dipendono poco dal numero dei componenti, rispetto alla spesa alimentare (Tabella 7.1).</p>
+<table class="caption-top table">
+<caption>Tabella 7.1 – Scala di equivalenza ISTAT (anno 2007)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ampiezza della famiglia</th>
+<th style="text-align: right;">Coefficiente</th>
+<th style="text-align: right;">Linea di povertà 2007</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">0,60</td>
+<td style="text-align: right;">591,81</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">986,35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">1,33</td>
+<td style="text-align: right;">1.311,85</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: right;">1,63</td>
+<td style="text-align: right;">1.607,75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: right;">1,90</td>
+<td style="text-align: right;">1.874,07</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: right;">2,16</td>
+<td style="text-align: right;">2.130,52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">2,40</td>
+<td style="text-align: right;">2.367,24</td>
+</tr>
+</tbody>
+</table>
+<p>È ovvio che il calcolo delle diverse linee di povertà è qui approssimato, dovendosi invece considerare molteplici parametri, quali il sesso dei componenti, l’età, ecc. Si può comunque dimostrare che in un approccio aggregato l’approssimazione generata dalla semplificazione proposta dalla Tabella 7.1 è accettabile.</p>
+<p>Non stupisce che la povertà risulti maggiormente diffusa nel Mezzogiorno, dove la presenza di poveri relativi è quattro volte maggiore di quella registrata nel Centro-Nord (Tabella 7.2).</p>
+<table class="caption-top table">
+<caption>Tabella 7.2 – Incidenza e intensità della povertà (migliaia di unità e %, 2006-2007)</caption>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Nord 2006</th>
+<th style="text-align: right;">Nord 2007</th>
+<th style="text-align: right;">Centro 2006</th>
+<th style="text-align: right;">Centro 2007</th>
+<th style="text-align: right;">Mezzogiorno 2006</th>
+<th style="text-align: right;">Mezzogiorno 2007</th>
+<th style="text-align: right;">Italia 2006</th>
+<th style="text-align: right;">Italia 2007</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">famiglie povere</td>
+<td style="text-align: right;">595</td>
+<td style="text-align: right;">631</td>
+<td style="text-align: right;">315</td>
+<td style="text-align: right;">297</td>
+<td style="text-align: right;">1.713</td>
+<td style="text-align: right;">1.725</td>
+<td style="text-align: right;">2.623</td>
+<td style="text-align: right;">2.653</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">famiglie residenti</td>
+<td style="text-align: right;">11.378</td>
+<td style="text-align: right;">11.532</td>
+<td style="text-align: right;">4.598</td>
+<td style="text-align: right;">4.670</td>
+<td style="text-align: right;">7.591</td>
+<td style="text-align: right;">7.679</td>
+<td style="text-align: right;">23.567</td>
+<td style="text-align: right;">23.881</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">persone povere</td>
+<td style="text-align: right;">1.447</td>
+<td style="text-align: right;">1.563</td>
+<td style="text-align: right;">889</td>
+<td style="text-align: right;">827</td>
+<td style="text-align: right;">5.201</td>
+<td style="text-align: right;">5.152</td>
+<td style="text-align: right;">7.537</td>
+<td style="text-align: right;">7.542</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">persone residenti</td>
+<td style="text-align: right;">26.458</td>
+<td style="text-align: right;">26.648</td>
+<td style="text-align: right;">11.244</td>
+<td style="text-align: right;">11.421</td>
+<td style="text-align: right;">20.669</td>
+<td style="text-align: right;">20.688</td>
+<td style="text-align: right;">58.371</td>
+<td style="text-align: right;">58.757</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><em>Composizione percentuale</em></strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">famiglie povere</td>
+<td style="text-align: right;">22,7</td>
+<td style="text-align: right;">23,8</td>
+<td style="text-align: right;">12,0</td>
+<td style="text-align: right;">11,2</td>
+<td style="text-align: right;">65,3</td>
+<td style="text-align: right;">65,0</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">famiglie residenti</td>
+<td style="text-align: right;">48,3</td>
+<td style="text-align: right;">48,3</td>
+<td style="text-align: right;">19,5</td>
+<td style="text-align: right;">19,6</td>
+<td style="text-align: right;">32,2</td>
+<td style="text-align: right;">32,2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">persone povere</td>
+<td style="text-align: right;">19,2</td>
+<td style="text-align: right;">20,7</td>
+<td style="text-align: right;">11,8</td>
+<td style="text-align: right;">11,0</td>
+<td style="text-align: right;">69,0</td>
+<td style="text-align: right;">68,3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">persone residenti</td>
+<td style="text-align: right;">45,3</td>
+<td style="text-align: right;">45,4</td>
+<td style="text-align: right;">19,3</td>
+<td style="text-align: right;">19,4</td>
+<td style="text-align: right;">35,4</td>
+<td style="text-align: right;">35,2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><em>Incidenza della povertà, %</em></strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">famiglie</td>
+<td style="text-align: right;">5,2</td>
+<td style="text-align: right;">5,5</td>
+<td style="text-align: right;">6,9</td>
+<td style="text-align: right;">6,4</td>
+<td style="text-align: right;">22,6</td>
+<td style="text-align: right;">22,5</td>
+<td style="text-align: right;">11,1</td>
+<td style="text-align: right;">11,1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">persone</td>
+<td style="text-align: right;">5,5</td>
+<td style="text-align: right;">5,9</td>
+<td style="text-align: right;">7,9</td>
+<td style="text-align: right;">7,2</td>
+<td style="text-align: right;">25,2</td>
+<td style="text-align: right;">24,9</td>
+<td style="text-align: right;">12,9</td>
+<td style="text-align: right;">12,8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><em>Intensità della povertà, %</em></strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">famiglie</td>
+<td style="text-align: right;">17,8</td>
+<td style="text-align: right;">19,2</td>
+<td style="text-align: right;">16,9</td>
+<td style="text-align: right;">17,1</td>
+<td style="text-align: right;">22,5</td>
+<td style="text-align: right;">21,6</td>
+<td style="text-align: right;">20,8</td>
+<td style="text-align: right;">20,5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-incidenza" class="level2">
+<h2 class="anchored" data-anchor-id="sec-incidenza">7.2 L’incidenza della povertà in Italia</h2>
+<p>Carichiamo i dati assoluti della Tabella 7.2, contenuti nel file <em>pover07.csv</em>, e calcoliamo l’incidenza della povertà per il 2006 e il 2007 nel Nord, nel Centro e nel Mezzogiorno, per le famiglie (<span class="math inline">\(x\)</span>) e per le persone (<span class="math inline">\(y\)</span>); i dati rappresentano la condizione reale dell’Italia nel 2007.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pov <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/pover07.csv"</span>, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pov</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       N2006 N2007 C2006 C2007 M2006 M2007
+fampov   595   631   315   297  1713  1725
+famres 11378 11532  4598  4670  7591  7679
+perpov  1447  1563   889   827  5201  5152
+perres 26458 26648 11244 11421 20669 20688</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># righe: 1 famiglie povere, 2 famiglie residenti, 3 persone povere, 4 persone residenti</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">round</span>(pov[<span class="dv">1</span>,]<span class="sc">/</span>pov[<span class="dv">2</span>,]<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)   <span class="co"># incidenza per le famiglie</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">round</span>(pov[<span class="dv">3</span>,]<span class="sc">/</span>pov[<span class="dv">4</span>,]<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)   <span class="co"># incidenza per le persone</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x; y</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       N2006 N2007 C2006 C2007 M2006 M2007
+fampov  5.23  5.47  6.85  6.36 22.57 22.46</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       N2006 N2007 C2006 C2007 M2006 M2007
+perpov  5.47  5.87  7.91  7.24 25.16  24.9</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pov <span class="op">=</span> pd.read_csv(<span class="st">"data/pover07.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pov)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        N2006  N2007  C2006  C2007  M2006  M2007
+riga                                            
+fampov    595    631    315    297   1713   1725
+famres  11378  11532   4598   4670   7591   7679
+perpov   1447   1563    889    827   5201   5152
+perres  26458  26648  11244  11421  20669  20688</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (pov.loc[<span class="st">"fampov"</span>] <span class="op">/</span> pov.loc[<span class="st">"famres"</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)   <span class="co"># incidenza per le famiglie</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (pov.loc[<span class="st">"perpov"</span>] <span class="op">/</span> pov.loc[<span class="st">"perres"</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)   <span class="co"># incidenza per le persone</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame({<span class="st">"famiglie"</span>: x, <span class="st">"persone"</span>: y}))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       famiglie  persone
+N2006      5.23     5.47
+N2007      5.47     5.87
+C2006      6.85     7.91
+C2007      6.36     7.24
+M2006     22.57    25.16
+M2007     22.46    24.90</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">import</span> <span class="kw">datafile</span>=<span class="st">"data/pover07.csv"</span> <span class="kw">out</span>=pov <span class="kw">dbms</span>=dlm <span class="kw">replace</span>;</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delimiter</span>=<span class="st">";"</span>; <span class="kw">getnames</span>=yes;</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">/* si traspone la tabella: una riga per area-anno, una colonna per voce */</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">transpose</span> <span class="kw">data</span>=pov <span class="kw">out</span>=povt name=area_anno;</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  id riga;</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> povt;</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> povt;</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  inc_famiglie = <span class="bu">round</span>(fampov/famres*<span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  inc_persone  = <span class="bu">round</span>(perpov/perres*<span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=povt noobs; <span class="kw">var</span> area_anno inc_famiglie inc_persone; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Nel Nord l’incidenza della povertà familiare si attesta al 5,47%, mentre nel Mezzogiorno raggiunge il 22,46%, valori in crescita nel primo caso (dal 5,23% nel 2006 al 5,47% nel 2007) e leggermente decrescenti nel secondo (dal 22,57% al 22,46%); un andamento analogo manifesta l’incidenza della povertà per le persone.</p>
+</section>
+<section id="sec-scale" class="level2">
+<h2 class="anchored" data-anchor-id="sec-scale">7.3 Linee di povertà e scale di equivalenza</h2>
+<p>Abbiamo visto che in Italia la linea di povertà standard per il 2007 era di 986,35 euro. In genere il calcolo delle linee di povertà è piuttosto complesso, dovendo fare ricorso a formulazioni basate su sistemi di domanda del tipo QUAIDS (<em>Quadratic Almost Ideal Demand System</em>). Diversamente, a scopo descrittivo, qui facciamo riferimento a un semplice approccio tradizionale, basato su funzioni engeliane di spesa tali che</p>
+<p><span class="math display">\[
+A/S=a+b\log S+c\log N
+\tag{7.1}
+\]</span></p>
+<p>dove <span class="math inline">\(A\)</span> è la spesa alimentare, <span class="math inline">\(S\)</span> la spesa totale e <span class="math inline">\(N\)</span> il numero dei componenti della famiglia.</p>
+<p>Sono ignorate altre rilevanti informazioni, quali età, caratteristiche sociali o preferenze dei consumatori. Ipotizzando che il rapporto <span class="math inline">\(A/S\)</span> rimanga costante e ponendo <span class="math inline">\(q=A/S-a\)</span>, avremo <span class="math inline">\(\log S=q/b-(c/b)\log N\)</span> e, riparametrizzando, <span class="math inline">\(S'=(q/b)-(c/b)N'\)</span>. La derivata di <span class="math inline">\(S'\)</span> rispetto a <span class="math inline">\(N'\)</span> sarà allora <span class="math inline">\(\partial S'/\partial N'=-c/b\)</span>, che altro non è che l’elasticità <span class="math inline">\(E\)</span> di <span class="math inline">\(S\)</span> rispetto a <span class="math inline">\(N\)</span>. Tale elasticità <span class="math inline">\(E=-c/b\)</span> è il coefficiente delle economie di scala della spesa totale rispetto al numero dei componenti. Quindi,</p>
+<ul>
+<li><span class="math inline">\(E&lt;1\)</span>: economie di scala crescenti (la spesa <span class="math inline">\(S\)</span> aumenta in misura meno che proporzionale all’aumento dei componenti <span class="math inline">\(N\)</span>),</li>
+<li><span class="math inline">\(E=1\)</span>: economie di scala costanti,</li>
+<li><span class="math inline">\(E&gt;1\)</span>: economie di scala decrescenti.</li>
+</ul>
+<p>Ottenuta l’elasticità <span class="math inline">\(E\)</span>, la scala di equivalenza sarà</p>
+<p><span class="math display">\[
+U_{N+1}=U_{N}(1+E(\Delta N/N))
+\tag{7.2}
+\]</span></p>
+<p>dove <span class="math inline">\(U_{N}\)</span> è la linea di povertà per una famiglia di <span class="math inline">\(N\)</span> componenti. Se <span class="math inline">\(E=0{,}667\)</span> con <span class="math inline">\(U_{2}=986{,}35\)</span>, allora la linea di povertà per un nucleo di tre e di quattro componenti sarà</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fl">0.667</span>; U2 <span class="ot">&lt;-</span> <span class="fl">986.35</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>U3 <span class="ot">&lt;-</span> U2<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>E<span class="sc">*</span>((<span class="dv">3-2</span>)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>U4 <span class="ot">&lt;-</span> U3<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>E<span class="sc">*</span>((<span class="dv">4-3</span>)<span class="sc">/</span><span class="dv">3</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>U3; U4</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1315.298</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1607.732</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>E, U2 <span class="op">=</span> <span class="fl">0.667</span>, <span class="fl">986.35</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>U3 <span class="op">=</span> U2 <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> E <span class="op">*</span> ((<span class="dv">3</span> <span class="op">-</span> <span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>U4 <span class="op">=</span> U3 <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> E <span class="op">*</span> ((<span class="dv">4</span> <span class="op">-</span> <span class="dv">3</span>) <span class="op">/</span> <span class="dv">3</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(U3, U4)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1315.297725 1607.7322525249997</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> _null_;</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  E = <span class="dv">0.667</span>; U2 = <span class="dv">986.35</span>;</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  U3 = U2*(<span class="dv">1</span> + E*((<span class="dv">3-2</span>)/<span class="dv">2</span>));</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  U4 = U3*(<span class="dv">1</span> + E*((<span class="dv">4-3</span>)/<span class="dv">3</span>));</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">put</span> U3= U4=;</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>con buona approssimazione dei valori riportati nella Tabella 7.1.</p>
+</section>
+<section id="sec-indici-poverta" class="level2">
+<h2 class="anchored" data-anchor-id="sec-indici-poverta">7.4 Indici di povertà: diffusione, intensità e Sen</h2>
+<p>Considerazioni del tutto analoghe valgono per i livelli di reddito. In particolare, esistono una serie di utili indicatori che aiutano ad analizzare la povertà (di reddito o di consumo) presente in una certa area.</p>
+<p>L’indice di diffusione, già calcolato (Tabella 7.2), è dato dal rapporto tra il numero di famiglie (o persone) povere <span class="math inline">\(q\)</span> e il numero totale di famiglie <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[
+H=q/n
+\tag{7.3}
+\]</span></p>
+<p>Tale indice non soddisfa il principio di monotonicità, in base al quale l’indice deve crescere se, a parità di condizioni, il reddito (o consumo) anche di un solo individuo povero si riduce. Non soddisfa neppure il principio dei trasferimenti, che richiede che l’indice cresca se si verifica un trasferimento di reddito da un individuo povero a un altro povero avente reddito superiore; inoltre, è insensibile ai mutamenti nella distribuzione del reddito.</p>
+<p>Un altro noto indice è quello di intensità</p>
+<p><span class="math display">\[
+I=\sum_{i} g_{i}/qz
+\tag{7.4}
+\]</span></p>
+<p>con <span class="math inline">\(i=1,...,q\)</span>, dove <span class="math inline">\(z\)</span> è la linea di povertà, <span class="math inline">\(g_{i}=z-y_{i}\)</span> e <span class="math inline">\(y_{i}\)</span> il reddito dell’<span class="math inline">\(i\)</span>-esimo povero. L’indice <span class="math inline">\(I\)</span> soddisfa il principio di monotonicità, ma può non registrare le variazioni del numero di individui poveri, a meno che queste non si accompagnino a variazioni del totale dei divari. Inoltre <span class="math inline">\(I\)</span>, come <span class="math inline">\(H\)</span>, non soddisfa il principio dei trasferimenti ed è insensibile ai mutamenti nella distribuzione del reddito.</p>
+<p>Facciamo un esempio con dati di fantasia.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span>,<span class="dv">15</span>) <span class="co"># redditi</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(x)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># linea di povertà</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>xp <span class="ot">&lt;-</span> x[x<span class="sc">&lt;</span>k]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="fu">sum</span>(x<span class="sc">&lt;</span>k)<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>H</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>I <span class="ot">&lt;-</span> <span class="fu">sum</span>(k<span class="sc">-</span>xp)<span class="sc">/</span>(k<span class="sc">*</span><span class="fu">length</span>(xp))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>I</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3833333</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.sort(np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>]))   <span class="co"># redditi</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">10</span>                                               <span class="co"># linea di povertà</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> x[x <span class="op">&lt;</span> k]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> np.mean(x <span class="op">&lt;</span> k)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> np.<span class="bu">sum</span>(k <span class="op">-</span> xp) <span class="op">/</span> (k <span class="op">*</span> <span class="bu">len</span>(xp))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(H, I)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.75 0.38333333333333336</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">iml</span>;</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  x = {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>};   <span class="co">/* redditi (vettore colonna) */</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  call <span class="fu">sort</span>(x, <span class="dv">1</span>);</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  k = <span class="dv">10</span>;                           <span class="co">/* linea di povertà */</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  xp = x[loc(x &lt; k)];</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  H = <span class="bu">mean</span>(x &lt; k);</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">I</span> = <span class="bu">sum</span>(k - xp) / (k*<span class="bu">nrow</span>(xp));</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> H <span class="bu">I</span>;</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>L’indice <span class="math inline">\(H\)</span> oscilla tra 0 (nessun povero) e 1 (tutti poveri), mentre l’indice <span class="math inline">\(I\)</span> varia da un valore nullo (nessun povero), o con un minimo prossimo a 0 (redditi appena al di sotto della linea di povertà), a 1 (redditi molto al di sotto della linea di povertà).</p>
+<p>Altro importante indice è quello di Sen</p>
+<p><span class="math display">\[
+S=H\left\{1-[1-I][1-G]\right\}
+\tag{7.5}
+\]</span></p>
+<p>dove <span class="math inline">\(G\)</span> è l’indice di Gini calcolato sulla distribuzione dei redditi degli individui poveri; sull’indice <span class="math inline">\(G\)</span>, e quindi sull’indice di Sen, torneremo poco avanti. L’indice di Sen soddisfa tre assiomi: dei pesi (il peso assegnato nell’indice a ciascun divario è uguale al numero d’ordine di esso nella graduatoria non decrescente dei divari stessi); del benessere monotonico (se il reddito di un individuo è maggiore di quello di un altro individuo, anche il benessere del primo sarà maggiore di quello del secondo); del valore normalizzato dell’indice di povertà (se tutti i poveri posseggono un uguale reddito, l’indice risulterà pari al prodotto dell’indice di diffusione <span class="math inline">\(H\)</span> per l’indice di intensità <span class="math inline">\(I\)</span>). L’indice di Sen soddisfa i principi di monotonicità e dei trasferimenti, è funzione crescente di <span class="math inline">\(H\)</span>, <span class="math inline">\(I\)</span> e <span class="math inline">\(G\)</span> e non dipende dalla distribuzione del reddito fra i non poveri. Infine, l’indice di Sen oscilla da 0 (nessun povero) a 1 (redditi molto al di sotto della linea di povertà).</p>
+</section>
+<section id="sec-gini" class="level2">
+<h2 class="anchored" data-anchor-id="sec-gini">7.5 La concentrazione: curva di Lorenz e indice di Gini</h2>
+<p>La misura della concentrazione, solitamente limitata al reddito (carattere tipicamente trasferibile), ha evidenti collegamenti con l’analisi della povertà. Per 4 individui che posseggono in tutto 100 euro, è più equa la suddivisione 80, 10, 5 e 5 oppure 60, 35, 5 e 0? Al di fuori dei due casi limite, 100, 0, 0, 0 e 25, 25, 25, 25, non è facile rispondere. Naturalmente una distribuzione è tanto più equa quanto meno concentrato appare il fenomeno che, in questo caso, deve essere rappresentato da un carattere trasferibile.</p>
+<p>Consideriamo un insieme di <span class="math inline">\(n\)</span> redditieri, ognuno dei quali avrà un certo livello di reddito, per un totale, diciamo, di <span class="math inline">\(d\)</span>. Ordiniamo questa distribuzione dai livelli più bassi a quelli più alti di reddito. Se vi è equidistribuzione, ossia assenza di concentrazione, tutti gli individui avranno la stessa quota di reddito: quindi il primo 5% di individui della distribuzione ordinata avrà il primo 5% di reddito, il primo 10% di individui avrà il primo 10% di reddito, e così via. Definiamo allora le seguenti frequenze cumulate</p>
+<p><span class="math display">\[
+p_{i}=(1/n)+p_{i-1} \qquad \text{e} \qquad q_{i}=(\text{reddito dell'}i\text{-esimo redditiero}/d)+q_{i-1}
+\tag{7.6}
+\]</span></p>
+<p>Nel caso di equidistribuzione sarà <span class="math inline">\(p_{i}=q_{i}\)</span>, altrimenti <span class="math inline">\(p_{i}&gt;q_{i}\)</span>. Il diagramma di Lorenz presenta il grafico corrispondente, con in ascissa le cumulate <span class="math inline">\(p_{i}\)</span> e in ordinata le cumulate <span class="math inline">\(q_{i}\)</span>.</p>
+<p>Quanto maggiore è la concentrazione, tanto più è ampia l’area tra la retta di equidistribuzione (<span class="math inline">\(p=q\)</span>, che sul grafico corrisponde alla bisettrice) e la cosiddetta spezzata di Lorenz, sino al caso limite di coincidenza con l’area del triangolo individuato dai vertici <span class="math inline">\((0,0)\)</span>, <span class="math inline">\((1,0)\)</span> e <span class="math inline">\((1,1)\)</span>. Un indice di concentrazione <span class="math inline">\(R\)</span> può allora costruirsi rapportando l’area tra la retta e la spezzata al suo valore massimo, rappresentato dall’area di tutto il triangolo. L’indice <span class="math inline">\(R\)</span>, noto come rapporto di concentrazione di Gini, si semplifica nella formula seguente se <span class="math inline">\(i/n\)</span> ha incrementi costanti</p>
+<p><span class="math display">\[
+R=(2/(n-1))\sum_{i=1}^{n} (p_{i}-q_{i})
+\tag{7.7}
+\]</span></p>
+<p>ovvero, in termini più generali,</p>
+<p><span class="math display">\[
+R=\sum_{i=1}^{n-1} (p_{i}-q_{i})\Big/\sum_{i=1}^{n-1} p_{i}
+\tag{7.8}
+\]</span></p>
+<p>valendo la seguente approssimazione per il calcolo dell’indice di Gini</p>
+<p><span class="math display">\[
+G\cong (n-1)R/n
+\tag{7.9}
+\]</span></p>
+<p>Per il nostro esempio avremo</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span>n,n))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(x<span class="sc">/</span><span class="fu">sum</span>(x))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>RC <span class="ot">&lt;-</span> <span class="fu">sum</span>(p<span class="sc">-</span>q)<span class="sc">*</span><span class="dv">2</span><span class="sc">/</span>(n<span class="dv">-1</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>GC <span class="ot">&lt;-</span> (n<span class="dv">-1</span>)<span class="sc">*</span>RC<span class="sc">/</span>n</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>GC</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2617188</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(x)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.cumsum(np.repeat(<span class="dv">1</span> <span class="op">/</span> n, n))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.cumsum(x <span class="op">/</span> x.<span class="bu">sum</span>())</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>RC <span class="op">=</span> np.<span class="bu">sum</span>(p <span class="op">-</span> q) <span class="op">*</span> <span class="dv">2</span> <span class="op">/</span> (n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>GC <span class="op">=</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> RC <span class="op">/</span> n</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GC)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.26171875</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">iml</span>;</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  x = {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>};</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  n = <span class="bu">nrow</span>(x);</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  p = cusum(<span class="bu">j</span>(n, <span class="dv">1</span>, <span class="dv">1</span>/n));</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  q = cusum(x / <span class="bu">sum</span>(x));</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  RC = <span class="bu">sum</span>(p - q) * <span class="dv">2</span>/(n<span class="dv">-1</span>);</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  GC = (n<span class="dv">-1</span>)*RC/n;</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> RC GC;</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Il rapporto di concentrazione di Gini oscilla tra 0 (assenza di concentrazione) e 1 (massima concentrazione). L’indice di Gini, nelle sue diverse formulazioni, rappresenta un ottimo indice, poiché soddisfa alcune proprietà fondamentali: irrilevanza della scala (l’indice non è influenzato dall’unità di misura adottata: euro, milioni, migliaia, ecc.), simmetria (la posizione dei valori risulta ininfluente), sensibilità ai trasferimenti (se si trasferisce reddito da individui più ricchi a individui più poveri, e quindi la concentrazione del reddito si riduce, l’indice riduce il proprio valore).</p>
+<p>A questo punto l’indice di Sen si ottiene facilmente; da notare la formula equivalente utilizzata per l’indice <span class="math inline">\(G\)</span> calcolato sui soli poveri.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> <span class="fu">length</span>(xp)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Gp <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(xp<span class="sc">*</span><span class="dv">1</span><span class="sc">:</span>np)<span class="sc">/</span>(np<span class="sc">*</span><span class="fu">sum</span>(xp))<span class="sc">-</span><span class="dv">1-1</span><span class="sc">/</span>np; Gp</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1936937</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> H<span class="sc">*</span>(I<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>I)<span class="sc">*</span>Gp)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>S</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3770833</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>npov <span class="op">=</span> <span class="bu">len</span>(xp)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>Gp <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.<span class="bu">sum</span>(xp <span class="op">*</span> np.arange(<span class="dv">1</span>, npov <span class="op">+</span> <span class="dv">1</span>)) <span class="op">/</span> (npov <span class="op">*</span> xp.<span class="bu">sum</span>()) <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">/</span> npov</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> H <span class="op">*</span> (I <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> I) <span class="op">*</span> Gp)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Gp, S)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.1936936936936938 0.37708333333333344</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">iml</span>;</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  x = {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>}; k = <span class="dv">10</span>;</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  xp = x[loc(x &lt; k)];</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  H = <span class="bu">mean</span>(x &lt; k);</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">I</span> = <span class="bu">sum</span>(k - xp) / (k*<span class="bu">nrow</span>(xp));</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  np = <span class="bu">nrow</span>(xp);</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  Gp = <span class="dv">2</span>*<span class="bu">sum</span>(xp # <span class="bu">T</span>(<span class="dv">1</span>:np)) / (np*<span class="bu">sum</span>(xp)) - <span class="dv">1</span> - <span class="dv">1</span>/np;</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  S = H*(<span class="bu">I</span> + (<span class="dv">1</span>-<span class="bu">I</span>)*Gp);</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> Gp S;</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-altri-indici" class="level2">
+<h2 class="anchored" data-anchor-id="sec-altri-indici">7.6 Altri indici di concentrazione</h2>
+<p>Esistono altri importanti indici di concentrazione. Per esempio, l’indice di Theil</p>
+<p><span class="math display">\[
+T=\sum_{i=1}^{n} q'_{i}\log (nq'_{i})
+\tag{7.10}
+\]</span></p>
+<p>dove <span class="math inline">\(q'_{i}\)</span> è la quota di reddito non cumulata. L’indice di Theil oscilla tra 0 (assenza di concentrazione) e <span class="math inline">\(\log (n)\)</span> (massima concentrazione). Altro utile indice è quello di Herfindahl</p>
+<p><span class="math display">\[
+Her=\sum_{i} (q'_{i})^{2}
+\tag{7.11}
+\]</span></p>
+<p>che varia tra <span class="math inline">\(1/n\)</span> in assenza di concentrazione (<span class="math inline">\(y_{i}=y_{j}\ \forall\, i,j\)</span>) e 1 nel caso di massima concentrazione.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> x<span class="sc">/</span><span class="fu">sum</span>(x)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>TH <span class="ot">&lt;-</span> <span class="fu">sum</span>(qq<span class="sc">*</span><span class="fu">log</span>(n<span class="sc">*</span>qq))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>TH</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1090448</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>Her <span class="ot">&lt;-</span> <span class="fu">sum</span>(qq<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>Her</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1523438</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>qq <span class="op">=</span> x <span class="op">/</span> x.<span class="bu">sum</span>()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>TH <span class="op">=</span> np.<span class="bu">sum</span>(qq <span class="op">*</span> np.log(n <span class="op">*</span> qq))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Her <span class="op">=</span> np.<span class="bu">sum</span>(qq <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(TH, Her)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.10904484133099582 0.15234375</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">iml</span>;</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  x = {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>};</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  n = <span class="bu">nrow</span>(x);</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  qq = x / <span class="bu">sum</span>(x);</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  TH  = <span class="bu">sum</span>(qq # <span class="bu">log</span>(n*qq));     <span class="co">/* indice di Theil */</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  Her = ssq(qq);                 <span class="co">/* indice di Herfindahl */</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> TH Her;</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>È possibile utilizzare anche indici normativi, che consentono di assegnare a priori un livello di avversione alla disuguaglianza tramite un parametro <span class="math inline">\(r\)</span>. Tra i più noti, l’indice di Atkinson</p>
+<p><span class="math display">\[
+A=
+\begin{cases}
+1-\dfrac{1}{m}\left(\dfrac{1}{n}\sum_{i} y_{i}^{1-r}\right)^{1/(1-r)} &amp; \text{per } r\in [0,1) \\[2ex]
+1-\dfrac{1}{m}\left(\prod_{i} y_{i}\right)^{1/n} &amp; \text{per } r=1
+\end{cases}
+\tag{7.12}
+\]</span></p>
+<p>dove <span class="math inline">\(m\)</span> è la media aritmetica dei redditi <span class="math inline">\(y_{i}\)</span>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>Atk <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(x))<span class="sc">*</span>((<span class="dv">1</span><span class="sc">/</span>n)<span class="sc">*</span><span class="fu">sum</span>(x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">-</span>r)))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>r))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>Atk</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05530581</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>Atk1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(x))<span class="sc">*</span><span class="fu">prod</span>(x)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>Atk1</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1112299</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>Atk <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (<span class="dv">1</span> <span class="op">/</span> x.mean()) <span class="op">*</span> (np.mean(x <span class="op">**</span> (<span class="dv">1</span> <span class="op">-</span> r))) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> r))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>Atk1 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (<span class="dv">1</span> <span class="op">/</span> x.mean()) <span class="op">*</span> np.prod(x) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> n)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Atk, Atk1)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.055305809622023805 0.11122985986844014</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">iml</span>;</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  x = {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>};</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  n = <span class="bu">nrow</span>(x); r = <span class="dv">0.5</span>;</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  Atk  = <span class="dv">1</span> - (<span class="dv">1</span>/<span class="bu">mean</span>(x)) * (<span class="bu">mean</span>(x##(<span class="dv">1</span>-r)))##(<span class="dv">1</span>/(<span class="dv">1</span>-r));</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  Atk1 = <span class="dv">1</span> - (<span class="dv">1</span>/<span class="bu">mean</span>(x)) * <span class="bu">exp</span>(<span class="bu">mean</span>(<span class="bu">log</span>(x)));   <span class="co">/* media geometrica */</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">print</span> Atk Atk1;</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>L’indice di Atkinson varia da 0 (assenza di concentrazione) a <span class="math inline">\(1-1/n\)</span> nel caso di massima concentrazione con <span class="math inline">\(r=0{,}5\)</span>, ovvero a 1 nel caso di parametro unitario <span class="math inline">\(r=1\)</span>.</p>
+<p>A questo punto è relativamente semplice ottenere la curva di Lorenz (Figura 7.1)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,p); yy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,q)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xx, yy, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"Spezzata di Lorenz"</span>, <span class="at">xlab=</span><span class="st">"Redditieri"</span>, <span class="at">ylab=</span><span class="st">"Redditi"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xx, xx)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-poverta_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figura 7.1 – Spezzata di Lorenz</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.r_[<span class="dv">0</span>, p]<span class="op">;</span> yy <span class="op">=</span> np.r_[<span class="dv">0</span>, q]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xx, yy, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xx, xx, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Spezzata di Lorenz"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Redditieri"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Redditi"</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-poverta_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 7.1 – Spezzata di Lorenz</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> lorenz;</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> reddito @@;</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">datalines</span>;</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">12</span> <span class="dv">15</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span> noprint; select count(*), <span class="bu">sum</span>(reddito) <span class="kw">into</span> :n, :tot from lorenz; <span class="kw">quit</span>;</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> lorenz;</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> lorenz;</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> _n_ = <span class="dv">1</span> <span class="kw">then</span> <span class="kw">do</span>; p = <span class="dv">0</span>; q = <span class="dv">0</span>; <span class="kw">output</span>; <span class="kw">end</span>;</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  p + <span class="dv">1</span>/&amp;n; q + reddito/&amp;tot;</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">output</span>;</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=lorenz;</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"Spezzata di Lorenz"</span>;</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=p y=q / markers;</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  lineparm x=<span class="dv">0</span> y=<span class="dv">0</span> slope=<span class="dv">1</span>;</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  xaxis <span class="kw">label</span>=<span class="st">"Redditieri"</span>; yaxis <span class="kw">label</span>=<span class="st">"Redditi"</span>;</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>o confrontare due curve diverse (Figura 7.2).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">3</span>); x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">2</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(x1); x2 <span class="ot">&lt;-</span> <span class="fu">sort</span>(x2); n <span class="ot">&lt;-</span> <span class="fu">length</span>(x1)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">cumsum</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span>n,n))); q1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">cumsum</span>(x1<span class="sc">/</span><span class="fu">sum</span>(x1)))</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">cumsum</span>(x2<span class="sc">/</span><span class="fu">sum</span>(x2)))</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, p, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Due spezzate di Lorenz"</span>, <span class="at">xlab=</span><span class="st">"p"</span>, <span class="at">ylab=</span><span class="st">"q"</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(p, q1, <span class="at">type=</span><span class="st">"o"</span>); <span class="fu">lines</span>(p, q2, <span class="at">type=</span><span class="st">"o"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-poverta_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figura 7.2 – Confronto tra due spezzate di Lorenz</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.sort([<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">3</span>])<span class="op">;</span> x2 <span class="op">=</span> np.sort([<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">2</span>])</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(x1)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.r_[<span class="dv">0</span>, np.cumsum(np.repeat(<span class="dv">1</span> <span class="op">/</span> n, n))]</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> np.r_[<span class="dv">0</span>, np.cumsum(x1 <span class="op">/</span> x1.<span class="bu">sum</span>())]<span class="op">;</span> q2 <span class="op">=</span> np.r_[<span class="dv">0</span>, np.cumsum(x2 <span class="op">/</span> x2.<span class="bu">sum</span>())]</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>plt.plot(p, p, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>plt.plot(p, q1, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>plt.plot(p, q2, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Due spezzate di Lorenz"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"p"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"q"</span>)</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-poverta_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 7.2 – Confronto tra due spezzate di Lorenz</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> due;</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> gruppo $ reddito @@;</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">datalines</span>;</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>A <span class="dv">4</span> A <span class="dv">2</span> A <span class="dv">5</span> A <span class="dv">9</span> A <span class="dv">4</span> A <span class="dv">1</span> A <span class="dv">6</span> A <span class="dv">9</span> A <span class="dv">8</span> A <span class="dv">3</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>B <span class="dv">6</span> B <span class="dv">3</span> B <span class="dv">4</span> B <span class="dv">7</span> B <span class="dv">6</span> B <span class="dv">3</span> B <span class="dv">7</span> B <span class="dv">3</span> B <span class="dv">9</span> B <span class="dv">2</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sort</span> <span class="kw">data</span>=due; <span class="kw">by</span> gruppo reddito; <span class="kw">run</span>;</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">means</span> <span class="kw">data</span>=due noprint; <span class="kw">by</span> gruppo; <span class="kw">var</span> reddito; <span class="kw">output</span> <span class="kw">out</span>=tot n=n <span class="bu">sum</span>=totale; <span class="kw">run</span>;</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> due;</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">merge</span> due tot(<span class="kw">keep</span>=gruppo n totale);</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span> gruppo;</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> first.gruppo <span class="kw">then</span> <span class="kw">do</span>; p = <span class="dv">0</span>; q = <span class="dv">0</span>; <span class="kw">output</span>; <span class="kw">end</span>;</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>  p + <span class="dv">1</span>/n; q + reddito/totale;</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">output</span>;</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=due;</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"Due spezzate di Lorenz"</span>;</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=p y=q / group=gruppo markers;</span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>  lineparm x=<span class="dv">0</span> y=<span class="dv">0</span> slope=<span class="dv">1</span>;</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Torna in cima</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/erasmovassallo\.github\.io\/statistica-economica\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../it/capitoli/06-modelli-stocastici.html" class="pagination-link" aria-label="6 Modelli stocastici per l'analisi delle serie storiche">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">6 Modelli stocastici per l’analisi delle serie storiche</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../it/capitoli/08-produzione.html" class="pagination-link" aria-label="8 Produzione e produttività di sistemi economici">
+        <span class="nav-page-text">8 Produzione e produttività di sistemi economici</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2018–2026 Erasmo Vassallo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/07-poverta.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

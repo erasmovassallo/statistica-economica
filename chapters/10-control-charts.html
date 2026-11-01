@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10 Statistical control charts for quality analysis – Statistica Economica · Economic Statistics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/11-financial-series.html" rel="next">
+<link href="../chapters/09-efficiency.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-86fc916b84669629367aabb2a24c5117.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-13715bb0a6d20bd8e399adc380af65d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Statistica Economica · Economic Statistics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">English</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../it/index.html"> 
+<span class="menu-text">Italiano</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/erasmovassallo/statistica-economica"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-getting-started.html">Chapters</a></li><li class="breadcrumb-item"><a href="../chapters/10-control-charts.html">10 Statistical control charts for quality analysis</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapters</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Getting started: R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-economic-aggregates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Economic aggregates and national accounts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-index-numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Index numbers and deflation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-time-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 The decomposition approach to time series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Specification of linear economic models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-stochastic-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Stochastic models for time-series analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-poverty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 Poverty and income distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 Production and productivity of economic systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 Statistical efficiency of production processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/10-control-charts.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">10 Statistical control charts for quality analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/11-financial-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 Statistical models for financial time series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/12-further-examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 Further applied examples</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../author.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the author</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-charts" id="toc-sec-charts" class="nav-link active" data-scroll-target="#sec-charts">10.1 Control charts and the 3-sigma method</a></li>
+  <li><a href="#sec-p-chart" id="toc-sec-p-chart" class="nav-link" data-scroll-target="#sec-p-chart">10.2 The p chart</a></li>
+  <li><a href="#sec-np-chart" id="toc-sec-np-chart" class="nav-link" data-scroll-target="#sec-np-chart">10.3 The np chart</a></li>
+  <li><a href="#sec-c-u-charts" id="toc-sec-c-u-charts" class="nav-link" data-scroll-target="#sec-c-u-charts">10.4 The c and u charts</a></li>
+  <li><a href="#sec-xbar-r" id="toc-sec-xbar-r" class="nav-link" data-scroll-target="#sec-xbar-r">10.5 Control charts for variables: the X-bar and R charts</a></li>
+  <li><a href="#sec-xbar-s" id="toc-sec-xbar-s" class="nav-link" data-scroll-target="#sec-xbar-s">10.6 The X-bar and S charts</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/chapters/10-control-charts.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-getting-started.html">Chapters</a></li><li class="breadcrumb-item"><a href="../chapters/10-control-charts.html">10 Statistical control charts for quality analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10 Statistical control charts for quality analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-charts" class="level2">
+<h2 class="anchored" data-anchor-id="sec-charts">10.1 Control charts and the 3-sigma method</h2>
+<p>The pursuit of higher quality in production processes, understood as adherence to increasingly demanding standards, has characterised the world’s economies since the 1950s. From the Japanese experience came a theory of total quality aimed at the control and continuous improvement of the entire business process, towards an overall optimisation of the system. An important aspect of the pursuit of higher quality is knowledge of the process and its control, so that it meets certain conditions that translate into specific statistical criteria; for example, the description of the variability shown by the process and the possible presence of abnormal fluctuations are particularly important. For this purpose, control charts are a tool that is both very useful and easy to read.</p>
+<p>Control charts, originally proposed by Shewhart, are simply graphs showing the evolution over time of the production process, i.e.&nbsp;of the output or of some of its characteristics. For example, if we are monitoring the number of defective screws produced by a machine over some periods of time, we do not want a systematic increase in defects, or in any case one that would make the analyst worry about the need to recalibrate or even repair the machine; but if defects are too numerous, the control chart will signal the anomaly with fluctuations of the process beyond specific limits, usually set at <span class="math inline">\(\pm 3\sigma\)</span> from the mean of the process itself.</p>
+<p>In this regard, Figure 10.1 shows made-up data on the breaking strength of some nails, measured daily. The process follows an irregular pattern, increasing up to the 13th observation, but still within the acceptance limits (the dashed horizontal lines).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">14</span>,<span class="dv">16</span>,<span class="dv">15</span>,<span class="dv">25</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">27</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">16</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">14</span>,<span class="dv">13</span>,<span class="dv">12</span>,<span class="dv">14</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>)   <span class="co"># made-up data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xx, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Evolution of a process"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">20</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">20</span>,<span class="dv">32</span>), <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.1 – Graphical description of the evolution of a process</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">25</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">27</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>               <span class="dv">14</span>, <span class="dv">17</span>, <span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>])   <span class="co"># made-up data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(xx) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.plot(idx, xx, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">20</span>):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    plt.axhline(h, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> (<span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">32</span>):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    plt.axvline(v, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Evolution of a process"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Index"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"xx"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.1 – Graphical description of the evolution of a process</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> processo;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> xx @@;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">t</span> = _n_;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">datalines</span>;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="dv">11</span> <span class="dv">10</span> <span class="dv">13</span> <span class="dv">12</span> <span class="dv">13</span> <span class="dv">14</span> <span class="dv">12</span> <span class="dv">14</span> <span class="dv">15</span> <span class="dv">14</span> <span class="dv">16</span> <span class="dv">15</span> <span class="dv">25</span> <span class="dv">24</span> <span class="dv">26</span> <span class="dv">23</span> <span class="dv">24</span> <span class="dv">27</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> <span class="dv">17</span> <span class="dv">16</span> <span class="dv">15</span> <span class="dv">16</span> <span class="dv">14</span> <span class="dv">13</span> <span class="dv">12</span> <span class="dv">14</span> <span class="dv">10</span> <span class="dv">12</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=processo noautolegend;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"Evolution of a process"</span>;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=<span class="bu">t</span> y=xx;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  refline <span class="dv">8</span> <span class="dv">20</span> / axis=y lineattrs=(pattern=dash);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  refline <span class="dv">13</span> <span class="dv">20</span> <span class="dv">32</span> / axis=x lineattrs=(pattern=dash);</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The subsequent observations jump upwards and signal an out-of-control situation, which however returns within the limits after a few days; from then on the process drifts progressively until it crosses the lower limit at the 32nd observation. So even a simple graph of some characteristic of the good or service under study can be an excellent analytical tool.</p>
+<p>More precisely, if <span class="math inline">\(\mu\)</span> is the mean of the process, we can define two control limits following the so-called <em>3-sigma</em> method:</p>
+<p><span class="math display">\[
+\text{lower control limit } LCL=\mu -3\sigma \qquad \text{and} \qquad \text{upper control limit } UCL=\mu +3\sigma
+\tag{10.1}
+\]</span></p>
+<p>Note that if the data follow a normal distribution, the interval <span class="math inline">\(\mu \pm 3\sigma\)</span> includes more than 99% of the observations, exactly 99.73%, so the probability of a type I error is 0.0027. If we wanted to reason in probabilistic terms and set a priori a type I error probability of 0.001 (i.e.&nbsp;0.1%) for each limit, the multiplier of the standard deviation would be 3.09</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.001</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.090232</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats.norm.ppf(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.001</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.090232306167813</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> _null_;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  z = quantile(<span class="st">"NORMAL"</span>, <span class="dv">1-0.001</span>);</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">put</span> z=;</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Note that, to promptly signal anomalous patterns that might lead to an out-of-control situation beyond the traditional 3-sigma limit, 2-sigma warning limits can be added, i.e.&nbsp;a type I error of 0.025 can be set. The application of control charts is also very interesting for public services and for the analysis of the quality perceived by the users of a service, for example health care.</p>
+</section>
+<section id="sec-p-chart" class="level2">
+<h2 class="anchored" data-anchor-id="sec-p-chart">10.2 The p chart</h2>
+<p>A well-known control chart is the <span class="math inline">\(p\)</span> chart for attributes, used for products that can be classified as defective or non-defective with respect to some characteristic. This does not apply only to industry: in health care, for example, one may consider whether certain thresholds for the cleanliness of premises are exceeded, and so on. The chart analyses the proportion of defective items <span class="math inline">\(p\)</span>, i.e.&nbsp;the share of items that do not conform to specific company standards. The link with the binomial distribution, which has two possible states, is immediate. So, if the sample of items inspected has size <span class="math inline">\(n\)</span> and <span class="math inline">\(D\)</span> is the number of nonconforming units, we have <span class="math inline">\(P(D=x)=\binom{n}{x}p^{x}(1-p)^{n-x}\)</span>, <span class="math inline">\(x=0,1,...,n\)</span>. The share of nonconforming items is <span class="math inline">\(\hat{p}=D/n\)</span>, hence <span class="math inline">\(\mu_{\hat{p}}=p\)</span> and <span class="math inline">\(\sigma_{\hat{p}}=(p(1-p)/n)^{1/2}\)</span>. Consequently, if the true fraction of nonconforming items is known, we write</p>
+<p><span class="math display">\[
+LCL=p-3(p(1-p)/n)^{1/2} \qquad \text{and} \qquad UCL=p+3(p(1-p)/n)^{1/2}
+\tag{10.2}
+\]</span></p>
+<p>Of course, the samples inspected are usually <span class="math inline">\(m&gt;1\)</span>, not always of the same size <span class="math inline">\(n\)</span> and, above all, the true fraction <span class="math inline">\(p\)</span> is almost never known; instead, it is estimated from the sample data as <span class="math inline">\(\bar{p}=\sum_{i} D_{i}/\sum_{i} n_{i}\)</span>, giving</p>
+<p><span class="math display">\[
+LCL=\bar{p}-3(\bar{p}(1-\bar{p})/\bar{n})^{1/2} \qquad \text{and} \qquad UCL=\bar{p}+3(\bar{p}(1-\bar{p})/\bar{n})^{1/2}
+\tag{10.3}
+\]</span></p>
+<p>where <span class="math inline">\(\bar{p}\)</span> is the average proportion of defective items and <span class="math inline">\(\bar{n}\)</span> the average sample size.</p>
+<p>Suppose we take 28 samples and record the number of defective screws produced by a machine in each complete production cycle of 200 pieces; the data are in the file <em>viti.csv</em> (<em>viti</em> = screws, <em>difetti</em> = defects). We compute the average number of screws produced (here obviously 200) and the average proportion of screws not conforming to the production standards</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>viti <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/viti.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(viti)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(tot)<span class="sc">/</span><span class="dv">28</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">sum</span>(difetti)<span class="sc">/</span><span class="fu">sum</span>(tot)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>n; p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 200</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.08375</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>viti <span class="op">=</span> pd.read_csv(<span class="st">"data/viti.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> viti[<span class="st">"tot"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">28</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> viti[<span class="st">"difetti"</span>].<span class="bu">sum</span>() <span class="op">/</span> viti[<span class="st">"tot"</span>].<span class="bu">sum</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n, p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>200.0 0.08375</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">import</span> <span class="kw">datafile</span>=<span class="st">"data/viti.csv"</span> <span class="kw">out</span>=viti <span class="kw">dbms</span>=dlm <span class="kw">replace</span>;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delimiter</span>=<span class="st">";"</span>; <span class="kw">getnames</span>=yes;</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span> noprint;</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  select <span class="bu">sum</span>(tot)/<span class="dv">28</span>, <span class="bu">sum</span>(difetti)/<span class="bu">sum</span>(tot) <span class="kw">into</span> :n, :p from viti;</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>%<span class="kw">put</span> n=&amp;n p=&amp;p;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>So there is an average defect rate of about 8.4%, with limits of 2.5% and 14.3%</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> p<span class="dv">-3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>lcl; ucl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02498677</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1425132</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lcl <span class="op">=</span> p <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ucl <span class="op">=</span> p <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lcl, ucl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.024986770106638967 0.14251322989336104</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> _null_;</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  lcl = &amp;p - <span class="dv">3</span>*<span class="bu">sqrt</span>(&amp;p*(<span class="dv">1</span>-&amp;p)/&amp;n);</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  ucl = &amp;p + <span class="dv">3</span>*<span class="bu">sqrt</span>(&amp;p*(<span class="dv">1</span>-&amp;p)/&amp;n);</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  call symputx(<span class="st">"lcl"</span>, lcl); call symputx(<span class="st">"ucl"</span>, ucl);</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">put</span> lcl= ucl=;</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Figure 10.2 shows the defect rate of the screw production process and indicates a share of defects under control, with no fluctuations outside the limits</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> difetti<span class="sc">/</span>tot</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pi, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"p chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">0.16</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lcl, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>ucl, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.2 – <em>p</em> chart of defective screws</figcaption>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(viti)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> carta(valori, lcl, ucl, titolo, ylim, ylabel<span class="op">=</span><span class="st">""</span>):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Draws a control chart with constant (scalar) or variable (vector) limits."""</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(valori) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    plt.plot(t, valori, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lim <span class="kw">in</span> (lcl, ucl):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.ndim(lim) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            plt.axhline(lim, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            plt.plot(t, lim, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="op">*</span>ylim)<span class="op">;</span> plt.title(titolo)<span class="op">;</span> plt.xlabel(<span class="st">"Index"</span>)<span class="op">;</span> plt.ylabel(ylabel)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> viti[<span class="st">"difetti"</span>] <span class="op">/</span> viti[<span class="st">"tot"</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>carta(pi, lcl, ucl, <span class="st">"p chart"</span>, (<span class="fl">0.0</span>, <span class="fl">0.16</span>), <span class="st">"pi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.2 – <em>p</em> chart of defective screws</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> viti;</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> viti;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  pi = difetti/tot;</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=viti noautolegend;</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"p chart"</span>;</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=nr y=pi / markers;</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  refline &amp;lcl &amp;ucl / axis=y lineattrs=(pattern=dash);</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  yaxis <span class="bu">min</span>=<span class="dv">0</span> <span class="bu">max</span>=<span class="dv">0.16</span>;</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">/* with SAS/QC the same chart is obtained directly: */</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=viti;</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  pchart difetti*nr / subgroupn=tot;</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Now suppose the same firm produces bolts of various sizes in a daily quantity that varies with market demand; the data are in the file <em>bulloni.csv</em> (<em>bullon</em> = bolts produced, <em>rotti</em> = defective). We build the corresponding <span class="math inline">\(p\)</span> chart (Figure 10.3)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>bul <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/bulloni.csv"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(bul)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> rotti<span class="sc">/</span>bullon</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">sum</span>(rotti)<span class="sc">/</span><span class="fu">sum</span>(bullon)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(bullon)<span class="sc">/</span><span class="dv">32</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> p<span class="dv">-3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>lcl; ucl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01226474</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05588743</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pi, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"p chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">0.06</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lcl, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>ucl, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.3 – <em>p</em> chart of defective bolts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>bul <span class="op">=</span> pd.read_csv(<span class="st">"data/bulloni.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> bul[<span class="st">"rotti"</span>] <span class="op">/</span> bul[<span class="st">"bullon"</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> bul[<span class="st">"rotti"</span>].<span class="bu">sum</span>() <span class="op">/</span> bul[<span class="st">"bullon"</span>].<span class="bu">sum</span>()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> bul[<span class="st">"bullon"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">32</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>lcl <span class="op">=</span> p <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ucl <span class="op">=</span> p <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lcl, ucl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.012264735599470371 0.05588742740364114</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>carta(pi, lcl, ucl, <span class="st">"p chart"</span>, (<span class="fl">0.0</span>, <span class="fl">0.06</span>), <span class="st">"pi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.3 – <em>p</em> chart of defective bolts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">import</span> <span class="kw">datafile</span>=<span class="st">"data/bulloni.csv"</span> <span class="kw">out</span>=bul <span class="kw">dbms</span>=dlm <span class="kw">replace</span>;</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delimiter</span>=<span class="st">";"</span>; <span class="kw">getnames</span>=yes;</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span> noprint;</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  select <span class="bu">sum</span>(rotti)/<span class="bu">sum</span>(bullon), <span class="bu">sum</span>(bullon)/<span class="dv">32</span> <span class="kw">into</span> :p, :n from bul;</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> bul;</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> bul;</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  pi  = rotti/bullon;</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  lcl = &amp;p - <span class="dv">3</span>*<span class="bu">sqrt</span>(&amp;p*(<span class="dv">1</span>-&amp;p)/&amp;n);</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  ucl = &amp;p + <span class="dv">3</span>*<span class="bu">sqrt</span>(&amp;p*(<span class="dv">1</span>-&amp;p)/&amp;n);</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sgplot</span> <span class="kw">data</span>=bul noautolegend;</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">title</span> <span class="st">"p chart"</span>;</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=gg y=pi / markers;</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=gg y=lcl / lineattrs=(pattern=dash color=black);</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">series</span> x=gg y=ucl / lineattrs=(pattern=dash color=black);</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  yaxis <span class="bu">min</span>=<span class="dv">0</span> <span class="bu">max</span>=<span class="dv">0.06</span>;</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The bolt production process appears to be under control, except for the observation of day 26; indeed</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pi<span class="sc">&gt;</span>ucl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.flatnonzero(pi <span class="op">&gt;</span> ucl) <span class="op">+</span> <span class="dv">1</span>)     <span class="co"># out-of-control days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[26]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=bul noobs;</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> pi &gt; ucl;</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> gg pi ucl;</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>One should look for the reason behind the anomalous defect rate of the 26th sample, so as to prevent the out-of-control situation from recurring and even spreading to the rest of production.</p>
+<p>In the bolts example, the samples inspected have variable size, which would suggest looking for control limits of variable width. Three routes are possible: ignore the variable size and compute constant limits based on the average size (the option usually adopted); build the chart on standardised values (hence with centre line 0 and limits -3 and +3); compute variable limits for each sample size, as in Figure 10.4</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> bullon</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>lcli <span class="ot">&lt;-</span> p<span class="dv">-3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>ni)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>ucli <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>ni)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pi, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"p chart with variable limits"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">0.06</span>))</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(ucli, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(lcli, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.4 – <em>p</em> chart of defective bolts with variable limits</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ni <span class="op">=</span> bul[<span class="st">"bullon"</span>].to_numpy()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>lcli <span class="op">=</span> p <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> ni)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ucli <span class="op">=</span> p <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> ni)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>carta(pi, lcli, ucli, <span class="st">"p chart with variable limits"</span>, (<span class="fl">0.0</span>, <span class="fl">0.06</span>), <span class="st">"pi"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.4 – <em>p</em> chart of defective bolts with variable limits</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* PROC SHEWHART (SAS/QC) uses variable limits by default</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">   when subgroup sizes differ */</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=bul;</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  pchart rotti*gg / subgroupn=bullon;</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-np-chart" class="level2">
+<h2 class="anchored" data-anchor-id="sec-np-chart">10.3 The np chart</h2>
+<p>We could build a similar chart using the number of defective bolts instead of the defect rate, obtaining the <span class="math inline">\(np\)</span> chart. Strictly speaking, this chart should be used with samples of constant size; we therefore carry out the exercise using the information on defective pins in the same file <em>bulloni.csv</em> (<em>totperni</em> = pins inspected, <em>difperni</em> = defective pins). We build and compare the <span class="math inline">\(p\)</span> chart with the <span class="math inline">\(np\)</span> chart, whose limits are now given by <span class="math inline">\(np\pm 3(np(1-p))^{1/2}\)</span> (Figure 10.5)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> difperni<span class="sc">/</span>totperni</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">sum</span>(difperni)<span class="sc">/</span><span class="fu">sum</span>(totperni)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(totperni)<span class="sc">/</span><span class="dv">32</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>lclnp <span class="ot">&lt;-</span> n<span class="sc">*</span>p<span class="dv">-3</span><span class="sc">*</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>uclnp <span class="ot">&lt;-</span> n<span class="sc">*</span>p<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>(n<span class="sc">*</span>p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p))<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>lclnp; uclnp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.47328</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 39.96422</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(difperni, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"np chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">45</span>))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lclnp, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>uclnp, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> p<span class="dv">-3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>lcl; ucl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01745546</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06660704</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pi, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"p chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.08</span>))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lcl, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>ucl, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 10.5 – <em>np</em> chart and <em>p</em> chart of defective pins</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>difperni <span class="op">=</span> bul[<span class="st">"difperni"</span>].to_numpy()</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> difperni <span class="op">/</span> bul[<span class="st">"totperni"</span>]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> difperni.<span class="bu">sum</span>() <span class="op">/</span> bul[<span class="st">"totperni"</span>].<span class="bu">sum</span>()</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> bul[<span class="st">"totperni"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">32</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>lclnp <span class="op">=</span> n <span class="op">*</span> p <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> (n <span class="op">*</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p)) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>uclnp <span class="op">=</span> n <span class="op">*</span> p <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> (n <span class="op">*</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p)) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>lcl <span class="op">=</span> p <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>ucl <span class="op">=</span> p <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.sqrt(p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">/</span> n)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lclnp, uclnp)<span class="op">;</span> <span class="bu">print</span>(lcl, ucl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10.473277144694121 39.96422285530588
+0.017455461907823534 0.06660703809217647</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">33</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">4.5</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, v, lo, hi, tit, yl <span class="kw">in</span> ((ax[<span class="dv">0</span>], difperni, lclnp, uclnp, <span class="st">"np chart"</span>, (<span class="dv">5</span>, <span class="dv">45</span>)),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                              (ax[<span class="dv">1</span>], pi, lcl, ucl, <span class="st">"p chart"</span>, (<span class="fl">0.01</span>, <span class="fl">0.08</span>))):</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    a.plot(t, v, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    a.axhline(lo, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    a.axhline(hi, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    a.set_ylim(<span class="op">*</span>yl)<span class="op">;</span> a.set_title(tit)<span class="op">;</span> a.set_xlabel(<span class="st">"Index"</span>)</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.5 – <em>np</em> chart and <em>p</em> chart of defective pins</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* np chart and p chart with SAS/QC (samples of 600 pins) */</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=bul;</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  npchart difperni*gg / subgroupn=<span class="dv">600</span>;</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  pchart  difperni*gg / subgroupn=<span class="dv">600</span>;</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Figure 10.5 shows the two charts; the process is under control, with the usual exception of the 26th observation. Note that when the two charts are applied to samples of identical size, and of course to the same data, they lead to conclusions that differ only in the scale of the values.</p>
+</section>
+<section id="sec-c-u-charts" class="level2">
+<h2 class="anchored" data-anchor-id="sec-c-u-charts">10.4 The c and u charts</h2>
+<p>The <span class="math inline">\(c\)</span> chart is another control chart for attributes, based on the number of defects for samples of equal size. Figure 10.6 shows the example of defective pins from the file <em>bulloni.csv</em></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">sum</span>(difperni)<span class="sc">/</span><span class="dv">32</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>lclc <span class="ot">&lt;-</span> c<span class="dv">-3</span><span class="sc">*</span>c<span class="sc">^</span><span class="fl">0.5</span>; uclc <span class="ot">&lt;-</span> c<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>c<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(difperni, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"c chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">45</span>))</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lclc, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>uclc, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-22-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.6 – <em>c</em> chart of defective pins</figcaption>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(bul)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cmedio <span class="op">=</span> difperni.<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">32</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>lclc, uclc <span class="op">=</span> cmedio <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> cmedio <span class="op">**</span> <span class="fl">0.5</span>, cmedio <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> cmedio <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>carta(difperni, lclc, uclc, <span class="st">"c chart"</span>, (<span class="dv">5</span>, <span class="dv">45</span>), <span class="st">"difperni"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.6 – <em>c</em> chart of defective pins</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=bul;</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  cchart difperni*gg;</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>In this case the chart is built for samples of constant size, assuming that the number of defects <span class="math inline">\(X\)</span> follows a Poisson random variable with parameter <span class="math inline">\(c\)</span> (average number of defects), <span class="math inline">\(P(X=x)=e^{-c}c^{x}/x!\)</span>, <span class="math inline">\(x=0,1,2,...\)</span>, hence with limits</p>
+<p><span class="math display">\[
+LCL=c-3c^{1/2} \qquad \text{and} \qquad UCL=c+3c^{1/2}
+\tag{10.4}
+\]</span></p>
+<p>But if the number of defects, and hence the average number <span class="math inline">\(c\)</span>, refers to several production units, say <span class="math inline">\(n\)</span>, it may be useful to build the chart around the average number of nonconformities per unit, i.e.&nbsp;on <span class="math inline">\(u=c/n\)</span>, with limits <span class="math inline">\(LCL=u-3(u/n)^{1/2}\)</span> and <span class="math inline">\(UCL=u+3(u/n)^{1/2}\)</span>, thus obtaining the <span class="math inline">\(u\)</span> chart.</p>
+<p>With the made-up data below, in the case of variable limits, we obtain the <span class="math inline">\(u\)</span> chart shown in Figure 10.7</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dif <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">12</span>,<span class="dv">20</span>,<span class="dv">11</span>,<span class="dv">7</span>,<span class="dv">10</span>,<span class="dv">21</span>,<span class="dv">16</span>,<span class="dv">19</span>,<span class="dv">23</span>) <span class="co"># no. of defects</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>nn <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="fl">9.5</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="fl">10.5</span>,<span class="dv">12</span>,<span class="fl">12.5</span>) <span class="co"># no. of units</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">sum</span>(dif)<span class="sc">/</span><span class="dv">10</span>; n <span class="ot">&lt;-</span> <span class="fu">sum</span>(nn)<span class="sc">/</span><span class="dv">10</span>; u <span class="ot">&lt;-</span> c<span class="sc">/</span>n; u</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.423256</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> u<span class="dv">-3</span><span class="sc">*</span>(u<span class="sc">/</span>nn)<span class="sc">^</span><span class="fl">0.5</span>; ucl <span class="ot">&lt;-</span> u<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>(u<span class="sc">/</span>nn)<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> dif<span class="sc">/</span>nn</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ui, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"u chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(lcl, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">lines</span>(ucl, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-24-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.7 – <em>u</em> chart of nonconformities per unit</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dif <span class="op">=</span> np.array([<span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">23</span>])          <span class="co"># no. of defects</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">10</span>, <span class="fl">9.5</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="fl">10.5</span>, <span class="dv">12</span>, <span class="fl">12.5</span>])       <span class="co"># no. of units</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> (dif.<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">10</span>) <span class="op">/</span> (nn.<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">10</span>)</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(u)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.4232558139534885</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>carta(dif <span class="op">/</span> nn, u <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> (u <span class="op">/</span> nn) <span class="op">**</span> <span class="fl">0.5</span>, u <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> (u <span class="op">/</span> nn) <span class="op">**</span> <span class="fl">0.5</span>, <span class="st">"u chart"</span>, (<span class="dv">0</span>, <span class="dv">3</span>), <span class="st">"ui"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.7 – <em>u</em> chart of nonconformities per unit</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> carta_u;</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> campione <span class="bu">dif</span> nn @@;</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">datalines</span>;</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">14</span> <span class="dv">10</span>   <span class="dv">2</span> <span class="dv">12</span> <span class="dv">8</span>   <span class="dv">3</span> <span class="dv">20</span> <span class="dv">13</span>   <span class="dv">4</span> <span class="dv">11</span> <span class="dv">10</span>   <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9.5</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="dv">10</span> <span class="dv">10</span>   <span class="dv">7</span> <span class="dv">21</span> <span class="dv">12</span>  <span class="dv">8</span> <span class="dv">16</span> <span class="dv">10.5</span> <span class="dv">9</span> <span class="dv">19</span> <span class="dv">12</span>  <span class="dv">10</span> <span class="dv">23</span> <span class="dv">12.5</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>;</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=carta_u;</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>  uchart <span class="bu">dif</span>*campione / subgroupn=nn;</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-xbar-r" class="level2">
+<h2 class="anchored" data-anchor-id="sec-xbar-r">10.5 Control charts for variables: the X-bar and R charts</h2>
+<p>Control charts for attributes are typically applied to categorical data on the presence or absence of a defect. Conversely, control charts for variables deal with quantitative data on a characteristic <span class="math inline">\(X\)</span> of the product, such as weight, volume, etc. In this case it is advisable to keep the process under control both for the mean and for the variability; indeed, control charts for variables are applied in pairs.</p>
+<p>If the characteristic is such that <span class="math inline">\(X\sim N(\mu ,\sigma^{2})\)</span>, the sample mean is <span class="math inline">\(\bar{X}\sim N(\mu ,\sigma_{\bar{X}}^{2})\)</span>, where <span class="math inline">\(\sigma_{\bar{X}}=\sigma /n^{1/2}\)</span>. The 3-sigma control chart for the mean then has limits</p>
+<p><span class="math display">\[
+LCL=\mu -3\sigma_{\bar{X}} \qquad \text{and} \qquad UCL=\mu +3\sigma_{\bar{X}}
+\tag{10.5}
+\]</span></p>
+<p>and, in probability terms, <span class="math inline">\(\mu -Z_{\alpha /2}\sigma_{\bar{X}}\)</span> and <span class="math inline">\(\mu +Z_{\alpha /2}\sigma_{\bar{X}}\)</span>.</p>
+<p>Generally <span class="math inline">\(\mu\)</span> is unknown and must be estimated by the mean of the sample means <span class="math inline">\(\bar{\bar{X}}\)</span>; similarly, the sample standard deviation is used for <span class="math inline">\(\sigma\)</span>.</p>
+<p>To analyse variability, as an alternative to the standard deviation, one can use the range <span class="math inline">\(R\)</span>, i.e.&nbsp;the mean <span class="math inline">\(\bar{R}\)</span> of the sample ranges. The following limits are thus defined for the <span class="math inline">\(\bar{X}\)</span> chart (centre line <span class="math inline">\(\bar{\bar{X}}\)</span>)</p>
+<p><span class="math display">\[
+LCL=\bar{\bar{X}}-A_{2}\bar{R} \qquad \text{and} \qquad UCL=\bar{\bar{X}}+A_{2}\bar{R}
+\tag{10.6}
+\]</span></p>
+<p>and those for the <span class="math inline">\(R\)</span> chart (centre line <span class="math inline">\(\bar{R}\)</span>)</p>
+<p><span class="math display">\[
+LCL=D_{3}\bar{R} \qquad \text{and} \qquad UCL=D_{4}\bar{R}
+\tag{10.7}
+\]</span></p>
+<p>Note the use of the specific constants <span class="math inline">\(A_{2}\)</span>, <span class="math inline">\(D_{3}\)</span> and <span class="math inline">\(D_{4}\)</span>, given in dedicated tables.</p>
+<p>If the characteristic under examination follows a normal distribution, there is a specific relationship between the range and the standard deviation. If <span class="math inline">\(d_{2}\)</span> is the mean and <span class="math inline">\(d_{3}\)</span> the standard deviation of the random variable <span class="math inline">\(R/\sigma\)</span>, an estimate of <span class="math inline">\(\sigma\)</span> is <span class="math inline">\(\hat{\sigma}=\bar{R}/d_{2}\)</span>. Since the limits of the chart for the mean can be defined as <span class="math inline">\(\bar{\bar{X}}\pm 3\hat{\sigma}/n^{1/2}\)</span>, and hence as <span class="math inline">\(\bar{\bar{X}}\pm 3\bar{R}/(d_{2}n^{1/2})\)</span>, we immediately obtain <span class="math inline">\(A_{2}=3/(d_{2}n^{1/2})\)</span>.</p>
+<p>Similarly, we can write <span class="math inline">\(\sigma_{R/\sigma}=\sigma_{R}/\sigma\)</span>, <span class="math inline">\(\hat{\sigma}_{R}=\hat{\sigma}d_{3}\)</span>, <span class="math inline">\(\hat{\sigma}_{R}=\bar{R}d_{3}/d_{2}\)</span>, <span class="math inline">\(\bar{R}+3\hat{\sigma}_{R}=(1+3d_{3}/d_{2})\bar{R}\)</span>, so that <span class="math inline">\(D_{4}=1+3d_{3}/d_{2}\)</span>; likewise, <span class="math inline">\(D_{3}=1-3d_{3}/d_{2}\)</span> (set to 0 when negative).</p>
+<p>It should be stressed that the chart for the mean measures the variability between samples, while the range chart measures the variability within samples. As the formulas also show, this implies that <span class="math inline">\(\sigma\)</span> must be estimated using only the information on within-sample variability, so the usual estimator of the standard deviation computed on all the data must not be used.</p>
+<p>We load the data in the file <em>molle.csv</em> on the stretch limit, in cm, of some sofa springs, measured 3 times in each of 10 samples. We build the chart for the mean (<span class="math inline">\(\bar{X}\)</span> or <em>X-bar</em>) based on the range (Figure 10.8)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>molle <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/molle.csv"</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">0</span>; rang <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>) media[i<span class="dv">-1</span>]<span class="ot">=</span><span class="fu">mean</span>(molle[,i])</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>) rang[i<span class="dv">-1</span>]<span class="ot">=</span><span class="fu">diff</span>(<span class="fu">range</span>(molle[,i]))</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>centrale <span class="ot">&lt;-</span> <span class="fu">mean</span>(media); rmedio <span class="ot">&lt;-</span> <span class="fu">mean</span>(rang)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>centrale; rmedio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.76</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.59</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fl">1.023</span> <span class="co"># tabulated value for n=3</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> centrale<span class="sc">-</span>A2<span class="sc">*</span>rmedio</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> centrale<span class="sc">+</span>A2<span class="sc">*</span>rmedio</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>lcl; ucl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.15643</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.36357</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(media, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"X-bar chart via range"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">8.1</span>,<span class="fl">9.5</span>))</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lcl, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>ucl, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.8 – <em>X-bar</em> chart based on the range</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>molle <span class="op">=</span> pd.read_csv(<span class="st">"data/molle.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>media <span class="op">=</span> molle.mean().to_numpy()                       <span class="co"># means of the 10 samples</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>rang <span class="op">=</span> (molle.<span class="bu">max</span>() <span class="op">-</span> molle.<span class="bu">min</span>()).to_numpy()         <span class="co"># ranges of the 10 samples</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>centrale, rmedio <span class="op">=</span> media.mean(), rang.mean()</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>A2 <span class="op">=</span> <span class="fl">1.023</span>                                            <span class="co"># tabulated value for n=3</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>lcl, ucl <span class="op">=</span> centrale <span class="op">-</span> A2 <span class="op">*</span> rmedio, centrale <span class="op">+</span> A2 <span class="op">*</span> rmedio</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(centrale, rmedio)<span class="op">;</span> <span class="bu">print</span>(lcl, ucl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>8.760000000000002 0.5899999999999999
+8.156430000000002 9.363570000000001</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>carta(media, lcl, ucl, <span class="st">"X-bar chart via range"</span>, (<span class="fl">8.1</span>, <span class="fl">9.5</span>), <span class="st">"media"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.8 – <em>X-bar</em> chart based on the range</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* long format: one row per measurement */</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> molle;</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">infile</span> <span class="st">"data/molle.csv"</span> dlm=<span class="st">";"</span> firstobs=<span class="dv">2</span>;</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> misura $ (c1-c10) (:commax8.);</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">array</span> c{<span class="dv">10</span>} c1-c10;</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">do</span> campione = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">10</span>;</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    valore = c{campione};</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">output</span>;</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span>;</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">keep</span> campione valore;</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sort</span> <span class="kw">data</span>=molle; <span class="kw">by</span> campione; <span class="kw">run</span>;</span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="co">/* X-bar and R charts with the tabulated constants A2, D3 and D4 */</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=molle;</span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>  xrchart valore*campione;</span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Note that the fifth point is out of control (mean and range of the fifth sample equal to 9.4 and 0.6 respectively)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-3" role="tab" aria-controls="tabset-13-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>media[<span class="dv">5</span>]; rang[<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.433333</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media[<span class="dv">4</span>], rang[<span class="dv">4</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>9.433333333333332 0.5999999999999996</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">means</span> <span class="kw">data</span>=molle <span class="bu">mean</span> range maxdec=<span class="dv">3</span>;</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> campione = <span class="dv">5</span>;</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> valore;</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The limits of the <span class="math inline">\(\bar{X}\)</span> chart depend on the average range, so it would be preferable to check first that the <span class="math inline">\(R\)</span> chart does not signal any out-of-control points; here, however, we have preferred to follow the order of presentation.</p>
+<p>Building the range chart is straightforward (Figure 10.9)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-3" role="tab" aria-controls="tabset-14-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>D3 <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># there are no values D3&gt;0 for n&lt;7</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>D4 <span class="ot">&lt;-</span> <span class="fl">2.575</span> <span class="co"># D3 and D4 are tabulated by n</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>lclr <span class="ot">&lt;-</span> D3<span class="sc">*</span>rmedio</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>uclr <span class="ot">&lt;-</span> D4<span class="sc">*</span>rmedio</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rang, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"R chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.6</span>))</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lclr, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>uclr, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Figure 10.9 – <em>R</em> chart</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>D3 <span class="op">=</span> <span class="dv">0</span>          <span class="co"># there are no values D3&gt;0 for n&lt;7</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>D4 <span class="op">=</span> <span class="fl">2.575</span>      <span class="co"># D3 and D4 are tabulated by n</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>carta(rang, D3 <span class="op">*</span> rmedio, D4 <span class="op">*</span> rmedio, <span class="st">"R chart"</span>, (<span class="dv">0</span>, <span class="fl">1.6</span>), <span class="st">"rang"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.9 – <em>R</em> chart</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-14-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* the R chart is the second panel produced by XRCHART;</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co">   for the R chart alone: */</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=molle;</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  rchart valore*campione;</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The process appears to be under control.</p>
+</section>
+<section id="sec-xbar-s" class="level2">
+<h2 class="anchored" data-anchor-id="sec-xbar-s">10.6 The X-bar and S charts</h2>
+<p>The <span class="math inline">\(R\)</span> chart is preferable for small samples, but for sizes above 5 the estimate of <span class="math inline">\(\sigma\)</span> based on the range becomes progressively less precise. Generally, with <span class="math inline">\(n&gt;10\)</span> or with variable sample sizes, a specific <span class="math inline">\(S\)</span> or <span class="math inline">\(S^{2}\)</span> chart is preferred to the <span class="math inline">\(R\)</span> chart; of course the construction of the corresponding <span class="math inline">\(\bar{X}\)</span> chart is also affected.</p>
+<p>Let us assume, as usual, that the characteristic <span class="math inline">\(X\)</span> of the product follows a normal distribution. If <span class="math inline">\(\sigma\)</span> is known, the <span class="math inline">\(S\)</span> chart has centre line <span class="math inline">\(c_{4}\sigma\)</span>, with lower and upper 3-sigma limits equal to</p>
+<p><span class="math display">\[
+LCL=B_{5}\sigma \qquad \text{and} \qquad UCL=B_{6}\sigma
+\tag{10.8}
+\]</span></p>
+<p>where the constants <span class="math inline">\(c_{4}\)</span>, <span class="math inline">\(B_{5}\)</span> and <span class="math inline">\(B_{6}\)</span> take specific values tabulated by sample size, such that <span class="math inline">\(B_{5}=c_{4}-3(1-c_{4}^{2})^{1/2}\)</span> and <span class="math inline">\(B_{6}=c_{4}+3(1-c_{4}^{2})^{1/2}\)</span>.</p>
+<p>If the standard deviation is unknown, it must be estimated using the relationship <span class="math inline">\(\hat{\sigma}=\bar{S}/c_{4}\)</span>, where <span class="math inline">\(\bar{S}\)</span> is the mean of the sample standard deviations. The <span class="math inline">\(S\)</span> chart then has centre line <span class="math inline">\(\bar{S}\)</span>, with limits</p>
+<p><span class="math display">\[
+LCL=B_{3}\bar{S} \qquad \text{and} \qquad UCL=B_{4}\bar{S}
+\tag{10.9}
+\]</span></p>
+<p>where <span class="math inline">\(B_{3}=1-(3/c_{4})(1-c_{4}^{2})^{1/2}\)</span> and <span class="math inline">\(B_{4}=1+(3/c_{4})(1-c_{4}^{2})^{1/2}\)</span>.</p>
+<p>The limits of the <span class="math inline">\(\bar{X}\)</span> chart (whose centre line is still <span class="math inline">\(\bar{\bar{X}}\)</span>) must then also be redefined</p>
+<p><span class="math display">\[
+LCL=\bar{\bar{X}}-A_{3}\bar{S} \qquad \text{and} \qquad UCL=\bar{\bar{X}}+A_{3}\bar{S}
+\tag{10.10}
+\]</span></p>
+<p>where <span class="math inline">\(A_{3}=3/(c_{4}n^{1/2})\)</span>.</p>
+<p>We load the data on the diameter of car piston rings in the file <em>pistoni.csv</em> (5 measurements for each of 25 samples). We build the two charts <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(S\)</span> (Figure 10.10)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-3" role="tab" aria-controls="tabset-15-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>piston <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/pistoni.csv"</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">&lt;-</span> <span class="dv">0</span>; dev <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">26</span>) med[i<span class="dv">-1</span>]<span class="ot">=</span><span class="fu">mean</span>(piston[,i])</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">26</span>) dev[i<span class="dv">-1</span>]<span class="ot">=</span><span class="fu">sd</span>(piston[,i])</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(med); mdev <span class="ot">&lt;-</span> <span class="fu">mean</span>(dev)</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>media; mdev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 74.00118</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.009240037</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>A3 <span class="ot">&lt;-</span> <span class="fl">1.427</span> <span class="co"># tabulated values for n=5</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>lclx <span class="ot">&lt;-</span> media<span class="sc">-</span>A3<span class="sc">*</span>mdev; uclx <span class="ot">&lt;-</span> media<span class="sc">+</span>A3<span class="sc">*</span>mdev</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>lclx; uclx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 73.98799</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 74.01436</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>B3 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>B4 <span class="ot">&lt;-</span> <span class="fl">2.089</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>lcls <span class="ot">&lt;-</span> B3<span class="sc">*</span>mdev; ucls <span class="ot">&lt;-</span> B4<span class="sc">*</span>mdev</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>lcls; ucls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01930244</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(med, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"X-bar chart via S"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="fl">73.98</span>,<span class="fl">74.02</span>))</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lclx, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>uclx, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dev, <span class="at">type=</span><span class="st">"o"</span>, <span class="at">main=</span><span class="st">"S chart"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.02</span>))</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>lcls, <span class="at">lty=</span><span class="dv">2</span>); <span class="fu">abline</span>(<span class="at">h=</span>ucls, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-34-3.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 10.10 – <em>X-bar</em> and <em>S</em> charts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>piston <span class="op">=</span> pd.read_csv(<span class="st">"data/pistoni.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>, decimal<span class="op">=</span><span class="st">","</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>med <span class="op">=</span> piston.mean().to_numpy()</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>dev <span class="op">=</span> piston.std().to_numpy()            <span class="co"># sample standard deviation (n-1)</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>media, mdev <span class="op">=</span> med.mean(), dev.mean()</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>A3 <span class="op">=</span> <span class="fl">1.427</span>                               <span class="co"># tabulated values for n=5</span></span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>B3, B4 <span class="op">=</span> <span class="dv">0</span>, <span class="fl">2.089</span></span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>lclx, uclx <span class="op">=</span> media <span class="op">-</span> A3 <span class="op">*</span> mdev, media <span class="op">+</span> A3 <span class="op">*</span> mdev</span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>lcls, ucls <span class="op">=</span> B3 <span class="op">*</span> mdev, B4 <span class="op">*</span> mdev</span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(media, mdev)<span class="op">;</span> <span class="bu">print</span>(lclx, uclx)<span class="op">;</span> <span class="bu">print</span>(lcls, ucls)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>74.001176 0.009240036602285536
+73.98799046776854 74.01436153223146
+0.0 0.019302436462174485</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">26</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">4.5</span>))</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, v, lo, hi, tit, yl <span class="kw">in</span> ((ax[<span class="dv">0</span>], med, lclx, uclx, <span class="st">"X-bar chart via S"</span>, (<span class="fl">73.98</span>, <span class="fl">74.02</span>)),</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>                              (ax[<span class="dv">1</span>], dev, lcls, ucls, <span class="st">"S chart"</span>, (<span class="dv">0</span>, <span class="fl">0.02</span>))):</span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>    a.plot(t, v, <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"black"</span>, markerfacecolor<span class="op">=</span><span class="st">"none"</span>)</span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>    a.axhline(lo, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a>    a.axhline(hi, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>    a.set_ylim(<span class="op">*</span>yl)<span class="op">;</span> a.set_title(tit)<span class="op">;</span> a.set_xlabel(<span class="st">"Index"</span>)</span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-control-charts_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10.10 – <em>X-bar</em> and <em>S</em> charts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-15-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb97"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> pistoni;</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">infile</span> <span class="st">"data/pistoni.csv"</span> dlm=<span class="st">";"</span> firstobs=<span class="dv">2</span>;</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">input</span> misura (c1-c25) (:commax10.);</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">array</span> c{<span class="dv">25</span>} c1-c25;</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">do</span> campione = <span class="dv">1</span> <span class="kw">to</span> <span class="dv">25</span>;</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    diametro = c{campione};</span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">output</span>;</span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span>;</span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">keep</span> campione diametro;</span>
+<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sort</span> <span class="kw">data</span>=pistoni; <span class="kw">by</span> campione; <span class="kw">run</span>;</span>
+<span id="cb97-12"><a href="#cb97-12" aria-hidden="true" tabindex="-1"></a><span class="co">/* X-bar and S charts with the tabulated constants A3, B3 and B4 */</span></span>
+<span id="cb97-13"><a href="#cb97-13" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> shewhart <span class="kw">data</span>=pistoni;</span>
+<span id="cb97-14"><a href="#cb97-14" aria-hidden="true" tabindex="-1"></a>  xschart diametro*campione;</span>
+<span id="cb97-15"><a href="#cb97-15" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The process appears to be under control.</p>
+<p>Building the <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(S\)</span> charts is straightforward even with variable sample sizes. The centre lines are obtained using suitable weighted means instead of simple means, while the control limits, which are also variable, are computed each time with the constants for the corresponding sample size. Finally, note that some prefer the <span class="math inline">\(S^{2}\)</span> chart, based on the sample variance, to the <span class="math inline">\(S\)</span> chart.</p>
+<p>In addition to the classical Shewhart charts presented here, the literature has proposed many other techniques, generally more detailed and more sensitive to small shifts in the process, such as CUSUM (cumulative sum) and EWMA (exponentially weighted moving average) charts; we will not dwell on them further.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/erasmovassallo\.github\.io\/statistica-economica\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/09-efficiency.html" class="pagination-link" aria-label="9 Statistical efficiency of production processes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">9 Statistical efficiency of production processes</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/11-financial-series.html" class="pagination-link" aria-label="11 Statistical models for financial time series">
+        <span class="nav-page-text">11 Statistical models for financial time series</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2018–2026 Erasmo Vassallo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/chapters/10-control-charts.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

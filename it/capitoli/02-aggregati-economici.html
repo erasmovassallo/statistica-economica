@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2 Aggregati economici e conti nazionali – Statistica Economica · Economic Statistics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../it/capitoli/03-numeri-indice.html" rel="next">
+<link href="../../it/capitoli/01-per-iniziare.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-86fc916b84669629367aabb2a24c5117.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e00c98bbba659d91ab3844292f79dc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-13715bb0a6d20bd8e399adc380af65d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-8237ed36592883f42a4c54fddbbcf814.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Statistica Economica · Economic Statistics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ricerca"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../it/index.html" aria-current="page"> 
+<span class="menu-text">Italiano</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/erasmovassallo/statistica-economica"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/02-aggregati-economici.html">2 Aggregati economici e conti nazionali</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/prefazione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capitoli</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/01-per-iniziare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Per iniziare: nozioni di R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/02-aggregati-economici.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 Aggregati economici e conti nazionali</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/03-numeri-indice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Numeri indice e deflazione</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/04-serie-storiche.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Approccio decompositivo alle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/05-modelli-lineari.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 Specificazione di modelli lineari economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/06-modelli-stocastici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 Modelli stocastici per l’analisi delle serie storiche</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/07-poverta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 Povertà e distribuzione dei redditi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/08-produzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 Produzione e produttività di sistemi economici</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/09-efficienza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 Efficienza statistica dei processi produttivi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/10-carte-controllo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 Carte di controllo statistico per l’analisi di qualità</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/11-serie-finanziarie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 Modelli statistici per le serie economiche finanziarie</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/capitoli/12-altri-esempi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 Altri esempi applicativi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliografia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../it/autore.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L’autore</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#sec-sec2010" id="toc-sec-sec2010" class="nav-link active" data-scroll-target="#sec-sec2010">2.1 Il Sistema dei Conti Nazionali</a>
+  <ul class="collapse">
+  <li><a href="#conto-della-produzione" id="toc-conto-della-produzione" class="nav-link" data-scroll-target="#conto-della-produzione">1. Conto della produzione</a></li>
+  <li><a href="#a.-distribuzione-primaria-conto-della-generazione-dei-redditi-primari" id="toc-a.-distribuzione-primaria-conto-della-generazione-dei-redditi-primari" class="nav-link" data-scroll-target="#a.-distribuzione-primaria-conto-della-generazione-dei-redditi-primari">2a. Distribuzione primaria: conto della generazione dei redditi primari</a></li>
+  <li><a href="#b.-distribuzione-primaria-conto-dellattribuzione-dei-redditi-primari" id="toc-b.-distribuzione-primaria-conto-dellattribuzione-dei-redditi-primari" class="nav-link" data-scroll-target="#b.-distribuzione-primaria-conto-dellattribuzione-dei-redditi-primari">2b. Distribuzione primaria: conto dell’attribuzione dei redditi primari</a></li>
+  <li><a href="#c.-conto-della-distribuzione-secondaria-del-reddito" id="toc-c.-conto-della-distribuzione-secondaria-del-reddito" class="nav-link" data-scroll-target="#c.-conto-della-distribuzione-secondaria-del-reddito">2c. Conto della distribuzione secondaria del reddito</a></li>
+  <li><a href="#d.-conto-della-redistribuzione-del-reddito-in-natura" id="toc-d.-conto-della-redistribuzione-del-reddito-in-natura" class="nav-link" data-scroll-target="#d.-conto-della-redistribuzione-del-reddito-in-natura">2d. Conto della redistribuzione del reddito in natura</a></li>
+  <li><a href="#e.-conto-della-utilizzazione-del-reddito" id="toc-e.-conto-della-utilizzazione-del-reddito" class="nav-link" data-scroll-target="#e.-conto-della-utilizzazione-del-reddito">2e. Conto della utilizzazione del reddito</a></li>
+  <li><a href="#conto-della-formazione-del-capitale" id="toc-conto-della-formazione-del-capitale" class="nav-link" data-scroll-target="#conto-della-formazione-del-capitale">3. Conto della formazione del capitale</a></li>
+  <li><a href="#conto-finanziario" id="toc-conto-finanziario" class="nav-link" data-scroll-target="#conto-finanziario">4. Conto finanziario</a></li>
+  <li><a href="#conto-delle-variazioni-delle-attività-e-passività" id="toc-conto-delle-variazioni-delle-attività-e-passività" class="nav-link" data-scroll-target="#conto-delle-variazioni-delle-attività-e-passività">5. Conto delle variazioni delle attività e passività</a></li>
+  <li><a href="#conto-patrimoniale" id="toc-conto-patrimoniale" class="nav-link" data-scroll-target="#conto-patrimoniale">6. Conto patrimoniale</a></li>
+  </ul></li>
+  <li><a href="#sec-semplificato" id="toc-sec-semplificato" class="nav-link" data-scroll-target="#sec-semplificato">2.2 Il sistema semplificato di Contabilità Nazionale</a></li>
+  <li><a href="#sec-istat" id="toc-sec-istat" class="nav-link" data-scroll-target="#sec-istat">2.3 I dati ISTAT e l’analisi degli aggregati</a></li>
+  <li><a href="#sec-quattro-conti" id="toc-sec-quattro-conti" class="nav-link" data-scroll-target="#sec-quattro-conti">2.4 Quattro conti semplificati</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/02-aggregati-economici.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../it/capitoli/01-per-iniziare.html">Capitoli</a></li><li class="breadcrumb-item"><a href="../../it/capitoli/02-aggregati-economici.html">2 Aggregati economici e conti nazionali</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">2 Aggregati economici e conti nazionali</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sec-sec2010" class="level2">
+<h2 class="anchored" data-anchor-id="sec-sec2010">2.1 Il Sistema dei Conti Nazionali</h2>
+<p>Il Sistema dei Conti Nazionali presenta in termini contabili le attività economiche e finanziarie che caratterizzano un intero Paese o porzioni di esso; in quest’ultimo caso si preferisce il termine di Conti Territoriali, anche se lo schema di riferimento è naturalmente quello della Contabilità Nazionale. I conti possono riferirsi all’anno o a frazioni di esso (usualmente il trimestre).</p>
+<p>La Contabilità Nazionale viene definita nell’ambito delle regole europee del SEC2010 che, a partire da settembre 2014, sostituisce il precedente SEC95 in accordo con le linee guida internazionali stabilite nel Sistema dei conti nazionali delle Nazioni Unite.</p>
+<p>Il SEC2010, dunque, stabilisce in modo sistematico e dettagliato come si definiscono e si misurano le grandezze che descrivono il funzionamento contabile di un Paese. Esso, in sostanza, è un sistema integrato dei conti economici, poiché fa ricorso a convenzioni contabili omogenee tra i Paesi europei con l’obiettivo di misurare contabilmente le operazioni economiche che avvengono all’interno delle nazioni.</p>
+<p>La logica del SEC è quella della partita doppia, in cui ogni posta è registrata in uscita per l’operatore che la origina e in entrata per quello che la riceve. Pertanto, tutti i conti registrano operazioni in entrata e in uscita che si bilanciano per mezzo di un opportuno saldo contabile. Poiché sono costruiti a cascata, il saldo di un conto sarà riportato nel conto successivo. Essi registrano operazioni di produzione, di distribuzione e di redistribuzione degli attori coinvolti, fondamentalmente famiglie, imprese, pubbliche amministrazioni e resto del mondo.</p>
+<p>Rispetto alla precedente versione del 1995 (in vigore dal 1999), il SEC2010 presenta alcune importanti differenze riguardo sia l’ambito di applicazione sia i concetti. In particolare: la capitalizzazione delle spese in ricerca e sviluppo; la riclassificazione da consumi intermedi a investimenti della spesa per armamenti sostenuta dalle amministrazioni pubbliche; una differente tecnica di stima degli scambi con l’estero di merci da sottoporre a lavorazione (si registra il valore del solo servizio di trasformazione); un aggiornamento e una verifica delle unità classificabili come amministrazioni pubbliche. In aggiunta, una serie di piccole modifiche tecniche sul calcolo di alcuni aggregati con limitate ricadute pratiche, e una un po’ più consistente legata all’inclusione di tutte le attività che producono reddito, incluse quelle illegali (principio già enunciato nel SEC95). Nello specifico, si introduce una stima del traffico di sostanze stupefacenti, della prostituzione e del contrabbando di sigarette o alcol. Infine, il SEC2010, rispetto al suo predecessore, ha accresciuto l’integrazione di differenti fonti informative e l’uso di dati amministrativi, con un generale miglioramento di tutte le stime e delle attività sommerse e irregolari. Naturalmente, l’applicazione del nuovo SEC2010 in chiave storica, cioè ai dati degli anni precedenti diffusi con il SEC95, ha determinato alcune revisioni delle informazioni in serie storica, con una generale rivalutazione di alcuni aggregati macroeconomici.</p>
+<p>In una rappresentazione semplificata che mantiene una forte connessione con la versione precedente, possiamo presentare il SEC in base a una struttura su 6 conti principali, a loro volta divisi in 3 categorie, come di seguito elencato; tra parentesi è riportato il corrispondente saldo del conto.</p>
+<p><strong>A) Conti delle operazioni correnti</strong></p>
+<ol type="1">
+<li>Conto della produzione (valore aggiunto)</li>
+<li>Conto della distribuzione e utilizzazione del reddito
+<ul>
+<li>2.1 distribuzione primaria (risultato di gestione)</li>
+<li>2.2 distribuzione secondaria (reddito disponibile)</li>
+<li>2.3 redistribuzione in natura (reddito disponibile corretto)</li>
+<li>2.4 utilizzazione del reddito (risparmio)</li>
+</ul></li>
+</ol>
+<p><strong>B) Conti dell’accumulazione</strong></p>
+<ol start="3" type="1">
+<li>Formazione di capitale (accreditamento / indebitamento sull’estero)</li>
+<li>Finanziario (accreditamento / indebitamento)</li>
+<li>Variazioni delle attività e passività (variazione netta del patrimonio)</li>
+</ol>
+<p><strong>C) Conti patrimoniali</strong></p>
+<ol start="6" type="1">
+<li>Patrimoniale (patrimonio netto)
+<ul>
+<li>6.1 patrimoniale di apertura</li>
+<li>6.2 variazioni del patrimonio</li>
+<li>6.3 patrimoniale di chiusura</li>
+</ul></li>
+</ol>
+<p>Per i diversi conti, proseguiamo con le poste costituenti in una rappresentazione volutamente non dettagliata, omettendo anche le formali e puntuali definizioni degli aggregati, per le quali occorrerebbe un ulteriore approfondimento sui temi di contabilità nazionale che ci porterebbe fuori strada rispetto agli obiettivi del testo. D’altronde, gli studenti ai quali è indirizzato questo volume dovrebbero già avere nel proprio bagaglio di conoscenze un corso base di contabilità e statistica economica.</p>
+<section id="conto-della-produzione" class="level3">
+<h3 class="anchored" data-anchor-id="conto-della-produzione">1. Conto della produzione</h3>
+<p><span class="math display">\[
+Y + V = X + \mathit{Inn}
+\tag{2.1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y\)</span> = PIL (prodotto interno lordo) ai prezzi di mercato</li>
+<li><span class="math inline">\(V\)</span> = consumi intermedi</li>
+<li><span class="math inline">\(X\)</span> = produzione totale (ai prezzi base)</li>
+<li><span class="math inline">\(\mathit{Inn}\)</span> = imposte indirette nette (imposte sulla produzione e importazioni al netto dei contributi ai prodotti)</li>
+</ul>
+<p>Questo conto confronta la produzione con l’ammontare dei costi necessari per ottenerla. La differenza tra produzione e costi intermedi (per branca) fornisce il valore aggiunto (pari alla remunerazione dei fattori produttivi capitale, lavoro e impresa). La somma del valore aggiunto per branca fornisce il PIL.</p>
+<p>Ricordiamo che il PIL (o Prodotto Interno Lordo) è il valore di tutti i beni e servizi finali prodotti in un Paese in un determinato periodo di tempo, ma non può essere considerato una misura del benessere della società. Per dirla alla Robert Kennedy (1968): «… il PIL comprende l’inquinamento dell’aria, la pubblicità delle sigarette, […] programmi televisivi che valorizzano la violenza […]. Il PIL non tiene conto della salute delle nostre famiglie, della qualità della loro educazione e della gioia dei loro momenti di svago […]. Non misura né la nostra arguzia né il nostro coraggio né la nostra saggezza né la nostra conoscenza né la nostra compassione. Misura tutto, eccetto ciò che rende la vita degna di essere vissuta…». Ciò nonostante, il PIL è considerato ancora oggi il migliore indicatore statistico della produzione e dello sviluppo di una nazione.</p>
+</section>
+<section id="a.-distribuzione-primaria-conto-della-generazione-dei-redditi-primari" class="level3">
+<h3 class="anchored" data-anchor-id="a.-distribuzione-primaria-conto-della-generazione-dei-redditi-primari">2a. Distribuzione primaria: conto della generazione dei redditi primari</h3>
+<p><span class="math display">\[
+Y + \mathit{Cp} = \mathit{RLD} + \mathit{Ipi} + \mathit{RLG}
+\tag{2.2}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y\)</span> = PIL (Prodotto Interno Lordo) ai prezzi di mercato</li>
+<li><span class="math inline">\(\mathit{Cp}\)</span> = contributi alla produzione</li>
+<li><span class="math inline">\(\mathit{RLD}\)</span> = redditi interni da lavoro dipendente</li>
+<li><span class="math inline">\(\mathit{Ipi}\)</span> = imposte sulla produzione e importazioni</li>
+<li><span class="math inline">\(\mathit{RLG}\)</span> = risultato lordo di gestione</li>
+</ul>
+<p>Questo conto registra la distribuzione funzionale (primaria) del reddito, cioè mostra come il valore aggiunto viene ripartito tra i fattori di produzione (lavoro, capitale, impresa) sotto forma di salari e stipendi, interessi, rendite e dividendi, profitti. Se dal PIL si sottraggono i redditi da lavoro dipendente, si ottiene quale saldo la remunerazione degli altri fattori, cioè il risultato lordo di gestione.</p>
+<p>Va notato che alcuni aggregati possono essere, e talvolta vengono, rappresentati anche al netto di certi contributi e/o imposte, sottraendo o aggiungendo le poste corrispondenti tra le risorse e gli impieghi dei diversi conti. Per esempio, la “sequenza dei conti” pubblicata dall’ISTAT predilige la scomposizione delle poste lorde in modo da evidenziare, ove possibile, il contributo netto degli aggregati al conto.</p>
+</section>
+<section id="b.-distribuzione-primaria-conto-dellattribuzione-dei-redditi-primari" class="level3">
+<h3 class="anchored" data-anchor-id="b.-distribuzione-primaria-conto-dellattribuzione-dei-redditi-primari">2b. Distribuzione primaria: conto dell’attribuzione dei redditi primari</h3>
+<p><span class="math display">\[
+\mathit{RLD} + \mathit{RLG} + \mathit{Ipi} + \mathit{RLG}_{dn} + \mathit{RLG}_{drm} = Y_{nl} + \mathit{RLG}_{aN} + \mathit{RLG}_{arm} + \mathit{Cp}
+\tag{2.3}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_{nl}\)</span> = reddito nazionale lordo</li>
+<li><span class="math inline">\(\mathit{Ipi}\)</span> = imposte indirette</li>
+<li><span class="math inline">\(\mathit{RLG}_{drm}\)</span> = redditi da capitale e impresa dal resto del mondo</li>
+<li><span class="math inline">\(\mathit{RLG}_{arm}\)</span> = redditi da capitale e impresa al resto del mondo</li>
+<li><span class="math inline">\(\mathit{RLG}_{dn}\)</span> = redditi da capitale da altri settori nazionali</li>
+<li><span class="math inline">\(\mathit{RLG}_{aN}\)</span> = redditi da capitale ad altri settori nazionali</li>
+</ul>
+<p>Questo conto presenta l’acquisizione del reddito dei soggetti proprietari dei fattori di produzione. È un conto che interessa gli operatori residenti, indipendentemente da dove hanno prestato la loro opera. Il saldo è il reddito nazionale lordo.</p>
+</section>
+<section id="c.-conto-della-distribuzione-secondaria-del-reddito" class="level3">
+<h3 class="anchored" data-anchor-id="c.-conto-della-distribuzione-secondaria-del-reddito">2c. Conto della distribuzione secondaria del reddito</h3>
+<p><span class="math display">\[
+Y_{nld} + T_{drm} + T_{dn} = Y_{nl} + I_{red} + \mathit{Cs} + T_{an} + T_{arm}
+\tag{2.4}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_{nl}\)</span> = reddito nazionale lordo</li>
+<li><span class="math inline">\(Y_{nld}\)</span> = reddito nazionale lordo disponibile</li>
+<li><span class="math inline">\(I_{red}\)</span> = imposte sul reddito e sul patrimonio</li>
+<li><span class="math inline">\(\mathit{Cs}\)</span> = contributi sociali</li>
+<li><span class="math inline">\(T_{drm}\)</span> = trasferimenti correnti dal resto del mondo</li>
+<li><span class="math inline">\(T_{arm}\)</span> = trasferimenti correnti al resto del mondo</li>
+<li><span class="math inline">\(T_{dn}\)</span> = altri trasferimenti correnti da settori nazionali</li>
+<li><span class="math inline">\(T_{an}\)</span> = altri trasferimenti correnti a settori nazionali</li>
+</ul>
+<p>Questo conto descrive la formazione del reddito disponibile per via dei trasferimenti correnti. Il saldo è il reddito disponibile per consumo o risparmio.</p>
+</section>
+<section id="d.-conto-della-redistribuzione-del-reddito-in-natura" class="level3">
+<h3 class="anchored" data-anchor-id="d.-conto-della-redistribuzione-del-reddito-in-natura">2d. Conto della redistribuzione del reddito in natura</h3>
+<p><span class="math display">\[
+Y_{nldc} = Y_{nld} + \mathit{Trnat}_{netti}
+\tag{2.5}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_{nldc}\)</span> = reddito nazionale lordo disponibile corretto</li>
+<li><span class="math inline">\(Y_{nld}\)</span> = reddito nazionale lordo disponibile</li>
+<li><span class="math inline">\(\mathit{Trnat}_{netti}\)</span> = saldo dei trasferimenti sociali in natura</li>
+</ul>
+<p>I trasferimenti in natura sono oneri sostenuti dalla Pubblica Amministrazione per offrire alla collettività beni e servizi individuali acquistati da terzi o prodotti direttamente.</p>
+</section>
+<section id="e.-conto-della-utilizzazione-del-reddito" class="level3">
+<h3 class="anchored" data-anchor-id="e.-conto-della-utilizzazione-del-reddito">2e. Conto della utilizzazione del reddito</h3>
+<p><span class="math display">\[
+Y_{nld} + \mathit{Rett} = C + S
+\tag{2.6}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_{nld}\)</span> = reddito nazionale lordo disponibile corretto</li>
+<li><span class="math inline">\(S\)</span> = risparmio nazionale lordo</li>
+<li><span class="math inline">\(C\)</span> = consumi finali nazionali effettivi</li>
+<li><span class="math inline">\(\mathit{Rett}\)</span> = rettifica per variazione dei diritti netti delle famiglie sui fondi pensione</li>
+</ul>
+<p>Il saldo è il risparmio nazionale; entra nel conto della formazione del capitale.</p>
+</section>
+<section id="conto-della-formazione-del-capitale" class="level3">
+<h3 class="anchored" data-anchor-id="conto-della-formazione-del-capitale">3. Conto della formazione del capitale</h3>
+<p><span class="math display">\[
+S + T_{ke} = I_f + I_s + O_v + T_{ku} + A_n + B
+\tag{2.7}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(T_{ke}\)</span> = trasferimenti in conto capitale dal resto del mondo</li>
+<li><span class="math inline">\(T_{ku}\)</span> = trasferimenti in conto capitale al resto del mondo</li>
+<li><span class="math inline">\(A_n\)</span> = acquisti netti di terreni o di beni immateriali</li>
+<li><span class="math inline">\(B\)</span> = accreditamento (+) / indebitamento (−) del Paese con il resto del mondo</li>
+<li><span class="math inline">\(S\)</span> = risparmio nazionale lordo</li>
+<li><span class="math inline">\(I_f\)</span> = investimenti fissi lordi</li>
+<li><span class="math inline">\(I_s\)</span> = variazione delle scorte</li>
+<li><span class="math inline">\(O_v\)</span> = variazione degli oggetti di valore</li>
+</ul>
+<p>Il saldo del conto misura la capacità del Paese di finanziare gli investimenti con il risparmio. Un saldo positivo indica un risparmio superiore agli investimenti; questo valore positivo si riversa all’estero sotto forma di impieghi nel resto del mondo. Viceversa, un saldo negativo indica una necessità di finanziamento degli investimenti con debiti contratti all’estero.</p>
+</section>
+<section id="conto-finanziario" class="level3">
+<h3 class="anchored" data-anchor-id="conto-finanziario">4. Conto finanziario</h3>
+<p><span class="math display">\[
+\mathit{Ofa} + B = \mathit{Ofp}
+\tag{2.8}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathit{Ofa}\)</span> = operazioni finanziarie attive</li>
+<li><span class="math inline">\(\mathit{Ofp}\)</span> = operazioni finanziarie passive</li>
+</ul>
+<p>Questo conto, redatto dalla Banca d’Italia, registra le modificazioni delle attività e passività finanziarie. Dobbiamo notare che generalmente il saldo (<span class="math inline">\(B\)</span>) delle attività finanziarie non coincide con quello presente nel conto della formazione del capitale, in ragione delle diverse fonti statistiche utilizzate; spesso, per risolvere questa incongruenza, si aggiunge una posta di rettifica “errori ed omissioni”.</p>
+</section>
+<section id="conto-delle-variazioni-delle-attività-e-passività" class="level3">
+<h3 class="anchored" data-anchor-id="conto-delle-variazioni-delle-attività-e-passività">5. Conto delle variazioni delle attività e passività</h3>
+<p>Il conto registrerebbe variazioni di volume legate a scoperta o esaurimento di miniere, bonifica di terreni, rinvenimento di reperti archeologici, registrazione di nuovi brevetti o scadenza di altri, ecc., ma anche le variazioni di valore causate da variazioni di prezzo. Limiti statistici non consentono ancora una redazione completa del conto.</p>
+</section>
+<section id="conto-patrimoniale" class="level3">
+<h3 class="anchored" data-anchor-id="conto-patrimoniale">6. Conto patrimoniale</h3>
+<p>Come nel caso precedente, anche il conto patrimoniale (con i suoi 3 sottoconti) viene pubblicato solo parzialmente, in ragione di irrisolte difficoltà statistiche.</p>
+<p>Esisterebbero anche una serie di conti con il resto del mondo, in base ai quali vengono analizzate specificamente le operazioni in essere tra la nazione e il resto del mondo. Spesso le operazioni vengono sintetizzate in un unico conto detto per l’appunto “resto del mondo” o delle “transazioni internazionali”; il saldo è l’accreditamento o indebitamento della nazione, fermo restando le solite differenze dovute a effetti di bilanciamento e alle diverse fonti statistiche utilizzate, saldo che consente il bilanciamento delle due sezioni, sostanzialmente sintetizzabili in “entrate dell’Italia” e “uscite dell’Italia”.</p>
+</section>
+</section>
+<section id="sec-semplificato" class="level2">
+<h2 class="anchored" data-anchor-id="sec-semplificato">2.2 Il sistema semplificato di Contabilità Nazionale</h2>
+<p>Un modo più agevole di presentare le principali poste e i rapporti tra esse è rappresentato dal sistema semplificato di Contabilità Nazionale. In buona sostanza, gli aggregati principali vengono riassunti all’interno di uno specifico conto di equilibrio noto come “conto delle risorse e degli impieghi” che, da un lato (le risorse), include il PIL e le importazioni di beni e servizi e, dall’altro (gli impieghi), la spesa per consumi finali, gli investimenti lordi e le esportazioni di beni e servizi. Il conto pone in equilibrio le componenti dell’offerta con quelle della domanda finale, come da risultanze delle tavole input-output.</p>
+<p><span class="math display">\[
+\underbrace{Y + M}_{\text{risorse}} = \underbrace{C + I + E}_{\text{impieghi}}
+\tag{2.9}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y\)</span> = PIL</li>
+<li><span class="math inline">\(M\)</span> = importazioni (fob)</li>
+<li><span class="math inline">\(C\)</span> = spesa per consumi</li>
+<li><span class="math inline">\(I\)</span> = investimenti</li>
+<li><span class="math inline">\(E\)</span> = esportazioni (fob)</li>
+</ul>
+<p>In modo analogo vengono presentati un conto semplificato del reddito, uno della formazione del capitale e un conto del resto del mondo. Nel conto del reddito troviamo le poste seguenti</p>
+<p><span class="math display">\[
+C + S = Y + R
+\tag{2.10}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(S\)</span> = risparmio</li>
+<li><span class="math inline">\(Y\)</span> = reddito (che possiamo far coincidere con il PIL)</li>
+<li><span class="math inline">\(R\)</span> = redditi e trasferimenti dall’estero</li>
+</ul>
+<p>La somma <span class="math inline">\(Y+R\)</span> costituisce il reddito disponibile per consumo o risparmio. Per il conto della formazione del capitale possiamo scrivere</p>
+<p><span class="math display">\[
+I + B = S
+\tag{2.11}
+\]</span></p>
+<p>con <span class="math inline">\(B\)</span> = accreditamento / indebitamento. Infine, il conto del resto del mondo</p>
+<p><span class="math display">\[
+E + R = M + B
+\tag{2.12}
+\]</span></p>
+<p>bilancia esportazioni e redditi più trasferimenti dall’estero con importazioni e accreditamento o indebitamento della nazione.</p>
+</section>
+<section id="sec-istat" class="level2">
+<h2 class="anchored" data-anchor-id="sec-istat">2.3 I dati ISTAT e l’analisi degli aggregati</h2>
+<p>Uno dei modi più agevoli per consultare i principali dati ufficiali dell’ISTAT è ricorrere al sottosito <a href="http://dati.istat.it" class="uri">http://dati.istat.it</a>. Sotto “conti nazionali” del menu posto a sinistra è facilmente accessibile l’informazione contabile, sia nel dettaglio territoriale sia in quello storico. In particolare, la voce “principali aggregati del prodotto interno lordo” fornisce un esempio di tabella (consultazione del 16.07.2018) parzialmente rappresentata in Figura 2.1.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Nota all’edizione online
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il sito <em>dati.istat.it</em> (I.Stat) è stato progressivamente sostituito dalla piattaforma <strong>IstatData</strong>, all’indirizzo <a href="https://esploradati.istat.it" class="uri">https://esploradati.istat.it</a>, dove si trovano le stesse tavole dei conti nazionali. Da R i dati si possono scaricare anche con il pacchetto <em>istat</em>.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/fig-2-1-istat.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figura 2.1 – Esempio di estrazione di dati ISTAT</figcaption>
+</figure>
+</div>
+<p>La Figura 2.1 si riferisce a dati per l’Italia nel complesso, con valori a prezzi costanti (concatenati all’anno base 2010), senza alcuna correzione (in particolare, i dati trimestrali potrebbero anche essere corretti per effetti di stagionalità e di calendario; sul punto diremo più avanti).</p>
+<p>Ricordiamo che, oltre ai prezzi tenuti costanti all’anno 2010, esiste anche la possibilità di esprimere le valutazioni a prezzi correnti e a prezzi dell’anno precedente. La modalità a prezzi costanti è quella preferita nell’analisi temporale degli aggregati, poiché in tal modo se ne può studiare l’evoluzione in termini di volume, avendo eliminato gli effetti distorcenti della variazione dei prezzi.</p>
+<p>Notiamo, ancora, che in tabella il PIL è riportato ai “prezzi di mercato”, la valutazione più comune. Teniamo a mente che il PIL è sostanzialmente una somma di “valori aggiunti” (nei vari stadi della produzione) delle attività economiche svolte “all’interno” di un territorio economico, considerate al “lordo” degli ammortamenti (ossia senza considerare il deprezzamento subito dallo stock di capitale). La valutazione delle attività economiche può, dunque, essere eseguita al “costo dei fattori” (che l’ISTAT non pubblica più), basata sulla remunerazione dei fattori produttivi; ai “prezzi base”, cioè in base ai prezzi della produzione; e, appunto, ai “prezzi di mercato”, basata sui prezzi di acquisto di beni e servizi. Intervengono, poi, altre considerazioni sul lordo o netto di imposte e contributi su prodotti e produzioni, una stima dei “servizi di intermediazione finanziaria indirettamente misurati”, altre imposte e l’IVA per giungere al PIL, ma qui non ci dilunghiamo oltre.</p>
+<p>Il lettore interessato troverà nel file <em>aggregati.xls</em> i dati di cui alla Figura 2.1, che si possono leggere in <strong>R</strong> tramite le librerie allo scopo dedicate. In alternativa, è possibile utilizzare il comando base <code>read.csv</code> o <code>read.csv2</code> nel caso di formato CSV (rispettivamente con separatore anglosassone e latino), nel quale può essere facilmente convertito il formato XLS; va notato che la lettura del CSV è preferita nella pratica quotidiana, in virtù della facile trattabilità del suo formato testo.</p>
+<p>Dal file citato si desume che, a prezzi costanti 2010, il PIL italiano si attesta nell’anno 2017 a circa 1.594.580,9 milioni di euro. Sulla produzione totale, i consumi intermedi si attestano attorno al 52%, mentre la spesa totale per consumi si aggira attorno all’80% del PIL, il resto essendo coperto da investimenti lordi per una quota tra il 17% e il 18% e da una quota residua imputabile alle esportazioni nette. In termini generali, gli aggregati economici rilevati negli ultimi anni segnalano il miglioramento dell’economia nazionale dopo la grande crisi. È, dunque, interessante analizzare alcune poste contabili prima del 2008; a tal proposito, la Tabella 2.1 riporta alcuni dati storici riferibili all’intervallo 2004-2008.</p>
+<table class="table-striped caption-top table">
+<caption>Tabella 2.1 – Alcuni aggregati di Contabilità Nazionale (2004-2008), milioni di euro correnti</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Anni</th>
+<th style="text-align: right;">PIL</th>
+<th style="text-align: right;">M</th>
+<th style="text-align: right;">CF</th>
+<th style="text-align: right;">CC</th>
+<th style="text-align: right;">IA</th>
+<th style="text-align: right;">IB</th>
+<th style="text-align: right;">IC</th>
+<th style="text-align: right;">SC</th>
+<th style="text-align: right;">E</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">1.389.993</td>
+<td style="text-align: right;">341.000</td>
+<td style="text-align: right;">810.767</td>
+<td style="text-align: right;">281.316</td>
+<td style="text-align: right;">107.774</td>
+<td style="text-align: right;">29.984</td>
+<td style="text-align: right;">146.374</td>
+<td style="text-align: right;">4.471</td>
+<td style="text-align: right;">350.307</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">1.429.879</td>
+<td style="text-align: right;">372.222</td>
+<td style="text-align: right;">838.650</td>
+<td style="text-align: right;">296.159</td>
+<td style="text-align: right;">112.322</td>
+<td style="text-align: right;">29.927</td>
+<td style="text-align: right;">154.436</td>
+<td style="text-align: right;">−747</td>
+<td style="text-align: right;">371.354</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">1.486.699</td>
+<td style="text-align: right;">425.456</td>
+<td style="text-align: right;">871.772</td>
+<td style="text-align: right;">304.936</td>
+<td style="text-align: right;">121.530</td>
+<td style="text-align: right;">31.552</td>
+<td style="text-align: right;">161.326</td>
+<td style="text-align: right;">7.508</td>
+<td style="text-align: right;">413.531</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">1.544.777</td>
+<td style="text-align: right;">451.226</td>
+<td style="text-align: right;">901.799</td>
+<td style="text-align: right;">310.229</td>
+<td style="text-align: right;">127.004</td>
+<td style="text-align: right;">32.188</td>
+<td style="text-align: right;">168.283</td>
+<td style="text-align: right;">8.972</td>
+<td style="text-align: right;">447.528</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">1.572.051</td>
+<td style="text-align: right;">460.707</td>
+<td style="text-align: right;">922.774</td>
+<td style="text-align: right;">324.224</td>
+<td style="text-align: right;">124.532</td>
+<td style="text-align: right;">32.512</td>
+<td style="text-align: right;">171.110</td>
+<td style="text-align: right;">5.132</td>
+<td style="text-align: right;">452.474</td>
+</tr>
+</tbody>
+</table>
+<p><em>Legenda</em>: PIL = Prodotto Interno Lordo; M = importazioni di beni e servizi fob; CF = spesa delle famiglie; CC = spesa della PA e ISP; IA = investimenti in macchinari e attrezzature; IB = investimenti in mezzi di trasporto; IC = investimenti in costruzioni; SC = variazione delle scorte e degli oggetti di valore; E = esportazioni di beni e servizi fob. La somma di CF e CC costituisce i consumi finali nazionali; la somma di IA, IB e IC fornisce il totale degli investimenti fissi lordi.</p>
+<p>Le poste sono presentate questa volta a prezzi correnti, poiché siamo interessati a un confronto tra le stesse più che alla loro specifica evoluzione storica. I valori corrispondenti sono contenuti nel file <em>aggregati.csv</em>, che importiamo con <code>read.csv2()</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tabella1 <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/aggregati.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tabella1)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>tabella1</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Anni     PIL      M     CF     CC     IA    IB     IC   SC      E
+1 2004 1389993 341000 810767 281316 107774 29984 146374 4471 350307
+2 2005 1429879 372222 838650 296159 112322 29927 154436 -747 371354
+3 2006 1486699 425456 871772 304936 121530 31552 161326 7508 413531
+4 2007 1544777 451226 901799 310229 127004 32188 168283 8972 447528
+5 2008 1572051 460707 922774 324224 124532 32512 171110 5132 452474</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tabella1 <span class="op">=</span> pd.read_csv(<span class="st">"data/aggregati.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalente di attach(): estraiamo le colonne come vettori</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>PIL, M, CF, CC <span class="op">=</span> tabella1[<span class="st">"PIL"</span>], tabella1[<span class="st">"M"</span>], tabella1[<span class="st">"CF"</span>], tabella1[<span class="st">"CC"</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>IA, IB, IC, SC, E <span class="op">=</span> tabella1[<span class="st">"IA"</span>], tabella1[<span class="st">"IB"</span>], tabella1[<span class="st">"IC"</span>], tabella1[<span class="st">"SC"</span>], tabella1[<span class="st">"E"</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabella1)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Anni      PIL       M      CF      CC      IA     IB      IC    SC       E
+0  2004  1389993  341000  810767  281316  107774  29984  146374  4471  350307
+1  2005  1429879  372222  838650  296159  112322  29927  154436  -747  371354
+2  2006  1486699  425456  871772  304936  121530  31552  161326  7508  413531
+3  2007  1544777  451226  901799  310229  127004  32188  168283  8972  447528
+4  2008  1572051  460707  922774  324224  124532  32512  171110  5132  452474</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">import</span> <span class="kw">datafile</span>=<span class="st">"data/aggregati.csv"</span> <span class="kw">out</span>=tabella1 <span class="kw">dbms</span>=dlm <span class="kw">replace</span>;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delimiter</span>=<span class="st">";"</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">getnames</span>=yes;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=tabella1 noobs; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>È interessante evidenziare che il totale delle risorse (PIL+M) cresce tra il 2004 e il 2008 di 301.765 milioni di euro correnti, attestandosi nell’ultimo anno a 2.032.758: ma, facciamo attenzione, in queste cifre sono incluse le dinamiche dei prezzi; sul punto torneremo più avanti.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>risorse <span class="ot">&lt;-</span> PIL <span class="sc">+</span> M</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>risorse[<span class="dv">5</span>] <span class="sc">-</span> risorse[<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 301765</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>risorse</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1730993 1802101 1912155 1996003 2032758</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>risorse <span class="op">=</span> PIL <span class="op">+</span> M</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(risorse.iloc[<span class="dv">4</span>] <span class="op">-</span> risorse.iloc[<span class="dv">0</span>])   <span class="co"># in Python si conta da 0</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>301765</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(risorse.to_numpy())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1730993 1802101 1912155 1996003 2032758]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> agg;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> tabella1;</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  risorse = PIL + M;</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* differenza tra l'ultimo e il primo anno */</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="fu">sql</span>;</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  select <span class="bu">max</span>(case when Anni=<span class="dv">2008</span> <span class="kw">then</span> risorse <span class="kw">end</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>       - <span class="bu">max</span>(case when Anni=<span class="dv">2004</span> <span class="kw">then</span> risorse <span class="kw">end</span>) as diff_risorse</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  from agg;</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">quit</span>;</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=agg noobs; <span class="kw">var</span> Anni risorse; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Gran parte delle risorse è di origine interna; infatti, l’incidenza del PIL sul totale (PIL+M) è alta (attorno all’80%), anche se decrescente in quegli anni, ciò potendo segnalare un indebolimento del sistema Paese a favore di beni e servizi importati</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>PIL <span class="sc">/</span> risorse</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8030032 0.7934511 0.7774992 0.7739352 0.7733587</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((PIL <span class="op">/</span> risorse).to_numpy())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.80300325 0.79345109 0.77749921 0.77393521 0.77335866]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> agg;</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg;</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  quota_pil = PIL / risorse;</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=agg noobs; <span class="kw">var</span> Anni quota_pil; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>e non a caso le importazioni superano regolarmente le esportazioni a partire dal 2005, fino a un +1,82% nel 2008, mentre, come abbiamo già detto, negli anni a noi più recenti il Paese ha recuperato un po’ di competitività e riesce a esportare con un saldo positivo delle esportazioni nette. Tornando ai dati storici:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>M <span class="sc">/</span> E</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9734319 1.0023374 1.0288370 1.0082632 1.0181955</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(((M <span class="sc">/</span> E) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.66  0.23  2.88  0.83  1.82</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((M <span class="op">/</span> E).to_numpy())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.97343188 1.00233739 1.02883702 1.00826317 1.01819552]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((((M <span class="op">/</span> E) <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>).to_numpy())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-2.66  0.23  2.88  0.83  1.82]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> agg;</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg;</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  rapp_ME = M / E;</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  var_ME  = <span class="bu">round</span>((rapp_ME - <span class="dv">1</span>) * <span class="dv">100</span>, <span class="dv">0.01</span>);   <span class="co">/* in SAS si arrotonda a un multiplo */</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=agg noobs; <span class="kw">var</span> Anni rapp_ME var_ME; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Notiamo l’utilizzo della funzione <code>round()</code> per limitare a 2 il numero dei decimali.</p>
+<p>Sul fronte della domanda, l’aggregazione dei consumi e degli investimenti permette di evidenziare meglio il maggiore ruolo trainante dei primi, con un ammontare circa triplo rispetto agli investimenti.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>consumi <span class="ot">&lt;-</span> CF <span class="sc">+</span> CC</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>investimenti <span class="ot">&lt;-</span> IA <span class="sc">+</span> IB <span class="sc">+</span> IC</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>consumi <span class="sc">/</span> investimenti</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.843576 3.824963 3.742615 3.701131 3.800039</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>consumi <span class="op">=</span> CF <span class="op">+</span> CC</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>investimenti <span class="op">=</span> IA <span class="op">+</span> IB <span class="op">+</span> IC</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((consumi <span class="op">/</span> investimenti).to_numpy())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[3.84357623 3.8249625  3.74261469 3.70113138 3.80003901]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> agg;</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg;</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  consumi = CF + CC;</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  investimenti = IA + IB + IC;</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  rapp_ci = consumi / investimenti;</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=agg noobs; <span class="kw">var</span> Anni rapp_ci; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Appare di interesse spiegare le variazioni esibite dal PIL tra il 2004 e il 2008 con le analoghe variazioni dal lato della domanda. Per far ciò, isoliamo il PIL a primo membro e differenziamo tra inizio e fine periodo; per semplicità aggreghiamo le scorte agli investimenti e sottraiamo le importazioni dalle esportazioni per ottenere le esportazioni nette.</p>
+<p>Nell’ipotesi economica standard che sia la domanda aggregata a generare l’offerta aggregata, si può osservare che l’incremento di PIL tra il 2004 e il 2008, attestato in termini assoluti a circa 182.058 milioni di euro, è spiegato da un incremento dei consumi per 154.915 milioni, da un incremento di investimenti e scorte per 44.683 milioni e da una riduzione di 17.540 milioni a causa della sfavorevole performance delle esportazioni rispetto alle importazioni: ricordiamoci che è inclusa la dinamica dei prezzi.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>INV <span class="ot">&lt;-</span> investimenti <span class="sc">+</span> SC</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>CON <span class="ot">&lt;-</span> consumi</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>ESN <span class="ot">&lt;-</span> E <span class="sc">-</span> M</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>PIL[<span class="dv">5</span>] <span class="sc">-</span> PIL[<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 182058</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>CON[<span class="dv">5</span>] <span class="sc">-</span> CON[<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 154915</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>INV[<span class="dv">5</span>] <span class="sc">-</span> INV[<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44683</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ESN[<span class="dv">5</span>] <span class="sc">-</span> ESN[<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17540</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>INV <span class="op">=</span> investimenti <span class="op">+</span> SC</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>CON <span class="op">=</span> consumi</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>ESN <span class="op">=</span> E <span class="op">-</span> M</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nome, x <span class="kw">in</span> [(<span class="st">"PIL"</span>, PIL), (<span class="st">"CON"</span>, CON), (<span class="st">"INV"</span>, INV), (<span class="st">"ESN"</span>, ESN)]:</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(nome, x.iloc[<span class="dv">4</span>] <span class="op">-</span> x.iloc[<span class="dv">0</span>])</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PIL 182058
+CON 154915
+INV 44683
+ESN -17540</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> agg;</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg;</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  INV = investimenti + SC;</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  CON = consumi;</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  ESN = E - M;</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">/* differenze tra il 2008 (ultima riga) e il 2004 (prima riga) */</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> diff;</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg <span class="kw">end</span>=ultimo;</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">retain</span> PIL0 CON0 INV0 ESN0;</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> _n_ = <span class="dv">1</span> <span class="kw">then</span> <span class="kw">do</span>; PIL0 = PIL; CON0 = CON; INV0 = INV; ESN0 = ESN; <span class="kw">end</span>;</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> ultimo <span class="kw">then</span> <span class="kw">do</span>;</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    dPIL = PIL - PIL0; dCON = CON - CON0; dINV = INV - INV0; dESN = ESN - ESN0;</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">output</span>;</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span>;</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">keep</span> dPIL dCON dINV dESN;</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=diff noobs; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Il passo successivo è breve: qual è stato allora il contributo specifico che consumi, investimenti ed esportazioni nette hanno dato alla crescita del PIL e, quindi, allo sviluppo economico della nazione sino al 2008? Per rispondere alla domanda basta rapportare le differenze assolute al livello iniziale del PIL.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>dPIL <span class="ot">&lt;-</span> (PIL[<span class="dv">5</span>] <span class="sc">-</span> PIL[<span class="dv">1</span>]) <span class="sc">/</span> PIL[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>cCON <span class="ot">&lt;-</span> (CON[<span class="dv">5</span>] <span class="sc">-</span> CON[<span class="dv">1</span>]) <span class="sc">/</span> PIL[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>cINV <span class="ot">&lt;-</span> (INV[<span class="dv">5</span>] <span class="sc">-</span> INV[<span class="dv">1</span>]) <span class="sc">/</span> PIL[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>cESN <span class="ot">&lt;-</span> (ESN[<span class="dv">5</span>] <span class="sc">-</span> ESN[<span class="dv">1</span>]) <span class="sc">/</span> PIL[<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">c</span>(dPIL, cCON, cINV, cESN), <span class="dv">2</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>risultati</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13.10 11.15  3.21 -1.26</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>contrib <span class="op">=</span> <span class="kw">lambda</span> x: (x.iloc[<span class="dv">4</span>] <span class="op">-</span> x.iloc[<span class="dv">0</span>]) <span class="op">/</span> PIL.iloc[<span class="dv">0</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>risultati <span class="op">=</span> np.<span class="bu">round</span>([contrib(PIL), contrib(CON), contrib(INV), contrib(ESN)], <span class="dv">2</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(risultati)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[13.1  11.15  3.21 -1.26]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> contributi;</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> agg <span class="kw">end</span>=ultimo;</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">retain</span> PIL0 CON0 INV0 ESN0;</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> _n_ = <span class="dv">1</span> <span class="kw">then</span> <span class="kw">do</span>; PIL0 = PIL; CON0 = CON; INV0 = INV; ESN0 = ESN; <span class="kw">end</span>;</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> ultimo <span class="kw">then</span> <span class="kw">do</span>;</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    dPIL = <span class="bu">round</span>((PIL - PIL0) / PIL0 * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    cCON = <span class="bu">round</span>((CON - CON0) / PIL0 * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    cINV = <span class="bu">round</span>((INV - INV0) / PIL0 * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    cESN = <span class="bu">round</span>((ESN - ESN0) / PIL0 * <span class="dv">100</span>, <span class="dv">0.01</span>);</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">output</span>;</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span>;</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">keep</span> dPIL cCON cINV cESN;</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=contributi noobs; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Il PIL tra il 2004 e il 2008 esibisce un incremento del 13,10%, dovuto per +11,15 punti percentuali all’incremento dei consumi, per +3,21 punti agli investimenti, ma per −1,26 punti percentuali alle esportazioni nette. Più avanti ci porremo la domanda: quanto dipende questo risultato dalla semplice dinamica dei prezzi? Come abbiamo anticipato nel primo esercizio numerico, per evitare effetti distorcenti e valutazioni attribuite al valore di un aggregato dovute in larga parte ai prezzi (e non alle quantità), è necessario utilizzare poste misurate a prezzi costanti.</p>
+</section>
+<section id="sec-quattro-conti" class="level2">
+<h2 class="anchored" data-anchor-id="sec-quattro-conti">2.4 Quattro conti semplificati</h2>
+<p>Costruiamo, adesso, quattro conti semplificati di Contabilità Nazionale utilizzando, ancora una volta, i dati storici desunti dal sito dell’ISTAT. Il file in questione è <em>conti.csv</em> e la Tabella 2.2 ne riporta i dati, con la necessaria approssimazione dovuta alla semplificazione dello schema contabile richiamato; il lettore noterà una leggera discrepanza con i dati della Tabella 2.1.</p>
+<table class="caption-top table">
+<caption>Tabella 2.2 – Alcune poste per l’anno 2007 in milioni di euro</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Posta</th>
+<th style="text-align: center;">Simbolo</th>
+<th style="text-align: right;">Valore</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Consumi</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: right;">1.210.281</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Investimenti e scorte</td>
+<td style="text-align: center;">IS</td>
+<td style="text-align: right;">329.965</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Importazioni</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: right;">452.996</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Esportazioni</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: right;">448.291</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Redditi e trasferimenti dall’estero</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: right;">−19.408</td>
+</tr>
+</tbody>
+</table>
+<p>Il calcolo delle poste mancanti e la costruzione dei quattro conti semplificati è piuttosto agevole. Ricordiamo che il simbolo <code>#</code> consente di aggiungere utili commenti, indicando a <strong>R</strong> di ignorare quanto è posto alla destra del simbolo stesso.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>C  <span class="ot">&lt;-</span> <span class="dv">1210281</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>IS <span class="ot">&lt;-</span> <span class="dv">329965</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>M  <span class="ot">&lt;-</span> <span class="dv">452996</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>E  <span class="ot">&lt;-</span> <span class="dv">448291</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>R  <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">19408</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcoliamo il PIL (=reddito, Y),</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># il risparmio S e l'accreditamento B</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> C <span class="sc">+</span> IS <span class="sc">+</span> E <span class="sc">-</span> M</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> Y <span class="sc">+</span> R <span class="sc">-</span> C</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> S <span class="sc">-</span> IS</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>Y</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1535541</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>S</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 305852</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>B</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -24113</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>C, IS, M, E, R <span class="op">=</span> <span class="dv">1210281</span>, <span class="dv">329965</span>, <span class="dv">452996</span>, <span class="dv">448291</span>, <span class="op">-</span><span class="dv">19408</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcoliamo il PIL (=reddito, Y),</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># il risparmio S e l'accreditamento B</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> C <span class="op">+</span> IS <span class="op">+</span> E <span class="op">-</span> M</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> Y <span class="op">+</span> R <span class="op">-</span> C</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> S <span class="op">-</span> IS</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Y, S, B)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1535541 305852 -24113</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> conti;</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  C = <span class="dv">1210281</span>; IS = <span class="dv">329965</span>; M = <span class="dv">452996</span>; E = <span class="dv">448291</span>; R = -<span class="dv">19408</span>;</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Calcoliamo il PIL (=reddito, Y), il risparmio S e l'accreditamento B */</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  Y = C + IS + E - M;</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  S = Y + R - C;</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  B = S - IS;</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=conti noobs; <span class="kw">var</span> Y S B; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Scopriamo, così, che nel corso del 2007 l’Italia ha impiegato risorse (<span class="math inline">\(Y+M\)</span>) per 1.988.537 milioni di euro, di cui 1.535.541 di origine interna (<span class="math inline">\(Y\)</span>). Il reddito disponibile (<span class="math inline">\(Y+R\)</span>) ammontava a 1.516.133 milioni, di cui 1.210.281 consumati (<span class="math inline">\(C\)</span>) e 305.852 risparmiati (<span class="math inline">\(S\)</span>). Il risparmio ha finanziato solo parzialmente l’investimento (<span class="math inline">\(IS\)</span>) (sono incluse anche le scorte e gli oggetti di valore), risultato pari a 329.965 milioni, in ragione di un indebitamento (<span class="math inline">\(B\)</span>) di 24.113 milioni. Infine, nei rapporti con il resto del mondo, la somma tra importazioni (<span class="math inline">\(M\)</span>) e indebitamento (428.883 milioni) trova un suo bilanciamento con le esportazioni (<span class="math inline">\(E\)</span>) e i redditi e trasferimenti dall’estero (<span class="math inline">\(R\)</span>).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">SAS</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>M <span class="sc">+</span> B</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 428883</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>E <span class="sc">+</span> R</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 428883</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M <span class="op">+</span> B, E <span class="op">+</span> R)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>428883 428883</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode sas code-with-copy"><code class="sourceCode sas"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> conti;</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">set</span> conti;</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  MB = M + B;</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  ER = E + R;</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="kw">run</span>;</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="kw">proc</span> <span class="kw">print</span> <span class="kw">data</span>=conti noobs; <span class="kw">var</span> MB ER; <span class="kw">run</span>;</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Da lì a poco sarebbe arrivata in Italia la crisi finanziaria ed economica, le cui conseguenze si sarebbero protratte per diversi anni.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Torna in cima</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/erasmovassallo\.github\.io\/statistica-economica\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../it/capitoli/01-per-iniziare.html" class="pagination-link" aria-label="1 Per iniziare: nozioni di R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1 Per iniziare: nozioni di R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../it/capitoli/03-numeri-indice.html" class="pagination-link" aria-label="3 Numeri indice e deflazione">
+        <span class="nav-page-text">3 Numeri indice e deflazione</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2018–2026 Erasmo Vassallo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/erasmovassallo/statistica-economica/edit/main/it/capitoli/02-aggregati-economici.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/erasmovassallo/statistica-economica/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
