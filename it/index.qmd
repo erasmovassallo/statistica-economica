@@ -36,12 +36,6 @@ Questo sito è l'edizione online e ampliata del volume *Statistica Economica con
 
 Tutti i file di dati usati nel testo sono nella cartella `data/` del repository GitHub e si possono scaricare singolarmente o clonando l'intero repository.
 
-## Dedica
-
-*Ai tesori più preziosi della mia vita: mia moglie Anna, i miei figli Gabriele ed Edoardo.*
-
 ## Ringraziamenti
 
 Un ringraziamento va ai miei studenti, che nei già tanti anni di attività mi hanno arricchito con la loro curiosità, partecipazione e interesse, consentendomi una didattica piena di soddisfazioni.
-
-Non posso che essere grato alla memoria del compianto maestro Prof. Gaetano Cusimano che, all'inizio del mio lungo percorso – ormai quasi 23 anni fa – mi ha guidato e contagiato con una grande e immutata passione per l'insegnamento e la ricerca.

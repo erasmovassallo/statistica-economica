@@ -36,12 +36,7 @@ This site is the online, expanded edition of the book *Statistica Economica con 
 
 All the data files used in the book are in the `data/` folder of the GitHub repository; they can be downloaded one by one or by cloning the whole repository.
 
-## Dedication
-
-*To the most precious treasures of my life: my wife Anna and my sons Gabriele and Edoardo.*
-
 ## Acknowledgements
 
 My thanks go to my students who, over many years of teaching, have enriched me with their curiosity, participation and interest, making my teaching deeply rewarding.
 
-I cannot but be grateful to the memory of my late mentor, Prof. Gaetano Cusimano, who at the start of my long journey – now almost 23 years ago – guided me and passed on to me a great and enduring passion for teaching and research.
