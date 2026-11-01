@@ -1,0 +1,553 @@
+---
+title: "7 Povertà e distribuzione dei redditi"
+---
+
+## 7.1 Povertà relativa e povertà assoluta {#sec-poverta}
+
+Una definizione di povertà implica un certo arbitrio da parte del ricercatore. Le definizioni più importanti attengono a un concetto di povertà relativa e a uno di povertà assoluta. Nel primo caso è scelta una soglia di povertà che dipende dal livello di benessere della comunità; per esempio, se una famiglia composta da due persone adulte senza figli ha un livello di reddito disponibile (netto), ovvero un livello di spesa per consumo, inferiore a quello medio delle famiglie italiane, si dirà (relativamente) povera. Una famiglia povera in termini assoluti, invece, non sarà in grado di acquistare uno specifico paniere di beni e/o servizi essenziali. Tra povertà assoluta e povertà relativa esiste una molteplicità di definizioni intermedie, la cui rilevanza è comunque più teorica che empirica. Non a caso, tra le nazioni più industrializzate la nozione di povertà relativa è quella maggiormente adottata, anche con finalità di policy. Al contrario, nei Paesi in via di sviluppo si fa ampio riferimento alla povertà assoluta, poiché in genere si è specificamente interessati a politiche di sostegno alimentare per ampie fasce della popolazione.
+
+In un approccio storico, i dati ISTAT per l'anno 2007 segnalano in condizioni di povertà relativa circa 2 milioni e 653 mila famiglie, l'11% delle famiglie residenti nel 2007, mentre gli individui poveri ammontavano a 7 milioni e 542 mila, il 13% dell'intera popolazione.
+
+La stima della percentuale di famiglie e persone povere sul totale delle famiglie e persone residenti viene generalmente calcolata sulla base di una soglia convenzionale (linea di povertà), che individua il valore di spesa per consumi al di sotto del quale una famiglia viene definita povera in termini relativi. La soglia di povertà per una famiglia di due componenti adulti (riferimento standard) è rappresentata dalla spesa media mensile per persona, che nel 2007 era pari a 986,35 euro (1,6% in più rispetto al 2006). Le famiglie composte da due persone che hanno una spesa media mensile pari o inferiore a tale valore vengono classificate come relativamente povere. Per famiglie di diversa numerosità (e composizione) il valore della linea di povertà si ottiene applicando una scala di equivalenza che tiene conto della presenza di alcune economie di scala; per esempio, la spesa per l'illuminazione o quella per il riscaldamento dipendono poco dal numero dei componenti, rispetto alla spesa alimentare (Tabella 7.1).
+
+| Ampiezza della famiglia | Coefficiente | Linea di povertà 2007 |
+|:---:|---:|---:|
+| 1 | 0,60 | 591,81 |
+| 2 | 1,00 | 986,35 |
+| 3 | 1,33 | 1.311,85 |
+| 4 | 1,63 | 1.607,75 |
+| 5 | 1,90 | 1.874,07 |
+| 6 | 2,16 | 2.130,52 |
+| 7 | 2,40 | 2.367,24 |
+
+: Tabella 7.1 – Scala di equivalenza ISTAT (anno 2007)
+
+È ovvio che il calcolo delle diverse linee di povertà è qui approssimato, dovendosi invece considerare molteplici parametri, quali il sesso dei componenti, l'età, ecc. Si può comunque dimostrare che in un approccio aggregato l'approssimazione generata dalla semplificazione proposta dalla Tabella 7.1 è accettabile.
+
+Non stupisce che la povertà risulti maggiormente diffusa nel Mezzogiorno, dove la presenza di poveri relativi è quattro volte maggiore di quella registrata nel Centro-Nord (Tabella 7.2).
+
+| | Nord 2006 | Nord 2007 | Centro 2006 | Centro 2007 | Mezzogiorno 2006 | Mezzogiorno 2007 | Italia 2006 | Italia 2007 |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|
+| famiglie povere | 595 | 631 | 315 | 297 | 1.713 | 1.725 | 2.623 | 2.653 |
+| famiglie residenti | 11.378 | 11.532 | 4.598 | 4.670 | 7.591 | 7.679 | 23.567 | 23.881 |
+| persone povere | 1.447 | 1.563 | 889 | 827 | 5.201 | 5.152 | 7.537 | 7.542 |
+| persone residenti | 26.458 | 26.648 | 11.244 | 11.421 | 20.669 | 20.688 | 58.371 | 58.757 |
+| ***Composizione percentuale*** | | | | | | | | |
+| famiglie povere | 22,7 | 23,8 | 12,0 | 11,2 | 65,3 | 65,0 | 100 | 100 |
+| famiglie residenti | 48,3 | 48,3 | 19,5 | 19,6 | 32,2 | 32,2 | 100 | 100 |
+| persone povere | 19,2 | 20,7 | 11,8 | 11,0 | 69,0 | 68,3 | 100 | 100 |
+| persone residenti | 45,3 | 45,4 | 19,3 | 19,4 | 35,4 | 35,2 | 100 | 100 |
+| ***Incidenza della povertà, %*** | | | | | | | | |
+| famiglie | 5,2 | 5,5 | 6,9 | 6,4 | 22,6 | 22,5 | 11,1 | 11,1 |
+| persone | 5,5 | 5,9 | 7,9 | 7,2 | 25,2 | 24,9 | 12,9 | 12,8 |
+| ***Intensità della povertà, %*** | | | | | | | | |
+| famiglie | 17,8 | 19,2 | 16,9 | 17,1 | 22,5 | 21,6 | 20,8 | 20,5 |
+
+: Tabella 7.2 – Incidenza e intensità della povertà (migliaia di unità e %, 2006-2007)
+
+## 7.2 L'incidenza della povertà in Italia {#sec-incidenza}
+
+Carichiamo i dati assoluti della Tabella 7.2, contenuti nel file *pover07.csv*, e calcoliamo l'incidenza della povertà per il 2006 e il 2007 nel Nord, nel Centro e nel Mezzogiorno, per le famiglie ($x$) e per le persone ($y$); i dati rappresentano la condizione reale dell'Italia nel 2007.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+pov <- read.csv2("data/pover07.csv", row.names=1)
+pov
+# righe: 1 famiglie povere, 2 famiglie residenti, 3 persone povere, 4 persone residenti
+x <- round(pov[1,]/pov[2,]*100, 2)   # incidenza per le famiglie
+y <- round(pov[3,]/pov[4,]*100, 2)   # incidenza per le persone
+x; y
+```
+
+### Python
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+pov = pd.read_csv("data/pover07.csv", sep=";", index_col=0)
+print(pov)
+x = (pov.loc["fampov"] / pov.loc["famres"] * 100).round(2)   # incidenza per le famiglie
+y = (pov.loc["perpov"] / pov.loc["perres"] * 100).round(2)   # incidenza per le persone
+print(pd.DataFrame({"famiglie": x, "persone": y}))
+```
+
+### SAS
+
+```sas
+proc import datafile="data/pover07.csv" out=pov dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+/* si traspone la tabella: una riga per area-anno, una colonna per voce */
+proc transpose data=pov out=povt name=area_anno;
+  id riga;
+run;
+data povt;
+  set povt;
+  inc_famiglie = round(fampov/famres*100, 0.01);
+  inc_persone  = round(perpov/perres*100, 0.01);
+run;
+proc print data=povt noobs; var area_anno inc_famiglie inc_persone; run;
+```
+:::
+
+Nel Nord l'incidenza della povertà familiare si attesta al 5,47%, mentre nel Mezzogiorno raggiunge il 22,46%, valori in crescita nel primo caso (dal 5,23% nel 2006 al 5,47% nel 2007) e leggermente decrescenti nel secondo (dal 22,57% al 22,46%); un andamento analogo manifesta l'incidenza della povertà per le persone.
+
+## 7.3 Linee di povertà e scale di equivalenza {#sec-scale}
+
+Abbiamo visto che in Italia la linea di povertà standard per il 2007 era di 986,35 euro. In genere il calcolo delle linee di povertà è piuttosto complesso, dovendo fare ricorso a formulazioni basate su sistemi di domanda del tipo QUAIDS (*Quadratic Almost Ideal Demand System*). Diversamente, a scopo descrittivo, qui facciamo riferimento a un semplice approccio tradizionale, basato su funzioni engeliane di spesa tali che
+
+$$
+A/S=a+b\log S+c\log N
+\tag{7.1}
+$$
+
+dove $A$ è la spesa alimentare, $S$ la spesa totale e $N$ il numero dei componenti della famiglia.
+
+Sono ignorate altre rilevanti informazioni, quali età, caratteristiche sociali o preferenze dei consumatori. Ipotizzando che il rapporto $A/S$ rimanga costante e ponendo $q=A/S-a$, avremo $\log S=q/b-(c/b)\log N$ e, riparametrizzando, $S'=(q/b)-(c/b)N'$. La derivata di $S'$ rispetto a $N'$ sarà allora $\partial S'/\partial N'=-c/b$, che altro non è che l'elasticità $E$ di $S$ rispetto a $N$. Tale elasticità $E=-c/b$ è il coefficiente delle economie di scala della spesa totale rispetto al numero dei componenti. Quindi,
+
+- $E<1$: economie di scala crescenti (la spesa $S$ aumenta in misura meno che proporzionale all'aumento dei componenti $N$),
+- $E=1$: economie di scala costanti,
+- $E>1$: economie di scala decrescenti.
+
+Ottenuta l'elasticità $E$, la scala di equivalenza sarà
+
+$$
+U_{N+1}=U_{N}(1+E(\Delta N/N))
+\tag{7.2}
+$$
+
+dove $U_{N}$ è la linea di povertà per una famiglia di $N$ componenti. Se $E=0{,}667$ con $U_{2}=986{,}35$, allora la linea di povertà per un nucleo di tre e di quattro componenti sarà
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+E <- 0.667; U2 <- 986.35
+U3 <- U2*(1+E*((3-2)/2))
+U4 <- U3*(1+E*((4-3)/3))
+U3; U4
+```
+
+### Python
+
+```{python}
+E, U2 = 0.667, 986.35
+U3 = U2 * (1 + E * ((3 - 2) / 2))
+U4 = U3 * (1 + E * ((4 - 3) / 3))
+print(U3, U4)
+```
+
+### SAS
+
+```sas
+data _null_;
+  E = 0.667; U2 = 986.35;
+  U3 = U2*(1 + E*((3-2)/2));
+  U4 = U3*(1 + E*((4-3)/3));
+  put U3= U4=;
+run;
+```
+:::
+
+con buona approssimazione dei valori riportati nella Tabella 7.1.
+
+## 7.4 Indici di povertà: diffusione, intensità e Sen {#sec-indici-poverta}
+
+Considerazioni del tutto analoghe valgono per i livelli di reddito. In particolare, esistono una serie di utili indicatori che aiutano ad analizzare la povertà (di reddito o di consumo) presente in una certa area.
+
+L'indice di diffusione, già calcolato (Tabella 7.2), è dato dal rapporto tra il numero di famiglie (o persone) povere $q$ e il numero totale di famiglie $n$
+
+$$
+H=q/n
+\tag{7.3}
+$$
+
+Tale indice non soddisfa il principio di monotonicità, in base al quale l'indice deve crescere se, a parità di condizioni, il reddito (o consumo) anche di un solo individuo povero si riduce. Non soddisfa neppure il principio dei trasferimenti, che richiede che l'indice cresca se si verifica un trasferimento di reddito da un individuo povero a un altro povero avente reddito superiore; inoltre, è insensibile ai mutamenti nella distribuzione del reddito.
+
+Un altro noto indice è quello di intensità
+
+$$
+I=\sum_{i} g_{i}/qz
+\tag{7.4}
+$$
+
+con $i=1,...,q$, dove $z$ è la linea di povertà, $g_{i}=z-y_{i}$ e $y_{i}$ il reddito dell'$i$-esimo povero. L'indice $I$ soddisfa il principio di monotonicità, ma può non registrare le variazioni del numero di individui poveri, a meno che queste non si accompagnino a variazioni del totale dei divari. Inoltre $I$, come $H$, non soddisfa il principio dei trasferimenti ed è insensibile ai mutamenti nella distribuzione del reddito.
+
+Facciamo un esempio con dati di fantasia.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+x <- c(3,4,6,7,8,9,12,15) # redditi
+x <- sort(x)
+k <- 10 # linea di povertà
+xp <- x[x<k]
+H <- sum(x<k)/length(x)
+H
+I <- sum(k-xp)/(k*length(xp))
+I
+```
+
+### Python
+
+```{python}
+x = np.sort(np.array([3, 4, 6, 7, 8, 9, 12, 15]))   # redditi
+k = 10                                               # linea di povertà
+xp = x[x < k]
+H = np.mean(x < k)
+I = np.sum(k - xp) / (k * len(xp))
+print(H, I)
+```
+
+### SAS
+
+```sas
+proc iml;
+  x = {3, 4, 6, 7, 8, 9, 12, 15};   /* redditi (vettore colonna) */
+  call sort(x, 1);
+  k = 10;                           /* linea di povertà */
+  xp = x[loc(x < k)];
+  H = mean(x < k);
+  I = sum(k - xp) / (k*nrow(xp));
+  print H I;
+quit;
+```
+:::
+
+L'indice $H$ oscilla tra 0 (nessun povero) e 1 (tutti poveri), mentre l'indice $I$ varia da un valore nullo (nessun povero), o con un minimo prossimo a 0 (redditi appena al di sotto della linea di povertà), a 1 (redditi molto al di sotto della linea di povertà).
+
+Altro importante indice è quello di Sen
+
+$$
+S=H\left\{1-[1-I][1-G]\right\}
+\tag{7.5}
+$$
+
+dove $G$ è l'indice di Gini calcolato sulla distribuzione dei redditi degli individui poveri; sull'indice $G$, e quindi sull'indice di Sen, torneremo poco avanti. L'indice di Sen soddisfa tre assiomi: dei pesi (il peso assegnato nell'indice a ciascun divario è uguale al numero d'ordine di esso nella graduatoria non decrescente dei divari stessi); del benessere monotonico (se il reddito di un individuo è maggiore di quello di un altro individuo, anche il benessere del primo sarà maggiore di quello del secondo); del valore normalizzato dell'indice di povertà (se tutti i poveri posseggono un uguale reddito, l'indice risulterà pari al prodotto dell'indice di diffusione $H$ per l'indice di intensità $I$). L'indice di Sen soddisfa i principi di monotonicità e dei trasferimenti, è funzione crescente di $H$, $I$ e $G$ e non dipende dalla distribuzione del reddito fra i non poveri. Infine, l'indice di Sen oscilla da 0 (nessun povero) a 1 (redditi molto al di sotto della linea di povertà).
+
+## 7.5 La concentrazione: curva di Lorenz e indice di Gini {#sec-gini}
+
+La misura della concentrazione, solitamente limitata al reddito (carattere tipicamente trasferibile), ha evidenti collegamenti con l'analisi della povertà. Per 4 individui che posseggono in tutto 100 euro, è più equa la suddivisione 80, 10, 5 e 5 oppure 60, 35, 5 e 0? Al di fuori dei due casi limite, 100, 0, 0, 0 e 25, 25, 25, 25, non è facile rispondere. Naturalmente una distribuzione è tanto più equa quanto meno concentrato appare il fenomeno che, in questo caso, deve essere rappresentato da un carattere trasferibile.
+
+Consideriamo un insieme di $n$ redditieri, ognuno dei quali avrà un certo livello di reddito, per un totale, diciamo, di $d$. Ordiniamo questa distribuzione dai livelli più bassi a quelli più alti di reddito. Se vi è equidistribuzione, ossia assenza di concentrazione, tutti gli individui avranno la stessa quota di reddito: quindi il primo 5% di individui della distribuzione ordinata avrà il primo 5% di reddito, il primo 10% di individui avrà il primo 10% di reddito, e così via. Definiamo allora le seguenti frequenze cumulate
+
+$$
+p_{i}=(1/n)+p_{i-1} \qquad \text{e} \qquad q_{i}=(\text{reddito dell'}i\text{-esimo redditiero}/d)+q_{i-1}
+\tag{7.6}
+$$
+
+Nel caso di equidistribuzione sarà $p_{i}=q_{i}$, altrimenti $p_{i}>q_{i}$. Il diagramma di Lorenz presenta il grafico corrispondente, con in ascissa le cumulate $p_{i}$ e in ordinata le cumulate $q_{i}$.
+
+Quanto maggiore è la concentrazione, tanto più è ampia l'area tra la retta di equidistribuzione ($p=q$, che sul grafico corrisponde alla bisettrice) e la cosiddetta spezzata di Lorenz, sino al caso limite di coincidenza con l'area del triangolo individuato dai vertici $(0,0)$, $(1,0)$ e $(1,1)$. Un indice di concentrazione $R$ può allora costruirsi rapportando l'area tra la retta e la spezzata al suo valore massimo, rappresentato dall'area di tutto il triangolo. L'indice $R$, noto come rapporto di concentrazione di Gini, si semplifica nella formula seguente se $i/n$ ha incrementi costanti
+
+$$
+R=(2/(n-1))\sum_{i=1}^{n} (p_{i}-q_{i})
+\tag{7.7}
+$$
+
+ovvero, in termini più generali,
+
+$$
+R=\sum_{i=1}^{n-1} (p_{i}-q_{i})\Big/\sum_{i=1}^{n-1} p_{i}
+\tag{7.8}
+$$
+
+valendo la seguente approssimazione per il calcolo dell'indice di Gini
+
+$$
+G\cong (n-1)R/n
+\tag{7.9}
+$$
+
+Per il nostro esempio avremo
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+n <- length(x)
+p <- cumsum(rep(1/n,n))
+q <- cumsum(x/sum(x))
+RC <- sum(p-q)*2/(n-1)
+GC <- (n-1)*RC/n
+GC
+```
+
+### Python
+
+```{python}
+n = len(x)
+p = np.cumsum(np.repeat(1 / n, n))
+q = np.cumsum(x / x.sum())
+RC = np.sum(p - q) * 2 / (n - 1)
+GC = (n - 1) * RC / n
+print(GC)
+```
+
+### SAS
+
+```sas
+proc iml;
+  x = {3, 4, 6, 7, 8, 9, 12, 15};
+  n = nrow(x);
+  p = cusum(j(n, 1, 1/n));
+  q = cusum(x / sum(x));
+  RC = sum(p - q) * 2/(n-1);
+  GC = (n-1)*RC/n;
+  print RC GC;
+quit;
+```
+:::
+
+Il rapporto di concentrazione di Gini oscilla tra 0 (assenza di concentrazione) e 1 (massima concentrazione). L'indice di Gini, nelle sue diverse formulazioni, rappresenta un ottimo indice, poiché soddisfa alcune proprietà fondamentali: irrilevanza della scala (l'indice non è influenzato dall'unità di misura adottata: euro, milioni, migliaia, ecc.), simmetria (la posizione dei valori risulta ininfluente), sensibilità ai trasferimenti (se si trasferisce reddito da individui più ricchi a individui più poveri, e quindi la concentrazione del reddito si riduce, l'indice riduce il proprio valore).
+
+A questo punto l'indice di Sen si ottiene facilmente; da notare la formula equivalente utilizzata per l'indice $G$ calcolato sui soli poveri.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+np <- length(xp)
+Gp <- 2*sum(xp*1:np)/(np*sum(xp))-1-1/np; Gp
+S <- H*(I+(1-I)*Gp)
+S
+```
+
+### Python
+
+```{python}
+npov = len(xp)
+Gp = 2 * np.sum(xp * np.arange(1, npov + 1)) / (npov * xp.sum()) - 1 - 1 / npov
+S = H * (I + (1 - I) * Gp)
+print(Gp, S)
+```
+
+### SAS
+
+```sas
+proc iml;
+  x = {3, 4, 6, 7, 8, 9, 12, 15}; k = 10;
+  xp = x[loc(x < k)];
+  H = mean(x < k);
+  I = sum(k - xp) / (k*nrow(xp));
+  np = nrow(xp);
+  Gp = 2*sum(xp # T(1:np)) / (np*sum(xp)) - 1 - 1/np;
+  S = H*(I + (1-I)*Gp);
+  print Gp S;
+quit;
+```
+:::
+
+## 7.6 Altri indici di concentrazione {#sec-altri-indici}
+
+Esistono altri importanti indici di concentrazione. Per esempio, l'indice di Theil
+
+$$
+T=\sum_{i=1}^{n} q'_{i}\log (nq'_{i})
+\tag{7.10}
+$$
+
+dove $q'_{i}$ è la quota di reddito non cumulata. L'indice di Theil oscilla tra 0 (assenza di concentrazione) e $\log (n)$ (massima concentrazione). Altro utile indice è quello di Herfindahl
+
+$$
+Her=\sum_{i} (q'_{i})^{2}
+\tag{7.11}
+$$
+
+che varia tra $1/n$ in assenza di concentrazione ($y_{i}=y_{j}\ \forall\, i,j$) e 1 nel caso di massima concentrazione.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+qq <- x/sum(x)
+TH <- sum(qq*log(n*qq))
+TH
+Her <- sum(qq^2)
+Her
+```
+
+### Python
+
+```{python}
+qq = x / x.sum()
+TH = np.sum(qq * np.log(n * qq))
+Her = np.sum(qq ** 2)
+print(TH, Her)
+```
+
+### SAS
+
+```sas
+proc iml;
+  x = {3, 4, 6, 7, 8, 9, 12, 15};
+  n = nrow(x);
+  qq = x / sum(x);
+  TH  = sum(qq # log(n*qq));     /* indice di Theil */
+  Her = ssq(qq);                 /* indice di Herfindahl */
+  print TH Her;
+quit;
+```
+:::
+
+È possibile utilizzare anche indici normativi, che consentono di assegnare a priori un livello di avversione alla disuguaglianza tramite un parametro $r$. Tra i più noti, l'indice di Atkinson
+
+$$
+A=
+\begin{cases}
+1-\dfrac{1}{m}\left(\dfrac{1}{n}\sum_{i} y_{i}^{1-r}\right)^{1/(1-r)} & \text{per } r\in [0,1) \\[2ex]
+1-\dfrac{1}{m}\left(\prod_{i} y_{i}\right)^{1/n} & \text{per } r=1
+\end{cases}
+\tag{7.12}
+$$
+
+dove $m$ è la media aritmetica dei redditi $y_{i}$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+r <- 0.5
+Atk <- 1-(1/mean(x))*((1/n)*sum(x^(1-r)))^(1/(1-r))
+Atk
+Atk1 <- 1-(1/mean(x))*prod(x)^(1/n)
+Atk1
+```
+
+### Python
+
+```{python}
+r = 0.5
+Atk = 1 - (1 / x.mean()) * (np.mean(x ** (1 - r))) ** (1 / (1 - r))
+Atk1 = 1 - (1 / x.mean()) * np.prod(x) ** (1 / n)
+print(Atk, Atk1)
+```
+
+### SAS
+
+```sas
+proc iml;
+  x = {3, 4, 6, 7, 8, 9, 12, 15};
+  n = nrow(x); r = 0.5;
+  Atk  = 1 - (1/mean(x)) * (mean(x##(1-r)))##(1/(1-r));
+  Atk1 = 1 - (1/mean(x)) * exp(mean(log(x)));   /* media geometrica */
+  print Atk Atk1;
+quit;
+```
+:::
+
+L'indice di Atkinson varia da 0 (assenza di concentrazione) a $1-1/n$ nel caso di massima concentrazione con $r=0{,}5$, ovvero a 1 nel caso di parametro unitario $r=1$.
+
+A questo punto è relativamente semplice ottenere la curva di Lorenz (Figura 7.1)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 7.1 – Spezzata di Lorenz"
+xx <- c(0,p); yy <- c(0,q)
+plot(xx, yy, type="o", main="Spezzata di Lorenz", xlab="Redditieri", ylab="Redditi")
+lines(xx, xx)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 7.1 – Spezzata di Lorenz"
+#| results: hide
+xx = np.r_[0, p]; yy = np.r_[0, q]
+plt.figure(figsize=(5, 5))
+plt.plot(xx, yy, "o-", color="black", markerfacecolor="none")
+plt.plot(xx, xx, color="black")
+plt.title("Spezzata di Lorenz"); plt.xlabel("Redditieri"); plt.ylabel("Redditi")
+plt.show()
+```
+
+### SAS
+
+```sas
+data lorenz;
+  input reddito @@;
+  datalines;
+3 4 6 7 8 9 12 15
+;
+run;
+proc sql noprint; select count(*), sum(reddito) into :n, :tot from lorenz; quit;
+data lorenz;
+  set lorenz;
+  if _n_ = 1 then do; p = 0; q = 0; output; end;
+  p + 1/&n; q + reddito/&tot;
+  output;
+run;
+proc sgplot data=lorenz;
+  title "Spezzata di Lorenz";
+  series x=p y=q / markers;
+  lineparm x=0 y=0 slope=1;
+  xaxis label="Redditieri"; yaxis label="Redditi";
+run;
+```
+:::
+
+o confrontare due curve diverse (Figura 7.2).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 7.2 – Confronto tra due spezzate di Lorenz"
+x1 <- c(4,2,5,9,4,1,6,9,8,3); x2 <- c(6,3,4,7,6,3,7,3,9,2)
+x1 <- sort(x1); x2 <- sort(x2); n <- length(x1)
+p <- c(0,cumsum(rep(1/n,n))); q1 <- c(0,cumsum(x1/sum(x1)))
+q2 <- c(0,cumsum(x2/sum(x2)))
+plot(p, p, type="l", main="Due spezzate di Lorenz", xlab="p", ylab="q")
+lines(p, q1, type="o"); lines(p, q2, type="o")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 7.2 – Confronto tra due spezzate di Lorenz"
+#| results: hide
+x1 = np.sort([4, 2, 5, 9, 4, 1, 6, 9, 8, 3]); x2 = np.sort([6, 3, 4, 7, 6, 3, 7, 3, 9, 2])
+n = len(x1)
+p = np.r_[0, np.cumsum(np.repeat(1 / n, n))]
+q1 = np.r_[0, np.cumsum(x1 / x1.sum())]; q2 = np.r_[0, np.cumsum(x2 / x2.sum())]
+plt.figure(figsize=(5, 5))
+plt.plot(p, p, color="black")
+plt.plot(p, q1, "o-", color="black", markerfacecolor="none")
+plt.plot(p, q2, "o-", color="black", markerfacecolor="none")
+plt.title("Due spezzate di Lorenz"); plt.xlabel("p"); plt.ylabel("q")
+plt.show()
+```
+
+### SAS
+
+```sas
+data due;
+  input gruppo $ reddito @@;
+  datalines;
+A 4 A 2 A 5 A 9 A 4 A 1 A 6 A 9 A 8 A 3
+B 6 B 3 B 4 B 7 B 6 B 3 B 7 B 3 B 9 B 2
+;
+run;
+proc sort data=due; by gruppo reddito; run;
+proc means data=due noprint; by gruppo; var reddito; output out=tot n=n sum=totale; run;
+data due;
+  merge due tot(keep=gruppo n totale);
+  by gruppo;
+  if first.gruppo then do; p = 0; q = 0; output; end;
+  p + 1/n; q + reddito/totale;
+  output;
+run;
+proc sgplot data=due;
+  title "Due spezzate di Lorenz";
+  series x=p y=q / group=gruppo markers;
+  lineparm x=0 y=0 slope=1;
+run;
+```
+:::

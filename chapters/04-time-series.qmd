@@ -1,0 +1,1844 @@
+---
+title: "4 The decomposition approach to time series"
+---
+
+## 4.1 The classical approach and the components of a series {#sec-components}
+
+A set of data ordered in time defines a time series. For example, Italian GDP between 2000 and 2008 is a time series which, in this case, spans 8 periods and 9 years. Knowing how and why phenomena evolve over time allows us to formulate plausible hypotheses about their future evolution and to take corrective action where needed.
+
+There are essentially two approaches to time-series analysis: the classical and the modern one (leaving aside spectral analysis). The first developed historically around empirical considerations, with techniques grounded in the analyst's observation and experience. The idea behind the classical approach is that the series can be decomposed into a few specific factors. The modern approach, by contrast, assumes that there is a data-generating mechanism, of which the observed time series is one of many possible realisations; if certain initial assumptions hold, it is possible to find the statistical model that adequately represents the data. We will return to the modern approach later.
+
+As we said, the classical approach decomposes the series into a few factors, namely
+
+| $Y$ | $T$ | $C$ | $S$ | $A$ |
+|:---:|:---:|:---:|:---:|:---:|
+| series | trend | cycle | seasonality | random residual |
+
+The trend $T$ is the most important component, since it represents the underlying tendency of the phenomenon. The cycle $C$ expresses wave-like fluctuations over the medium term; in economics it can be represented by phases of recession and expansion, but it cannot always be clearly distinguished from the trend, so much so that trend and cycle are often treated as a single trend-cycle component $TC$. Seasonality $S$ is present only if the series consists of sub-annual observations, and expresses the typical seasonal pattern of the phenomenon. Finally, the random component $A$ (sometimes denoted $I$) is a purely random residual factor, due to chance or to non-systematic errors.
+
+These factors are combined through additive, multiplicative or mixed models (or other forms), respectively
+
+$$
+\begin{gathered}Y=T+C+S+A \\ Y=T\cdot C\cdot S\cdot A \\ Y=T\cdot C+S+A\end{gathered}
+\tag{4.1}
+$$
+
+The additive model is simpler to compute but assumes a less plausible logical independence among the component factors; in this sense, the multiplicative model often appears the most appropriate for economic time series. Note also that in the multiplicative model, unlike the additive one, only the trend (or trend-cycle) component has the same unit of measurement as the series $Y$, while the other components take the form of dimensionless coefficients; this makes the multiplicative model easy to read.
+
+## 4.2 Moving averages {#sec-moving-averages}
+
+Figure 4.1 shows car sales by G.M. (General Motors) over a number of years; the values are in the file *auto.csv*. We load the data and plot the series *Vendite* (sales).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.1 – G.M. sales, 1975-1998 (million units)"
+auto <- read.csv2("data/auto.csv")
+attach(auto)
+plot(Vendite, xlab="Years", ylab="Million cars sold",
+     main="G.M. sales", xaxt="n", type="l")
+axis(1, at=1:24, lab=c(1975:1998))
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.1 – G.M. sales, 1975-1998 (million units)"
+#| results: hide
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+auto = pd.read_csv("data/auto.csv", sep=";", decimal=",")
+Vendite = auto["Vendite"]
+plt.figure(figsize=(5, 5))
+plt.plot(auto["Anno"], Vendite, color="black")
+plt.xlabel("Years"); plt.ylabel("Million cars sold")
+plt.title("G.M. sales")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc import datafile="data/auto.csv" out=auto dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+/* decimal comma: if Vendite is read as character, convert it with input(Vendite, commax8.) */
+
+proc sgplot data=auto;
+  title "G.M. sales";
+  series x=Anno y=Vendite;
+  xaxis label="Years"; yaxis label="Million cars sold";
+run;
+```
+:::
+
+To bring out the underlying tendency of the series we must reduce the interference of short- and medium-term fluctuations. One way of doing this is to filter the data through, for example, an average computed over a number of adjacent values, that is, a "moving average" such as
+
+$$
+MA_{i}=(x_{i-1}+x_{i}+x_{i+1})/3 \qquad \text{for 3 terms}
+\tag{4.2}
+$$
+
+An odd-order moving average is always centred, in the sense that the resulting value corresponds to the central term among those involved, with the same number of terms on either side. Clearly, a moving average cannot be computed at the lower and upper ends of the series, for lack of information outside the observed range: with 3 terms the first and last values are lost, but with 5 terms instead of 3, two values will be missing on the left and two on the right. In general, if $L$ is the number of adjacent terms in the average, we lose $(L-1)/2$ terms at both the beginning and the end of the sequence. A larger number of terms smooths the series more, making the underlying tendency clearer, but loses more data at the beginning and end of the period under analysis.
+
+Moving averages of even order can of course also be used, with the drawback that they are not centred to begin with; we will come back to this shortly.
+
+To apply a moving average to the data of Figure 4.1 we use the `filter()` function. Below we consider a centred moving average of order 3 and then of order 5; note the syntax with the replication command `rep()`. In other words, the first run sums 3 adjacent values each weighted 1/3, the second 5 values each weighted 1/5.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+round(filter(Vendite, rep(1/3,3)), 2)
+round(filter(Vendite, rep(1/5,5)), 2)
+```
+
+### Python
+
+```{python}
+# centred moving average: rolling(..., center=True)
+mm3 = Vendite.rolling(3, center=True).mean()
+mm5 = Vendite.rolling(5, center=True).mean()
+print(mm3.round(2).to_numpy())
+print(mm5.round(2).to_numpy())
+```
+
+### SAS
+
+```sas
+/* PROC EXPAND (SAS/ETS): cmovave = centred moving average */
+proc expand data=auto out=auto_mm method=none;
+  id Anno;
+  convert Vendite = mm3 / transformout=(cmovave 3 trimleft 1 trimright 1);
+  convert Vendite = mm5 / transformout=(cmovave 5 trimleft 2 trimright 2);
+  convert Vendite = mm9 / transformout=(cmovave 9 trimleft 4 trimright 4);
+run;
+proc print data=auto_mm noobs; format mm3 mm5 8.2; run;
+```
+:::
+
+The corresponding plot (Figure 4.2) is obtained with the following commands. The solid line shows G.M. car sales and the dashed lines the 3- and 5-term moving averages (respectively the longer and the shorter in the plot).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.2 – 3- and 5-term moving averages of G.M. sales"
+plot(Vendite, main="G.M. sales", type="l")
+lines(filter(Vendite, rep(1/3,3)), type="o", lty=2)
+lines(filter(Vendite, rep(1/5,5)), type="l", lty=4, lwd=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.2 – 3- and 5-term moving averages of G.M. sales"
+#| results: hide
+t = np.arange(1, 25)
+plt.figure(figsize=(5, 5))
+plt.plot(t, Vendite, color="black")
+plt.plot(t, mm3, "o--", color="black", markerfacecolor="none", markersize=4)
+plt.plot(t, mm5, "-.", color="black", linewidth=2)
+plt.title("G.M. sales")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=auto_mm;
+  title "G.M. sales";
+  series x=Anno y=Vendite;
+  series x=Anno y=mm3 / markers lineattrs=(pattern=dash);
+  series x=Anno y=mm5 / lineattrs=(pattern=dashdotdot thickness=2);
+run;
+```
+:::
+
+Clearly the 5-term moving average loses more observations but smooths the original data better in search of the underlying tendency. Even stronger smoothing is given by a higher-order average, for example with 9 terms (Figure 4.3).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.3 – G.M. sales and 9-term moving average"
+plot(Vendite, main="G.M. sales", type="l")
+lines(filter(Vendite, rep(1/9,9)), type="o", lty=4)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.3 – G.M. sales and 9-term moving average"
+#| results: hide
+mm9 = Vendite.rolling(9, center=True).mean()
+plt.figure(figsize=(5, 5))
+plt.plot(t, Vendite, color="black")
+plt.plot(t, mm9, "o-.", color="black", markerfacecolor="none", markersize=4)
+plt.title("G.M. sales")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=auto_mm;
+  title "G.M. sales";
+  series x=Anno y=Vendite;
+  series x=Anno y=mm9 / markers lineattrs=(pattern=dashdotdot);
+run;
+```
+:::
+
+The original data and the moving averages (*mm*) of order 3, 5, 7 and 9 are reported in Table 4.1.
+
+| Year | Sales | mm3 | mm5 | mm7 | mm9 |
+|:---:|---:|---:|---:|---:|---:|
+| 1975 | 6.6 | | | | |
+| 1976 | 8.6 | 8.1 | | | |
+| 1977 | 9.1 | 9.1 | 8.6 | | |
+| 1978 | 9.5 | 9.2 | 8.7 | 8.1 | |
+| 1979 | 9.0 | 8.5 | 8.3 | 8.0 | 7.9 |
+| 1980 | 7.1 | 7.6 | 7.7 | 7.9 | 8.0 |
+| 1981 | 6.8 | 6.7 | 7.4 | 7.8 | 8.1 |
+| 1982 | 6.2 | 6.9 | 7.2 | 7.8 | 8.1 |
+| 1983 | 7.8 | 7.4 | 7.7 | 7.7 | 7.9 |
+| 1984 | 8.3 | 8.5 | 8.0 | 7.8 | 7.8 |
+| 1985 | 9.3 | 8.7 | 8.4 | 8.0 | 7.9 |
+| 1986 | 8.6 | 8.6 | 8.4 | 8.3 | 7.9 |
+| 1987 | 7.8 | 8.2 | 8.3 | 8.2 | 8.1 |
+| 1988 | 8.1 | 7.9 | 8.0 | 8.1 | 8.1 |
+| 1989 | 7.9 | 7.8 | 7.7 | 7.9 | 8.0 |
+| 1990 | 7.5 | 7.6 | 7.7 | 7.7 | 7.9 |
+| 1991 | 7.4 | 7.5 | 7.7 | 7.8 | 7.9 |
+| 1992 | 7.7 | 7.6 | 7.8 | 7.9 | 7.9 |
+| 1993 | 7.8 | 8.0 | 7.9 | 7.9 | 8.0 |
+| 1994 | 8.4 | 8.2 | 8.1 | 8.1 | 8.0 |
+| 1995 | 8.3 | 8.4 | 8.3 | 8.2 | |
+| 1996 | 8.4 | 8.5 | 8.4 | | |
+| 1997 | 8.8 | 8.4 | | | |
+| 1998 | 8.1 | | | | |
+
+: Table 4.1 – G.M. sales and 3-, 5-, 7- and 9-term moving averages {.sm}
+
+Figure 4.3 and Table 4.1 make it clear that the series shows no clear long-run tendency to grow or to decline.
+
+## 4.3 Exponential smoothing {#sec-exp-smoothing}
+
+Another way of smoothing a series in search of long-run patterns is exponential smoothing. The technique is particularly interesting because, unlike the previous one, it allows short-term forecasts. The simplest model is best applied to data with no seasonality and no particularly marked trend. Exponential smoothing is nothing but an exponentially weighted moving average
+
+$$
+M_{t}=\alpha x_{t}+(1-\alpha )M_{t-1}
+\tag{4.3}
+$$
+
+where $0<\alpha <1$ and $M_{1}=x_{1}$, and
+
+- $x_{t}$ is the value of the time series in period $t$
+- $M_{t}$ is the weighted average in period $t$
+- $M_{t-1}$ is the weighted average in period $t-1$
+- $\alpha$ is the weighting coefficient, or smoothing parameter, chosen a priori.
+
+A low $\alpha$ filters out random fluctuations well, while a high $\alpha$ adapts quickly to systematic changes in the series. A value of $\alpha$ close to 0 gives strong smoothing, while a value close to 1 emphasises short-run fluctuations; the forecast for the first period after the observed values is set equal to the last smoothed value
+
+$$
+F_{t+1}=\hat{x}_{t+1}=M_{t}
+\tag{4.4}
+$$
+
+The technique can be applied recursively to produce forecasts over several periods, but the probability of a wrong forecast then grows steadily.
+
+Following the G.M. sales example, with $\alpha = 0.25$ we have
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+alfa=0.25
+M <- array(0, length(Vendite))
+M[1] <- Vendite[1]
+for (i in 2:24) M[i] <- alfa*Vendite[i] + (1-alfa)*M[i-1]
+previsto <- M[24]
+previsto
+```
+
+### Python
+
+```{python}
+alfa = 0.25
+M = np.zeros(len(Vendite))
+M[0] = Vendite[0]
+for i in range(1, 24):
+    M[i] = alfa * Vendite[i] + (1 - alfa) * M[i - 1]
+previsto = M[23]
+print(previsto)
+```
+
+### SAS
+
+```sas
+data auto_es;
+  set auto;
+  retain M;
+  alfa = 0.25;
+  if _n_ = 1 then M = Vendite;
+  else M = alfa*Vendite + (1-alfa)*M;
+run;
+/* the forecast is the last smoothed value */
+proc print data=auto_es(firstobs=24) noobs; var Anno M; run;
+```
+:::
+
+The sales forecast for time $t+1$ (1999) is 8.24 million cars, that is, the smoothed value at the last observed time. Figure 4.4 compares the original series *Vendite* with the smoothed series $M$; note that, unlike simple moving averages, no values are lost at the beginning and end of the series.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.4 – G.M. sales and exponential smoothing of the series"
+plot(Vendite, type="l", main="G.M. sales and exponential smoothing (alpha=0.25)")
+lines(M, type="o")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.4 – G.M. sales and exponential smoothing of the series"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(t, Vendite, color="black")
+plt.plot(t, M, "o-", color="black", markerfacecolor="none", markersize=4)
+plt.title("G.M. sales and exponential smoothing (alpha=0.25)", fontsize=10)
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=auto_es;
+  title "G.M. sales and exponential smoothing (alpha=0.25)";
+  series x=Anno y=Vendite;
+  series x=Anno y=M / markers;
+run;
+```
+:::
+
+Table 4.2 compares the results obtained with $\alpha$ equal to 0.10, 0.50 and 0.90.
+
+| Year | Time | Sales | M(0.10) | M(0.50) | M(0.90) |
+|:---:|:---:|---:|---:|---:|---:|
+| 1975 | 1 | 6.6 | 6.6 | 6.6 | 6.6 |
+| 1976 | 2 | 8.6 | 6.8 | 7.6 | 8.4 |
+| 1977 | 3 | 9.1 | 7.0 | 8.3 | 9.0 |
+| 1978 | 4 | 9.5 | 7.3 | 8.9 | 9.5 |
+| 1979 | 5 | 9.0 | 7.4 | 9.0 | 9.0 |
+| 1980 | 6 | 7.1 | 7.4 | 8.0 | 7.3 |
+| 1981 | 7 | 6.8 | 7.4 | 7.4 | 6.8 |
+| 1982 | 8 | 6.2 | 7.2 | 6.8 | 6.3 |
+| 1983 | 9 | 7.8 | 7.3 | 7.3 | 7.6 |
+| 1984 | 10 | 8.3 | 7.4 | 7.8 | 8.2 |
+| 1985 | 11 | 9.3 | 7.6 | 8.6 | 9.2 |
+| 1986 | 12 | 8.6 | 7.7 | 8.6 | 8.7 |
+| 1987 | 13 | 7.8 | 7.7 | 8.2 | 7.9 |
+| 1988 | 14 | 8.1 | 7.7 | 8.1 | 8.1 |
+| 1989 | 15 | 7.9 | 7.8 | 8.0 | 7.9 |
+| 1990 | 16 | 7.5 | 7.7 | 7.8 | 7.5 |
+| 1991 | 17 | 7.4 | 7.7 | 7.6 | 7.4 |
+| 1992 | 18 | 7.7 | 7.7 | 7.6 | 7.7 |
+| 1993 | 19 | 7.8 | 7.7 | 7.7 | 7.8 |
+| 1994 | 20 | 8.4 | 7.8 | 8.1 | 8.3 |
+| 1995 | 21 | 8.3 | 7.8 | 8.2 | 8.3 |
+| 1996 | 22 | 8.4 | 7.9 | 8.3 | 8.4 |
+| 1997 | 23 | 8.8 | 8.0 | 8.5 | 8.8 |
+| 1998 | 24 | 8.1 | 8.0 | 8.3 | 8.2 |
+
+: Table 4.2 – G.M. sales with smoothing constants 0.10, 0.50 and 0.90 {.sm}
+
+## 4.4 Forecasting by trend extrapolation {#sec-extrapolation}
+
+A simple alternative for forecasting uses least-squares estimation to find a model that fits the data, from which the projection to the next period can be obtained; we are of course assuming that the model can be estimated correctly by OLS.
+
+We again use the series in *auto.csv*. The following commands compute the fitted values of the regression line and add the forecast (or rather a projection) for period 24, corresponding to time 25; indeed, the index *Codice* runs from 0 (first year) to 23 (twenty-fourth year). Note that the time index can be defined arbitrarily, provided the estimates are interpreted correctly.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+Codice
+lineare <- lm(Vendite~Codice)
+round(predict(lineare, list(Codice=0:24)), 2)
+```
+
+### Python
+
+```{python}
+import statsmodels.formula.api as smf
+
+lineare = smf.ols("Vendite ~ Codice", data=auto).fit()
+nuovi = pd.DataFrame({"Codice": range(0, 25)})
+print(lineare.predict(nuovi).round(2).to_numpy())
+```
+
+### SAS
+
+```sas
+/* add a row with Vendite missing: PROC REG computes its predicted value */
+data auto_prev;
+  set auto end=fine;
+  output;
+  if fine then do; Anno = 1999; Codice = 24; Vendite = .; output; end;
+run;
+
+proc reg data=auto_prev;
+  model Vendite = Codice;
+  output out=prev p=previsto;
+run;
+quit;
+proc print data=prev noobs; var Anno Codice Vendite previsto; format previsto 8.2; run;
+```
+:::
+
+Figure 4.5 shows the series and the extrapolated line. The fitted value of 8.14 million cars is the forecast for 1999.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.5 – Forecasting by extrapolation"
+plot(Vendite, type="l", main="Extrapolation")
+lines(predict(lineare, list(Codice=0:24)), type="o")
+abline(v=24, lty=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.5 – Forecasting by extrapolation"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(t, Vendite, color="black")
+plt.plot(np.arange(1, 26), lineare.predict(nuovi), "o-", color="black", markerfacecolor="none", markersize=4)
+plt.axvline(24, linestyle="--", color="black")
+plt.title("Extrapolation")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=prev;
+  title "Extrapolation";
+  series x=Anno y=Vendite;
+  series x=Anno y=previsto / markers;
+  refline 1998 / axis=x lineattrs=(pattern=dash);
+run;
+```
+:::
+
+The trend line is barely increasing; as seen before, the series shows no clear tendency, and indeed the coefficient of the variable *Codice*, the slope of the fitted line, is not statistically different from zero (p-value 0.769).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+round(summary(lineare)$coef, 4)
+```
+
+### Python
+
+```{python}
+print(lineare.summary().tables[1])
+```
+
+### SAS
+
+```sas
+/* the "Parameter Estimates" table of PROC REG reports estimates, standard errors, t and p-values */
+proc reg data=auto;
+  model Vendite = Codice;
+run;
+quit;
+```
+:::
+
+Note that, when the notation is unambiguous, **R** correctly interprets some abbreviated extraction commands. So `$coefficients` can become `$coeff` or, as in the previous command, `$coef`.
+
+```{r}
+#| include: false
+detach(auto)
+```
+
+## 4.5 Non-linear trends {#sec-nonlinear-trends}
+
+Since we want to identify the long-run direction of movement without worrying too much about the fit to the data, the trend of a series can generally be represented by a straight line; over the medium to long run, however, it is reasonable to look for non-linear trends too. Looking for a non-linear trend becomes necessary when trend and cycle are not treated as separate components, so that the (non-seasonal) fluctuation of the series must be captured by the estimated model. There is also a strong motivation when looking for a long-run trend: for example, if over 30 years the trend had changed direction halfway through, a linear model might fail to capture the current direction and to forecast the future direction of the series correctly; in such conditions, a non-linear trend would help draw more reliable conclusions.
+
+We load data on Kodak's revenues for 1975-1998, contained in the file *entrate.csv*. We drop the assumption of a linear trend and now also look for a quadratic one. Figure 4.6 shows the original series and the fitted values of the linear trend $Y=a+bt$ and of the quadratic trend $Y=a+bt+ct^{2}$, which immediately appears much more informative and useful for forecasting.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.6 – Kodak revenues, linear trend and quadratic trend"
+entrate <- read.csv2("data/entrate.csv")
+attach(entrate)
+trendlin <- lm(Entrate~Codice)
+Codice2 <- Codice^2
+trendqua <- lm(Entrate~Codice+Codice2)
+plot(Entrate, type="l", main="Kodak revenues")
+lines(trendlin$fitted, type="o", lty=2)
+lines(trendqua$fitted, type="b", lty=4, lwd=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.6 – Kodak revenues, linear trend and quadratic trend"
+#| results: hide
+entrate = pd.read_csv("data/entrate.csv", sep=";", decimal=",")
+trendlin = smf.ols("Entrate ~ Codice", data=entrate).fit()
+trendqua = smf.ols("Entrate ~ Codice + I(Codice**2)", data=entrate).fit()
+plt.figure(figsize=(5, 5))
+plt.plot(t, entrate["Entrate"], color="black")
+plt.plot(t, trendlin.fittedvalues, "o--", color="black", markerfacecolor="none", markersize=4)
+plt.plot(t, trendqua.fittedvalues, "o-.", color="black", linewidth=2, markersize=4)
+plt.title("Kodak revenues")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc import datafile="data/entrate.csv" out=entrate dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data entrate; set entrate; Codice2 = Codice**2; run;
+
+proc reg data=entrate noprint;
+  lin: model Entrate = Codice;
+  output out=fit_lin p=trendlin;
+run;
+proc reg data=fit_lin noprint;
+  qua: model Entrate = Codice Codice2;
+  output out=fit_ent p=trendqua;
+run;
+quit;
+
+proc sgplot data=fit_ent;
+  title "Kodak revenues";
+  series x=Anni y=Entrate;
+  series x=Anni y=trendlin / markers lineattrs=(pattern=dash);
+  series x=Anni y=trendqua / markers lineattrs=(pattern=dashdotdot thickness=2);
+run;
+```
+:::
+
+If, however, the values of the series grew exponentially over time, it would be reasonable to represent the trend as $Y=ab^{t}$ (to be linearised by taking logarithms).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+espon <- lm(log(Entrate)~Codice)
+espon$coeff
+round((exp(espon$coeff[2])-1)*100, 2)
+```
+
+### Python
+
+```{python}
+espon = smf.ols("np.log(Entrate) ~ Codice", data=entrate).fit()
+print(espon.params)
+print(round((np.exp(espon.params["Codice"]) - 1) * 100, 2))
+```
+
+### SAS
+
+```sas
+data entrate; set entrate; logEntrate = log(Entrate); run;
+proc reg data=entrate outest=stime_esp noprint;
+  model logEntrate = Codice;
+  output out=fit_esp p=logfit;
+run;
+quit;
+data _null_;
+  set stime_esp;
+  tasso = (exp(Codice) - 1) * 100;   /* compound annual rate of change */
+  put tasso= 8.2;
+run;
+```
+:::
+
+The slope of the linearised model, transformed back with the antilog, is the compound annual rate of change of the trend of the series (0.12%). The resulting plot (Figure 4.7) is obtained with the usual commands.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.7 – Kodak revenues and exponential trend"
+plot(Entrate, type="l", main="Exponential trend")
+lines(exp(espon$fitted), type="o")
+detach(entrate)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.7 – Kodak revenues and exponential trend"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(t, entrate["Entrate"], color="black")
+plt.plot(t, np.exp(espon.fittedvalues), "o-", color="black", markerfacecolor="none", markersize=4)
+plt.title("Exponential trend")
+plt.show()
+```
+
+### SAS
+
+```sas
+data fit_esp; set fit_esp; trendesp = exp(logfit); run;
+proc sgplot data=fit_esp;
+  title "Exponential trend";
+  series x=Anni y=Entrate;
+  series x=Anni y=trendesp / markers;
+run;
+```
+:::
+
+Clearly the exponential-trend hypothesis is not realistic for this series.
+
+If, for interpretive purposes, both a linear and a non-linear trend seem plausible, a simple way of choosing among linear, quadratic and exponential trends is based on first, second and relative differences. Essentially, a linear trend fits the series well if the first differences are roughly constant; the same holds for second differences and the quadratic trend, while an exponential trend goes with constant relative differences.
+
+Returning to our example, none of the three kinds of differences is especially helpful in suggesting one form of trend over another, although the quadratic trend immediately looks more interesting since it captures the decline in the series. A deterministic method of this kind is clearly not very efficient. If one nevertheless wanted to find the best trend, considering all three forms plausible, one could analyse the OLS estimates of the coefficients and the goodness-of-fit statistics of the corresponding models.
+
+## 4.6 Choosing the trend: a goodness-of-fit index {#sec-mad}
+
+Let us proceed in this direction with an example on the file *pil.csv*, which contains Italian GDP in € million at constant 2000 prices and the resident population in thousands for 1982-2007. We compute GDP per capita as a proxy for a territory's development and look for its linear and quadratic trends. The usual `summary()` function shows some results of interest.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+pil <- read.csv2("data/pil.csv")
+attach(pil)
+pilpro <- PIL00/POP
+tempo <- c(1:26)
+lineare <- lm(pilpro~tempo)
+tempo2 <- tempo^2
+quadra <- lm(pilpro~tempo+tempo2)
+summary(lineare)$coef
+summary(quadra)$coef
+```
+
+### Python
+
+```{python}
+pil = pd.read_csv("data/pil.csv", sep=";")
+d = pd.DataFrame({"pilpro": pil["PIL00"] / pil["POP"], "tempo": np.arange(1, 27)})
+lineare = smf.ols("pilpro ~ tempo", data=d).fit()
+quadra = smf.ols("pilpro ~ tempo + I(tempo**2)", data=d).fit()
+print(lineare.summary().tables[1])
+print(quadra.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc import datafile="data/pil.csv" out=pil dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data pil;
+  set pil;
+  pilpro = PIL00 / POP;
+  tempo = _n_; tempo2 = tempo**2; tempo3 = tempo**3;
+run;
+
+proc reg data=pil;
+  lineare: model pilpro = tempo;
+  quadra:  model pilpro = tempo tempo2;
+run;
+quit;
+```
+:::
+
+As shown by the corresponding p-values, all the estimates are statistically significant. If the model is also used for short-term forecasting, the one that best fits the data should be chosen. We postpone the statistical analysis of linear models to a later section and focus here only on a goodness-of-fit index based on the deviation of fitted from observed values
+
+$$
+MAD=\sum_{i=1}^{n} \left|y_{i}-\hat{y}_{i}\right|/n
+\tag{4.5}
+$$
+
+which in **R** is computed as follows
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+yl <- lineare$fitted
+yq <- quadra$fitted
+y <- pilpro
+sum(abs(y-yl))/26
+sum(abs(y-yq))/26
+```
+
+### Python
+
+```{python}
+y = d["pilpro"]
+print(np.mean(np.abs(y - lineare.fittedvalues)))
+print(np.mean(np.abs(y - quadra.fittedvalues)))
+```
+
+### SAS
+
+```sas
+/* fitted values of the two models and mean absolute deviation */
+proc reg data=pil noprint;
+  model pilpro = tempo;        output out=f1 p=yl;
+run;
+proc reg data=f1 noprint;
+  model pilpro = tempo tempo2; output out=f2 p=yq;
+run;
+quit;
+data f2; set f2; ass_l = abs(pilpro - yl); ass_q = abs(pilpro - yq); run;
+proc means data=f2 mean; var ass_l ass_q; run;
+```
+:::
+
+where $yl$ and $yq$ are the objects containing the fitted values of the linear and quadratic trend respectively. In our case we obtain a *MAD* of 0.38 for the linear trend and 0.21 for the quadratic model, which is therefore preferable.
+
+## 4.7 A note on misspecification {#sec-misspecification}
+
+The GDP per capita example allows us to make an observation, and a forward reference, about some consequences of model misspecification. Let us estimate the trend with a cubic form.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+tempo3 <- tempo^3
+cubico <- lm(pilpro~tempo+tempo2+tempo3)
+summary(cubico)
+detach(pil)
+```
+
+### Python
+
+```{python}
+cubico = smf.ols("pilpro ~ tempo + I(tempo**2) + I(tempo**3)", data=d).fit()
+print(cubico.summary())
+```
+
+### SAS
+
+```sas
+proc reg data=pil;
+  cubico: model pilpro = tempo tempo2 tempo3;
+run;
+quit;
+```
+:::
+
+Interestingly, neither the second- nor the third-degree term is statistically significant. Moreover, the estimates of the intercept and of the first coefficient are very different from those obtained before; this is one of the typical signs of misspecification: adding the third-degree term greatly worsens the model and alters all the estimates. The reasons for this anomalous result will be discussed in other sections of the book.
+
+## 4.8 The seasonal component {#sec-seasonality}
+
+We continue our treatment of the classical approach to time series by analysing phenomena with a seasonal component. For ease of interpretation we choose a multiplicative model.
+
+Given the time series $Y$, we want to identify its components. A moving average allows us to identify the trend, or rather the trend-cycle, but there is no unique answer to the choice of its order. A 3-term moving average has the advantage of losing only one observation at the beginning and one at the end, while a higher order smooths the data better but loses more observations. The choice of order depends largely on the desired degree of smoothing, but also on how many observations are available.
+
+If a seasonal component is present, the order of the moving average must take the seasonal period into account, to make sure that the filter, matching the length of the season, cancels the seasonal component without distorting the trend-cycle. So the order of the average will be 12 for monthly data, 4 for quarterly data, 2 for half-yearly data, and so on; and since the number of terms is generally even, the moving average must also be centred, to ensure that its value can be unambiguously attributed to the time at the centre of the average. Consequently, with a 4-term moving average, centring amounts to taking the arithmetic mean of two adjacent 4-term moving averages, that is, a weighted average of 5 terms in which the first and last receive a weight of 0.5 (so in the end two values will be missing at the head and two at the tail of the moving-average series)
+
+$$
+MM(4)_{C}=(0.5\cdot x_{1}+x_{2}+x_{3}+x_{4}+0.5\cdot x_{5})/4
+\tag{4.6}
+$$
+
+Using a moving average whose order equals the length of the seasonal period has an intuitive justification since, as we said, the series must be filtered so as to remove the seasonal effect without introducing distortions, as a moving average of a different order would: with quarterly data, for example, a 3-term average would always leave out some quarter, while a 5-term one would include one quarter twice.
+
+Having obtained the trend or trend-cycle, since $Y=T\cdot C\cdot S\cdot A$, the gross seasonal component (including the irregular component) is easily determined
+
+$$
+SA=Y/(T\cdot C)
+\tag{4.7}
+$$
+
+Note straight away that, by construction, $SA$ is an index number that fluctuates around one and has no unit of measurement. In an additive model little changes, except that we subtract instead of dividing
+
+$$
+SA=Y-(T + C)
+\tag{4.8}
+$$
+
+In this case $SA$ has the same unit of measurement as $Y$, so the preference for a multiplicative model simplifies this point too.
+
+The seasonal component obtained in this way is variable, since the values change slightly between the same periods of different years, whereas large fluctuations would be quite counter-intuitive: there is no strong reason why, especially in the short run, the season should change markedly from one year to the next; if it does, the change can hardly be attributed to seasonal factors as such. In practice, seasonal fluctuations are often numerically quite small relative to the average level of the series, and very similar from one year to the next; so it is not misleading to treat seasonality as a phenomenon that evolves at a constant rate. Thus, even for very long seasonal series, it is convenient and reasonable to represent the seasonal pattern by single values, for example 12 values for monthly seasonality, 4 for quarters, 2 for half-years, etc., simply by averaging within the same seasonal period.
+
+This simplification consists in averaging the same seasonal factor year after year: with monthly data, for example, we average the seasonal factors for January over all the years of the series, then do the same for February and so on up to December, obtaining 12 single values (one per month) that replace the individual seasonal factors making up these averages. It may happen, however, simply because of numerical approximation, that the sum of these new constant seasonal coefficients is not exactly 12 (with a multiplicative model, or 0 with an additive one), as it should be, since they represent a seasonal phenomenon that begins and ends within the year. As seasonality must cancel out within the year, the seasonal factors below one (below 0 in the additive model) must be offset by those above one (above 0 in the additive model), so their sum must equal 4 for quarters, 3 for four-month periods, 12 for months, etc., or 0 in the additive model. This may fail to happen because of numerical approximation; so, assuming the hypothesis of constant seasonality is sound, a correction based on proportionality can be applied.
+
+Specifically, consider a quarterly series covering 3 years; the table below shows the seasonal factors obtained from the ratio $Y/(T\cdot C)$, where the trend-cycle is a centred 4-term moving average. The first two and the last two values are of course missing:
+
+| seasonal factor | 1 | 2 | 3 | 4 |
+|:---|:---:|:---:|:---:|:---:|
+| year 1 | – | – | *a* | *b* |
+| year 2 | *c* | *d* | *e* | *f* |
+| year 3 | *g* | *h* | – | – |
+| mean | $m_1$ | $m_2$ | $m_3$ | $m_4$ |
+
+with $m_1 + m_2 + m_3 + m_4 = somma$ (the sum). We compute the mean of each column; the sum of the means should be exactly 4, the seasonal period, apart from small fluctuations: for example, it is reasonable to get 4.01 or 3.90 (to keep the explanation intuitive), but certainly not 2 or 7, values far from 4; in fact the sum is never far from its theoretical value. At this point, the difference between the theoretical 4 and the value actually obtained is spread over the 4 quarters proportionally
+
+$$
+m_{i}\cdot 4/somma \qquad \text{for each } i \text{ from 1 to 4}
+\tag{4.9}
+$$
+
+This gives the "corrected" seasonal indices, identical from year to year, whose sum is now, by construction, exactly 4. The procedure applies to any other seasonal period.
+
+## 4.9 Decomposing a quarterly series {#sec-unemployment}
+
+Using the techniques just described, we decompose the quarterly series of the Italian unemployment rate for 1998-2003, contained in the file *td.csv*. We compute the trend-cycle with a centred moving average of order 4 (the first two and last two values of the series are missing).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+td <- read.csv2("data/td.csv")
+attach(td)
+mm4c <- 0; mm4c[1:2] <- NA; mm4c[23:24] <- NA
+for (i in 3:22) mm4c[i] <- (td9803[i-2]*0.5 + td9803[i-1] + td9803[i] +
+                           td9803[i+1] + td9803[i+2]*0.5)/4
+mm4c
+```
+
+### Python
+
+```{python}
+td = pd.read_csv("data/td.csv", sep=";", decimal=",")
+td9803 = td["td9803"]
+pesi = np.array([0.5, 1, 1, 1, 0.5]) / 4
+mm4c = td9803.rolling(5, center=True).apply(lambda w: np.dot(w, pesi))
+print(mm4c.to_numpy())
+```
+
+### SAS
+
+```sas
+proc import datafile="data/td.csv" out=td dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+
+/* centred moving average of order 4 = weights 1/8, 1/4, 1/4, 1/4, 1/8 */
+proc expand data=td out=td_mm method=none;
+  id tempo;
+  convert td9803 = mm4c / transformout=(cmovave (0.125 0.25 0.25 0.25 0.125)
+                                        trimleft 2 trimright 2);
+run;
+proc print data=td_mm noobs; run;
+```
+:::
+
+We obtain the seasonal factors.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+sa <- td9803/mm4c
+sa
+```
+
+### Python
+
+```{python}
+sa = td9803 / mm4c
+print(sa.to_numpy())
+```
+
+### SAS
+
+```sas
+data td_mm; set td_mm; sa = td9803 / mm4c; run;
+```
+:::
+
+For computational reasons we replace the missing values with 0 and compute the 4 constant seasonal factors with a `for()` loop, summing the values obtained; we then correct the factors so that they sum to the theoretical value of 4, the number of quarters.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+maa <- 0
+sa[1:2] <- 0
+sa[23:24] <- 0
+for (i in 1:4) {
+  maa[i] = 0
+  for (j in 0:5) maa[i] = maa[i] + sa[i+4*j]
+  maa[i] <- maa[i]/5
+}
+maa
+sum(maa)
+ics <- maa*4/sum(maa)
+ics
+sum(ics)
+```
+
+### Python
+
+```{python}
+# mean of the factors by quarter (missing values are ignored)
+maa = sa.groupby(td["trimestre"]).mean()
+print(maa.to_numpy(), maa.sum())
+ics = maa * 4 / maa.sum()
+print(ics.to_numpy(), ics.sum())
+```
+
+### SAS
+
+```sas
+/* mean of the factors by quarter and proportional correction */
+proc means data=td_mm noprint nway;
+  class trimestre;
+  var sa;
+  output out=maa mean=maa;
+run;
+proc sql;
+  create table ics as
+  select trimestre, maa, maa * 4 / sum(maa) as ics
+  from maa;
+quit;
+proc print data=ics noobs; run;
+```
+:::
+
+The corrected indices (ICS) show the effect of each of the 4 quarters on the level of the unemployment rate: in particular, the first and second quarters push the rate up, while the third and fourth push it down. With the ICS we can seasonally adjust the series, that is, remove the seasonal effect from the level of the unemployment rate; graphically we obtain Figure 4.8.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.8 – Raw (solid line) and seasonally adjusted (dotted line) unemployment rate in Italy, 1998-2003"
+round(td9803/ics, 2)
+plot(td9803, type="l", main="Unemployment rate series")
+dest <- td9803/ics
+lines(dest, type="o")
+```
+
+### Python
+
+```{python}
+dest = td9803 / td["trimestre"].map(ics)
+print(dest.round(2).to_numpy())
+```
+
+```{python}
+#| fig-cap: "Figure 4.8 – Raw (solid line) and seasonally adjusted (dotted line) unemployment rate in Italy, 1998-2003"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(np.arange(1, 25), td9803, color="black")
+plt.plot(np.arange(1, 25), dest, "o-", color="black", markerfacecolor="none", markersize=4)
+plt.title("Unemployment rate series")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sql;
+  create table td_dest as
+  select a.*, a.td9803 / b.ics as dest
+  from td_mm a left join ics b on a.trimestre = b.trimestre
+  order by tempo;
+quit;
+
+proc sgplot data=td_dest;
+  title "Unemployment rate series";
+  series x=tempo y=td9803;
+  series x=tempo y=dest / markers;
+run;
+```
+:::
+
+The fluctuations of the seasonally adjusted series now depend only on the trend-cycle which, in this way, can be studied more easily and possibly split into its two elementary components $T$ and $C$.
+
+In other words, the unemployment rate of 11.4% recorded in the first quarter of 1998 is pushed up by the seasonal pattern of the first quarter by 0.3 percentage points; indeed, in the same quarter the seasonally adjusted series records a rate of 11.1%. Likewise, in the third quarter of 2003 the original series stands at 8.0% against 8.3% for the adjusted one, showing this time the favourable effect of the third quarter in reducing the unemployment rate.
+
+Assuming that the trend is linear, since the seasonally adjusted series is $Y_{dest}=T\cdot C$, the cycle can be extracted through the ratio
+
+$$
+C=Y_{dest}/T
+\tag{4.10}
+$$
+
+In our example, the corresponding plot is obtained with the usual commands (Figure 4.9).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.9 – Cycle of the unemployment rate"
+tempo <- c(1:24)
+modello <- lm(dest~tempo)
+ciclo <- dest/modello$fitted
+round(ciclo, 2)
+plot(ciclo, type="l", main="Cycle")
+abline(h=1, lty=2)
+abline(v=2, lty=2)
+abline(v=11, lty=2)
+abline(v=20, lty=2)
+```
+
+### Python
+
+```{python}
+dd = pd.DataFrame({"dest": dest, "tempo": np.arange(1, 25)})
+modello = smf.ols("dest ~ tempo", data=dd).fit()
+ciclo = dd["dest"] / modello.fittedvalues
+print(ciclo.round(2).to_numpy())
+```
+
+```{python}
+#| fig-cap: "Figure 4.9 – Cycle of the unemployment rate"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(dd["tempo"], ciclo, color="black")
+plt.axhline(1, linestyle="--", color="black")
+for v in (2, 11, 20):
+    plt.axvline(v, linestyle="--", color="black")
+plt.title("Cycle")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc reg data=td_dest noprint;
+  model dest = tempo;
+  output out=td_ciclo p=trend;
+run;
+quit;
+data td_ciclo; set td_ciclo; ciclo = dest / trend; run;
+
+proc sgplot data=td_ciclo;
+  title "Cycle";
+  series x=tempo y=ciclo;
+  refline 1 / axis=y lineattrs=(pattern=dash);
+  refline 2 11 20 / axis=x lineattrs=(pattern=dash);
+run;
+```
+:::
+
+Possible cyclical turning points are highlighted at the second, eleventh and twentieth quarters, that is, 1998.II, 2000.III and 2002.IV.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+2/4+1998; 11/4+1998; 20/4+1998
+```
+
+### Python
+
+```{python}
+print([v / 4 + 1998 for v in (2, 11, 20)])
+```
+
+### SAS
+
+```sas
+data _null_;
+  do v = 2, 11, 20;
+    anno = v/4 + 1998;
+    put v= anno=;
+  end;
+run;
+```
+:::
+
+Note that we could also have obtained the centred moving average of order 4 with `filter()`, using a suitable set of weights. We leave the calculation as an exercise for the reader, after illustrating the procedure on made-up data.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+seriey <- c(3,6,9,5,7,2,6,1,7,9,4,1)
+mm4c <- filter(seriey, c(0.5/4, rep(1/4,3), 0.5/4))
+mm4c
+detach(td)
+```
+
+### Python
+
+```{python}
+seriey = pd.Series([3, 6, 9, 5, 7, 2, 6, 1, 7, 9, 4, 1])
+print(seriey.rolling(5, center=True).apply(lambda w: np.dot(w, pesi)).to_numpy())
+```
+
+### SAS
+
+```sas
+data seriey;
+  input y @@;
+  t = _n_;
+  datalines;
+3 6 9 5 7 2 6 1 7 9 4 1
+;
+run;
+proc expand data=seriey out=seriey_mm method=none;
+  id t;
+  convert y = mm4c / transformout=(cmovave (0.125 0.25 0.25 0.25 0.125)
+                                   trimleft 2 trimright 2);
+run;
+proc print data=seriey_mm noobs; run;
+```
+:::
+
+## 4.10 Seasonality with dummy variables {#sec-dummies}
+
+Besides trend analysis, regression can be used to isolate the seasonal component through dummy variables added to the explanatory variables and used as seasonal labels. With monthly data we add 11 dummy variables, taking the value 1 for observations in the month they represent and 0 otherwise; the twelfth dummy is not included, to avoid statistical redundancy, since its effect is already absorbed by the constant of the model. Which dummy to exclude is entirely arbitrary and does not affect the conclusions; we will return to this point in later sections.
+
+Keeping to the example of monthly data, we estimate a model of the form
+
+$$
+Y=a+bt+c_{1}D_{1}+c_{2}D_{2}+...+c_{10}D_{10}+c_{11}D_{11}
+\tag{4.11}
+$$
+
+where the twelfth dummy, for December, has been omitted; the seasonal component here therefore measures the impact of each month relative to December as the reference. $a+bt$ is the trend or trend-cycle (in the latter case a polynomial of degree higher than one is usually assumed), while $c_{1}D_{1}+c_{2}D_{2}+...+c_{10}D_{10}+c_{11}D_{11}$ is the seasonal component, with $D_{i}=1$ in the $i$-th month and 0 otherwise. Note that the model implicitly imposes a constant seasonal structure.
+
+We load the data in *prodotto.csv*, on sales in quintals of a generic consumer product between January 2001 and December 2006. We build a time index that **R** can use to create the dummy variables of interest.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+prod <- read.csv2("data/prodotto.csv")
+attach(prod)
+livelli <- factor(rep(1:12, 2006-2001+1))
+livelli
+```
+
+### Python
+
+```{python}
+prod = pd.read_csv("data/prodotto.csv", sep=";", decimal=",")
+prod["livelli"] = np.tile(np.arange(1, 13), 2006 - 2001 + 1)   # month 1..12
+print(prod["livelli"].to_numpy())
+```
+
+### SAS
+
+```sas
+proc import datafile="data/prodotto.csv" out=prod dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data prod;
+  set prod;
+  livelli = mod(casi - 1, 12) + 1;   /* month 1..12 */
+  logY = log(prodotto);
+run;
+```
+:::
+
+We have thus created 12 levels, one for each month, over the whole period 2001-2006. We ask **R** which criterion it will use to build the dummy variables for the object *livelli*: by default **R** drops the first level, here January. If instead we wanted to drop December, we would write
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+contrasts(livelli)
+contrasts(livelli) <- contr.treatment(levels(livelli), base=12)
+contrasts(livelli)
+```
+
+### Python
+
+```{python}
+# in a statsmodels formula the reference category is set with Treatment(reference=...)
+import patsy
+X = patsy.dmatrix("C(livelli, Treatment(reference=12))", prod.head(12), return_type="dataframe")
+print(X.astype(int).iloc[:, 1:].to_numpy())
+```
+
+### SAS
+
+```sas
+/* in PROC GLM the reference category is the last one (12 = December),
+   exactly as in the case discussed in the text */
+```
+:::
+
+Now **R** will not include the December dummy. Suppose the model is exponential, so that logarithms are needed to linearise it
+
+$$
+\begin{gathered}Y=ab^{t}c_{1}^{D_{1}}c_{2}^{D_{2}}...c_{11}^{D_{11}}\to \\ \log Y=\log a+t\log b+D_{1}\log c_{1}+D_{2}\log c_{2}+...+D_{11}\log c_{11}\end{gathered}
+\tag{4.12}
+$$
+
+So $(b-1)\cdot 100$ is the estimated compound monthly growth rate of our series $Y$, while the coefficients $c_{i}$ are the seasonal multipliers relative to December. We proceed with the estimation.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+Y <- prodotto; modello <- lm(log(Y)~casi+livelli)
+summary(modello)
+stime <- exp(modello$coeff); stime
+```
+
+### Python
+
+```{python}
+modello = smf.ols("np.log(prodotto) ~ casi + C(livelli, Treatment(reference=12))", data=prod).fit()
+print(modello.summary())
+stime = np.exp(modello.params)
+print(stime)
+```
+
+### SAS
+
+```sas
+proc glm data=prod;
+  class livelli;
+  model logY = casi livelli / solution;   /* December (12) is the reference category */
+  output out=fit_prod p=logfit;
+run;
+quit;
+/* the antilogs of the estimates, exp(b), give the seasonal multipliers */
+```
+:::
+
+Except for March, the seasonal effects are all statistically significant, but to recover the original coefficients we need the antilog. We find that product sales stood at 12.4 quintals at the start of the series (the intercept), with a compound monthly rate of change of 0.24% over the period considered. Specifically, in January, compared with December, sales fell on average by 9.39%. By contrast, November (again compared with December) shows an increase of about 18.24%.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+round((stime[2]-1)*100, 2)
+round((stime[3]-1)*100, 2)
+round((stime[13]-1)*100, 2)
+```
+
+### Python
+
+```{python}
+nomi = ["casi", "C(livelli, Treatment(reference=12))[T.1]", "C(livelli, Treatment(reference=12))[T.11]"]
+print(((stime[nomi] - 1) * 100).round(2))
+```
+
+### SAS
+
+```sas
+/* e.g. for the trend: (exp(b_casi) - 1) * 100; for January: (exp(b_1) - 1) * 100 */
+```
+:::
+
+Figure 4.10 shows the original series, the linear trend-cycle and the constant seasonal component obtained with the dummy variables. Note the scale correction `-0.1+mean(logY)`, which makes the plot easier to read.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.10 – Original series and linear trend-cycle (solid lines) with scaled constant seasonal factors (dotted line)"
+logY <- log(Y)
+tc <- modello$coeff[1] + modello$coeff[2]*casi
+stag <- modello$fitted - tc
+plot(logY, type="l", main="Decomposition with dummies")
+lines(tc)
+lines(-0.1 + mean(logY) + stag, type="o")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.10 – Original series and linear trend-cycle (solid lines) with scaled constant seasonal factors (dotted line)"
+#| results: hide
+logY = np.log(prod["prodotto"])
+tc = modello.params.iloc[0] + modello.params["casi"] * prod["casi"]
+stag = modello.fittedvalues - tc
+plt.figure(figsize=(5, 5))
+plt.plot(prod["casi"], logY, color="black")
+plt.plot(prod["casi"], tc, color="black")
+plt.plot(prod["casi"], -0.1 + logY.mean() + stag, "o-", color="black", markerfacecolor="none", markersize=3)
+plt.title("Decomposition with dummies")
+plt.show()
+```
+
+### SAS
+
+```sas
+/* log series and fitted values of the dummy model */
+proc sgplot data=fit_prod;
+  title "Decomposition with dummies";
+  series x=casi y=logY;
+  series x=casi y=logfit / markers;
+run;
+```
+:::
+
+```{r}
+#| include: false
+detach(prod)
+```
+
+## 4.11 Autoregressive models {#sec-ar}
+
+By their nature, the models discussed so far do not allow reliable forecasts except under particularly strict conditions, and in any case only in the short run. Dealing satisfactorily with forecasting requires more refined estimation methods and models, moving for example from the deterministic approach of many classical methods to a stochastic one, typical of ARIMA models. We will return to this later, but it is worth mentioning here a special case, useful for non-seasonal series not subject to wide and frequent fluctuations: the autoregressive model, which explains the series $Y$ through the same variable lagged in time
+
+$$
+Y_{t}=a_{0}+a_{1}Y_{t-1}+...+a_{p}Y_{t-p}+e_{t}
+\tag{4.13}
+$$
+
+that is, an autoregressive model of order $p$, $AR(p)$.
+
+Note that estimating these models by OLS, as for linear models in general, requires certain conditions that must be checked. Given the autoregressive nature of the model, one can sense that least-squares estimates for specifications of order higher than one are inadequate; we will come back to this later.
+
+We load the data in *pil.csv* on Italian GDP in € million at constant prices. We estimate a third-order autoregressive model. Note the use of `embed()` to build the matrix of the variable *PIL00* at lag 0 (that is, unlagged) and at lags 1, 2 and 3. From the model's `summary()` we extract the coefficients.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+pildati <- read.csv2("data/pil.csv")
+pil <- embed(pildati$PIL00, 4)
+colnames(pil) <- c("Y","Y1","Y2","Y3")
+pil <- data.frame(pil)
+modello <- lm(Y~Y1+Y2+Y3, data=pil)
+summary(modello)
+```
+
+### Python
+
+```{python}
+pildati = pd.read_csv("data/pil.csv", sep=";")
+P = pildati["PIL00"]
+pil = pd.DataFrame({"Y": P, "Y1": P.shift(1), "Y2": P.shift(2), "Y3": P.shift(3)}).dropna().reset_index(drop=True)
+modello = smf.ols("Y ~ Y1 + Y2 + Y3", data=pil).fit()
+print(modello.summary().tables[1])
+```
+
+### SAS
+
+```sas
+data pil_ar;
+  set pil;
+  Y = PIL00; Y1 = lag1(PIL00); Y2 = lag2(PIL00); Y3 = lag3(PIL00);
+  if not missing(Y3);
+run;
+proc reg data=pil_ar;
+  ar3: model Y = Y1 Y2 Y3;
+run;
+quit;
+```
+:::
+
+Only the first lag is statistically significant. We re-estimate, first dropping the third lag and then the second-order lag as well.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modello2 <- lm(Y~Y1+Y2, data=pil)
+summary(modello2)$coef
+modello1 <- lm(Y~Y1, data=pil)
+summary(modello1)$coef
+```
+
+### Python
+
+```{python}
+modello2 = smf.ols("Y ~ Y1 + Y2", data=pil).fit()
+print(modello2.summary().tables[1])
+modello1 = smf.ols("Y ~ Y1", data=pil).fit()
+print(modello1.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc reg data=pil_ar;
+  ar2: model Y = Y1 Y2;
+  ar1: model Y = Y1;
+run;
+quit;
+```
+:::
+
+The estimates suggest choosing a parsimonious model with a single lag. Note the high Student's t of the coefficient of $Y1$, whose estimate, moreover, does not differ much across the models; as will be explained later, this can be a sign of good specification. At this point it is easy to forecast the following years (Figure 4.11).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.11 – Forecast from an autoregressive model"
+YY <- pil$Y
+YY[24] <- modello1$coeff[1] + modello1$coeff[2]*YY[23]
+YY[25] <- modello1$coeff[1] + modello1$coeff[2]*YY[24]
+YY[26] <- modello1$coeff[1] + modello1$coeff[2]*YY[25]
+plot(YY, type="l", main="Autoregressive model forecast")
+abline(v=23)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.11 – Forecast from an autoregressive model"
+#| results: hide
+a0, a1 = modello1.params
+YY = list(pil["Y"])
+for _ in range(3):
+    YY.append(a0 + a1 * YY[-1])
+plt.figure(figsize=(5, 5))
+plt.plot(np.arange(1, len(YY) + 1), YY, color="black")
+plt.axvline(23, color="black")
+plt.title("Autoregressive model forecast")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc reg data=pil_ar outest=b_ar1 noprint;
+  model Y = Y1;
+run;
+quit;
+/* recursive 3-step-ahead forecasts */
+data prev_ar;
+  set pil_ar end=fine;
+  if _n_ = 1 then set b_ar1(keep=Intercept Y1 rename=(Y1=a1));
+  caso = _n_; output;
+  if fine then do;
+    do h = 1 to 3;
+      Y = Intercept + a1*Y; caso + 1; Anni + 1; output;
+    end;
+  end;
+  keep caso Anni Y;
+run;
+proc sgplot data=prev_ar;
+  title "Autoregressive model forecast";
+  series x=caso y=Y;
+  refline 23 / axis=x;
+run;
+```
+:::
+
+The last observed year of GDP, 2007, no longer corresponds to observation 26 of the original data but to case 23, since lagging the variable $Y$ removed the first 3 years. So 2007 corresponds to case 23, and the forecasts for 2008 and 2009 correspond to the fitted values for cases 24 and 25.
+
+## 4.12 Distributed-lag models {#sec-distributed-lags}
+
+In the autoregressive model of order $p$, $Y$ is explained by itself lagged up to period $t-p$, but a more complex model might also include other explanatory variables $X$, lagged or not, for example
+
+$$
+Y_{t}=\alpha +\beta_{1}Y_{t-1}+\beta_{2}Y_{t-2}+\gamma_{0}X_{t}+\gamma_{1}X_{t-1}
+\tag{4.14}
+$$
+
+In the simplest case only $X$, lagged for some periods, might be present; we then have a distributed-lag model of the form
+
+$$
+Y_{t}=\alpha +\gamma_{0}X_{t}+...+\gamma_{k}X_{t-k}+...+\gamma_{K}X_{t-K}
+\tag{4.15}
+$$
+
+with $k=0,...,K$.
+
+We load a company's data from the file *corsi.csv*, on losses in dollars due to workplace accidents (*perdite*) and on the hours of accident-prevention training given to employees (*orecorsi*). We estimate a distributed-lag model of losses on hours up to lag 4, over 60 months (5 years) of observations.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+corsi <- read.csv2("data/corsi.csv")
+attach(corsi)
+y <- perdite[5:60]; xx <- embed(orecorsi, 5)
+colnames(xx) <- c("lag0","lag1","lag2","lag3","lag4")
+modx <- lm(y~xx)
+summary(modx)
+```
+
+### Python
+
+```{python}
+corsi = pd.read_csv("data/corsi.csv", sep=";", decimal=",")
+dl = pd.DataFrame({"y": corsi["perdite"]})
+for k in range(5):
+    dl[f"lag{k}"] = corsi["orecorsi"].shift(k)
+dl = dl.dropna()
+modx = smf.ols("y ~ lag0 + lag1 + lag2 + lag3 + lag4", data=dl).fit()
+print(modx.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc import datafile="data/corsi.csv" out=corsi dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data corsi_dl;
+  set corsi;
+  lag0 = orecorsi; lag1 = lag1(orecorsi); lag2 = lag2(orecorsi);
+  lag3 = lag3(orecorsi); lag4 = lag4(orecorsi);
+  if not missing(lag4);
+run;
+proc reg data=corsi_dl outest=b_dl;
+  model perdite = lag0-lag4;
+run;
+quit;
+```
+:::
+
+With no training hours, monthly losses are around $91,173, while they fall (other things being equal) by about $132 for an extra hour of training in the same month, by $450 for an extra hour given in the previous month, by $423 two months before, by $187 three months before and by $28 in the fourth month, although this last estimate is not significant. We can conclude that the company should repeat the training courses regularly every three or at most four months, while the largest effect occurs 1-2 months after the training. The total reduction in losses, combining the effects from the current month up to four months later, is about $1,219
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+sum(modx$coeff[2:6])
+detach(corsi)
+```
+
+### Python
+
+```{python}
+print(modx.params.iloc[1:6].sum())
+```
+
+### SAS
+
+```sas
+data _null_;
+  set b_dl;
+  effetto_totale = sum(of lag0-lag4);
+  put effetto_totale= 10.2;
+run;
+```
+:::
+
+while the choice of the most appropriate lag to include in the specification could follow a logic similar to that used for the autoregressive model.
+
+## 4.13 Built-in functions: classical decomposition {#sec-decompose}
+
+The software also provides built-in functions that simplify some of the calculations we have so far carried out with many commands. First of all, it is advisable to tell **R**, through `ts()`, which object is to be treated as a time series. For the file *prodotto.csv* we have
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+prodotto <- read.csv2("data/prodotto.csv")$prodotto
+prodotto
+y <- ts(prodotto, frequency=12, start=c(2001,1))
+y
+```
+
+### Python
+
+```{python}
+y = pd.Series(prod["prodotto"].to_numpy(),
+              index=pd.period_range("2001-01", periods=72, freq="M"))
+print(y.head(12))
+```
+
+### SAS
+
+```sas
+/* in SAS a time series is a dataset with a date variable */
+data prod_ts;
+  set prod;
+  data = intnx('month', '01jan2001'd, casi - 1);
+  format data monyy7.;
+run;
+```
+:::
+
+Note the syntax, with the seasonal frequency and the start of the series. Now `decompose()` gives an immediate decomposition of the series. Assuming a multiplicative model (attribute abbreviated as *mult*), with the trend-cycle (simply "trend" in Figure 4.12) obtained from a centred moving average of order 12, we write
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.12 – Classical decomposition of the series"
+#| fig-height: 7
+scomponi <- decompose(y, type="mult")
+plot(scomponi)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.12 – Classical decomposition of the series"
+#| results: hide
+from statsmodels.tsa.seasonal import seasonal_decompose
+
+scomponi = seasonal_decompose(y.to_timestamp(), model="multiplicative", period=12)
+fig = scomponi.plot()
+fig.set_size_inches(5, 7)
+plt.show()
+```
+
+### SAS
+
+```sas
+/* PROC TIMESERIES (SAS/ETS): classical multiplicative decomposition */
+proc timeseries data=prod_ts outdecomp=scomponi plots=(series decomp);
+  id data interval=month;
+  var prodotto;
+  decomp tcc sc ic sa / mode=mult;
+run;
+```
+:::
+
+which gives Figure 4.12, while the object *scomponi* stores the values of the components.
+
+## 4.14 Decomposition with LOESS {#sec-stl}
+
+Another way of analysing the trend within the classical approach is local regression, or LOESS. The resulting regression model is non-parametric, because the function does not belong to a specific parametric class but only requires certain regularity conditions; this is the solution adopted by the `stl()` command, which produces Figure 4.13.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.13 – Decomposition of the series using LOESS"
+#| fig-height: 7
+scomponi2 <- stl(y, s.window="periodic")
+plot(scomponi2, main="Decomposition with loess")
+scomponi2$time.series
+```
+
+### Python
+
+```{python}
+from statsmodels.tsa.seasonal import STL
+
+# R's s.window="periodic" means constant seasonality:
+# in statsmodels it is approximated by a very wide seasonal window
+scomponi2 = STL(y.to_timestamp(), period=12, seasonal=999).fit()
+print(pd.DataFrame({"seasonal": scomponi2.seasonal, "trend": scomponi2.trend,
+                    "remainder": scomponi2.resid}).round(4).head(12))
+```
+
+```{python}
+#| fig-cap: "Figure 4.13 – Decomposition of the series using LOESS"
+#| results: hide
+fig = scomponi2.plot()
+fig.set_size_inches(5, 7)
+plt.show()
+```
+
+### SAS
+
+```sas
+/* SAS has no direct equivalent of stl(); a decomposition into trend,
+   seasonal and irregular components can be obtained with PROC UCM (SAS/ETS) */
+proc ucm data=prod_ts;
+  id data interval=month;
+  model prodotto;
+  irregular;
+  level;
+  slope;
+  season length=12 type=trig;
+  estimate;
+  forecast plot=decomp;
+run;
+```
+:::
+
+## 4.15 Trigonometric seasonality {#sec-trigonometric}
+
+Another interesting option is to represent the series through a trend-cycle component $f(t)$ and a seasonal component built from sine and cosine functions. For the object *prodotto*, with monthly seasonality, we could estimate the model
+
+$$
+Y=\alpha_{0}+\alpha_{1}t+\alpha_{2}t^{2}+\beta_{1}\cos (t2\pi /12)+\beta_{2}\sin (t2\pi /12)
+\tag{4.16}
+$$
+
+with
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+tempo <- c(1:72); tempo2 <- tempo^2
+coseno <- cos(2*pi/12*tempo)
+seno <- sin(2*pi/12*tempo)
+modell <- lm(prodotto~tempo+tempo2+coseno+seno)
+summary(modell)
+```
+
+### Python
+
+```{python}
+trig = pd.DataFrame({"prodotto": prod["prodotto"], "tempo": np.arange(1, 73)})
+trig["coseno"] = np.cos(2 * np.pi / 12 * trig["tempo"])
+trig["seno"] = np.sin(2 * np.pi / 12 * trig["tempo"])
+modell = smf.ols("prodotto ~ tempo + I(tempo**2) + coseno + seno", data=trig).fit()
+print(modell.summary())
+```
+
+### SAS
+
+```sas
+data trig;
+  set prod;
+  tempo = casi; tempo2 = tempo**2;
+  coseno = cos(2*constant('pi')/12*tempo);
+  seno   = sin(2*constant('pi')/12*tempo);
+run;
+proc reg data=trig outest=b_trig;
+  model prodotto = tempo tempo2 coseno seno;
+  output out=fit_trig p=yhat;
+run;
+quit;
+```
+:::
+
+The corresponding Figure 4.14 is obtained with the following commands.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.14 – Sine-cosine seasonality (lower dashed line), second-order trend-cycle (upper dashed line) and original series (solid line)"
+stagione <- modell$coeff[4]*coseno + modell$coeff[5]*seno
+trendciclo <- modell$fitted - stagione
+ts.plot(y, stagione, trendciclo, main="Sine-cosine decomposition",
+        gpars=list(lty=c(1:3)))
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figure 4.14 – Sine-cosine seasonality (lower dashed line), second-order trend-cycle (upper dashed line) and original series (solid line)"
+#| results: hide
+stagione = modell.params["coseno"] * trig["coseno"] + modell.params["seno"] * trig["seno"]
+trendciclo = modell.fittedvalues - stagione
+plt.figure(figsize=(5, 5))
+plt.plot(trig["tempo"], trig["prodotto"], "-", color="black")
+plt.plot(trig["tempo"], stagione, "--", color="black")
+plt.plot(trig["tempo"], trendciclo, ":", color="black")
+plt.title("Sine-cosine decomposition")
+plt.show()
+```
+
+### SAS
+
+```sas
+data fig414;
+  if _n_ = 1 then set b_trig(keep=coseno seno rename=(coseno=b_cos seno=b_sin));
+  set fit_trig;
+  stagione = b_cos*coseno + b_sin*seno;
+  trendciclo = yhat - stagione;
+run;
+proc sgplot data=fig414;
+  title "Sine-cosine decomposition";
+  series x=tempo y=prodotto;
+  series x=tempo y=stagione   / lineattrs=(pattern=dash);
+  series x=tempo y=trendciclo / lineattrs=(pattern=dot);
+run;
+```
+:::
+
+## 4.16 The Holt-Winters method {#sec-holt-winters}
+
+Finally, **R** also offers built-in functions for exponential smoothing. The smoothing model presented earlier is rather simple and should not be used for forecasting series with a marked trend and/or seasonal fluctuations. In such cases the Holt-Winters procedure is preferable; with a multiplicative seasonal component, the forecast $F$ at time $t+Q$ becomes
+
+$$
+F_{t+Q}=(a_{t}+b_{t}Q)S_{t-L+Q}
+\tag{4.17}
+$$
+
+with
+
+$$
+\begin{aligned}
+a_{t} &= M_{t}=\alpha (x_{t}/S_{t-L})+(1-\alpha )(M_{t-1}+b_{t-1}) \\
+b_{t} &= \beta (M_{t}-M_{t-1})+(1-\beta )b_{t-1} \\
+S_{t} &= \gamma (x_{t}/M_{t})+(1-\gamma )S_{t-L}
+\end{aligned}
+$$
+
+and $0<\alpha <1$, $0<\beta <1$, $0<\gamma <1$, where $L$ is the length of the seasonal period (4 for quarters, 12 for months, etc.); additive seasonality can also be assumed, with some changes to the formulas not reported here.
+
+Applying Holt-Winters to the series *prodotto* gives the following results. Since they were not set manually, the three parameters $\alpha$, $\beta$ and $\gamma$ are chosen automatically by the algorithm through a specific optimisation procedure.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+y <- ts(prodotto, frequency=12, start=c(2001,1))
+hwm <- HoltWinters(y, seasonal="mult")
+hwm$alpha; hwm$beta; hwm$gamma
+round(hwm$coeff, 3)
+```
+
+### Python
+
+```{python}
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+hwm = ExponentialSmoothing(y.to_timestamp(), trend="add", seasonal="mul",
+                           seasonal_periods=12).fit()
+print(hwm.params["smoothing_level"], hwm.params["smoothing_trend"],
+      hwm.params["smoothing_seasonal"])
+```
+
+### SAS
+
+```sas
+/* PROC ESM (SAS/ETS): multiplicative Winters method, estimated parameters */
+proc esm data=prod_ts outfor=prev_hw lead=12 print=(estimates) plot=forecasts;
+  id data interval=month;
+  forecast prodotto / model=multwinters;
+run;
+```
+:::
+
+::: {.callout-note}
+The optimal parameter values depend on the criterion and starting values used by the algorithm: R (`HoltWinters()`), *statsmodels* and SAS (`PROC ESM`) make different choices, so the estimates of $\alpha$, $\beta$ and $\gamma$, and hence the forecasts, may differ slightly.
+:::
+
+The forecast of the 12 values for 2007 is shown in Figure 4.15. The plot is obtained by running the following commands.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figure 4.15 – Observed values (solid line), Holt-Winters smoothing (dotted line) and forecast (dashed line)"
+plot(y, xlim=c(2001,2008), ylim=c(8,20), main="Holt-Winters")
+lines((hwm$fitted)[,1], type="o")
+pred <- predict(hwm, n.ahead=12)
+lines(pred, type="c")
+pred
+```
+
+### Python
+
+```{python}
+pred = hwm.forecast(12)
+print(pred.round(3))
+```
+
+```{python}
+#| fig-cap: "Figure 4.15 – Observed values (solid line), Holt-Winters smoothing (dotted line) and forecast (dashed line)"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.plot(y.to_timestamp(), color="black")
+plt.plot(hwm.fittedvalues, "o-", color="black", markerfacecolor="none", markersize=3)
+plt.plot(pred, "--", color="black")
+plt.ylim(8, 20)
+plt.title("Holt-Winters")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=prev_hw;
+  title "Holt-Winters";
+  series x=data y=ACTUAL;
+  series x=data y=PREDICT / lineattrs=(pattern=dash);
+run;
+```
+:::
+
+Seasonal fluctuations aside, the forecast for 2007 points to a collapse of the series, owing to a sharply decreasing trend.

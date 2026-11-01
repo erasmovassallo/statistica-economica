@@ -1,0 +1,1917 @@
+---
+title: "5 Specificazione di modelli lineari economici"
+---
+
+## 5.1 Il modello di regressione multipla e le statistiche di adattamento {#sec-regressione}
+
+Nelle sezioni precedenti del testo abbiamo più volte richiamato il modello di regressione per analisi di trend o per estrapolazioni a fini previsivi. L'ampio utilizzo che facciamo dei modelli lineari, non soltanto nell'ambito delle serie storiche, suggerisce una trattazione dedicata per affrontare, da un lato, i quesiti lasciati finora senza risposta e, dall'altro, per presentare in modo unitario e generale l'importante questione della specificazione dei modelli e dell'interpretazione delle stime corrispondenti.
+
+A tal proposito, il file *abitazioni.csv* contiene prezzi di vendita, dimensione, numero di camere da letto, numero di bagni e numero di ripostigli di 546 abitazioni. Ipotizzato il modello $Y_{i}=\alpha +\beta X_{i}+\varepsilon_{i}$ per $i=1,...,n$, la stima OLS tramite la funzione `lm()` conduce ai seguenti risultati.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+abit <- read.csv2("data/abitazioni.csv")
+attach(abit)
+modrg <- lm(prezzo~dimensione+letto+bagno+ripostiglio)
+summary(modrg)
+```
+
+### Python
+
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from scipy import stats
+
+abit = pd.read_csv("data/abitazioni.csv", sep=";")
+modrg = smf.ols("prezzo ~ dimensione + letto + bagno + ripostiglio", data=abit).fit()
+print(modrg.summary())
+```
+
+### SAS
+
+```sas
+proc import datafile="data/abitazioni.csv" out=abit dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+
+proc reg data=abit;
+  modrg: model prezzo = dimensione letto bagno ripostiglio;
+run;
+quit;
+```
+:::
+
+Le stime ottenute indicano la significatività di tutte le variabili, con l'eccezione dell'intercetta, che peraltro assume un improbabile valore negativo. Le altre stime assumono valori positivi, indicando che a un aumento delle $X$ consegue un aumento del prezzo $Y$ delle case. In particolare, se la dimensione della proprietà è espressa in metri quadrati e il prezzo in dollari, diremo che, a parità di altre condizioni (cioè delle altre variabili esplicative), a un aumento di 1 m² del lotto corrisponde un aumento del prezzo delle case di circa 5,43 dollari. Allo stesso modo, fermo restando le altre variabili esplicative, una camera da letto in più accresce il prezzo delle case mediamente di 2.825 dollari, anche se la capacità esplicativa di questa variabile appare meno rilevante di quella della dimensione del lotto (ha un p-value più alto); analoghe considerazioni possono svolgersi per le altre stime. Il p-value può essere letto come il più basso livello di significatività al quale viene rifiutata l'ipotesi nulla che, in questo caso, corrisponde alla condizione che il singolo coefficiente sia nullo. In altre parole, è ben poco probabile che la dimensione del lotto non influenzi i prezzi del nostro campione di abitazioni e che quanto osservato derivi soltanto dall'effetto del caso (il p-value è infatti 0,000), mentre più rischiosa è un'analoga affermazione per il numero di camere da letto (il p-value è 0,020).
+
+Il *residual standard error* che appare nella finestra di output è
+
+$$
+rse\equiv s=\left(\sum (Y-\hat{Y})^{2}/df\right)^{1/2}
+\tag{5.1}
+$$
+
+ossia, in forma esplicita o più sinteticamente
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+y <- prezzo; ym <- mean(y)
+yc <- modrg$fitted
+n <- length(y)
+u2 <- (y-yc)^2
+dof <- n-5
+rse <- (sum(u2)/dof)^(0.5); rse
+sqrt(deviance(modrg)/df.residual(modrg))
+```
+
+### Python
+
+```{python}
+y = abit["prezzo"]; ym = y.mean()
+yc = modrg.fittedvalues
+n = len(y)
+dof = n - 5
+rse = np.sqrt(((y - yc) ** 2).sum() / dof)
+print(rse, np.sqrt(modrg.mse_resid))
+```
+
+### SAS
+
+```sas
+/* "Root MSE" nell'output di PROC REG è il residual standard error */
+proc reg data=abit outest=est_rg noprint;
+  model prezzo = dimensione letto bagno ripostiglio / rsquare adjrsq;
+run;
+quit;
+proc print data=est_rg noobs; var _RMSE_ _RSQ_ _ADJRSQ_; run;
+```
+:::
+
+Il calcolo del coefficiente di determinazione
+
+$$
+R^{2}=rgss/tss
+\tag{5.2}
+$$
+
+è piuttosto agevole, dove
+
+$$
+rgss=\sum (\hat{Y}-\bar{Y})^{2} \quad , \quad tss=\sum (Y-\bar{Y})^{2}
+\tag{5.3}
+$$
+
+e $tss=rgss+ssr$, con $ssr=\sum (Y-\hat{Y})^{2}$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+rgss <- sum((yc-ym)^2)
+tss <- sum((y-ym)^2)
+Rqu <- rgss/tss
+Rqu
+```
+
+### Python
+
+```{python}
+rgss = ((yc - ym) ** 2).sum()
+tss = ((y - ym) ** 2).sum()
+Rqu = rgss / tss
+print(Rqu, modrg.rsquared)
+```
+
+### SAS
+
+```sas
+/* le somme dei quadrati sono nella tabella "Analysis of Variance" di PROC REG:
+   Model = rgss, Error = ssr, Corrected Total = tss */
+```
+:::
+
+$R^{2}$ misura la proporzione della varianza totale di $Y$ che può essere spiegata da $X$ per il tramite del modello lineare; valori alti indicano un buon adattamento del modello ai dati osservati.
+
+Tuttavia, quando si utilizza un modello di regressione multipla è opportuno correggere il coefficiente di determinazione, in modo che tenga conto del numero delle variabili esplicative coinvolte nel calcolo. Infatti, $R^{2}$ tende a crescere per il solo fatto di aggiungere variabili, e quindi la correzione diventa necessaria se lo si utilizza per confrontare modelli lineari con un numero diverso di esplicative. Il coefficiente $R^{2}$ corretto (o aggiustato) è uguale a
+
+$$
+R_{c}^{2}=1-[(1-R^{2})(n-1)/df]
+\tag{5.4}
+$$
+
+La statistica $F$ riguarda invece il test di significatività dell'intera regressione, in cui l'ipotesi nulla è $\beta_{1}=\beta_{2}=\beta_{3}=\beta_{4}=0$; la si può calcolare anche ricordando la relazione tra $F$ e $R^{2}$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+Rqa <- 1-((1-Rqu)*(n-1)/dof)
+Rqa
+mrss <- rgss/4
+ssr <- tss-rgss
+mssr <- ssr/dof
+F <- mrss/mssr
+F
+Fcrit <- qf(0.05, 4, 541, lower.tail=FALSE)
+Fcrit
+(Rqu/4)/((1-Rqu)/dof)
+```
+
+### Python
+
+```{python}
+Rqa = 1 - (1 - Rqu) * (n - 1) / dof
+F = (rgss / 4) / ((tss - rgss) / dof)
+Fcrit = stats.f.ppf(0.95, 4, 541)
+print(Rqa, F, Fcrit, (Rqu / 4) / ((1 - Rqu) / dof))
+```
+
+### SAS
+
+```sas
+data _null_;
+  Fcrit = finv(0.95, 4, 541);   /* valore critico della F */
+  put Fcrit=;
+run;
+```
+:::
+
+Come segnalato dai p-value, sia la statistica $F$ sia le stime $\beta$ appaiono significative, il che implica valori osservati delle statistiche test all'interno delle regioni di rifiuto dell'ipotesi nulla.
+
+Vista la relazione tra $F$ e $R^{2}$, possiamo trovare un valore critico anche per il coefficiente di determinazione, rispetto all'ipotesi nulla che $R^{2}$ sia uguale a 0
+
+$$
+R_{t}^{2}=((k-1)F_{t})/((k-1)F_{t}+(n-k))
+\tag{5.5}
+$$
+
+dove $k$ è il numero dei parametri del modello, $n$ il numero delle osservazioni e $F_{t}$ il valore critico della statistica $F$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+RqCr <- ((5-1)*Fcrit)/((5-1)*Fcrit+(546-5)); RqCr
+```
+
+### Python
+
+```{python}
+print(((5 - 1) * Fcrit) / ((5 - 1) * Fcrit + (546 - 5)))
+```
+
+### SAS
+
+```sas
+data _null_;
+  Ft = finv(0.95, 4, 541);
+  RqCr = ((5-1)*Ft) / ((5-1)*Ft + (546-5));
+  put RqCr=;
+run;
+```
+:::
+
+Il coefficiente di determinazione è al di là del valore critico; pertanto, al 95% di confidenza si rifiuta l'ipotesi nulla di $R^{2}=0$.
+
+## 5.2 Stime e intervalli di confidenza in forma matriciale {#sec-matriciale}
+
+Similmente a quanto ottenuto finora con `summary()`, potremmo calcolare le stime dei coefficienti del modello con i relativi errori standard, le statistiche t di Student e i p-value con una procedura, per così dire, manuale, tramite i comandi seguenti; in modo analogo potremmo ottenere l'intervallo di confidenza al 95%.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+intercetta <- rep(1,n)
+xx <- cbind(intercetta, dimensione, letto, bagno, ripostiglio)
+xtx <- solve(t(xx)%*%xx)
+stime <- xtx%*%t(xx)%*%y
+sec <- sqrt(diag(xtx))*rse
+tstu <- stime/sec
+pvalue <- 2*pt(-abs(tstu), dof)
+matrice <- cbind(stime, sec, tstu, pvalue)
+colnames(matrice) <- c("stime","errori","test-t","p-value")
+round(matrice,3)
+tdx <- qt(0.975, dof)
+infe <- stime-tdx*sec; supe <- stime+tdx*sec
+intervallo <- cbind(infe, supe)
+colnames(intervallo) <- c("inferiore","superiore")
+round(intervallo,3)
+```
+
+### Python
+
+```{python}
+X = np.column_stack([np.ones(n), abit[["dimensione", "letto", "bagno", "ripostiglio"]]])
+xtx = np.linalg.inv(X.T @ X)
+stime = xtx @ X.T @ y.to_numpy()
+sec = np.sqrt(np.diag(xtx)) * rse
+tstu = stime / sec
+pvalue = 2 * stats.t.cdf(-np.abs(tstu), dof)
+tdx = stats.t.ppf(0.975, dof)
+matrice = pd.DataFrame({"stime": stime, "errori": sec, "test-t": tstu, "p-value": pvalue,
+                        "inferiore": stime - tdx * sec, "superiore": stime + tdx * sec},
+                       index=["intercetta", "dimensione", "letto", "bagno", "ripostiglio"])
+print(matrice.round(3))
+```
+
+### SAS
+
+```sas
+proc iml;
+  use abit;
+  read all var {dimensione letto bagno ripostiglio} into X0;
+  read all var {prezzo} into y;
+  close abit;
+  n = nrow(X0);  X = j(n,1,1) || X0;
+  xtx = inv(X`*X);
+  stime = xtx*X`*y;
+  dof = n - ncol(X);
+  rse = sqrt(ssq(y - X*stime)/dof);
+  sec = sqrt(vecdiag(xtx))*rse;
+  tstu = stime/sec;
+  pvalue = 2*cdf("T", -abs(tstu), dof);
+  tdx = quantile("T", 0.975, dof);
+  matrice = stime || sec || tstu || pvalue || (stime - tdx*sec) || (stime + tdx*sec);
+  print matrice[colname={"stime" "errori" "test-t" "p-value" "inferiore" "superiore"}
+                rowname={"intercetta" "dimensione" "letto" "bagno" "ripostiglio"} format=12.3];
+quit;
+```
+:::
+
+Oppure, richiamando lo specifico comando:
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+confint(modrg)
+```
+
+### Python
+
+```{python}
+print(modrg.conf_int())
+```
+
+### SAS
+
+```sas
+proc reg data=abit;
+  model prezzo = dimensione letto bagno ripostiglio / clb;   /* clb = intervalli di confidenza */
+run;
+quit;
+```
+:::
+
+È interessante notare che l'intervallo di confidenza per il numero delle camere da letto è piuttosto ampio, tra un minimo di 438 e un massimo di 5.211 dollari; come dire che l'effetto marginale di 2.825 dollari sul prezzo delle case per una camera da letto in più è poco preciso e richiederebbe una maggiore cautela interpretativa.
+
+## 5.3 Omissione di variabili rilevanti {#sec-omissione}
+
+Proviamo adesso a stimare il prezzo delle case come funzione unicamente del numero delle camere da letto.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+mod1 <- lm(prezzo~letto)
+summary(mod1)
+```
+
+### Python
+
+```{python}
+mod1 = smf.ols("prezzo ~ letto", data=abit).fit()
+print(mod1.summary().tables[1], "\nR2 corretto:", mod1.rsquared_adj)
+```
+
+### SAS
+
+```sas
+proc reg data=abit;
+  mod1: model prezzo = letto;
+run;
+quit;
+```
+:::
+
+La stima puntuale è ora molto diversa: una camera da letto in più spingerebbe in alto il prezzo delle case di circa 13.270 dollari. In realtà la capacità esplicativa del modello si è ridotta, perché abbiamo escluso variabili significative sia dal punto di vista economico sia (nel caso, soprattutto) dal punto di vista statistico (anche se un aspetto è collegato all'altro); il coefficiente di determinazione corretto $R_{c}^{2}$ indica il peggioramento del modello, passando da 0,5321 a 0,1327. L'effetto marginale così elevato (13.270 dollari) rispetto al modello completo (2.825 dollari) nasconde proprio l'omissione di variabili importanti; l'errore è interpretare i 13.270 dollari come un effetto dovuto interamente alla camera da letto in più, quando invece una camera aggiuntiva è tipica di case più grandi, talvolta con maggiori spazi esterni, con più bagni, più ripostigli, ecc. In effetti, se *dati* è il data frame che contiene le variabili, la correlazione tra di esse denota l'esistenza di un'interdipendenza positiva.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+dati <- abit
+round(cor(dati),3)
+```
+
+### Python
+
+```{python}
+print(abit.corr().round(3))
+```
+
+### SAS
+
+```sas
+proc corr data=abit noprob;
+  var prezzo dimensione letto bagno ripostiglio;
+run;
+```
+:::
+
+L'omissione di variabili esplicative rilevanti genera una distorsione dello stimatore $\beta$, tanto più forte quanto maggiore è la relazione che esiste tra le esplicative incluse e quelle escluse, poiché le variabili omesse agiscono tramite la correlazione che hanno con quelle incluse nel modello. La soluzione al problema non è però aggiungere quante più variabili possibile, esistendo un trade-off tra aggiunta di variabili e complicazione del modello, con relativa difficoltà interpretativa e talvolta anche di stima. Semmai, lo sforzo è aggiungere le variabili indicate dalla letteratura economica e dall'esperienza dello studioso come di maggiore rilievo, senza perdere di vista i vantaggi di un modello parsimonioso e accettando comunque il rischio di escludere qualche variabile importante; qualcuna sfuggirà in ogni caso, se non per errore dello studioso, magari per indisponibilità dell'informazione statistica.
+
+Stimiamo un nuovo modello includendo soltanto le prime due esplicative, ossia la dimensione del lotto e il numero di camere da letto. Evidentemente la dimensione del lotto è una variabile importante; tramite la relazione diretta tra le due esplicative verifichiamo l'errore a cui andremmo incontro escludendo *dimensione*.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modb <- lm(prezzo~dimensione+letto)
+summary(modb)
+modc <- lm(dimensione~letto)
+coef(modc)
+1.057e+04 + 6.053e+00 * 446.5
+coef(modb)["letto"] + coef(modb)["dimensione"] * coef(modc)["letto"]
+```
+
+### Python
+
+```{python}
+modb = smf.ols("prezzo ~ dimensione + letto", data=abit).fit()
+print(modb.summary().tables[1])
+modc = smf.ols("dimensione ~ letto", data=abit).fit()
+print(modc.params)
+print(modb.params["letto"] + modb.params["dimensione"] * modc.params["letto"])
+```
+
+### SAS
+
+```sas
+proc reg data=abit;
+  modb: model prezzo = dimensione letto;
+  modc: model dimensione = letto;
+run;
+quit;
+```
+:::
+
+Cioè, a meno delle approssimazioni numeriche, il coefficiente di regressione del modello `mod1`, con il solo numero di camere da letto quale esplicativa del prezzo delle abitazioni, è uguale all'analogo coefficiente del modello `modb`, con *dimensione* e *letto* contemporaneamente presenti, più una distorsione pari a $6{,}053 \cdot 446{,}5$, data dal prodotto tra il coefficiente di *dimensione* in `modb` e quello di *letto* nella relazione diretta tra le esplicative (modello `modc`); questa distorsione si annulla se la correlazione tra le variabili *letto* e *dimensione* è nulla.
+
+Il rischio contrario all'esclusione di variabili importanti è l'inclusione nel modello di variabili poco rilevanti dal punto di vista statistico. La presenza nel modello di una variabile irrilevante implica in genere una correlazione bassa, ma raramente nulla, con le altre esplicative incluse; per quanto bassa, questa correlazione incide sulla varianza degli stimatori: si può dimostrare che l'inclusione di una variabile irrilevante non incide sulla correttezza degli stimatori delle altre esplicative, ma ne accresce la varianza e quindi riduce la precisione delle stime.
+
+## 5.4 Multicollinearità {#sec-multicollinearita}
+
+Come è ovvio, tutto è correlato con tutto. Ma quando la correlazione tra le esplicative è troppo alta può sorgere il problema statistico della multicollinearità. In presenza di multicollinearità il modello non riesce ad attribuire adeguatamente il peso statistico alle singole esplicative e, nei casi limite, segnala una forte dipendenza della $Y$ dalle $X$, con un'elevata statistica $F$ e un elevato $R^{2}$, ma non segnala la significatività statistica delle singole esplicative; ossia, il valore empirico delle statistiche $t$ è basso e cade nella regione di accettazione dell'ipotesi nulla: una contraddizione evidente.
+
+Quando vi è forte collinearità, una prima banale operazione è eliminare le variabili esplicative che creano ridondanza statistica. Ma se le variabili sono indicate dalla teoria economica e la loro esclusione ha una giustificazione statistica ma non economica? In questi casi, effettivamente la gran parte, la soluzione non appare semplice. Si potrebbero trasformare le variabili, provare a sostituirle con indicatori diversi o tentarne una combinazione, generando una nuova variabile da mettere al posto di quelle che creavano ridondanza, ma anche qui si rischia di togliere significato economico al modello.
+
+Costruiamo due variabili fittizie dotate di forte collinearità. La variabile dipendente *prezzo* è correlata a entrambe e potremmo trovare ragionevole stimare un modello che le includa tra le esplicative.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+var1 <- dimensione
+var2 <- log(dimensione)/2
+cor(var1, var2)
+cor(prezzo, var1); cor(prezzo, var2)
+modcor <- lm(prezzo~var1+var2)
+round(summary(modcor)$coeff, 4)
+```
+
+### Python
+
+```{python}
+abit["var1"] = abit["dimensione"]
+abit["var2"] = np.log(abit["dimensione"]) / 2
+print(abit[["var1", "var2", "prezzo"]].corr().round(4))
+modcor = smf.ols("prezzo ~ var1 + var2", data=abit).fit()
+print(modcor.summary().tables[1])
+```
+
+### SAS
+
+```sas
+data abit;
+  set abit;
+  var1 = dimensione;
+  var2 = log(dimensione)/2;
+run;
+proc corr data=abit noprob; var var1 var2 prezzo; run;
+proc reg data=abit;
+  modcor: model prezzo = var1 var2 / vif tol;   /* VIF e tolleranza */
+run;
+quit;
+```
+:::
+
+Notiamo che `var1` (*dimensione*) non è significativa; sappiamo che così non è:
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+round(summary(lm(prezzo~var1))$coeff, 4)
+```
+
+### Python
+
+```{python}
+print(smf.ols("prezzo ~ var1", data=abit).fit().summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc reg data=abit;
+  model prezzo = var1;
+run;
+quit;
+```
+:::
+
+Il modello `modcor` con le due esplicative non riesce ad attribuire loro il giusto ruolo nella spiegazione del prezzo, proprio perché tra di esse esiste una forte correlazione: vengono alterate la stima del coefficiente e la significatività statistica.
+
+Un modo rapido per capire se la correlazione tra le esplicative è pericolosamente alta si basa sulla statistica
+
+$$
+VIF_{j}=1/(1-R_{j}^{2})
+\tag{5.6}
+$$
+
+dove $R_{j}^{2}$ è il coefficiente di determinazione del modello in cui la $j$-esima esplicativa viene regredita sulle altre esplicative. La statistica VIF segue un criterio empirico per il quale, se $VIF_{j}>10$ (corrisponde a un $R^{2}$ oltre 0,90), la $X_{j}$ è considerata altamente correlata con le rimanenti esplicative. Poiché il *VIF* varia da 1 (assenza di collinearità) a infinito, è talvolta preferito il reciproco
+
+$$
+TOL=1/VIF
+\tag{5.7}
+$$
+
+noto come tolleranza; l'indice varia tra 0 (situazione di maggiore collinearità) e 1 (situazione di minore collinearità). Per il nostro esempio
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+r <- cor(var1, var2)
+vif <- 1/(1-(r^2)); tol <- 1/vif; vif; tol
+```
+
+### Python
+
+```{python}
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+Xv = sm.add_constant(abit[["var1", "var2"]])
+vif = variance_inflation_factor(Xv.to_numpy(), 1)
+print(vif, 1 / vif)
+```
+
+### SAS
+
+```sas
+/* VIF e TOL sono già nell'output di PROC REG con le opzioni / vif tol (vedi sopra) */
+```
+:::
+
+che denota un forte rischio di multicollinearità.
+
+Va comunque notato che i dati in serie storica tendono a essere correlati tra loro più facilmente dei dati in cross-section; sul punto torneremo più avanti, anche se va subito evidenziato che una situazione di forte correlazione non rappresenta sempre una condizione negativa. Ad esempio, il modello autoregressivo introdotto nel capitolo precedente, così come il modello a ritardi distribuiti, presentano spesso sintomi di multicollinearità. Ciò nonostante, la forte correlazione tra le esplicative (comunque entro certi limiti) non è un problema se non siamo specificamente interessati alle stime dei coefficienti, ma cerchiamo un modello che si adatti abbastanza bene ai dati e sia in grado di fornire una soddisfacente previsione a breve termine.
+
+## 5.5 Variabili centrate e standardizzate {#sec-standardizzate}
+
+Talvolta può essere opportuno ottenere le stime dei coefficienti dopo aver sottratto dalle variabili le relative medie o dopo averle standardizzate. Usiamo ancora i dati in *abitazioni.csv*, rilevando le informazioni sul prezzo delle case, la dimensione del lotto e il numero di camere da letto.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+nor <- lm(prezzo~dimensione+letto)
+pre <- prezzo-mean(prezzo)
+dim <- dimensione-mean(dimensione)
+let <- letto-mean(letto); med <- lm(pre~dim+let)
+pss <- pre/sd(prezzo); dss <- dim/sd(dimensione)
+lss <- let/sd(letto); sta <- lm(pss~dss+lss)
+round(summary(nor)$coeff,3); round(summary(med)$coeff,3); round(summary(sta)$coeff,3)
+detach(abit)
+```
+
+### Python
+
+```{python}
+v = abit[["prezzo", "dimensione", "letto"]]
+nor = smf.ols("prezzo ~ dimensione + letto", data=v).fit()
+med = smf.ols("prezzo ~ dimensione + letto", data=v - v.mean()).fit()
+sta = smf.ols("prezzo ~ dimensione + letto", data=(v - v.mean()) / v.std()).fit()
+for m in (nor, med, sta):
+    print(m.params.round(3).to_dict())
+```
+
+### SAS
+
+```sas
+/* l'opzione stb di PROC REG fornisce direttamente le stime standardizzate ("beta") */
+proc reg data=abit;
+  model prezzo = dimensione letto / stb;
+run;
+quit;
+```
+:::
+
+Sono riportati tre gruppi di stime. Il primo deriva dal modello tradizionale, mentre il secondo dalla trasformazione delle variabili dopo aver sottratto la media corrispondente: è interessante notare che nel secondo gruppo l'intercetta diventa nulla, mentre i $\beta$ non registrano alcun cambiamento. Nel terzo gruppo l'intercetta è ancora nulla, ma la standardizzazione delle variabili permette di ottenere stime "beta" dei coefficienti, cioè indipendenti dall'unità di misura delle variabili originarie. Pertanto, se volessimo confrontare tra loro l'importanza delle esplicative nell'influenzare il prezzo delle case, il riferimento al secondo gruppo di stime apparirebbe fuorviante, perché diversa è l'unità di misura delle $X$ corrispondenti; al contrario, poiché nel terzo gruppo le variabili sono standardizzate, potremo dire che una variazione di un'unità standard di *dss* provoca, rispetto a *lss*, una reazione nei prezzi standardizzati maggiore di circa il 68% (0,491/0,292=1,68).
+
+## 5.6 Variabili dummy nella regressione {#sec-dummy-regressione}
+
+Abbiamo introdotto le variabili dummy nel caso delle serie storiche classiche, a proposito della specificazione della componente stagionale. Generalizziamo adesso l'utilizzo di queste particolari variabili nei modelli di regressione multipla.
+
+Il file *case.csv* include altre informazioni sulle nostre 546 abitazioni; oltre al prezzo, sono ora riportate 5 variabili dummy che assumono valore 0 o 1 per l'assenza o la presenza di: viale d'accesso, sala giochi, cantina, impianto a gas, climatizzatori. Ipotizziamo che la presenza o meno di queste caratteristiche possa influenzare il prezzo delle case. Per semplicità, ci concentreremo sulle stime OLS del modello specificato con le sole prime due dummy quali regressori.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+case <- read.csv2("data/case.csv")
+attach(case)
+dum <- lm(prezzo~accesso+giochi)
+dum$coeff[1]+dum$coeff[2]*0+dum$coeff[3]*0
+dum$coeff[1]+dum$coeff[2]*1+dum$coeff[3]*0
+dum$coeff[1]+dum$coeff[2]*0+dum$coeff[3]*1
+dum$coeff[1]+dum$coeff[2]*1+dum$coeff[3]*1
+```
+
+### Python
+
+```{python}
+case = pd.read_csv("data/case.csv", sep=";")
+dum = smf.ols("prezzo ~ accesso + giochi", data=case).fit()
+combinazioni = pd.DataFrame({"accesso": [0, 1, 0, 1], "giochi": [0, 0, 1, 1]})
+print(dum.predict(combinazioni).round(2).to_numpy())
+```
+
+### SAS
+
+```sas
+proc import datafile="data/case.csv" out=case dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+proc glm data=case;
+  model prezzo = accesso giochi / solution;
+  estimate "senza accesso e giochi" intercept 1;
+  estimate "solo accesso"           intercept 1 accesso 1;
+  estimate "solo giochi"            intercept 1 giochi 1;
+  estimate "entrambi"               intercept 1 accesso 1 giochi 1;
+run;
+quit;
+```
+:::
+
+Il primo risultato riguarda il prezzo medio delle case senza viale d'accesso e senza sala giochi (47.099 dollari), il secondo quelle con il solo viale d'accesso (68.258 dollari), il terzo quelle con la sola sala giochi (63.122 dollari) e, infine, il quarto quelle con entrambi (84.282 dollari). Va subito notato che l'attribuzione del codice 0 invece di 1 è arbitraria, nel senso che 0 è logicamente applicato al caso di assenza e 1 a quello di presenza della specifica caratteristica, ma potremmo invertire le attribuzioni senza che nulla cambi ai fini interpretativi.
+
+L'uso di variabili dummy rende possibili diverse specificazioni; per esempio (per comodità di scrittura senza pedici e componente erratica residuale):
+
+a) simile al caso precedente, con soli effetti sull'intercetta: $Y=\alpha +cX+\beta D$
+b) con soli effetti sull'intensità della relazione tra $Y$ e $X$: $Y=\alpha +cX+\beta XD$
+c) con effetti sia sull'intercetta sia sull'inclinazione del modello: $Y=\alpha +cX+\beta D+\gamma XD$
+
+Ancora sul file *case.csv*, stimiamo l'ultimo modello (c) con *dimensione* e *clima*.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+dimcli <- dimensione*clima
+modwid <- lm(prezzo~dimensione+clima+dimcli)
+round(summary(modwid)$coef, 4)
+```
+
+### Python
+
+```{python}
+case["dimcli"] = case["dimensione"] * case["clima"]
+modwid = smf.ols("prezzo ~ dimensione + clima + dimcli", data=case).fit()
+print(modwid.summary().tables[1])
+```
+
+### SAS
+
+```sas
+data case; set case; dimcli = dimensione*clima; run;
+proc reg data=case;
+  modwid: model prezzo = dimensione clima dimcli;
+run;
+quit;
+```
+:::
+
+Ne consegue che la sola presenza di un impianto di climatizzazione non determina variazioni significative dei prezzi delle case (p-value 0,1703), ma accresce l'effetto della dimensione del lotto (*dimensione* e *clima* interagiscono tramite il loro prodotto *dimcli*). Infatti, senza impianto di climatizzazione, un incremento di 1 m² di lotto comporta un incremento medio del prezzo delle case di 5,02 dollari, ma se è presente un impianto di climatizzazione l'aumento è di 5,02+2,25=7,27 dollari al metro quadrato.
+
+La statistica t per la variabile *clima* suggerirebbe la sua esclusione dal modello. Dunque la nuova stima è:
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modnid <- lm(prezzo~dimensione+dimcli)
+round(summary(modnid)$coef, 4)
+```
+
+### Python
+
+```{python}
+modnid = smf.ols("prezzo ~ dimensione + dimcli", data=case).fit()
+print(modnid.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc reg data=case;
+  modnid: model prezzo = dimensione dimcli;
+run;
+quit;
+```
+:::
+
+## 5.7 Restrizioni sui parametri e test F {#sec-restrizioni}
+
+Il test $F$ appare particolarmente utile per valutare specifiche restrizioni sui parametri. Supponiamo di voler verificare se il coefficiente di *dimensione* e quello di *dimcli* possano considerarsi diversi per solo effetto del caso. Allora $Y=\alpha +\beta_{1}X_{1}+\beta_{2}X_{2}+e$ è il modello esteso, mentre $Y=\alpha +\beta_{1}(X_{1}+X_{2})+e$ è il modello ristretto da testare (ora c'è un solo $\beta$). Poiché
+
+$$
+\begin{gathered}F=((rsum-usum)/m)/(usum/(n-k))\equiv \\ \equiv ((r_{u}^{2}-r_{r}^{2})/m)/((1-r_{u}^{2})/(n-k))\end{gathered}
+\tag{5.8}
+$$
+
+dove $rsum$ è la somma dei quadrati dei residui del modello ristretto e $usum$ l'analoga per il modello non ristretto (o esteso), con $m$ pari al numero di restrizioni e $k$ al numero di parametri del modello esteso, avremo
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+n <- nrow(case)
+riduz <- dimensione+dimcli
+modris <- lm(prezzo~riduz)
+round(summary(modris)$coeff, 4)
+usum <- anova(modnid)$Sum[3]
+rsum <- anova(modris)$Sum[2]
+Frestr <- ((rsum-usum)/1)/(usum/(n-3))
+Frestr
+smodnid <- summary(modnid)
+smodris <- summary(modris)
+ru <- smodnid$r.square
+rr <- smodris$r.square
+((ru-rr)/1)/((1-ru)/(n-3))
+```
+
+### Python
+
+```{python}
+n = len(case)
+case["riduz"] = case["dimensione"] + case["dimcli"]
+modris = smf.ols("prezzo ~ riduz", data=case).fit()
+print(modris.params)
+usum, rsum = modnid.ssr, modris.ssr
+Frestr = ((rsum - usum) / 1) / (usum / (n - 3))
+print(Frestr, ((modnid.rsquared - modris.rsquared) / 1) / ((1 - modnid.rsquared) / (n - 3)))
+```
+
+### SAS
+
+```sas
+/* il test della restrizione beta(dimensione) = beta(dimcli) si esegue
+   direttamente con l'istruzione TEST di PROC REG */
+proc reg data=case;
+  model prezzo = dimensione dimcli;
+  uguali: test dimensione = dimcli;
+run;
+quit;
+```
+:::
+
+Il risultato porta, anche se di poco, a rifiutare l'ipotesi nulla di uguaglianza dei coefficienti con un livello di confidenza del 95%.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+qf(0.95, 1, n-3)
+pf(Frestr, 1, n-3, lower.tail=FALSE)
+```
+
+### Python
+
+```{python}
+print(stats.f.ppf(0.95, 1, n - 3), stats.f.sf(Frestr, 1, n - 3))
+print(modnid.f_test("dimensione = dimcli"))
+```
+
+### SAS
+
+```sas
+data _null_;
+  Fcrit = finv(0.95, 1, 546-3);
+  put Fcrit=;
+run;
+```
+:::
+
+Notiamo l'uso del comando `anova()` per ottenere facilmente la somma dei quadrati dei residui del modello stimato. Nel caso di `modnid` abbiamo la tabella seguente; dalla somma dei quadrati e dai gradi di libertà è facile ottenere la relativa media e la $F$ per la verifica della significatività dei termini del modello.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+anid <- anova(modnid)
+anid
+anid$Sum # somme = Sum Sq
+anid$Sum/anid$Df # medie = Mean Sq
+anid$Mean[1]/anid$Mean[3]
+anid$Mean[2]/anid$Mean[3]
+```
+
+### Python
+
+```{python}
+# tabella ANOVA sequenziale (tipo I), come anova() di R
+print(sm.stats.anova_lm(modnid, typ=1))
+```
+
+### SAS
+
+```sas
+/* PROC GLM riporta le somme dei quadrati sequenziali (Type I SS), come anova() di R */
+proc glm data=case;
+  model prezzo = dimensione dimcli / ss1;
+run;
+quit;
+```
+:::
+
+Per confrontare più agevolmente i due modelli avremmo potuto scrivere anche
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+anova(modris, modnid)
+```
+
+### Python
+
+```{python}
+print(sm.stats.anova_lm(modris, modnid))
+```
+
+### SAS
+
+```sas
+/* equivalente: l'istruzione TEST vista sopra */
+```
+:::
+
+Il test $F$ è utile anche per saggiare l'ipotesi di stabilità strutturale dei coefficienti di un modello stimato in due diversi periodi temporali, in due differenti aree territoriali o su due gruppi diversi di casi (per esempio consumatori meno ricchi e consumatori più ricchi). Questa particolare statistica test è nota come test di Chow
+
+$$
+\begin{gathered}F_{Chow}=\left((rsum-(usum_{a}+usum_{b}))/k\right)/ \\ \left((usum_{a}+usum_{b})/(n_{a}+n_{b}-2k)\right)\sim F_{k,(n_{a}+n_{b}-2k)}\end{gathered}
+\tag{5.9}
+$$
+
+in cui $k$ è il numero dei parametri, $rsum$ è la somma dei quadrati dei residui del modello ristretto con stabilità strutturale (quindi un modello unico per tutte le osservazioni), mentre $usum_{a}$ e $usum_{b}$ sono le somme analoghe riferite ai modelli non ristretti, cioè stimati separatamente per i due gruppi ($a$ e $b$) di osservazioni.
+
+```{r}
+#| include: false
+detach(case)
+```
+
+## 5.8 Il test di Chow e la stabilità strutturale {#sec-chow}
+
+Carichiamo i dati del file *redditousa.csv*, relativo al risparmio e al reddito disponibile degli Stati Uniti negli anni dal 1970 al 1995. Vogliamo verificare se tra il 1981 e il 1982 si sia verificato un break strutturale con riferimento alla funzione lineare del risparmio. Stimeremo un primo modello dal 1970 al 1981, un secondo dal 1982 al 1995 e un terzo per l'intero intervallo dal 1970 al 1995.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+usa <- read.csv2("data/redditousa.csv")
+attach(usa)
+t(anno)
+ante <- lm(risparmio[1:12]~reddito[1:12])
+post <- lm(risparmio[13:26]~reddito[13:26])
+tutto <- lm(risparmio~reddito)
+ant <- summary(ante); pos <- summary(post)
+tut <- summary(tutto)
+round(ant$coeff,3); round(pos$coeff,3); round(tut$coeff,3)
+usuma <- anova(ante)$Sum[2]; usumb <- anova(post)$Sum[2]
+rsum <- anova(tutto)$Sum[2]
+Fchow <- ((rsum-(usuma+usumb))/2)/((usuma+usumb)/(12+14-2*2))
+Fchow
+round(pf(Fchow, 2, 22, lower.tail=FALSE), 5)
+```
+
+### Python
+
+```{python}
+usa = pd.read_csv("data/redditousa.csv", sep=";", decimal=",")
+ante = smf.ols("risparmio ~ reddito", data=usa.iloc[:12]).fit()
+post = smf.ols("risparmio ~ reddito", data=usa.iloc[12:]).fit()
+tutto = smf.ols("risparmio ~ reddito", data=usa).fit()
+for m in (ante, post, tutto):
+    print(m.params.round(3).to_dict())
+Fchow = ((tutto.ssr - (ante.ssr + post.ssr)) / 2) / ((ante.ssr + post.ssr) / (12 + 14 - 2 * 2))
+print(Fchow, round(stats.f.sf(Fchow, 2, 22), 5))
+```
+
+### SAS
+
+```sas
+proc import datafile="data/redditousa.csv" out=usa dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+/* PROC AUTOREG esegue il test di Chow per un break dopo l'osservazione indicata */
+proc autoreg data=usa;
+  model risparmio = reddito / chow=(13);
+run;
+```
+:::
+
+Pertanto, l'ipotesi nulla di stabilità strutturale dei coefficienti nell'intero periodo 1970-1995 è da rifiutare.
+
+Va notato che il test di Chow richiede che la varianza degli errori sia identica nei due modelli coinvolti. Verifichiamo se questo è il caso.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+Fvar <- (pos$sigma^2)/(ant$sigma^2)
+Fvar
+round(pf(Fvar, 12, 10, lower.tail=FALSE), 4)
+```
+
+### Python
+
+```{python}
+Fvar = post.mse_resid / ante.mse_resid
+print(Fvar, round(stats.f.sf(Fvar, 12, 10), 4))
+```
+
+### SAS
+
+```sas
+proc reg data=usa outest=s_ante noprint; where anno <= 1981; model risparmio = reddito; run;
+proc reg data=usa outest=s_post noprint; where anno >= 1982; model risparmio = reddito; run;
+quit;
+data _null_;
+  merge s_ante(keep=_RMSE_ rename=(_RMSE_=s_a)) s_post(keep=_RMSE_ rename=(_RMSE_=s_p));
+  Fvar = s_p**2 / s_a**2;
+  p = 1 - probf(Fvar, 12, 10);
+  put Fvar= p=;
+run;
+```
+:::
+
+Ciò suggerisce il rifiuto dell'ipotesi nulla di varianze identiche, e quindi cautela nell'uso del test di Chow.
+
+Un altro modo per verificare la presenza di stabilità strutturale è utilizzare le variabili dummy, con valore 0 dal 1970 al 1981 e valore 1 dal 1982 al 1995.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+d1 <- rep(NA,26)
+d1[1:12] <- 0
+d1[13:26] <- 1
+d1x <- d1*reddito
+modum <- lm(risparmio~reddito+d1+d1x)
+summary(modum)
+```
+
+### Python
+
+```{python}
+usa["d1"] = (usa["anno"] >= 1982).astype(int)
+usa["d1x"] = usa["d1"] * usa["reddito"]
+modum = smf.ols("risparmio ~ reddito + d1 + d1x", data=usa).fit()
+print(modum.summary().tables[1])
+```
+
+### SAS
+
+```sas
+data usa;
+  set usa;
+  d1 = (anno >= 1982);
+  d1x = d1*reddito;
+run;
+proc reg data=usa;
+  modum: model risparmio = reddito d1 d1x;
+run;
+quit;
+```
+:::
+
+Le stime, con l'eccezione dell'intercetta, sono tutte significative. Nel periodo 1970-1981, quindi con dummy pari a 0, avremo i primi due coefficienti, mentre nel periodo 1982-1995 (dummy pari a 1) le somme seguenti.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modum$coeff[1]; modum$coeff[2]
+modum$coeff[1]+modum$coeff[3]; modum$coeff[2]+modum$coeff[4]
+```
+
+### Python
+
+```{python}
+b = modum.params
+print(b["Intercept"], b["reddito"])
+print(b["Intercept"] + b["d1"], b["reddito"] + b["d1x"])
+```
+
+### SAS
+
+```sas
+proc glm data=usa;
+  model risparmio = reddito d1 d1x / solution;
+  estimate "intercetta 1982-95" intercept 1 d1 1;
+  estimate "pendenza 1982-95"   reddito 1 d1x 1;
+run;
+quit;
+```
+:::
+
+È rilevante evidenziare che i coefficienti sono pressoché identici a quelli ottenuti con i modelli separati, dove le stime sono ottenute con 10 e 12 gradi di libertà, mentre con l'utilizzo delle due dummy ne avremo 22.
+
+## 5.9 Dummy e modelli senza intercetta {#sec-senza-intercetta}
+
+L'occasione ci consente un'ulteriore considerazione sull'utilizzo delle variabili dummy. Supponiamo di essere interessati soltanto al livello del risparmio, e quindi agli effetti del periodo storico su di esso, senza interessarci del livello di reddito. In coerenza con quanto visto finora dovremmo introdurre una sola dummy che assume, per esempio, valore 0 tra il 1970 e il 1981 e valore 1 tra il 1982 e il 1995; non è possibile introdurre due dummy, poiché si incorrerebbe in multicollinearità perfetta. In realtà possiamo aggirare questo problema non includendo l'intercetta.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+d1 <- rep(NA,26); d2 <- rep(NA,26)
+d1[1:12] <- 0; d1[13:26] <- 1
+d2[1:12] <- 1; d2[13:26] <- 0
+modd <- lm(risparmio~d1+d2)
+summary(modd)$coeff
+modint <- lm(risparmio~d1+d2-1)
+summary(modint)$coeff
+mean(risparmio[1:12])
+mean(risparmio[13:26])
+```
+
+### Python
+
+```{python}
+usa["d2"] = 1 - usa["d1"]
+# con intercetta e due dummy la matrice X è singolare: si stima il modello senza intercetta
+modint = smf.ols("risparmio ~ d1 + d2 - 1", data=usa).fit()
+print(modint.params)
+print(usa.groupby("d1")["risparmio"].mean())
+```
+
+### SAS
+
+```sas
+data usa; set usa; d2 = 1 - d1; run;
+proc reg data=usa;
+  modd:   model risparmio = d1 d2;           /* SAS segnala la dipendenza lineare */
+  modint: model risparmio = d1 d2 / noint;   /* modello senza intercetta */
+run;
+quit;
+```
+:::
+
+Nel modello con intercetta, il coefficiente di *d2* non è definito a causa della singolarità e la somma tra intercetta e stima del coefficiente di *d1* è uguale a 209,78. Escludendo l'intercetta, i coefficienti delle due dummy sono proprio le medie del risparmio nei due periodi.
+
+Va notato che i modelli senza intercetta richiedono una specifica cautela interpretativa rispetto ai modelli standard, anche perché alcune statistiche (per esempio $R^{2}$) si comportano in modo inusuale.
+
+## 5.10 Diagnostica dei residui {#sec-diagnostica}
+
+Ritorniamo al modello `modum` e applichiamo il comando `plot()` per ottenere alcune diagnostiche (Figura 5.1). La prima istruzione `par()` indica a **R** di porre i grafici su due colonne e due righe all'interno di un unico dispositivo grafico; il secondo `par()` ripristina la visualizzazione di default, mentre `plot()` disegna i quattro grafici diagnostici di base.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 5.1 – Grafici diagnostici del modello modum"
+#| fig-width: 7
+#| fig-height: 7
+par(mfrow=c(2,2))
+plot(modum)
+par(mfrow=c(1,1))
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 5.1 – Grafici diagnostici del modello modum"
+#| results: hide
+import matplotlib.pyplot as plt
+
+infl = modum.get_influence()
+rst = infl.resid_studentized_internal
+fig, ax = plt.subplots(2, 2, figsize=(7, 7))
+ax[0, 0].scatter(modum.fittedvalues, modum.resid, facecolors="none", edgecolors="black")
+ax[0, 0].axhline(0, linestyle=":", color="grey"); ax[0, 0].set_title("Residuals vs Fitted")
+sm.qqplot(rst, line="45", ax=ax[0, 1]); ax[0, 1].set_title("Normal Q-Q")
+ax[1, 0].scatter(modum.fittedvalues, np.sqrt(np.abs(rst)), facecolors="none", edgecolors="black")
+ax[1, 0].set_title("Scale-Location")
+ax[1, 1].scatter(infl.hat_matrix_diag, rst, facecolors="none", edgecolors="black")
+ax[1, 1].set_title("Residuals vs Leverage")
+plt.tight_layout()
+plt.show()
+```
+
+### SAS
+
+```sas
+/* PROC REG produce automaticamente il pannello diagnostico (ODS Graphics) */
+ods graphics on;
+proc reg data=usa plots=diagnostics;
+  model risparmio = reddito d1 d1x;
+run;
+quit;
+```
+:::
+
+L'interpretazione dei quattro grafici della Figura 5.1 è immediata, con evidenza di anomalie nei casi numero 15, 23, 25 e in parte 12. Ricordiamo che il residuo standardizzato è $r_{i}=\hat{\varepsilon}_{i}/(\hat{\sigma}\sqrt{1-h_{ii}})$, dove gli $h_{ii}$ (leverage della $i$-esima osservazione) sono gli elementi sulla diagonale principale della matrice $H=X(X'X)^{-1}X'$. Anche il test di Jarque-Bera sulla normalità dei residui è di utilità nel nostro caso
+
+$$
+JB=n(S^{2}/6+(K-3)^{2}/24)
+\tag{5.10}
+$$
+
+con $S$ misura di asimmetria (0 per la Normale) e $K$ misura di curtosi (3 per la Normale). La statistica JB si distribuisce asintoticamente come una $\chi_{(2)}^{2}$. Pertanto,
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+ee <- resid(modum)
+m3 <- mean((ee-mean(ee))^3); S <- m3/(sd(ee)^3)
+m4 <- mean((ee-mean(ee))^4); K <- m4/(sd(ee)^4)
+S; K
+n <- 26
+JB <- n*((S^2)/6 + ((K-3)^2)/24)
+JB
+pchisq(JB, 2, lower.tail=FALSE)
+detach(usa)
+```
+
+### Python
+
+```{python}
+ee = modum.resid
+S = np.mean((ee - ee.mean()) ** 3) / ee.std() ** 3      # std() di pandas usa n-1, come sd() di R
+K = np.mean((ee - ee.mean()) ** 4) / ee.std() ** 4
+JB = 26 * (S ** 2 / 6 + (K - 3) ** 2 / 24)
+print(S, K, JB, stats.chi2.sf(JB, 2))
+```
+
+### SAS
+
+```sas
+/* l'opzione normal di PROC AUTOREG calcola il test di Jarque-Bera sui residui */
+proc autoreg data=usa;
+  model risparmio = reddito d1 d1x / normal;
+run;
+```
+:::
+
+Non si può rifiutare l'ipotesi nulla di normalità dei residui, anche se il test andrebbe applicato per $n$ sufficientemente grande.
+
+## 5.11 La forma funzionale: il test MWD {#sec-mwd}
+
+Una tipica questione nella specificazione dei modelli attiene alla scelta della forma funzionale. In gran parte dei casi l'alternativa è tra una forma lineare e una log-lineare, e in genere sono la stessa teoria economica o specifici interessi conoscitivi dello studioso a far propendere per l'una o per l'altra. In alcuni casi, per guidare la scelta è utile il test di MacKinnon, White e Davidson (MWD).
+
+Carichiamo i dati contenuti nel file *rose.csv*, relativi ai quintali di rose vendute rispetto al prezzo della varietà principale (*prvar1*) e al prezzo di un fiore sostituto quale il garofano (*prvar2*). Stimiamo il modello lineare e quello log-lineare, aggiungendo le variabili *z1* e *z2* come di seguito specificato.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+rosedf <- read.csv2("data/rose.csv")
+attach(rosedf)
+mo1 <- lm(rose~prvar1+prvar2)
+mo2 <- lm(log(rose)~log(prvar1)+log(prvar2))
+z1 <- log(fitted(mo1))-fitted(mo2)
+z2 <- exp(fitted(mo2))-fitted(mo1)
+mod1e <- lm(rose~prvar1+prvar2+z1)
+mod2e <- lm(log(rose)~log(prvar1)+log(prvar2)+z2)
+round(summary(mod1e)$coeff,3); round(summary(mod2e)$coeff,3)
+```
+
+### Python
+
+```{python}
+rosedf = pd.read_csv("data/rose.csv", sep=";", decimal=",")
+mo1 = smf.ols("rose ~ prvar1 + prvar2", data=rosedf).fit()
+mo2 = smf.ols("np.log(rose) ~ np.log(prvar1) + np.log(prvar2)", data=rosedf).fit()
+rosedf["z1"] = np.log(mo1.fittedvalues) - mo2.fittedvalues
+rosedf["z2"] = np.exp(mo2.fittedvalues) - mo1.fittedvalues
+mod1e = smf.ols("rose ~ prvar1 + prvar2 + z1", data=rosedf).fit()
+mod2e = smf.ols("np.log(rose) ~ np.log(prvar1) + np.log(prvar2) + z2", data=rosedf).fit()
+print(mod1e.summary().tables[1]); print(mod2e.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc import datafile="data/rose.csv" out=rosedf dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data rosedf;
+  set rosedf;
+  lrose = log(rose); lp1 = log(prvar1); lp2 = log(prvar2);
+run;
+proc reg data=rosedf noprint;
+  model rose = prvar1 prvar2;  output out=r1 p=fit1;
+run;
+proc reg data=r1 noprint;
+  model lrose = lp1 lp2;       output out=r2 p=fit2;
+run;
+quit;
+data r2; set r2; z1 = log(fit1) - fit2; z2 = exp(fit2) - fit1; run;
+proc reg data=r2;
+  mod1e: model rose  = prvar1 prvar2 z1;
+  mod2e: model lrose = lp1 lp2 z2;
+run;
+quit;
+```
+:::
+
+*z1* e *z2* non sono significative, ma la prima ha un p-value molto alto rispetto alla seconda. L'ipotesi nulla che esse rappresentano riguarda la forma lineare del modello per *z1* e la forma log-lineare per *z2*; pertanto, sebbene sembrino ammissibili entrambe le alternative, l'alto p-value di *z1* consiglia la forma lineare, e dunque il modello `mo1`, rispetto alla forma log-lineare di `mo2`.
+
+## 5.12 Il test del rapporto di verosimiglianza {#sec-lr}
+
+Per verificare se una variabile esplicativa può essere eliminata dal modello senza alterarne significativamente la bontà, si può utilizzare anche il test del rapporto di massima verosimiglianza. Scegliamo il modello lineare `mo1`, ristimiamo eliminando *prvar2* (`mo3`) ed estraiamo il valore della funzione di log-verosimiglianza, che confronteremo sfruttando un'approssimazione (asintotica) a una $\chi^{2}$ con 1 grado di libertà (il numero di restrizioni è 1).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+ll1 <- logLik(mo1)
+mo3 <- lm(rose~prvar1)
+ll3 <- logLik(mo3)
+ll1; ll3
+lambda <- 2*(ll1[1]-ll3[1])
+lambda
+pchisq(lambda, 1, lower.tail=FALSE)
+detach(rosedf)
+```
+
+### Python
+
+```{python}
+mo3 = smf.ols("rose ~ prvar1", data=rosedf).fit()
+lam = 2 * (mo1.llf - mo3.llf)
+print(mo1.llf, mo3.llf, lam, stats.chi2.sf(lam, 1))
+```
+
+### SAS
+
+```sas
+/* PROC MIXED (stima di massima verosimiglianza) riporta -2 log-verosimiglianza */
+proc mixed data=rosedf method=ml;
+  model rose = prvar1 prvar2 / solution;
+run;
+proc mixed data=rosedf method=ml;
+  model rose = prvar1 / solution;
+run;
+/* lambda = differenza tra i due valori di "-2 Log Likelihood" */
+```
+:::
+
+È quindi rifiutata l'ipotesi nulla, e il modello ristretto `mo3` è da rifiutare a vantaggio di `mo1`.
+
+## 5.13 Eteroschedasticità {#sec-eteroschedasticita}
+
+Nella stima dei modelli lineari una condizione che spesso non risulta soddisfatta è l'omoschedasticità, cioè l'ipotesi di varianza costante. La varianza degli errori può risultare non costante per varie ragioni, per esempio per una non corretta specificazione della forma funzionale, per la presenza di outlier, ecc. In presenza di eteroschedasticità gli stimatori sono corretti e consistenti, ma non efficienti. Un modo per affrontare il problema è ricorrere ai minimi quadrati generalizzati (GLS), pesando, per esempio, le osservazioni in maniera inversamente proporzionale alla dimensione della varianza (avremo allora i minimi quadrati pesati, WLS).
+
+Esistono diverse tecniche e diversi test per saggiare la presenza o meno di eteroschedasticità; uno di questi è il test di Goldfeld-Quandt, che ipotizza la varianza correlata positivamente a una specifica variabile esplicativa.
+
+Per effettuare il test ipotizziamo un semplice modello con una sola esplicativa e carichiamo i dati del file *consusa.csv*, relativi a reddito e consumi di 30 famiglie statunitensi. Ordiniamo i dati rispetto all'esplicativa ed eliminando $c$ osservazioni centrali stimiamo un modello per la prima parte delle osservazioni e un modello per la parte restante, quindi confrontiamo le somme dei quadrati dei residui tramite un test $F_{(n-c-2k)/2,(n-c-2k)/2}$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+tabella <- read.csv2("data/consusa.csv")
+attach(tabella)
+tabord <- tabella[order(reddito),]
+modet1 <- lm(tabord$consumo[1:13]~tabord$reddito[1:13])
+modet2 <- lm(tabord$consumo[(30-13+1):30]~tabord$reddito[(30-13+1):30])
+rss1 <- anova(modet1)$Sum[2]
+rss2 <- anova(modet2)$Sum[2]
+lam <- (rss2/11)/(rss1/11)
+lam
+qf(0.95, 11, 11)
+```
+
+### Python
+
+```{python}
+tabella = pd.read_csv("data/consusa.csv", sep=";")
+tabord = tabella.sort_values("reddito").reset_index(drop=True)
+modet1 = smf.ols("consumo ~ reddito", data=tabord.iloc[:13]).fit()
+modet2 = smf.ols("consumo ~ reddito", data=tabord.iloc[17:]).fit()
+lam = (modet2.ssr / 11) / (modet1.ssr / 11)
+print(lam, stats.f.ppf(0.95, 11, 11))
+```
+
+### SAS
+
+```sas
+proc import datafile="data/consusa.csv" out=tabella dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+proc sort data=tabella out=tabord; by reddito; run;
+data tabord; set tabord; oss = _n_; run;
+proc reg data=tabord outest=gq1 noprint; where oss <= 13; model consumo = reddito; run;
+proc reg data=tabord outest=gq2 noprint; where oss >= 18; model consumo = reddito; run;
+quit;
+data _null_;
+  merge gq1(keep=_RMSE_ rename=(_RMSE_=s1)) gq2(keep=_RMSE_ rename=(_RMSE_=s2));
+  lam = s2**2 / s1**2;    /* stessi gradi di libertà (11) nei due gruppi */
+  Fcrit = finv(0.95, 11, 11);
+  put lam= Fcrit=;
+run;
+```
+:::
+
+L'ipotesi nulla è rifiutata e quindi i dati presentano una significativa eteroschedasticità.
+
+In letteratura esistono svariati altri test; quello di White è tra i più generali. Esso si basa su una regressione ausiliaria tra i quadrati dei residui del modello e i regressori, i loro quadrati e i loro prodotti; la statistica test è il coefficiente di determinazione della regressione ausiliaria moltiplicato per il numero delle osservazioni, e si distribuisce asintoticamente come una $\chi^{2}$ con gradi di libertà pari al numero dei regressori dell'ausiliaria. Dunque
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modwh <- lm(consumo~reddito)
+reddito2 <- reddito^2
+u2 <- (residuals(modwh))^2
+modu2 <- lm(u2~reddito+reddito2)
+raux <- summary(modu2)$r.squared
+white <- 30*raux
+white
+pchisq(white, 2, lower.tail=FALSE)
+detach(tabella)
+```
+
+### Python
+
+```{python}
+from statsmodels.stats.diagnostic import het_white
+
+modwh = smf.ols("consumo ~ reddito", data=tabella).fit()
+white, pval, _, _ = het_white(modwh.resid, modwh.model.exog)
+print(white, pval)
+```
+
+### SAS
+
+```sas
+/* l'opzione spec di PROC REG esegue il test di White */
+proc reg data=tabella;
+  model consumo = reddito / spec;
+run;
+quit;
+```
+:::
+
+Con una confidenza del 95% si accetta (anche se di poco) l'ipotesi nulla di omoschedasticità: notiamo che le conclusioni degli ultimi due test condotti sono in contraddizione. Se l'eteroschedasticità è presente, esistono alcune tecniche di riponderazione che aiutano a ridurne le conseguenze, tra cui la cosiddetta procedura di White, eseguita di default dalla maggior parte dei software; sul punto non ci soffermiamo oltre.
+
+## 5.14 Autocorrelazione dei residui {#sec-autocorrelazione}
+
+Un'altra diffusa violazione delle ipotesi di base nella stima di un modello riguarda la presenza di autocorrelazione dei residui; questa si manifesta rispetto al tempo nel caso di serie storiche, rispetto allo spazio per dati cross-section, o in entrambi i modi nelle situazioni più complesse. Gli ultimi due casi rinviano a una trattazione più dettagliata, che qui non interessa, mentre qualche esempio può essere fatto per l'autocorrelazione seriale.
+
+Se il modello è specificabile come $Y_{t}=\alpha +\beta_{1}X_{1}+\beta_{2}X_{2}+u_{t}$, dove $u_{t}$ non è il classico White Noise $\varepsilon_{t}$ ma un disturbo correlato con se stesso nel tempo, allora nel caso più semplice potremo scrivere
+
+$$
+u_{t}=\rho u_{t-1}+\varepsilon_{t}
+\tag{5.11}
+$$
+
+che molto ci ricorda un modello autoregressivo di ordine 1, $AR(1)$; $\rho$ è chiamato coefficiente di autocorrelazione del primo ordine. Naturalmente la dipendenza degli errori nel tempo potrebbe seguire una struttura più complessa con un ritardo più elevato, ma nella maggior parte dei casi l'ipotesi del primo ordine appare soddisfacente. Se utilizzassimo l'OLS in presenza di autocorrelazione seriale (così come con l'eteroschedasticità), gli stimatori risulterebbero corretti e consistenti, ma non efficienti.
+
+Carichiamo i dati del file *salari.csv*, relativi ai salari orari e alla produttività oraria dell'industria statunitense tra il 1959 e il 1998. Stimiamo un modello log-lineare.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+sal <- read.csv2("data/salari.csv")
+attach(sal)
+modsal <- lm(log(salari)~log(produtt))
+summary(modsal)
+```
+
+### Python
+
+```{python}
+sal = pd.read_csv("data/salari.csv", sep=";", decimal=",")
+modsal = smf.ols("np.log(salari) ~ np.log(produtt)", data=sal).fit()
+print(modsal.summary())
+```
+
+### SAS
+
+```sas
+proc import datafile="data/salari.csv" out=sal dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data sal; set sal; ls = log(salari); lp = log(produtt); run;
+proc reg data=sal;
+  modsal: model ls = lp / dw;   /* dw = statistica di Durbin-Watson */
+  output out=res_sal r=u;
+run;
+quit;
+```
+:::
+
+Rappresentiamo opportunamente i residui (Figure 5.2 e 5.3).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 5.2 – Andamento dei residui nel tempo"
+u <- residuals(modsal)
+plot(u, main="Andamento dei residui")
+abline(h=0)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 5.2 – Andamento dei residui nel tempo"
+#| results: hide
+u = modsal.resid.to_numpy()
+plt.figure(figsize=(5, 5))
+plt.scatter(np.arange(1, 41), u, facecolors="none", edgecolors="black")
+plt.axhline(0, color="black")
+plt.title("Andamento dei residui")
+plt.show()
+```
+
+### SAS
+
+```sas
+data res_sal; set res_sal; t = _n_; u1 = lag(u); run;
+proc sgplot data=res_sal;
+  title "Andamento dei residui";
+  scatter x=t y=u;
+  refline 0 / axis=y;
+run;
+```
+:::
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 5.3 – Autocorrelazione dei residui"
+plot(embed(u,2)[,1], embed(u,2)[,2], main="Residui al tempo t e t-1")
+abline(h=0); abline(v=0)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 5.3 – Autocorrelazione dei residui"
+#| results: hide
+plt.figure(figsize=(5, 5))
+plt.scatter(u[1:], u[:-1], facecolors="none", edgecolors="black")
+plt.axhline(0, color="black"); plt.axvline(0, color="black")
+plt.title("Residui al tempo t e t-1")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=res_sal;
+  title "Residui al tempo t e t-1";
+  scatter x=u y=u1;
+  refline 0 / axis=x; refline 0 / axis=y;
+run;
+```
+:::
+
+È evidente la presenza di una forte autocorrelazione positiva, la cui significatività può essere valutata con la statistica $d$ di Durbin e Watson
+
+$$
+d=\sum_{t=2}^{n} (\hat{u}_{t}-\hat{u}_{t-1})^{2}\Big/\sum_{t=1}^{n} \hat{u}_{t}^{2}
+\tag{5.12}
+$$
+
+Si dimostra che, se $\hat{\rho}$ è il coefficiente di autocorrelazione tra $\hat{u}_{t}$ e $\hat{u}_{t-1}$, vale
+
+$$
+d\approx 2(1-\hat{\rho})
+\tag{5.13}
+$$
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+cor(embed(u,2)[,1], embed(u,2)[,2])
+ut0 <- embed(u,2)[,1]
+ut1 <- embed(u,2)[,2]
+dw <- (sum((ut0-ut1)^2))/(sum(u^2))
+dw
+rho <- cor(ut0, ut1)
+dd <- 2*(1-rho)
+dd
+```
+
+### Python
+
+```{python}
+from statsmodels.stats.stattools import durbin_watson
+
+rho = np.corrcoef(u[1:], u[:-1])[0, 1]
+print(rho, durbin_watson(u), 2 * (1 - rho))
+```
+
+### SAS
+
+```sas
+/* PROC AUTOREG riporta Durbin-Watson e il relativo p-value */
+proc autoreg data=sal;
+  model ls = lp / dw=1 dwprob;
+run;
+```
+:::
+
+I valori critici del test di Durbin-Watson per $n=40$, $k=2$ e confidenza al 95% sono $d_L=1{,}44$ e $d_U=1{,}54$. Poiché il valore della statistica è al di sotto del limite inferiore, si rifiuta l'ipotesi nulla e si conclude a favore dell'autocorrelazione positiva. In particolare, se
+
+- $0<d<d_{L}$: autocorrelazione positiva
+- $4-d_{L}<d<4$: autocorrelazione negativa
+- $d_{U}<d<4-d_{U}$: assenza di autocorrelazione
+- $d_{L}\le d\le d_{U}$: area di indeterminazione
+- $4-d_{U}\le d\le 4-d_{L}$: area di indeterminazione.
+
+Notiamo che il Durbin-Watson è speculare attorno al valore $d=2$. Inoltre, la sua corretta applicazione richiede stringenti condizioni, tra cui l'assenza tra le esplicative della variabile dipendente ritardata.
+
+Notiamo infine che in alcuni casi la presenza di una forte autocorrelazione, come già evidenziato per l'eteroschedasticità, potrebbe derivare da una mal-specificazione del modello e non necessariamente da una reale dipendenza seriale dei dati.
+
+## 5.15 Correzione dell'autocorrelazione {#sec-correzione-ar}
+
+Supponiamo adesso che $\rho$ sia noto e sia proprio uguale alla correlazione tra $\hat{u}_{t}$ e $\hat{u}_{t-1}$. Stimiamo un modello trasformato che, seppure non la elimina totalmente, almeno riduce l'autocorrelazione seriale e le sue conseguenze sulle stime. La procedura prevede un OLS sul modello trasformato, che equivale a un GLS sul modello originario $Y=f(X)+u$, ossia $(Y_{t}-\rho Y_{t-1})=\beta_{0}(1-\rho )+\beta_{1}(X_{t}-\rho X_{t-1})+\varepsilon_{t}$, dove per costruzione è $\varepsilon_{t}=(u_{t}-\rho u_{t-1})\sim WN$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+y <- log(salari)
+x <- log(produtt)
+y1 <- 0; x1 <- 0
+y1[2:40] <- y[1:39]
+x1[2:40] <- x[1:39]
+yy <- (y-rho*y1)
+xx <- (x-rho*x1)
+yy[1] <- y[1]*((1-rho^2)^0.5)
+xx[1] <- x[1]*((1-rho^2)^0.5)
+modrh <- lm(yy~xx)
+u <- residuals(modrh)
+ut0 <- embed(u,2)[,1]
+ut1 <- embed(u,2)[,2]
+cor(ut0, ut1)
+dw <- (sum((ut0-ut1)^2))/(sum(u^2))
+dw
+rho <- cor(ut0, ut1)
+dd <- 2*(1-rho)
+dd
+```
+
+### Python
+
+```{python}
+def prais_winsten(y, x, rho):
+    """Trasforma y e x con il rho dato, conservando la prima osservazione."""
+    yy = np.r_[y[0] * np.sqrt(1 - rho ** 2), y[1:] - rho * y[:-1]]
+    xx = np.r_[x[0] * np.sqrt(1 - rho ** 2), x[1:] - rho * x[:-1]]
+    return yy, xx
+
+y = np.log(sal["salari"].to_numpy()); x = np.log(sal["produtt"].to_numpy())
+yy, xx = prais_winsten(y, x, rho)
+modrh = sm.OLS(yy, sm.add_constant(xx)).fit()
+u = modrh.resid
+rho = np.corrcoef(u[1:], u[:-1])[0, 1]
+print(rho, durbin_watson(u), 2 * (1 - rho))
+```
+
+### SAS
+
+```sas
+/* PROC AUTOREG stima direttamente il modello con errori AR(1):
+   method=yw con iter ripete la stima di rho fino a convergenza (Prais-Winsten) */
+proc autoreg data=sal;
+  model ls = lp / nlag=1 method=yw iter dw=1 dwprob;
+run;
+```
+:::
+
+Con il basso numero di osservazioni di questo esempio va scontata l'approssimazione numerica dei calcoli. Ciò nonostante, è interessante notare la riduzione dell'autocorrelazione dei residui a 0,35 e l'incremento della statistica di Durbin-Watson. Iteriamo con una nuova correzione, riassegnando $X$ e $Y$ e ripetendo gli stessi passaggi.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+y <- yy; x <- xx
+y1 <- 0; x1 <- 0
+y1[2:40] <- y[1:39]
+x1[2:40] <- x[1:39]
+yy <- (y-rho*y1)
+xx <- (x-rho*x1)
+yy[1] <- y[1]*((1-rho^2)^0.5)
+xx[1] <- x[1]*((1-rho^2)^0.5)
+u <- residuals(lm(yy~xx))
+ut0 <- embed(u,2)[,1]
+ut1 <- embed(u,2)[,2]
+rho <- cor(ut0, ut1)
+dw <- (sum((ut0-ut1)^2))/(sum(u^2))
+rho
+dw
+summary(lm(yy~xx))
+```
+
+### Python
+
+```{python}
+yy, xx = prais_winsten(yy, xx, rho)
+modrh2 = sm.OLS(yy, sm.add_constant(xx)).fit()
+u = modrh2.resid
+print(np.corrcoef(u[1:], u[:-1])[0, 1], durbin_watson(u))
+print(modrh2.summary())
+```
+
+### SAS
+
+```sas
+/* con PROC AUTOREG l'iterazione è automatica (opzione iter, vedi sopra) */
+```
+:::
+
+Il nuovo filtraggio ha pressoché eliminato l'autocorrelazione dei residui e infatti il test di Durbin-Watson suggerisce di accettare l'ipotesi nulla di assenza di autocorrelazione. Le ultime stime riportate sono dunque quelle definitive. Va infine notato che, per non perdere la prima osservazione, abbiamo utilizzato la trasformazione di Prais-Winsten.
+
+## 5.16 Previsione dinamica {#sec-previsione-dinamica}
+
+La presenza di una forma autoregressiva nei residui del modello consente di sfruttare questa informazione a scopi previsivi. Infatti, sostituendo opportunamente, avremo $Y_{t}=\beta_{0}+\beta_{1}X_{t}+\rho u_{t-1}+\varepsilon_{t}$ e, pertanto,
+
+$$
+\hat{Y}_{t+1}=\hat{\beta}_{0}+\hat{\beta}_{1}X_{t+1}+\hat{\rho}\hat{u}_{t}
+\tag{5.14}
+$$
+
+Questo è un esempio di previsione dinamica, poiché teniamo conto degli errori $u$ al tempo precedente. I comandi seguenti confrontano ex post la previsione statica e quella dinamica al tempo $t+1$ per il modello log-lineare tra salari e produttività, stimato dal 1959 al 1996, per l'anno 1997.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modf <- lm(log(salari[1:38])~log(produtt[1:38]))
+modf$coeff[1]+modf$coeff[2]*log(produtt[39])
+rh <- cor(embed((residuals(modf)),2))[2]
+modf$coeff[1]+modf$coeff[2]*log(produtt[39])+rh*residuals(modf)[38]
+log(salari)[39]
+detach(sal)
+```
+
+### Python
+
+```{python}
+s38 = sal.iloc[:38]
+modf = smf.ols("np.log(salari) ~ np.log(produtt)", data=s38).fit()
+b0, b1 = modf.params
+x39 = np.log(sal["produtt"].iloc[38])
+r = modf.resid.to_numpy()
+rh = np.corrcoef(r[1:], r[:-1])[0, 1]
+print("statica:", b0 + b1 * x39)
+print("dinamica:", b0 + b1 * x39 + rh * r[-1])
+print("osservato:", np.log(sal["salari"].iloc[38]))
+```
+
+### SAS
+
+```sas
+/* PROC AUTOREG con errori AR(1): la previsione P= include la componente
+   autoregressiva (dinamica), PM= solo la parte strutturale (statica) */
+data sal_prev; set sal; if _n_ > 38 then ls = .; run;
+proc autoreg data=sal_prev noprint;
+  model ls = lp / nlag=1 method=ml;
+  output out=prev_sal p=dinamica pm=statica;
+run;
+proc print data=prev_sal(firstobs=39 obs=39) noobs; var anni dinamica statica; run;
+```
+:::
+
+A fronte di un valore noto per il 1997 di 4,616, la previsione dinamica (4,621) appare migliore di quella statica (4,673).
+
+## 5.17 Il test RESET {#sec-reset}
+
+Carichiamo i dati del file *costo.csv*, relativi al livello di produzione in unità di un generico prodotto e al costo totale del processo industriale in milioni di dollari. Stimiamo la relazione tra costo e livelli di produzione.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+costodf <- read.csv2("data/costo.csv")
+attach(costodf)
+modelloA <- lm(costo~produz)
+round(modelloA$coeff, 3)
+```
+
+### Python
+
+```{python}
+costodf = pd.read_csv("data/costo.csv", sep=";", decimal=",")
+modelloA = smf.ols("costo ~ produz", data=costodf).fit()
+print(modelloA.params.round(3))
+```
+
+### SAS
+
+```sas
+proc import datafile="data/costo.csv" out=costodf dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+proc reg data=costodf;
+  modelloA: model costo = produz;
+run;
+quit;
+```
+:::
+
+Un modo per saggiare se il modello appare correttamente specificato è ricorrere al test RESET. In via semplificata si tratta di confrontare il `modelloA` con il `modelloB`, costruito aggiungendo quali esplicative i valori teorici al quadrato e al cubo della dipendente, e di confrontare i due $R^{2}$ con un test $F$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+costo2 <- (fitted(modelloA))^2
+costo3 <- (fitted(modelloA))^3
+modelloB <- lm(costo~produz+costo2+costo3)
+round(modelloB$coeff, 3)
+rA <- summary(modelloA)$r.squared
+rB <- summary(modelloB)$r.squared
+nr <- 2 # numero regressori aggiunti
+nk <- 4 # numero dei parametri del modello esteso
+Fres <- ((rB-rA)/nr)/((1-rB)/(10-nk)) # 10 num.casi
+Fres
+```
+
+### Python
+
+```{python}
+from statsmodels.stats.diagnostic import linear_reset
+
+costodf["costo2"] = modelloA.fittedvalues ** 2
+costodf["costo3"] = modelloA.fittedvalues ** 3
+modelloB = smf.ols("costo ~ produz + costo2 + costo3", data=costodf).fit()
+print(modelloB.params.round(3))
+Fres = ((modelloB.rsquared - modelloA.rsquared) / 2) / ((1 - modelloB.rsquared) / (10 - 4))
+print(Fres)
+print(linear_reset(modelloA, power=3, use_f=True))   # test RESET già pronto
+```
+
+### SAS
+
+```sas
+/* l'opzione reset di PROC AUTOREG esegue il test RESET di Ramsey */
+proc autoreg data=costodf;
+  model costo = produz / reset;
+run;
+```
+:::
+
+La significatività della statistica test suggerisce che il modello originario tra costo e produzione è mal-specificato.
+
+## 5.18 Il test del moltiplicatore di Lagrange {#sec-lm-test}
+
+Continuando con lo stesso esempio, utilizziamo il test del moltiplicatore di Lagrange (*Lagrange multiplier test*, LM) per saggiare la mal-specificazione del modello.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+uA <- residuals(modelloA)
+prod2 <- produz^2
+prod3 <- produz^3
+maux <- lm(uA~produz+prod2+prod3)
+maux$coeff
+raux <- summary(maux)$r.squared
+chi <- 10*raux
+chi
+pchisq(chi, 2, lower.tail=FALSE)
+detach(costodf)
+```
+
+### Python
+
+```{python}
+costodf["uA"] = modelloA.resid
+maux = smf.ols("uA ~ produz + I(produz**2) + I(produz**3)", data=costodf).fit()
+print(maux.params)
+chi = 10 * maux.rsquared
+print(chi, stats.chi2.sf(chi, 2))
+```
+
+### SAS
+
+```sas
+data costodf; set costodf; prod2 = produz**2; prod3 = produz**3; run;
+proc reg data=costodf noprint;
+  model costo = produz;
+  output out=resA r=uA;
+run;
+proc reg data=resA outest=aux rsquare noprint;
+  model uA = produz prod2 prod3;
+run;
+quit;
+data _null_;
+  set aux;
+  chi = 10*_RSQ_;
+  p = 1 - probchi(chi, 2);
+  put chi= p=;
+run;
+```
+:::
+
+I gradi di libertà della $\chi^{2}$ corrispondono al numero delle restrizioni del `modelloA` rispetto al modello `maux`, qui 2. Pertanto si rifiuta l'ipotesi nulla della corretta specificazione del modello originario tra costo e produzione; va comunque ricordato che questo test andrebbe utilizzato su grandi campioni.
+
+## 5.19 Modelli non annidati: il test J {#sec-test-j}
+
+Finora abbiamo applicato test utili per scegliere tra due modelli quando l'uno è caso particolare dell'altro. Se così non è, si può ricorrere alle usuali statistiche e diagnostiche di stima, ma anche a uno speciale *encompassing F test*, che specifica un nuovo modello generale come unione dei due modelli di partenza, applicando la tradizionale statistica $F$ per modelli annidati. Un altro test usato spesso è il test $J$ di Davidson e MacKinnon, che stima modelli estesi con l'aggiunta dei valori teorici della dipendente dei modelli alternativi sotto analisi; applichiamo questo test ai dati del file *conspro.csv*, relativi a consumi e redditi pro capite negli Stati Uniti tra il 1970 e il 1991, espressi in dollari.
+
+Il primo modello prevede la dipendenza del consumo dal reddito attuale e da quello del periodo precedente; il secondo ipotizza la dipendenza del consumo dal reddito attuale e dal consumo del periodo precedente.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+cp <- read.csv2("data/conspro.csv")
+attach(cp)
+rr <- embed(rpro,2)
+cc <- cpro[2:22]
+modA <- lm(cc~rr)
+round(summary(modA)$coeff,3)
+ck <- embed(cpro,2)
+modB <- lm(ck[,1]~rr[,1]+ck[,2])
+round(summary(modB)$coeff,3)
+modAx <- lm(cc~rr+fitted(modB))
+round(summary(modAx)$coeff,3)
+modBx <- lm(ck[,1]~rr[,1]+ck[,2]+fitted(modA))
+round(summary(modBx)$coeff,3)
+detach(cp)
+```
+
+### Python
+
+```{python}
+cp = pd.read_csv("data/conspro.csv", sep=";")
+d = pd.DataFrame({"c": cp["cpro"], "r": cp["rpro"],
+                  "r1": cp["rpro"].shift(1), "c1": cp["cpro"].shift(1)}).dropna()
+modA = smf.ols("c ~ r + r1", data=d).fit()
+modB = smf.ols("c ~ r + c1", data=d).fit()
+d["fitA"], d["fitB"] = modA.fittedvalues, modB.fittedvalues
+modAx = smf.ols("c ~ r + r1 + fitB", data=d).fit()
+modBx = smf.ols("c ~ r + c1 + fitA", data=d).fit()
+for m in (modA, modB, modAx, modBx):
+    print(m.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc import datafile="data/conspro.csv" out=cp dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+data cp; set cp; r1 = lag(rpro); c1 = lag(cpro); if _n_ > 1; run;
+proc reg data=cp noprint;
+  model cpro = rpro r1; output out=fA p=fitA;
+run;
+proc reg data=fA noprint;
+  model cpro = rpro c1; output out=fAB p=fitB;
+run;
+proc reg data=fAB;
+  modA:  model cpro = rpro r1;
+  modB:  model cpro = rpro c1;
+  modAx: model cpro = rpro r1 fitB;
+  modBx: model cpro = rpro c1 fitA;
+run;
+quit;
+```
+:::
+
+Tra i due modelli si potrebbe preferire il secondo; tuttavia, il fatto che il coefficiente del regressore aggiunto sia, in entrambe le stime, significativamente diverso da 0 con un'alta confidenza suggerisce l'insoddisfacente specificazione di entrambe le formulazioni originarie, senza la possibilità di una netta indicazione circa la superiorità dell'una o dell'altra.
+
+Va detto che, quando i modelli sono molto simili, il loro confronto potrebbe banalmente effettuarsi anche a partire dal coefficiente di determinazione $R^{2}$, ovvero da quello aggiustato $R_{c}^{2}$ qualora sia diverso il numero di esplicative.
+
+## 5.20 Criteri di informazione: AIC e SIC {#sec-aic}
+
+Il confronto di modelli più complessi, soprattutto quando specificati in modo sufficientemente difforme gli uni dagli altri, richiede una statistica più affidabile; è il caso dell'*Akaike Information Criterion* (AIC) e dello *Schwarz Information Criterion* (SIC).
+
+Con l'usuale significato dei simboli, il primo è definibile come
+
+$$
+\log AIC=(2k/n)+\log (rss/n)
+\tag{5.15}
+$$
+
+e suggerisce di scegliere il modello che registra il valore più basso. Per il secondo criterio abbiamo invece
+
+$$
+\log SIC=(k/n)\log n+\log (rss/n)
+\tag{5.16}
+$$
+
+e ancora una volta il modello preferito avrà il valore più basso.
+
+Svolgiamo un esempio sui modelli precedenti `modA` e `modB`.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+rssA <- sum(residuals(modA)^2)
+rssB <- sum(residuals(modB)^2)
+aicA <- (2*3/21)+log(rssA/21)
+aicB <- (2*3/21)+log(rssB/21)
+sicA <- (3/21)*log(21)+log(rssA/21)
+sicB <- (3/21)*log(21)+log(rssB/21)
+aicA; aicB
+sicA; sicB
+```
+
+### Python
+
+```{python}
+for nome, m in (("A", modA), ("B", modB)):
+    aic = 2 * 3 / 21 + np.log(m.ssr / 21)
+    sic = 3 / 21 * np.log(21) + np.log(m.ssr / 21)
+    print(nome, aic, sic)
+# statsmodels fornisce anche m.aic e m.bic, definiti sulla log-verosimiglianza
+```
+
+### SAS
+
+```sas
+/* le opzioni aic e sbc di PROC REG riportano i due criteri
+   (in una scala diversa da quella del testo, ma con lo stesso ordinamento dei modelli) */
+proc reg data=fAB;
+  modA: model cpro = rpro r1 / aic sbc;
+  modB: model cpro = rpro c1 / aic sbc;
+run;
+quit;
+```
+:::
+
+In base a questi due criteri di scelta sarebbe da preferire il modello `modB`. In effetti questa indicazione è coerente con una leggera superiorità già emersa dalle precedenti considerazioni; in particolare, mentre il contributo del regressore aggiunto in `modAx` è altamente significativo, quello in `modBx` ha una confidenza di poco superiore al 95%, segnalando una limitata informazione aggiuntiva rispetto alla specificazione originaria di `modB`.

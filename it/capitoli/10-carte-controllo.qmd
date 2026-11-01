@@ -1,0 +1,807 @@
+---
+title: "10 Carte di controllo statistico per l'analisi di qualità"
+---
+
+## 10.1 Le carte di controllo e il metodo 3-sigma {#sec-carte}
+
+La ricerca di una maggiore qualità dei processi produttivi, intesa come aderenza a standard via via più elevati, caratterizza le economie mondiali sin dagli anni '50. Dall'esperienza giapponese nasce una teoria della qualità totale che punta al controllo e al miglioramento continuo dell'intero processo aziendale, verso una generale ottimizzazione del sistema. Un aspetto importante della ricerca di una maggiore qualità è la conoscenza del processo e il suo controllo, affinché rispetti alcune condizioni che trovano una specifica traduzione in criteri statistici; è, ad esempio, di particolare rilievo la descrizione della variabilità esibita dal processo e l'eventuale presenza di oscillazioni al di fuori della norma. A tale scopo, le carte di controllo rappresentano uno strumento di grande utilità e di semplice lettura.
+
+Le carte di controllo, originariamente proposte da Shewhart, non sono altro che grafici che rappresentano l'evoluzione nel tempo del processo produttivo, ovvero dell'output o di alcune sue caratteristiche. Per esempio, se stiamo monitorando il numero di viti difettose prodotte da una macchina in alcuni periodi di tempo, non ci auguriamo un aumento sistematico dei difetti, o comunque tale da destare la preoccupazione dell'analista circa la necessità di ritarare o persino riparare il macchinario; ma se i difetti sono troppo numerosi, la carta di controllo segnalerà l'anomalia con oscillazioni del processo oltre specifici limiti, solitamente posti a $\pm 3\sigma$ dal valore medio del processo stesso.
+
+A tal proposito, la Figura 10.1 rappresenta dati di fantasia sul grado di resistenza alla rottura di alcuni chiodi, con rilevazione giornaliera. Il processo mostra un andamento irregolare, con una fase crescente fino alla 13-esima rilevazione, comunque all'interno dei limiti di accettabilità (le linee tratteggiate orizzontali).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.1 – Descrizione grafica dell'evoluzione di un processo"
+xx <- c(10,11,10,13,12,13,14,12,14,15,14,16,15,25,24,26,23,24,27,
+        14,17,16,15,16,14,13,12,14,10,12,8,9,5,6,2)   # dati di fantasia
+plot(xx, type="l", main="Evoluzione di un processo")
+abline(h=c(8,20), lty=2)
+abline(v=c(13,20,32), lty=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 10.1 – Descrizione grafica dell'evoluzione di un processo"
+#| results: hide
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+
+xx = np.array([10, 11, 10, 13, 12, 13, 14, 12, 14, 15, 14, 16, 15, 25, 24, 26, 23, 24, 27,
+               14, 17, 16, 15, 16, 14, 13, 12, 14, 10, 12, 8, 9, 5, 6, 2])   # dati di fantasia
+idx = np.arange(1, len(xx) + 1)
+plt.figure(figsize=(5, 5))
+plt.plot(idx, xx, color="black")
+for h in (8, 20):
+    plt.axhline(h, color="black", linestyle="--", linewidth=0.8)
+for v in (13, 20, 32):
+    plt.axvline(v, color="black", linestyle="--", linewidth=0.8)
+plt.title("Evoluzione di un processo"); plt.xlabel("Index"); plt.ylabel("xx")
+plt.show()
+```
+
+### SAS
+
+```sas
+data processo;
+  input xx @@;
+  t = _n_;
+  datalines;
+10 11 10 13 12 13 14 12 14 15 14 16 15 25 24 26 23 24 27
+14 17 16 15 16 14 13 12 14 10 12 8 9 5 6 2
+;
+run;
+proc sgplot data=processo noautolegend;
+  title "Evoluzione di un processo";
+  series x=t y=xx;
+  refline 8 20 / axis=y lineattrs=(pattern=dash);
+  refline 13 20 32 / axis=x lineattrs=(pattern=dash);
+run;
+```
+:::
+
+Le rilevazioni successive subiscono un balzo in avanti e segnalano un fuori norma, che rientra però dopo alcuni giorni; da quel momento inizia una progressiva deriva del processo, fino a superare il limite inferiore alla 32-esima rilevazione. Dunque, anche un semplice grafico di una qualche caratteristica del bene o servizio in esame può rappresentare un ottimo strumento di analisi.
+
+In modo più preciso, se $\mu$ è la media del processo possiamo definire due limiti di controllo seguendo il cosiddetto metodo del *3-sigma*:
+
+$$
+\text{limite inferiore di controllo } LCL=\mu -3\sigma \qquad \text{e} \qquad \text{limite superiore di controllo } UCL=\mu +3\sigma
+\tag{10.1}
+$$
+
+È da notare che, se i dati seguono una distribuzione normale, l'intervallo $\mu \pm 3\sigma$ include più del 99% delle osservazioni, esattamente il 99,73%, per cui la probabilità di errore del I tipo è 0,0027. Se dunque volessimo ragionare in termini probabilistici e imporre a priori una probabilità di errore del I tipo uguale a 0,001 (cioè lo 0,1%) per ciascun limite, avremmo un fattore moltiplicativo della deviazione standard uguale a 3,09
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+qnorm(1-0.001)
+```
+
+### Python
+
+```{python}
+print(stats.norm.ppf(1 - 0.001))
+```
+
+### SAS
+
+```sas
+data _null_;
+  z = quantile("NORMAL", 1-0.001);
+  put z=;
+run;
+```
+:::
+
+Va notato che, per segnalare in tempi brevi la presenza di andamenti anomali che potrebbero sfociare in un fuori controllo oltre il limite tradizionale del 3-sigma, si possono aggiungere limiti di sorveglianza a 2-sigma, ovvero fissare un errore del I tipo a 0,025. L'applicazione delle carte di controllo è molto interessante anche se riferita ai servizi pubblici e all'analisi della qualità percepita dagli utenti di un servizio, per esempio quello sanitario.
+
+## 10.2 La carta p {#sec-carta-p}
+
+Una nota carta di controllo è la carta $p$ per attributi, utilizzata per prodotti classificabili come difettosi o non difettosi rispetto a una qualche caratteristica. Ciò non vale solo per l'industria: per esempio, nel contesto sanitario, si può considerare il superamento o meno di certe soglie circa la pulizia degli ambienti, e così via. La carta analizza la proporzione di pezzi difettosi $p$, ossia la quota di pezzi non conformi a specifici standard aziendali. Immediato è il collegamento alla distribuzione binomiale, nella quale due sono gli stati possibili. Quindi, se il campione dei pezzi analizzati ha dimensione $n$ e $D$ è il numero di unità non conformi, avremo $P(D=x)=\binom{n}{x}p^{x}(1-p)^{n-x}$, $x=0,1,...,n$. La quota di non conformi è $\hat{p}=D/n$, pertanto $\mu_{\hat{p}}=p$ e $\sigma_{\hat{p}}=(p(1-p)/n)^{1/2}$. Conseguentemente, se la vera frazione di pezzi non conformi è nota, scriveremo
+
+$$
+LCL=p-3(p(1-p)/n)^{1/2} \qquad \text{e} \qquad UCL=p+3(p(1-p)/n)^{1/2}
+\tag{10.2}
+$$
+
+Naturalmente, i campioni di pezzi analizzati sono usualmente in numero $m>1$, non sempre di uguale ampiezza $n$ e, soprattutto, non è quasi mai nota la vera frazione $p$ che, al contrario, viene stimata sui dati campionari con $\bar{p}=\sum_{i} D_{i}/\sum_{i} n_{i}$, ottenendo
+
+$$
+LCL=\bar{p}-3(\bar{p}(1-\bar{p})/\bar{n})^{1/2} \qquad \text{e} \qquad UCL=\bar{p}+3(\bar{p}(1-\bar{p})/\bar{n})^{1/2}
+\tag{10.3}
+$$
+
+dove $\bar{p}$ è la proporzione media dei pezzi difettosi e $\bar{n}$ l'ampiezza media dei campioni.
+
+Supponiamo di effettuare 28 campionamenti e di rilevare il numero di viti difettose prodotte da una macchina per ogni ciclo di produzione completo di 200 pezzi; i dati corrispondenti sono riportati nel file *viti.csv*. Calcoliamo il numero medio di viti prodotte (naturalmente qui uguale a 200) e la proporzione media di viti non conformi agli standard produttivi
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+viti <- read.csv2("data/viti.csv")
+attach(viti)
+n <- sum(tot)/28
+p <- sum(difetti)/sum(tot)
+n; p
+```
+
+### Python
+
+```{python}
+viti = pd.read_csv("data/viti.csv", sep=";")
+n = viti["tot"].sum() / 28
+p = viti["difetti"].sum() / viti["tot"].sum()
+print(n, p)
+```
+
+### SAS
+
+```sas
+proc import datafile="data/viti.csv" out=viti dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+proc sql noprint;
+  select sum(tot)/28, sum(difetti)/sum(tot) into :n, :p from viti;
+quit;
+%put n=&n p=&p;
+```
+:::
+
+Si rileva dunque una difettosità media di circa l'8,4%, con limiti del 2,5% e del 14,3%
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+lcl <- p-3*sqrt(p*(1-p)/n)
+ucl <- p+3*sqrt(p*(1-p)/n)
+lcl; ucl
+```
+
+### Python
+
+```{python}
+lcl = p - 3 * np.sqrt(p * (1 - p) / n)
+ucl = p + 3 * np.sqrt(p * (1 - p) / n)
+print(lcl, ucl)
+```
+
+### SAS
+
+```sas
+data _null_;
+  lcl = &p - 3*sqrt(&p*(1-&p)/&n);
+  ucl = &p + 3*sqrt(&p*(1-&p)/&n);
+  call symputx("lcl", lcl); call symputx("ucl", ucl);
+  put lcl= ucl=;
+run;
+```
+:::
+
+La Figura 10.2 descrive graficamente la difettosità del processo di produzione delle viti e segnala una quota di difetti sotto controllo, senza oscillazioni esterne ai limiti stabiliti
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.2 – Carta *p* delle viti difettose"
+pi <- difetti/tot
+plot(pi, type="o", main="Carta p", ylim=c(0.0,0.16))
+abline(h=lcl, lty=2)
+abline(h=ucl, lty=2)
+detach(viti)
+```
+
+### Python
+
+```{python}
+def carta(valori, lcl, ucl, titolo, ylim, ylabel=""):
+    """Disegna una carta di controllo con limiti costanti (scalari) o variabili (vettori)."""
+    t = np.arange(1, len(valori) + 1)
+    plt.figure(figsize=(5, 5))
+    plt.plot(t, valori, "o-", color="black", markerfacecolor="none")
+    for lim in (lcl, ucl):
+        if np.ndim(lim) == 0:
+            plt.axhline(lim, color="black", linestyle="--", linewidth=0.8)
+        else:
+            plt.plot(t, lim, color="black", linestyle="--", linewidth=0.8)
+    plt.ylim(*ylim); plt.title(titolo); plt.xlabel("Index"); plt.ylabel(ylabel)
+    plt.show()
+```
+
+```{python}
+#| fig-cap: "Figura 10.2 – Carta *p* delle viti difettose"
+#| results: hide
+pi = viti["difetti"] / viti["tot"]
+carta(pi, lcl, ucl, "Carta p", (0.0, 0.16), "pi")
+```
+
+### SAS
+
+```sas
+data viti;
+  set viti;
+  pi = difetti/tot;
+run;
+proc sgplot data=viti noautolegend;
+  title "Carta p";
+  series x=nr y=pi / markers;
+  refline &lcl &ucl / axis=y lineattrs=(pattern=dash);
+  yaxis min=0 max=0.16;
+run;
+/* con SAS/QC la stessa carta si ottiene direttamente: */
+proc shewhart data=viti;
+  pchart difetti*nr / subgroupn=tot;
+run;
+```
+:::
+
+Supponiamo ora che la stessa azienda produca bulloni di vario formato in una quantità giornaliera che varia in funzione della richiesta di mercato; i dati sono riportati nel file *bulloni.csv*. Costruiamo la corrispondente carta $p$ (Figura 10.3)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.3 – Carta *p* dei bulloni difettosi"
+bul <- read.csv2("data/bulloni.csv")
+attach(bul)
+pi <- rotti/bullon
+p <- sum(rotti)/sum(bullon)
+n <- sum(bullon)/32
+lcl <- p-3*sqrt(p*(1-p)/n)
+ucl <- p+3*sqrt(p*(1-p)/n)
+lcl; ucl
+plot(pi, type="o", main="Carta p", ylim=c(0.0,0.06))
+abline(h=lcl, lty=2); abline(h=ucl, lty=2)
+```
+
+### Python
+
+```{python}
+bul = pd.read_csv("data/bulloni.csv", sep=";")
+pi = bul["rotti"] / bul["bullon"]
+p = bul["rotti"].sum() / bul["bullon"].sum()
+n = bul["bullon"].sum() / 32
+lcl = p - 3 * np.sqrt(p * (1 - p) / n)
+ucl = p + 3 * np.sqrt(p * (1 - p) / n)
+print(lcl, ucl)
+```
+
+```{python}
+#| fig-cap: "Figura 10.3 – Carta *p* dei bulloni difettosi"
+#| results: hide
+carta(pi, lcl, ucl, "Carta p", (0.0, 0.06), "pi")
+```
+
+### SAS
+
+```sas
+proc import datafile="data/bulloni.csv" out=bul dbms=dlm replace;
+  delimiter=";"; getnames=yes;
+run;
+proc sql noprint;
+  select sum(rotti)/sum(bullon), sum(bullon)/32 into :p, :n from bul;
+quit;
+data bul;
+  set bul;
+  pi  = rotti/bullon;
+  lcl = &p - 3*sqrt(&p*(1-&p)/&n);
+  ucl = &p + 3*sqrt(&p*(1-&p)/&n);
+run;
+proc sgplot data=bul noautolegend;
+  title "Carta p";
+  series x=gg y=pi / markers;
+  series x=gg y=lcl / lineattrs=(pattern=dash color=black);
+  series x=gg y=ucl / lineattrs=(pattern=dash color=black);
+  yaxis min=0 max=0.06;
+run;
+```
+:::
+
+Il processo di produzione dei bulloni appare sotto controllo, con l'eccezione della rilevazione del giorno 26; infatti
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+pi>ucl
+```
+
+### Python
+
+```{python}
+print(np.flatnonzero(pi > ucl) + 1)     # giorni fuori controllo
+```
+
+### SAS
+
+```sas
+proc print data=bul noobs;
+  where pi > ucl;
+  var gg pi ucl;
+run;
+```
+:::
+
+Occorrerebbe ricercare la ragione che ha determinato l'anomala difettosità del 26-esimo campione, in modo da evitare che il fuori controllo possa riproporsi e persino estendersi al resto della produzione.
+
+Nell'esempio dei bulloni, i campioni analizzati presentano una dimensione variabile, e questo suggerirebbe di ricercare limiti di controllo ad ampiezza variabile. Tre strade sono percorribili: ignorare la dimensione variabile e calcolare limiti costanti riferiti all'ampiezza media (opzione usualmente adottata); costruire la carta sui valori standardizzati (quindi con valore centrale 0 e limiti -3 e +3); calcolare limiti variabili per ogni ampiezza campionaria, come nel caso della Figura 10.4
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.4 – Carta *p* dei bulloni difettosi con limiti variabili"
+ni <- bullon
+lcli <- p-3*sqrt(p*(1-p)/ni)
+ucli <- p+3*sqrt(p*(1-p)/ni)
+plot(pi, type="o", main="Carta p con limiti variabili", ylim=c(0.0,0.06))
+lines(ucli, lty=2)
+lines(lcli, lty=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 10.4 – Carta *p* dei bulloni difettosi con limiti variabili"
+#| results: hide
+ni = bul["bullon"].to_numpy()
+lcli = p - 3 * np.sqrt(p * (1 - p) / ni)
+ucli = p + 3 * np.sqrt(p * (1 - p) / ni)
+carta(pi, lcli, ucli, "Carta p con limiti variabili", (0.0, 0.06), "pi")
+```
+
+### SAS
+
+```sas
+/* PROC SHEWHART (SAS/QC) usa per default limiti variabili
+   quando le ampiezze dei campioni sono diverse */
+proc shewhart data=bul;
+  pchart rotti*gg / subgroupn=bullon;
+run;
+```
+:::
+
+## 10.3 La carta np {#sec-carta-np}
+
+Potremmo costruire una carta analoga facendo ricorso al numero di bulloni difettosi invece che alla quota di difettosità, ottenendo la carta $np$. In realtà, questa carta andrebbe utilizzata più correttamente con campioni di numerosità costante; svolgiamo pertanto l'esercizio utilizzando l'informazione sulla difettosità dei perni contenuta nello stesso file *bulloni.csv*. Costruiamo e confrontiamo la carta $p$ con la carta $np$, i cui limiti sono ora ottenuti da $np\pm 3(np(1-p))^{1/2}$ (Figura 10.5)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.5 – Carta *np* e carta *p* dei perni difettosi"
+#| fig-width: 9
+#| fig-height: 4.5
+pi <- difperni/totperni
+p <- sum(difperni)/sum(totperni)
+n <- sum(totperni)/32
+lclnp <- n*p-3*(n*p*(1-p))^0.5
+uclnp <- n*p+3*(n*p*(1-p))^0.5
+lclnp; uclnp
+par(mfrow=c(1,2))
+plot(difperni, type="o", main="Carta np", ylim=c(5,45))
+abline(h=lclnp, lty=2); abline(h=uclnp, lty=2)
+lcl <- p-3*sqrt(p*(1-p)/n)
+ucl <- p+3*sqrt(p*(1-p)/n)
+lcl; ucl
+plot(pi, type="o", main="Carta p", ylim=c(0.01,0.08))
+abline(h=lcl, lty=2); abline(h=ucl, lty=2)
+```
+
+### Python
+
+```{python}
+difperni = bul["difperni"].to_numpy()
+pi = difperni / bul["totperni"]
+p = difperni.sum() / bul["totperni"].sum()
+n = bul["totperni"].sum() / 32
+lclnp = n * p - 3 * (n * p * (1 - p)) ** 0.5
+uclnp = n * p + 3 * (n * p * (1 - p)) ** 0.5
+lcl = p - 3 * np.sqrt(p * (1 - p) / n)
+ucl = p + 3 * np.sqrt(p * (1 - p) / n)
+print(lclnp, uclnp); print(lcl, ucl)
+```
+
+```{python}
+#| fig-cap: "Figura 10.5 – Carta *np* e carta *p* dei perni difettosi"
+#| results: hide
+t = np.arange(1, 33)
+fig, ax = plt.subplots(1, 2, figsize=(9, 4.5))
+for a, v, lo, hi, tit, yl in ((ax[0], difperni, lclnp, uclnp, "Carta np", (5, 45)),
+                              (ax[1], pi, lcl, ucl, "Carta p", (0.01, 0.08))):
+    a.plot(t, v, "o-", color="black", markerfacecolor="none")
+    a.axhline(lo, color="black", linestyle="--", linewidth=0.8)
+    a.axhline(hi, color="black", linestyle="--", linewidth=0.8)
+    a.set_ylim(*yl); a.set_title(tit); a.set_xlabel("Index")
+plt.tight_layout(); plt.show()
+```
+
+### SAS
+
+```sas
+/* carta np e carta p con SAS/QC (campioni di 600 perni) */
+proc shewhart data=bul;
+  npchart difperni*gg / subgroupn=600;
+  pchart  difperni*gg / subgroupn=600;
+run;
+```
+:::
+
+La Figura 10.5 rappresenta le due carte; il processo è sotto controllo, con la solita eccezione della 26-esima rilevazione. Va notato che, se le due carte sono applicate con campioni di identica dimensione e ovviamente agli stessi dati, forniscono conclusioni che differiscono soltanto nella scala dei valori.
+
+## 10.4 Le carte c e u {#sec-carte-c-u}
+
+La carta $c$ è un'altra carta di controllo per attributi, riferita al numero di difetti per campioni di uguale dimensione. La Figura 10.6 riporta l'esempio dei perni difettosi del file *bulloni.csv*
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.6 – Carta *c* dei perni difettosi"
+c <- sum(difperni)/32
+lclc <- c-3*c^0.5; uclc <- c+3*c^0.5
+plot(difperni, type="o", main="Carta c", ylim=c(5,45))
+abline(h=lclc, lty=2); abline(h=uclc, lty=2)
+detach(bul)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 10.6 – Carta *c* dei perni difettosi"
+#| results: hide
+cmedio = difperni.sum() / 32
+lclc, uclc = cmedio - 3 * cmedio ** 0.5, cmedio + 3 * cmedio ** 0.5
+carta(difperni, lclc, uclc, "Carta c", (5, 45), "difperni")
+```
+
+### SAS
+
+```sas
+proc shewhart data=bul;
+  cchart difperni*gg;
+run;
+```
+:::
+
+In questo caso la carta si costruisce per campioni di dimensione costante, ipotizzando che il numero di difetti $X$ si distribuisca come una v.c. di Poisson con parametro $c$ (numero medio di difetti), $P(X=x)=e^{-c}c^{x}/x!$, $x=0,1,2,...$, e pertanto con limiti
+
+$$
+LCL=c-3c^{1/2} \qquad \text{e} \qquad UCL=c+3c^{1/2}
+\tag{10.4}
+$$
+
+Ma se il numero di difetti, e quindi anche il numero medio $c$, è riferito a più unità produttive, diciamo in numero $n$, può interessare costruire la carta attorno al numero medio di non conformità per unità, cioè su $u=c/n$, con limiti $LCL=u-3(u/n)^{1/2}$ e $UCL=u+3(u/n)^{1/2}$, ottenendo così la carta $u$.
+
+Con i dati di fantasia riportati di seguito, nel caso di limiti variabili, avremo la carta $u$ rappresentata in Figura 10.7
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.7 – Carta *u* della non conformità per unità"
+dif <- c(14,12,20,11,7,10,21,16,19,23) # nr. difetti
+nn <- c(10,8,13,10,9.5,10,12,10.5,12,12.5) # nr. unità
+c <- sum(dif)/10; n <- sum(nn)/10; u <- c/n; u
+lcl <- u-3*(u/nn)^0.5; ucl <- u+3*(u/nn)^0.5
+ui <- dif/nn
+plot(ui, type="o", main="Carta u", ylim=c(0,3))
+lines(lcl, lty=2); lines(ucl, lty=2)
+```
+
+### Python
+
+```{python}
+dif = np.array([14, 12, 20, 11, 7, 10, 21, 16, 19, 23])          # nr. difetti
+nn = np.array([10, 8, 13, 10, 9.5, 10, 12, 10.5, 12, 12.5])       # nr. unità
+u = (dif.sum() / 10) / (nn.sum() / 10)
+print(u)
+```
+
+```{python}
+#| fig-cap: "Figura 10.7 – Carta *u* della non conformità per unità"
+#| results: hide
+carta(dif / nn, u - 3 * (u / nn) ** 0.5, u + 3 * (u / nn) ** 0.5, "Carta u", (0, 3), "ui")
+```
+
+### SAS
+
+```sas
+data carta_u;
+  input campione dif nn @@;
+  datalines;
+1 14 10   2 12 8   3 20 13   4 11 10   5 7 9.5
+6 10 10   7 21 12  8 16 10.5 9 19 12  10 23 12.5
+;
+run;
+proc shewhart data=carta_u;
+  uchart dif*campione / subgroupn=nn;
+run;
+```
+:::
+
+## 10.5 Carte per variabili: le carte X-bar e R {#sec-xbar-r}
+
+Le carte di controllo per attributi sono tipicamente applicate a dati categoriali, riferibili alla presenza o meno dell'evento difettosità. Al contrario, le carte di controllo per variabili riguardano dati quantitativi riferibili a una caratteristica $X$ del prodotto, quale peso, volume, ecc. In questo caso è opportuno tenere il processo sotto controllo sia per la media sia per la variabilità; infatti le carte di controllo per variabili sono applicate in coppia.
+
+Se la caratteristica è tale che $X\sim N(\mu ,\sigma^{2})$, la media campionaria è $\bar{X}\sim N(\mu ,\sigma_{\bar{X}}^{2})$, dove $\sigma_{\bar{X}}=\sigma /n^{1/2}$. A questo punto, la carta di controllo 3-sigma per la media ha limiti
+
+$$
+LCL=\mu -3\sigma_{\bar{X}} \qquad \text{e} \qquad UCL=\mu +3\sigma_{\bar{X}}
+\tag{10.5}
+$$
+
+e, in termini di probabilità, $\mu -Z_{\alpha /2}\sigma_{\bar{X}}$ e $\mu +Z_{\alpha /2}\sigma_{\bar{X}}$.
+
+Generalmente $\mu$ è sconosciuta e va stimata con la media delle medie dei campioni $\bar{\bar{X}}$; allo stesso modo, per $\sigma$ si utilizza la deviazione standard campionaria.
+
+Per l'analisi della variabilità, in alternativa alla deviazione standard, si può utilizzare il range $R$, ovvero la media $\bar{R}$ dei range campionari. Sono così definiti i seguenti limiti per la carta $\bar{X}$ (valore centrale $\bar{\bar{X}}$)
+
+$$
+LCL=\bar{\bar{X}}-A_{2}\bar{R} \qquad \text{e} \qquad UCL=\bar{\bar{X}}+A_{2}\bar{R}
+\tag{10.6}
+$$
+
+e quelli per la carta $R$ (valore centrale $\bar{R}$)
+
+$$
+LCL=D_{3}\bar{R} \qquad \text{e} \qquad UCL=D_{4}\bar{R}
+\tag{10.7}
+$$
+
+Notiamo l'utilizzo delle specifiche costanti $A_{2}$, $D_{3}$ e $D_{4}$, riportate in apposite tavole.
+
+Se la caratteristica in esame segue una distribuzione normale, esiste una specifica relazione tra il range e la deviazione standard. Se $d_{2}$ rappresenta la media e $d_{3}$ la deviazione standard della v.c. $R/\sigma$, una stima di $\sigma$ sarà $\hat{\sigma}=\bar{R}/d_{2}$. Poiché possiamo definire i limiti della carta della media con $\bar{\bar{X}}\pm 3\hat{\sigma}/n^{1/2}$, e quindi con $\bar{\bar{X}}\pm 3\bar{R}/(d_{2}n^{1/2})$, è immediato ottenere $A_{2}=3/(d_{2}n^{1/2})$.
+
+In maniera analoga possiamo scrivere $\sigma_{R/\sigma}=\sigma_{R}/\sigma$, $\hat{\sigma}_{R}=\hat{\sigma}d_{3}$, $\hat{\sigma}_{R}=\bar{R}d_{3}/d_{2}$, $\bar{R}+3\hat{\sigma}_{R}=(1+3d_{3}/d_{2})\bar{R}$, per cui $D_{4}=1+3d_{3}/d_{2}$; allo stesso modo, $D_{3}=1-3d_{3}/d_{2}$ (posto pari a 0 quando risulta negativo).
+
+Va evidenziato che la carta della media misura la variabilità tra i campioni, mentre la carta del range misura la variabilità all'interno dei campioni. Ciò implica, come peraltro sottolineato dalle formule, che $\sigma$ si deve stimare utilizzando la sola informazione sulla variabilità interna ai campioni, e pertanto non si deve applicare l'usuale stimatore della deviazione standard calcolato su tutti i dati.
+
+Carichiamo i dati contenuti nel file *molle.csv*, relativi al limite di estensione in cm di alcune molle per divani, rilevato con 3 misure ripetute su 10 campioni. Costruiamo la carta della media ($\bar{X}$ o *X-bar*) tramite range (Figura 10.8)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.8 – Carta *X-bar* via range"
+molle <- read.csv2("data/molle.csv")
+media <- 0; rang <- 0
+for (i in 2:11) media[i-1]=mean(molle[,i])
+for (i in 2:11) rang[i-1]=diff(range(molle[,i]))
+centrale <- mean(media); rmedio <- mean(rang)
+centrale; rmedio
+A2 <- 1.023 # valore tabulato per n=3
+lcl <- centrale-A2*rmedio
+ucl <- centrale+A2*rmedio
+lcl; ucl
+plot(media, type="o", main="Carta X-bar via range", ylim=c(8.1,9.5))
+abline(h=lcl, lty=2); abline(h=ucl, lty=2)
+```
+
+### Python
+
+```{python}
+molle = pd.read_csv("data/molle.csv", sep=";", decimal=",", index_col=0)
+media = molle.mean().to_numpy()                       # medie dei 10 campioni
+rang = (molle.max() - molle.min()).to_numpy()         # range dei 10 campioni
+centrale, rmedio = media.mean(), rang.mean()
+A2 = 1.023                                            # valore tabulato per n=3
+lcl, ucl = centrale - A2 * rmedio, centrale + A2 * rmedio
+print(centrale, rmedio); print(lcl, ucl)
+```
+
+```{python}
+#| fig-cap: "Figura 10.8 – Carta *X-bar* via range"
+#| results: hide
+carta(media, lcl, ucl, "Carta X-bar via range", (8.1, 9.5), "media")
+```
+
+### SAS
+
+```sas
+/* dati in formato lungo: una riga per misura */
+data molle;
+  infile "data/molle.csv" dlm=";" firstobs=2;
+  input misura $ (c1-c10) (:commax8.);
+  array c{10} c1-c10;
+  do campione = 1 to 10;
+    valore = c{campione};
+    output;
+  end;
+  keep campione valore;
+run;
+proc sort data=molle; by campione; run;
+/* carte X-bar e R con le costanti tabulate A2, D3 e D4 */
+proc shewhart data=molle;
+  xrchart valore*campione;
+run;
+```
+:::
+
+Notiamo che il quinto punto è fuori controllo (media e range del quinto campione uguali rispettivamente a 9,4 e 0,6)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+media[5]; rang[5]
+```
+
+### Python
+
+```{python}
+print(media[4], rang[4])
+```
+
+### SAS
+
+```sas
+proc means data=molle mean range maxdec=3;
+  where campione = 5;
+  var valore;
+run;
+```
+:::
+
+I limiti della carta $\bar{X}$ dipendono dal range medio; sarebbe quindi preferibile verificare prima che la carta $R$ non segnali la presenza di punti fuori controllo; qui, al contrario, abbiamo preferito seguire l'ordine di esposizione.
+
+La costruzione della carta del range è agevole (Figura 10.9)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.9 – Carta *R*"
+D3 <- 0 # non vi sono valori D3>0 per n<7
+D4 <- 2.575 # D3 e D4 sono tabulati per valori di n
+lclr <- D3*rmedio
+uclr <- D4*rmedio
+plot(rang, type="o", main="Carta R", ylim=c(0,1.6))
+abline(h=lclr, lty=2); abline(h=uclr, lty=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 10.9 – Carta *R*"
+#| results: hide
+D3 = 0          # non vi sono valori D3>0 per n<7
+D4 = 2.575      # D3 e D4 sono tabulati per valori di n
+carta(rang, D3 * rmedio, D4 * rmedio, "Carta R", (0, 1.6), "rang")
+```
+
+### SAS
+
+```sas
+/* la carta R è il secondo pannello prodotto da XRCHART;
+   per la sola carta R: */
+proc shewhart data=molle;
+  rchart valore*campione;
+run;
+```
+:::
+
+Il processo appare sotto controllo.
+
+## 10.6 Le carte X-bar e S {#sec-xbar-s}
+
+L'utilizzo della carta $R$ è preferibile per piccoli campioni, ma per numerosità maggiori di 5 la stima di $\sigma$ tramite range diviene via via meno precisa. In genere, con $n>10$ o con dimensione campionaria variabile, si preferisce ricorrere a una specifica carta $S$ o $S^{2}$ in sostituzione della carta $R$; naturalmente ne risulterà influenzata anche la costruzione della relativa carta $\bar{X}$.
+
+Ipotizziamo, come d'abitudine, che la caratteristica $X$ del prodotto in esame segua una normale. Se $\sigma$ è noto, la carta $S$ avrà valore centrale $c_{4}\sigma$, con limiti inferiore e superiore 3-sigma uguali a
+
+$$
+LCL=B_{5}\sigma \qquad \text{e} \qquad UCL=B_{6}\sigma
+\tag{10.8}
+$$
+
+dove le costanti $c_{4}$, $B_{5}$ e $B_{6}$ assumono valori specifici tabulati in base alla dimensione campionaria, tali che $B_{5}=c_{4}-3(1-c_{4}^{2})^{1/2}$ e $B_{6}=c_{4}+3(1-c_{4}^{2})^{1/2}$.
+
+Se la deviazione standard non è nota, deve essere stimata sfruttando la relazione $\hat{\sigma}=\bar{S}/c_{4}$, dove $\bar{S}$ è la media delle deviazioni standard campionarie. Pertanto la carta $S$ avrà adesso valore centrale $\bar{S}$, con limiti
+
+$$
+LCL=B_{3}\bar{S} \qquad \text{e} \qquad UCL=B_{4}\bar{S}
+\tag{10.9}
+$$
+
+dove $B_{3}=1-(3/c_{4})(1-c_{4}^{2})^{1/2}$ e $B_{4}=1+(3/c_{4})(1-c_{4}^{2})^{1/2}$.
+
+A questo punto dovranno essere ridefiniti anche i limiti della carta $\bar{X}$ (il cui valore centrale è sempre $\bar{\bar{X}}$)
+
+$$
+LCL=\bar{\bar{X}}-A_{3}\bar{S} \qquad \text{e} \qquad UCL=\bar{\bar{X}}+A_{3}\bar{S}
+\tag{10.10}
+$$
+
+dove $A_{3}=3/(c_{4}n^{1/2})$.
+
+Carichiamo i dati sul diametro degli anelli per pistoni di automobili contenuti nel file *pistoni.csv* (5 misure per ciascuno dei 25 campioni). Costruiamo le due carte $\bar{X}$ e $S$ (Figura 10.10)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 10.10 – Carte *X-bar* e *S*"
+#| fig-width: 9
+#| fig-height: 4.5
+piston <- read.csv2("data/pistoni.csv")
+med <- 0; dev <- 0
+for (i in 2:26) med[i-1]=mean(piston[,i])
+for (i in 2:26) dev[i-1]=sd(piston[,i])
+media <- mean(med); mdev <- mean(dev)
+media; mdev
+A3 <- 1.427 # valori tabulati per n=5
+lclx <- media-A3*mdev; uclx <- media+A3*mdev
+lclx; uclx
+B3 <- 0
+B4 <- 2.089
+lcls <- B3*mdev; ucls <- B4*mdev
+lcls; ucls
+par(mfrow=c(1,2))
+plot(med, type="o", main="Carta X-bar via S", ylim=c(73.98,74.02))
+abline(h=lclx, lty=2); abline(h=uclx, lty=2)
+plot(dev, type="o", main="Carta S", ylim=c(0,0.02))
+abline(h=lcls, lty=2); abline(h=ucls, lty=2)
+```
+
+### Python
+
+```{python}
+piston = pd.read_csv("data/pistoni.csv", sep=";", decimal=",", index_col=0)
+med = piston.mean().to_numpy()
+dev = piston.std().to_numpy()            # deviazione standard campionaria (n-1)
+media, mdev = med.mean(), dev.mean()
+A3 = 1.427                               # valori tabulati per n=5
+B3, B4 = 0, 2.089
+lclx, uclx = media - A3 * mdev, media + A3 * mdev
+lcls, ucls = B3 * mdev, B4 * mdev
+print(media, mdev); print(lclx, uclx); print(lcls, ucls)
+```
+
+```{python}
+#| fig-cap: "Figura 10.10 – Carte *X-bar* e *S*"
+#| results: hide
+t = np.arange(1, 26)
+fig, ax = plt.subplots(1, 2, figsize=(9, 4.5))
+for a, v, lo, hi, tit, yl in ((ax[0], med, lclx, uclx, "Carta X-bar via S", (73.98, 74.02)),
+                              (ax[1], dev, lcls, ucls, "Carta S", (0, 0.02))):
+    a.plot(t, v, "o-", color="black", markerfacecolor="none")
+    a.axhline(lo, color="black", linestyle="--", linewidth=0.8)
+    a.axhline(hi, color="black", linestyle="--", linewidth=0.8)
+    a.set_ylim(*yl); a.set_title(tit); a.set_xlabel("Index")
+plt.tight_layout(); plt.show()
+```
+
+### SAS
+
+```sas
+data pistoni;
+  infile "data/pistoni.csv" dlm=";" firstobs=2;
+  input misura (c1-c25) (:commax10.);
+  array c{25} c1-c25;
+  do campione = 1 to 25;
+    diametro = c{campione};
+    output;
+  end;
+  keep campione diametro;
+run;
+proc sort data=pistoni; by campione; run;
+/* carte X-bar e S con le costanti tabulate A3, B3 e B4 */
+proc shewhart data=pistoni;
+  xschart diametro*campione;
+run;
+```
+:::
+
+Il processo appare sotto controllo.
+
+La costruzione delle carte $\bar{X}$ e $S$ è agevole anche con numerosità campionaria variabile. I valori centrali si ottengono ricorrendo a opportune medie ponderate al posto delle medie semplici, mentre i limiti di controllo, anch'essi variabili, vengono calcolati utilizzando di volta in volta le costanti relative alla diversa numerosità campionaria. Notiamo, infine, che in sostituzione della carta $S$ alcuni preferiscono la carta $S^{2}$, basata sulla varianza campionaria.
+
+A complemento delle classiche carte di Shewhart qui presentate, la letteratura ha proposto svariate altre tecniche, in genere più dettagliate e più sensibili a piccole oscillazioni del processo, quali le carte CUSUM (a somme cumulate) o EWMA (a medie mobili pesate esponenzialmente); sul punto non ci soffermiamo oltre.

@@ -1,0 +1,47 @@
+---
+title: "Statistica Economica con R, Python e SAS"
+subtitle: "Laboratorio di analisi statistica di dati economici"
+author: "Erasmo Vassallo"
+toc: false
+---
+
+Questo sito è l'edizione online e ampliata del volume *Statistica Economica con R* (2018). Ogni esempio è proposto in tre linguaggi, **R**, **Python** e **SAS**, in schede affiancate: si sceglie il linguaggio una volta e la scelta resta valida su tutte le pagine.
+
+```{=html}
+<p><a class="btn btn-primary" href="prefazione.html">Inizia dalla prefazione</a>
+<a class="btn btn-outline-secondary" href="capitoli/01-per-iniziare.html">Vai al Capitolo 1</a></p>
+```
+
+## Indice
+
+| | Capitolo | |
+|---:|:---|:---|
+| | [Prefazione](prefazione.qmd) | ✔ |
+| 1 | [Per iniziare: nozioni di R](capitoli/01-per-iniziare.qmd) | ✔ |
+| 2 | [Aggregati economici e conti nazionali](capitoli/02-aggregati-economici.qmd) | ✔ |
+| 3 | [Numeri indice e deflazione](capitoli/03-numeri-indice.qmd) | ✔ |
+| 4 | [Approccio decompositivo alle serie storiche](capitoli/04-serie-storiche.qmd) | ✔ |
+| 5 | [Specificazione di modelli lineari economici](capitoli/05-modelli-lineari.qmd) | ✔ |
+| 6 | [Modelli stocastici per l'analisi delle serie storiche](capitoli/06-modelli-stocastici.qmd) | ✔ |
+| 7 | [Povertà e distribuzione dei redditi](capitoli/07-poverta.qmd) | ✔ |
+| 8 | [Produzione e produttività di sistemi economici](capitoli/08-produzione.qmd) | ✔ |
+| 9 | [Efficienza statistica dei processi produttivi](capitoli/09-efficienza.qmd) | ✔ |
+| 10 | [Carte di controllo statistico per l'analisi di qualità](capitoli/10-carte-controllo.qmd) | ✔ |
+| 11 | [Modelli statistici per le serie economiche finanziarie](capitoli/11-serie-finanziarie.qmd) | ✔ |
+| 12 | [Altri esempi applicativi](capitoli/12-altri-esempi.qmd) | ✔ |
+| | [Bibliografia](bibliografia.qmd) | ✔ |
+| | [L'autore](autore.qmd) | ✔ |
+
+## Dati
+
+Tutti i file di dati usati nel testo sono nella cartella `data/` del repository GitHub e si possono scaricare singolarmente o clonando l'intero repository.
+
+## Dedica
+
+*Ai tesori più preziosi della mia vita: mia moglie Anna, i miei figli Gabriele ed Edoardo.*
+
+## Ringraziamenti
+
+Un ringraziamento va ai miei studenti, che nei già tanti anni di attività mi hanno arricchito con la loro curiosità, partecipazione e interesse, consentendomi una didattica piena di soddisfazioni.
+
+Non posso che essere grato alla memoria del compianto maestro Prof. Gaetano Cusimano che, all'inizio del mio lungo percorso – ormai quasi 23 anni fa – mi ha guidato e contagiato con una grande e immutata passione per l'insegnamento e la ricerca.

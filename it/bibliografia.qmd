@@ -1,0 +1,37 @@
+---
+title: "Bibliografia"
+---
+
+Alvaro G. (1992). *Contabilità Nazionale e Statistica Economica*. Cacucci: Bari.
+
+Banca d'Italia (2018). *Relazione Annuale sul 2017*. Banca d'Italia: Roma.
+
+Dalgaard P. (2008). *Introductory Statistics with R*. Springer: New York.
+
+Field A., Miles J. & Field Z. (2012). *Discovering Statistics Using R*. Sage: London.
+
+Giovannini E. (2015). *Le statistiche economiche*. Il Mulino: Bologna.
+
+Greene W. (2018). *Econometric Analysis*. Pearson: New York.
+
+Groebner D.F., Shannon P.W. & Fry P.C. (2014). *Business Statistics*. Pearson: New York.
+
+Gujarati D. (2014). *Econometrics by Example*. Red Globe Palgrave: London.
+
+Hollingsworth B. & Peacock S.J. (2008). *Efficiency Measurement in Health and Health Care*. Routledge: New York.
+
+ISTAT (2018). *Rapporto Annuale edizione 2017*. Istat: Roma.
+
+Koop G. (2013). *Analysis of Economic Data*. Wiley: New York.
+
+Lai T.L. & Xing H. (2008). *Statistical Models and Methods for Financial Markets*. Springer: New York.
+
+Stock J.H. & Watson M.W. (2016). *Introduzione all'econometria*. Pearson: Milano.
+
+Vassallo E. (2009). *Laboratorio di Statistica Economica con R*. Aracne: Roma.
+
+## Software utilizzato in questa edizione online
+
+- **R**: pacchetti di base e, nei capitoli 6, 9 e 11, le librerie *tseries*, *lpSolve* e *fGarch*.
+- **Python**: *numpy*, *pandas*, *matplotlib*, *scipy*, *statsmodels* e, nel capitolo 11, *arch*.
+- **SAS**: procedure di Base SAS e SAS/STAT, oltre a SAS/ETS (PROC ARIMA, PROC AUTOREG), SAS/IML, SAS/OR (PROC OPTMODEL, capitolo 9) e SAS/QC (PROC SHEWHART, capitolo 10).

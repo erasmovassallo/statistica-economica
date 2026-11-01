@@ -1,0 +1,96 @@
+project:
+  type: website
+  output-dir: _site
+  execute-dir: project   # il codice gira dalla radice: i dati si leggono da "data/..."
+  resources:
+    - data/
+
+execute:
+  freeze: auto        # i risultati calcolati vengono salvati in _freeze/
+  warning: false
+
+website:
+  title: "Statistica Economica · Economic Statistics"
+  site-url: "https://erasmovassallo.github.io/statistica-economica/"   # da aggiornare
+  repo-url: "https://github.com/erasmovassallo/statistica-economica"     # da aggiornare
+  repo-actions: [edit, issue]
+  page-navigation: true
+  back-to-top-navigation: true
+  search: true
+  navbar:
+    left:
+      - text: "English"
+        href: index.qmd
+      - text: "Italiano"
+        href: it/index.qmd
+    right:
+      - icon: github
+        href: "https://github.com/erasmovassallo/statistica-economica"
+        aria-label: GitHub
+  sidebar:
+    - id: en
+      title: "Economic Statistics"
+      style: docked
+      contents:
+        - text: "Home"
+          href: index.qmd
+        - preface.qmd
+        - section: "Chapters"
+          contents:
+            - chapters/01-getting-started.qmd
+            - chapters/02-economic-aggregates.qmd
+            - chapters/03-index-numbers.qmd
+            - chapters/04-time-series.qmd
+            - chapters/05-linear-models.qmd
+            - chapters/06-stochastic-models.qmd
+            - chapters/07-poverty.qmd
+            - chapters/08-production.qmd
+            - chapters/09-efficiency.qmd
+            - chapters/10-control-charts.qmd
+            - chapters/11-financial-series.qmd
+            - chapters/12-further-examples.qmd
+        - references.qmd
+        - author.qmd
+    - id: it
+      title: "Statistica Economica"
+      style: docked
+      contents:
+        - text: "Home"
+          href: it/index.qmd
+        - it/prefazione.qmd
+        - section: "Capitoli"
+          contents:
+            - it/capitoli/01-per-iniziare.qmd
+            - it/capitoli/02-aggregati-economici.qmd
+            - it/capitoli/03-numeri-indice.qmd
+            - it/capitoli/04-serie-storiche.qmd
+            - it/capitoli/05-modelli-lineari.qmd
+            - it/capitoli/06-modelli-stocastici.qmd
+            - it/capitoli/07-poverta.qmd
+            - it/capitoli/08-produzione.qmd
+            - it/capitoli/09-efficienza.qmd
+            - it/capitoli/10-carte-controllo.qmd
+            - it/capitoli/11-serie-finanziarie.qmd
+            - it/capitoli/12-altri-esempi.qmd
+        - it/bibliografia.qmd
+        - it/autore.qmd
+  page-footer:
+    left: "© 2018–2026 Erasmo Vassallo"
+    right: "Built with [Quarto](https://quarto.org/)"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
+    syntax-definitions:
+      - assets/sas.xml
+    fig-align: center
+    fig-width: 5
+    fig-height: 5

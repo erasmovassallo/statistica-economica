@@ -1,0 +1,1563 @@
+---
+title: "11 Modelli statistici per le serie economiche finanziarie"
+---
+
+## 11.1 Serie finanziarie e tassi di rendimento {#sec-rendimenti}
+
+In questo testo ci siamo soffermati sulle serie storiche in due differenti capitoli: il primo centrato sulla scomposizione e destagionalizzazione della serie in un approccio cosiddetto tradizionale, il secondo con un più ampio utilizzo della modellistica, particolarmente utile per disporre di previsioni con un certo grado di affidabilità statistica. Negli esempi ci siamo finora limitati a serie storiche economiche relative ad aggregati macroeconomici o a serie economiche aziendali, quali fatturato, vendite, ecc., ma anche a serie più tipicamente sociali, quali povertà, esclusione sociale, ecc. Tuttavia, esistono tipologie di serie con caratteristiche evolutive tali da richiedere una differente modellistica.
+
+Il tipico esempio è quello delle serie finanziarie, cioè delle serie storiche relative ad attività, rendimenti e indici del mercato finanziario. Questo tipo di serie si caratterizza per un'alta numerosità delle osservazioni, poiché le informazioni su prezzi e quantità scambiate nei mercati finanziari hanno cadenza anche plurigiornaliera. Un'altra evidente caratteristica attiene alla variabilità esibita dai dati, che mostra molto spesso dei *volatility clusters*, ovvero periodi nei quali la variabilità dei dati oscilla, anche visibilmente, tra valori più bassi e valori più alti. Le tecniche tradizionali sono del tutto inadeguate per descrivere queste serie, alle quali peraltro siamo interessati soprattutto in termini previsivi. Allo stesso modo, molto spesso non emerge una persistenza temporale in media sufficiente a consentire una convincente applicazione dei modelli ARIMA, i quali, lavorando su serie tipicamente eteroschedastiche, soffrono peraltro dell'assenza della condizione di stazionarietà in varianza. Nei fatti, la natura stessa delle serie finanziarie toglie importanza alle valutazioni di medio e lungo periodo, e perde di importanza ogni riferimento a trend e ciclo e, analogamente, alle oscillazioni stagionali, poiché le variazioni dei dati sono influenzate più da informazioni aziendali contingenti in possesso del mercato, aspettative di guadagno dell'investitore, rischi di perdite, ecc., che dai cicli produttivi di beni e servizi e/o dalle caratteristiche del sistema economico nell'incontro tra domanda e offerta. Anzi, in molti casi non è facile risalire alle ragioni delle oscillazioni, poiché le variazioni di valore possono essere generate, per esempio, da politiche di investitori interessati a guadagnare sulla differenza tra prezzi, o da una maggiore o minore fiducia verso un'azienda (o uno Stato) e i suoi titoli.
+
+In altri termini, molto spesso le serie finanziarie si mostrano naturalmente stazionarie in media attorno a un valore costante (non di rado lo zero), mostrando semmai rapide e frequenti oscillazioni sopra e sotto questo valore. Ovviamente l'andamento dipende dal tipo di prodotto finanziario trattato, per quanto questa descrizione rientri certamente tra le tipiche evoluzioni mostrate dalle serie dei rendimenti, o meglio dei tassi di rendimento.
+
+Il tasso di rendimento di un'attività finanziaria esprime in sintesi il flusso di pagamenti percepiti dal detentore dell'attività nell'arco di uno specifico periodo di tempo. Se $P_{t}$ rappresenta il valore monetizzato, ovvero il prezzo della singola attività, il tasso di rendimento lordo è
+
+$$
+R_{t,t+1}=P_{t+1}/P_{t}
+\tag{11.1}
+$$
+
+e il tasso di rendimento netto
+
+$$
+r_{t,t+1}=R_{t,t+1}-1=(P_{t+1}-P_{t})/P_{t}
+\tag{11.2}
+$$
+
+La formula è semplificata, poiché dovremmo tenere conto di eventuali pagamenti intermedi, per esempio dei dividendi per le azioni e delle cedole per le obbligazioni. Queste e altre definizioni le rinviamo alla sezione successiva. Osserviamo subito che i prezzi delle attività sono rilevati, nella gran parte dei casi, quotidianamente e più volte al giorno, ma le informazioni più rilevanti riguardano il prezzo di apertura, il prezzo minimo, il prezzo massimo, il prezzo medio e, infine, il prezzo di chiusura che, nei fatti, racchiude e rappresenta l'esito finale della giornata di scambi; a questo prezzo di chiusura giornaliero, se non diversamente indicato, faremo implicito riferimento quando, ora e più avanti, parleremo del prezzo di un'attività.
+
+Con un paniere di $N$ attività, dove $a_{t}^{n}$ è la quantità del titolo $n$-esimo acquistata al tempo $t$, avremo
+
+$$
+R_{t,t+1}^{\pi}=P_{t+1}^{\pi}/P_{t}^{\pi}=\sum_{n=1}^{N} a_{t}^{n}P_{t+1}^{n}\Big/\sum_{n=1}^{N} a_{t}^{n}P_{t}^{n}
+\tag{11.3}
+$$
+
+nell'ipotesi che tra i due tempi non cambi la composizione del paniere, assunzione realistica solo su brevi orizzonti temporali.
+
+In modo simile è possibile confrontare prezzi in diversi istanti temporali, per esempio tra $t$ e $t+k$; ne consegue che è possibile confrontare tassi con diversi $k$ per mezzo di una media geometrica
+
+$$
+R_{k,t}=\sqrt[k]{P_{t+k}/P_{t}}
+\tag{11.4}
+$$
+
+La generalizzazione di questa espressione ai tempi intermedi conduce a
+
+$$
+R_{t,t+k}=\prod_{i=1}^{k} P_{t+i}/P_{t+i-1}
+\tag{11.5}
+$$
+
+che, linearizzata tramite i logaritmi, conduce alla nota rappresentazione del "tasso a capitalizzazione continua".
+
+Esistono altri modi di rappresentare i tassi di rendimento, per esempio tramite il "tasso di sconto", nel quale l'incremento del valore dell'investimento è rapportato al valore finale e non a quello iniziale (tipico del mercato delle obbligazioni), oppure con il "tasso a capitalizzazione semplice", maggiormente utilizzato nel mercato monetario. Sul punto non ci soffermiamo oltre.
+
+## 11.2 Le attività dei mercati finanziari {#sec-attivita}
+
+Abbiamo appena fatto riferimento ai rendimenti e ai tassi di rendimento di una qualche attività finanziaria come esempio di dati in serie storica di interesse in questo capitolo. Ma quali potrebbero essere le attività dei mercati finanziari?
+
+Per esempio le azioni. Le azioni sono quote di partecipazione al capitale di una società e possono essere scambiate in mercati regolamentati, come le borse, o al di fuori di essi. Quando l'azienda cresce, coloro che le forniscono capitale non hanno più rapporti diretti con l'azienda stessa, le cui azioni vengono per l'appunto quotate e scambiate in un mercato specifico. Chi possiede le azioni può partecipare al profitto dell'azienda attraverso i dividendi, ovvero somme che l'azienda paga agli azionisti.
+
+Valute e tassi di cambio sono altri esempi. Alcune monete sono ancorate ad altre tramite tassi di cambio fissi, altre sono libere di fluttuare secondo le regole del mercato in cui vengono scambiate; va notato che il tasso di cambio tra due valute è legato ai tassi di interesse che possono ottenersi con investimenti nelle due valute.
+
+Altre attività che possono scambiarsi nei mercati finanziari sono le *commodities*, ossia alcune particolari merci, quali metalli, petrolio, prodotti agricoli.
+
+Anche gli Stati emettono titoli per finanziarsi, un po' come le società che emettono azioni. In questo caso lo strumento più utilizzato è l'obbligazione, di fatto un titolo a reddito fisso. Una volta acquistata, l'obbligazione frutta un capitale in un tempo futuro già stabilito in base a una data di scadenza; essa può prevedere o meno il pagamento di cedole (rispettivamente *coupon-bearing bond* e *zero-coupon bond*) nel periodo tra l'acquisto e la scadenza. È facile intuire che obbligazioni con data di scadenza lontana nel tempo rispetto alla data di acquisto offrano il vantaggio di interessi più alti. In alcuni casi, gli interessi sono collegati a tassi di interesse ufficiali comuni a più attori, per esempio il LIBOR o l'EURIBOR nel contesto bancario europeo.
+
+Altre serie finanziarie di interesse sono relative a particolari indici che, sostanzialmente, rappresentano il valore di portafogli (panieri) di titoli finanziari usati per rappresentare la performance dei mercati; si tratta dei cosiddetti indici di borsa, quali MIB30, S&P500, Dow Jones, ecc. Questi indici, in funzione dell'aspetto del mercato che intendono evidenziare, includono titoli di società ad alta capitalizzazione, oppure ad alto contenuto tecnologico, o ancora attese a rapidissima crescita ma anche molto più rischiose, e così via, fino a indici più generali in grado di rappresentare i mercati finanziari di riferimento di ogni singola nazione. Esistono anche altri strumenti, quali ad esempio i derivati, cioè contratti basati sull'andamento di uno o più titoli oppure di un indice sottostante. La trattazione di questi argomenti esula dallo scopo del capitolo, centrato sulla presentazione della modellistica autoregressiva eteroschedastica.
+
+## 11.3 La volatilità: l'indice SP500 {#sec-sp500}
+
+Abbiamo detto che le serie finanziarie si caratterizzano per una varianza che spesso cambia molto e rapidamente, anche a breve distanza di tempo. Maggiore è la variabilità, maggiori sono la volatilità e il rischio connesso al titolo (il valore oscilla rapidamente su e giù e cresce il rischio di incorrere in perdite del capitale investito). Avere un'idea di come si evolve la volatilità e disporre di strumenti per una previsione a breve può aiutare a guidare le scelte di investimento e disinvestimento, alla ricerca della minimizzazione del rischio e/o della massimizzazione delle probabilità di guadagno, anche attraverso una diversa composizione del portafoglio.
+
+Serve dunque un modello che lavori sulla varianza più che sulla persistenza media della serie. Il problema è complicato dal fatto che molto spesso le distribuzioni di queste serie finanziarie si allontanano dalla normalità, o quantomeno presentano code molto spesse. Talvolta perdono di simmetria, poiché eventi negativi su un titolo sembrano generare più volatilità di eventi positivi. Si può dunque comprendere come queste caratteristiche delle serie finanziarie complichino il quadro delle assunzioni statistiche e della conseguente stima.
+
+Partiamo dai casi più semplici. Il file *SP500.Rdata* riporta i rendimenti dell'indice di borsa S&P500 negli anni '90 (per Python e SAS gli stessi dati sono nel file *sp500.csv*). L'indice è stato realizzato da Standard & Poor's nel secondo dopoguerra e rappresenta l'evoluzione di un paniere di azioni delle prime 500 aziende statunitensi per livello di capitalizzazione (Figura 11.1).
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.1 – Rendimenti dell'indice SP500"
+#| fig-height: 4
+load("data/SP500.Rdata")
+ts.plot(SP500, xlab="Tempo", ylab="Rendimenti SP500", main="Indice di borsa SP500")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.1 – Rendimenti dell'indice SP500"
+#| results: hide
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy import stats
+from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.stats.diagnostic import acorr_ljungbox
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from arch import arch_model          # pip install arch
+
+sp500 = pd.read_csv("data/sp500.csv", sep=";", decimal=",")["rendimento"]
+plt.figure(figsize=(8, 4))
+plt.plot(sp500.to_numpy(), color="black", linewidth=0.5)
+plt.title("Indice di borsa SP500"); plt.xlabel("Tempo"); plt.ylabel("Rendimenti SP500")
+plt.show()
+```
+
+### SAS
+
+```sas
+data sp500;
+  infile "data/sp500.csv" dlm=";" firstobs=2;
+  input rendimento :commax32.;
+  t = _n_;
+run;
+proc sgplot data=sp500;
+  title "Indice di borsa SP500";
+  series x=t y=rendimento / lineattrs=(thickness=1);
+  xaxis label="Tempo"; yaxis label="Rendimenti SP500";
+run;
+```
+:::
+
+La Figura 11.1 riporta la serie dell'indice; è interessante notare che i dati si muovono attorno allo zero (con una debole prevalenza di valori positivi), con evidenti periodi di maggiore e di minore oscillazione
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+mean(SP500)
+```
+
+### Python
+
+```{python}
+print(sp500.mean())
+```
+
+### SAS
+
+```sas
+proc means data=sp500 mean; var rendimento; run;
+```
+:::
+
+La Figura 11.2 presenta i relativi correlogrammi ACF e PACF
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.2 – Correlogrammi ACF e PACF della serie SP500"
+#| fig-width: 9
+#| fig-height: 4
+par(mfrow = c(1,2))
+acf(SP500); pacf(SP500)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.2 – Correlogrammi ACF e PACF della serie SP500"
+#| results: hide
+fig, ax = plt.subplots(1, 2, figsize=(9, 4))
+plot_acf(sp500, lags=34, ax=ax[0], title="ACF", auto_ylims=True)
+plot_pacf(sp500, lags=34, zero=False, ax=ax[1], title="PACF", auto_ylims=True)
+plt.tight_layout(); plt.show()
+```
+
+### SAS
+
+```sas
+proc arima data=sp500 plots(only)=(series(acf pacf));
+  identify var=rendimento nlag=34;
+run;
+quit;
+```
+:::
+
+Notiamo che (come sempre di default in **R**) il correlogramma della funzione di autocorrelazione globale riporta (inutilmente) il lag 0, il cui valore pari a 1 rende poco visibili i lag successivi. In ogni caso, è chiaro che la serie è stazionaria in media e, allo stesso modo, non vi sono segnali a favore di una particolare specificazione ARIMA
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+library(tseries) # necessaria in questo capitolo
+adf.test(SP500)
+```
+
+### Python
+
+```{python}
+# test ADF con costante e trend e 14 ritardi, come adf.test() di tseries
+adf = adfuller(sp500, maxlag=14, regression="ct", autolag=None)
+print("Dickey-Fuller =", round(adf[0], 3), " p-value =", adf[1])
+```
+
+### SAS
+
+```sas
+/* test ADF (con costante e trend) con 14 ritardi */
+proc arima data=sp500;
+  identify var=rendimento stationarity=(adf=14);
+run;
+quit;
+```
+:::
+
+Per comodità, il test ADF è qui richiamato con il comando `adf.test()` della libreria **tseries** (necessaria per trattare i modelli eteroschedastici che seguiranno), che propone l'aggiunta di ritardi fino all'ordine 14, rifiutando l'ipotesi nulla di radice unitaria per la serie *SP500*.
+
+Le stime seguenti di un ARIMA(0,0,1) e di un ARIMA(1,0,0) rendono l'idea della difficoltà di trovare un modello adeguato
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+arima(SP500, order=c(0,0,1))
+arima(SP500, order=c(1,0,0))
+```
+
+### Python
+
+```{python}
+for ordine in [(0, 0, 1), (1, 0, 0)]:
+    m = ARIMA(sp500, order=ordine).fit()
+    print(ordine); print(m.summary().tables[1])
+```
+
+### SAS
+
+```sas
+proc arima data=sp500;
+  identify var=rendimento noprint;
+  estimate q=1 method=ml;      /* ARIMA(0,0,1) */
+  estimate p=1 method=ml;      /* ARIMA(1,0,0) */
+run;
+quit;
+```
+:::
+
+Le due specificazioni funzionano male anche con ordini più elevati (che per brevità non riportiamo) delle componenti autoregressive e a media mobile, sia separatamente sia congiuntamente, anche se un ordine alto migliora un po' (al prezzo di una più difficile convergenza numerica dell'algoritmo e di molte stime non significative) le statistiche di Ljung-Box relative all'ipotesi nulla di assenza di autocorrelazione seriale su un lungo orizzonte temporale.
+
+Questi pessimi risultati si ottengono spesso con le serie finanziarie dei rendimenti. In sostanza, è come se queste serie fossero dei white noise mancati, con bassissima persistenza e dipendenza seriale, difficilmente colte dai modelli ARIMA, ma con un disturbo latente leggibile in termini di varianza non costante. Poiché il modello ARIMA non tratta direttamente la volatilità, siamo costretti a cercare una specificazione particolare.
+
+## 11.4 I modelli ARCH e GARCH {#sec-garch}
+
+Supponiamo che $\varepsilon$ rappresenti la componente residuale di un modello ARIMA applicato alla serie finanziaria $y$, che presenta un tipico problema di volatilità, cioè $y_{t}=f(arima)+\varepsilon_{t}$.
+
+$\varepsilon_{t}$ sarà dunque eteroschedastico, certamente a media 0; ipotizziamo ragionevolmente che sia esprimibile nella forma
+
+$$
+\varepsilon_{t}=u_{t}\sqrt{h_{t}}
+\tag{11.6}
+$$
+
+dove $u_{t}$ è un processo a media 0 e varianza 1 (una componente statisticamente "pulita", normale nella condizione migliore) e $h_{t}$ una specifica sequenza, naturalmente indipendente da $u_{t}$, da cui deriva l'eteroschedasticità osservata in $\varepsilon_{t}$; si tratta di una sequenza di tipo stocastico (il caso più interessante, potendo a rigore essere anche di tipo deterministico).
+
+Dalla definizione di varianza consegue
+
+$$
+V(\varepsilon_{t})=E(\varepsilon_{t}^{2})=E(u_{t}^{2}h_{t})=E(u_{t}^{2})E(h_{t})=E(h_{t})
+\tag{11.7}
+$$
+
+A questo punto, la letteratura individua specifiche formulazioni per $h_{t}$, e precisamente
+
+$$
+h_{t}=a_{0}+a_{1}\varepsilon_{t-1}^{2}+v_{t}
+\tag{11.8}
+$$
+
+dove, nel caso più semplice, $v_{t}$ è un processo white noise gaussiano a media 0 e varianza 1.
+
+L'espressione (11.8) è chiamata ARCH(1), cioè modello autoregressivo eteroschedastico con un solo ritardo dei residui quadrati. La generalizzazione al caso ARCH($p$) è immediata
+
+$$
+h_{t}=a_{0}+a_{1}\varepsilon_{t-1}^{2}+a_{2}\varepsilon_{t-2}^{2}+\cdots +a_{p}\varepsilon_{t-p}^{2}+v_{t}
+\tag{11.9}
+$$
+
+Si può cogliere la somiglianza con l'impostazione ARIMA discussa nei capitoli precedenti, la cui logica di specificazione del modello, nonché la ricerca dell'ordine ottimale e l'analisi della componente residuale, si può applicare anche a questa particolare modellistica.
+
+Osserviamo che la formulazione ARCH stabilisce chiaramente l'esistenza di una relazione di persistenza temporale della varianza
+
+$$
+\begin{gathered}E(h_{t})=a_{0}+a_{1}E(\varepsilon_{t-1}^{2})+a_{2}E(\varepsilon_{t-2}^{2})+\cdots +a_{p}E(\varepsilon_{t-p}^{2}) \\ \text{ovvero} \\ E(h_{t})=V(\varepsilon_{t})=a_{0}+a_{1}V(\varepsilon_{t-1})+a_{2}V(\varepsilon_{t-2})+\cdots +a_{p}V(\varepsilon_{t-p})\end{gathered}
+\tag{11.10}
+$$
+
+e, poiché la varianza non può assumere valori negativi, ne discende che le stime dei coefficienti $a$ non possono essere minori di 0; analogamente (con l'eccezione del termine costante) le stime dei coefficienti $a$ (e la loro somma) non devono superare l'unità, per garantire la stazionarietà del processo.
+
+Per evitare molteplici valutazioni di specificazioni ARCH anche di ordine elevato, si è introdotta una generalizzazione che molto spesso migliora il modello già con ordini molto bassi
+
+$$
+h_{t}=a_{0}+a_{1}\varepsilon_{t-1}^{2}+b_{1}h_{t-1}+v_{t}
+\tag{11.11}
+$$
+
+Con la formulazione (11.11) il modello assume la denominazione GARCH di ordine 1,1, ovvero GARCH(1,1), dove il primo numero in parentesi si riferisce al numero di ritardi di $h_{t}$ e il secondo ai ritardi di $\varepsilon_{t}^{2}$; in termini più generali possiamo scrivere GARCH($q$,$p$), e anche in questo caso le stime dei coefficienti (eccetto il termine costante) devono essere comprese tra 0 e 1 e la loro somma deve essere inferiore all'unità.
+
+Va subito detto che, nella maggioranza delle serie finanziarie di interesse, la specificazione di ordine 1 della formula (11.11) appare più che sufficiente per stimare in modo adeguato $\sigma_{t}^{2}$ e offrire all'utente una previsione di breve periodo.
+
+Consideriamo ancora la serie *SP500*. Accettiamo di non essere riusciti a trovare un modello ARIMA adeguato, vista la debolezza della dipendenza seriale dei rendimenti. Pertanto, più che lavorare sui residui di un modello ARIMA (che non c'è), possiamo operare direttamente sulla serie *SP500* come se fosse la serie $\varepsilon_{t}$ di cui sopra. Siamo dunque interessati alla varianza dell'indice Standard & Poor's e quindi a specificare un modello GARCH. Intanto, per rispettare il principio che il processo debba avere media nulla, trasliamo i valori della media della serie
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+serie <- SP500-mean(SP500)
+mean(serie)
+```
+
+### Python
+
+```{python}
+serie = sp500 - sp500.mean()
+print(serie.mean())
+```
+
+### SAS
+
+```sas
+proc standard data=sp500 mean=0 out=sp500c;
+  var rendimento;
+run;
+data sp500c;
+  set sp500c;
+  quadrato = rendimento**2;
+run;
+```
+:::
+
+Con
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+jarque.bera.test(serie)
+```
+
+### Python
+
+```{python}
+jb = stats.jarque_bera(serie)
+print("Jarque-Bera =", round(jb.statistic, 1), " p-value =", jb.pvalue)
+```
+
+### SAS
+
+```sas
+/* il test di normalità di Jarque-Bera è riportato da PROC AUTOREG */
+proc autoreg data=sp500c;
+  model rendimento = / noint normal;
+run;
+```
+:::
+
+evidenziamo l'allontanamento dalla normalità (il test di Jarque-Bera si basa su misure di asimmetria e curtosi), mentre la Figura 11.3 rappresenta la densità della serie
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.3 – Densità kernel dell'indice SP500 centrato"
+plot(density(serie), main="Indice SP500")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.3 – Densità kernel dell'indice SP500 centrato"
+#| results: hide
+kde = stats.gaussian_kde(serie)
+xg = np.linspace(serie.min() - 1, serie.max() + 1, 512)
+plt.figure(figsize=(5, 5))
+plt.plot(xg, kde(xg), color="black")
+plt.title("Indice SP500"); plt.ylabel("Density")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=sp500c;
+  title "Indice SP500";
+  density rendimento / type=kernel;
+run;
+```
+:::
+
+Passando ai quadrati otteniamo l'ACF della Figura 11.4 (abbiamo tolto il lag 0 per una migliore rappresentazione)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.4 – ACF del quadrato di SP500"
+#| fig-height: 4
+plot(acf(serie^2, plot=F)[1:34], main="SP500 quadrato")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.4 – ACF del quadrato di SP500"
+#| results: hide
+fig, ax = plt.subplots(figsize=(8, 4))
+plot_acf(serie ** 2, lags=34, zero=False, ax=ax, title="SP500 quadrato", auto_ylims=True)
+plt.show()
+```
+
+### SAS
+
+```sas
+proc arima data=sp500c plots(only)=series(acf);
+  identify var=quadrato nlag=34;
+run;
+quit;
+```
+:::
+
+La significatività statistica dell'autocorrelazione di $\varepsilon_{t}^{2}$ (nel nostro caso il quadrato dell'indice SP500) segnala l'utilità di procedere a una stima GARCH
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+sp.garch <- garch(SP500, trace=F)
+sp.res <- sp.garch$res[-1]
+```
+
+### Python
+
+```{python}
+# GARCH(1,1) senza termine costante nell'equazione della media, come garch() di tseries
+sp_garch = arch_model(sp500, mean="Zero", vol="GARCH", p=1, q=1).fit(disp="off")
+sp_res = sp_garch.std_resid.dropna()
+```
+
+### SAS
+
+```sas
+/* in PROC AUTOREG l'opzione GARCH=(P=,Q=) indica con P i ritardi
+   della varianza condizionata e con Q quelli dei residui quadrati */
+proc autoreg data=sp500;
+  model rendimento = / noint garch=(p=1, q=1);
+  output out=spgarch cev=varianza r=residuo;
+run;
+```
+:::
+
+Abbiamo utilizzato il comando di default della libreria **tseries**, istruendo **R** a non stampare la traccia computazionale (utile solo per verificare eventuali difficoltà e problemi computazionali nella stima), mentre dai residui abbiamo tolto il primo tempo, dove ovviamente i valori sono assenti. In mancanza di indicazioni sull'ordine da parte dell'utente, **R** propone una tipica specificazione GARCH(1,1), che in genere produce ottime stime
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+summary(sp.garch)
+```
+
+### Python
+
+```{python}
+print(sp_garch.summary())
+jb = stats.jarque_bera(sp_res)
+print("Jarque-Bera sui residui:", round(jb.statistic, 2), " p-value =", jb.pvalue)
+print("Ljung-Box sui residui quadrati:"); print(acorr_ljungbox(sp_res ** 2, lags=[1]))
+```
+
+### SAS
+
+```sas
+/* stime, test di normalità e test sui residui quadrati */
+proc autoreg data=sp500;
+  model rendimento = / noint garch=(p=1, q=1) normal archtest;
+run;
+```
+:::
+
+Notiamo la forte significatività delle stime del modello e l'automatica inclusione di due test: quello di normalità di Jarque-Bera (rifiutata) sui residui del modello GARCH(1,1) e quello di assenza di autocorrelazione seriale di Ljung-Box (accettata) sui residui quadrati del modello medesimo. In sostanza, con la cautela dovuta a residui non normali, la specificazione attuale coglie la sostanza della relazione di dipendenza della varianza della serie dei rendimenti dell'indice SP500; infatti, i residui quadrati estratti dal modello GARCH non presentano più una significativa autocorrelazione seriale (Figura 11.5)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.5 – ACF dei residui quadrati del modello GARCH"
+#| fig-height: 4
+plot(acf(sp.res^2, plot=F)[1:34])
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.5 – ACF dei residui quadrati del modello GARCH"
+#| results: hide
+fig, ax = plt.subplots(figsize=(8, 4))
+plot_acf(sp_res ** 2, lags=34, zero=False, ax=ax, title="Residui quadrati", auto_ylims=True)
+plt.show()
+```
+
+### SAS
+
+```sas
+data spgarch;
+  set spgarch;
+  res2 = (residuo / sqrt(varianza))**2;   /* residui standardizzati al quadrato */
+run;
+proc arima data=spgarch plots(only)=series(acf);
+  identify var=res2 nlag=34;
+run;
+quit;
+```
+:::
+
+A questo punto il comando seguente genera la Figura 11.6, che rappresenta la stima della variabilità dei rendimenti dell'indice SP500 (precisamente, la funzione restituisce la deviazione standard, quale radice quadrata della varianza, con segno positivo e negativo)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.6 – Deviazione standard stimata dei rendimenti SP500"
+#| fig-height: 4
+ts.plot(fitted(sp.garch), main="Stima della deviazione standard",
+        ylab="Valori simmetrici per costruzione")
+abline(h=0)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.6 – Deviazione standard stimata dei rendimenti SP500"
+#| results: hide
+sd_sp = sp_garch.conditional_volatility.to_numpy()
+plt.figure(figsize=(8, 4))
+plt.plot(sd_sp, color="black", linewidth=0.6); plt.plot(-sd_sp, color="black", linewidth=0.6)
+plt.axhline(0, color="black", linewidth=0.6)
+plt.title("Stima della deviazione standard"); plt.ylabel("Valori simmetrici per costruzione")
+plt.show()
+```
+
+### SAS
+
+```sas
+data spgarch;
+  set spgarch;
+  t = _n_;
+  sd = sqrt(varianza); msd = -sd;
+run;
+proc sgplot data=spgarch noautolegend;
+  title "Stima della deviazione standard";
+  series x=t y=sd / lineattrs=(color=black);
+  series x=t y=msd / lineattrs=(color=black);
+  refline 0 / axis=y;
+  yaxis label="Valori simmetrici per costruzione";
+run;
+```
+:::
+
+È interessante notare che, per costruzione, oscillazioni negative e positive dei rendimenti non vengono trattate diversamente; chiaramente l'andamento della varianza è identico e speculare, e dunque basterebbe rappresentare soltanto il pannello superiore (Figura 11.7)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.7 – Pannello positivo della deviazione standard per la serie SP500"
+#| fig-height: 4
+ts.plot(fitted(sp.garch)[,1], main="Stima della deviazione standard",
+        ylab="Panel con valori positivi")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.7 – Pannello positivo della deviazione standard per la serie SP500"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(sd_sp, color="black", linewidth=0.6)
+plt.title("Stima della deviazione standard"); plt.ylabel("Panel con valori positivi")
+plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=spgarch;
+  title "Stima della deviazione standard";
+  series x=t y=sd;
+  yaxis label="Panel con valori positivi";
+run;
+```
+:::
+
+Il grafico rende evidente un progressivo incremento della volatilità nell'ultimo periodo di rilevazione e segnala quindi un generalizzato maggiore rischio finanziario per il mercato in esame; si potrebbe svolgere un approfondimento specifico con riferimento a particolari portafogli di investimento e/o attività selezionate.
+
+## 11.5 Un esempio con dati simulati {#sec-simulazione-garch}
+
+Svolgiamo un altro esempio, questa volta con 10.000 dati simulati da un GARCH(1,1) con valori posti pari a 0,1 per la costante $a_{0}$, a 0,4 per il coefficiente $a_{1}$ e a 0,2 per $b_{1}$
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+set.seed(123)   # per rendere riproducibili i risultati
+alpha0 <- 0.1; alpha1 <- 0.4; beta1 <- 0.2
+w <- rnorm(10000); a <- rep(0, 10000)
+h <- rep(0, 10000)
+for (i in 2:10000) {
+  h[i] <- alpha0 + alpha1 * (a[i - 1]^2) + beta1 * h[i - 1]
+  a[i] <- w[i] * sqrt(h[i])
+}
+```
+
+### Python
+
+```{python}
+rng = np.random.default_rng(123)   # per rendere riproducibili i risultati
+alpha0, alpha1, beta1 = 0.1, 0.4, 0.2
+w = rng.standard_normal(10000); a = np.zeros(10000); h = np.zeros(10000)
+for i in range(1, 10000):
+    h[i] = alpha0 + alpha1 * a[i - 1] ** 2 + beta1 * h[i - 1]
+    a[i] = w[i] * np.sqrt(h[i])
+```
+
+### SAS
+
+```sas
+data simgarch;
+  call streaminit(123);   /* per rendere riproducibili i risultati */
+  alpha0 = 0.1; alpha1 = 0.4; beta1 = 0.2;
+  a = 0; h = 0;
+  do t = 1 to 10000;
+    if t > 1 then do;
+      h = alpha0 + alpha1*a**2 + beta1*h;
+      a = rand("NORMAL") * sqrt(h);
+    end;
+    a2 = a**2;
+    output;
+  end;
+  keep t a a2;
+run;
+```
+:::
+
+La serie da modellare è dunque contenuta nell'oggetto `a`, rappresentato nella Figura 11.8, mentre la Figura 11.9 mostra l'ACF della serie stessa e dei suoi quadrati
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.8 – Evoluzione della serie simulata da un GARCH(1,1)"
+#| fig-height: 4
+ts.plot(a, main="10.000 osservazioni simulate")
+```
+
+```{r}
+#| fig-cap: "Figura 11.9 – ACF della serie simulata e dei suoi quadrati"
+#| fig-width: 9
+#| fig-height: 4
+par(mfrow=c(1,2))
+plot(acf(a, plot=F)[1:40], main="ACF della serie")
+plot(acf((a^2), plot=F)[1:40], main="ACF dei quadrati della serie")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.8 – Evoluzione della serie simulata da un GARCH(1,1)"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(a, color="black", linewidth=0.4)
+plt.title("10.000 osservazioni simulate")
+plt.show()
+```
+
+```{python}
+#| fig-cap: "Figura 11.9 – ACF della serie simulata e dei suoi quadrati"
+#| results: hide
+fig, ax = plt.subplots(1, 2, figsize=(9, 4))
+plot_acf(a, lags=40, zero=False, ax=ax[0], title="ACF della serie", auto_ylims=True)
+plot_acf(a ** 2, lags=40, zero=False, ax=ax[1], title="ACF dei quadrati della serie", auto_ylims=True)
+plt.tight_layout(); plt.show()
+```
+
+### SAS
+
+```sas
+proc sgplot data=simgarch;
+  title "10.000 osservazioni simulate";
+  series x=t y=a / lineattrs=(thickness=1);
+run;
+proc arima data=simgarch plots(only)=series(acf);
+  identify var=a nlag=40;
+  identify var=a2 nlag=40;
+run;
+quit;
+```
+:::
+
+L'ACF dei quadrati evidenzia quanto atteso: la presenza di persistenza nella varianza. Procediamo alla stima
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+a.garch <- garch(a, order=c(1,1), trace=F)
+summary(a.garch)
+```
+
+### Python
+
+```{python}
+a_garch = arch_model(a, mean="Zero", vol="GARCH", p=1, q=1).fit(disp="off")
+print(a_garch.summary())
+a_res = a_garch.std_resid[1:]
+jb = stats.jarque_bera(a_res)
+print("Jarque-Bera sui residui:", round(jb.statistic, 3), " p-value =", round(jb.pvalue, 4))
+print("Ljung-Box sui residui quadrati:"); print(acorr_ljungbox(a_res ** 2, lags=[1]))
+```
+
+### SAS
+
+```sas
+proc autoreg data=simgarch;
+  model a = / noint garch=(p=1, q=1) normal;
+  output out=simstima cev=varianza;
+run;
+```
+:::
+
+In questo caso (non poteva essere altrimenti) il test di Jarque-Bera suggerisce di accettare l'ipotesi nulla di normalità dei residui e, naturalmente, il test sui residui quadrati conferma che la persistenza della varianza è stata pienamente colta dal modello specificato; la varianza (più correttamente la deviazione standard) è rappresentata nella Figura 11.10 e, a differenza dell'indice SP500, con il trascorrere del tempo non mostra alcuna deriva sistematica verso una maggiore o minore volatilità
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.10 – Stima della deviazione standard della serie simulata"
+#| fig-height: 4
+ts.plot(fitted(a.garch)[,1], main="Dev.std. stimata della serie simulata")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.10 – Stima della deviazione standard della serie simulata"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(a_garch.conditional_volatility, color="black", linewidth=0.4)
+plt.title("Dev.std. stimata della serie simulata")
+plt.show()
+```
+
+### SAS
+
+```sas
+data simstima;
+  set simstima;
+  sd = sqrt(varianza);
+run;
+proc sgplot data=simstima;
+  title "Dev.std. stimata della serie simulata";
+  series x=t y=sd / lineattrs=(thickness=1);
+run;
+```
+:::
+
+Notiamo che, con un seme diverso da quello fissato con la funzione `set.seed()`, o con un generatore di numeri casuali diverso (come accade passando da R a Python o a SAS), si otterrebbero stime leggermente differenti; la questione qui è del tutto marginale.
+
+## 11.6 Modelli ARMA-GARCH {#sec-arma-garch}
+
+Il comando `garch()` della libreria **tseries** usa una procedura quasi-Newton per determinare le stime di massima verosimiglianza del modello, ma è da intendersi come un comando di base, con una sintassi molto intuitiva, in grado di produrre soltanto i principali risultati di stima; nei casi più semplici è sufficiente. Tuttavia, diversamente da quanto avviene con altre serie economiche, le serie finanziarie presentano spesso dinamiche tali da richiedere una specificazione più complessa del modello GARCH di base e/o la rimozione delle ipotesi di normalità e simmetria della componente erratica. Ciò, naturalmente, complica parecchio il contesto computazionale ed è necessario ricorrere ad altre librerie. In particolare, qui utilizzeremo **fGarch**, perché ha una sintassi simile a quella di **tseries** e consente di stimare modelli GARCH con sufficiente flessibilità. In Python useremo la libreria **arch**, in SAS la procedura `PROC AUTOREG`.
+
+A tal proposito, carichiamo il file *bmw.Rdata* (per Python e SAS *bmw.csv*), che contiene una serie di rendimenti giornalieri del titolo BMW, e applichiamo la funzione `garchFit()` della libreria **fGarch** per stimare un GARCH(1,1) senza includere la traccia computazionale
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+library(fGarch)
+load("data/bmw.Rdata")
+modg <- garchFit(~garch(1,1), data=bmw, trace=F)
+summary(modg)
+```
+
+### Python
+
+```{python}
+# arch lavora meglio con rendimenti in percentuale: le stime di mu sono
+# moltiplicate per 100 e quella di omega per 10.000 rispetto a fGarch
+bmw = pd.read_csv("data/bmw.csv", sep=";", decimal=",",
+                  index_col="data", parse_dates=True)["rendimento"] * 100
+modg = arch_model(bmw, mean="Constant", vol="GARCH", p=1, q=1).fit(disp="off")
+print(modg.summary())
+```
+
+### SAS
+
+```sas
+data bmw;
+  infile "data/bmw.csv" dlm=";" firstobs=2;
+  input data :yymmdd10. rendimento :commax32.;
+  format data date9.;
+run;
+proc autoreg data=bmw;
+  model rendimento = / garch=(p=1, q=1);
+run;
+```
+:::
+
+È interessante osservare che la funzione si aspetta non solo la specificazione di un modello per la varianza della serie BMW, ma anche di un modello per la media, cioè una forma ARMA (è esclusa la formulazione ARIMA). In altre parole, potremmo far stimare direttamente a questa funzione l'eventuale forma ARMA congiuntamente alla specificazione GARCH, senza la necessità di ricorrere a due procedure separate.
+
+In sostanza, nel caso di un AR(1)+GARCH(1,1) avremo un processo tale che
+
+$$
+y_{t}=c+\phi_{1}y_{t-1}+\varepsilon_{t} \quad \text{dove} \quad \varepsilon_{t}=u_{t}\sqrt{h_{t}}
+\tag{11.12}
+$$
+
+con $u_{t}\sim N(0,1)$, $h_{t}=a_{0}+a_{1}\varepsilon_{t-1}^{2}+b_{1}h_{t-1}+v_{t}$ e $v_{t}\sim WN$.
+
+Nell'ipotesi più semplice $v_{t}$ è normale (0,1). In realtà, nei termini di una specificazione congiunta dei modelli per la media e per la varianza, da intendersi come
+
+$$
+y_{t}=c+\phi_{1}y_{t-1}+\varepsilon_{t}=c+\phi_{1}y_{t-1}+u_{t}\sqrt{a_{0}+a_{1}\varepsilon_{t-1}^{2}+b_{1}h_{t-1}}
+\tag{11.13}
+$$
+
+non è necessario riferirsi a due processi distinti $u_{t}$ e $v_{t}$, ma si può considerare soltanto il processo $u_{t}$, da assumere ora in termini più generali come un processo white noise indipendente da $h_{t}$ e normale solo come caso particolare; è immediato che il residuo standardizzato è $u_{t}=\varepsilon_{t}/\sqrt{h_{t}}$.
+
+È facile la generalizzazione a specificazioni più estese. Al contrario, il caso di assenza del modello per la media equivale a porre $\phi_{1}=0$, e dunque la specificazione si riduce al modello $y_{t}=c+\varepsilon_{t}$, ovvero $y_{t}=\varepsilon_{t}$ se $c=0$, con l'usuale $\varepsilon_{t}=u_{t}\sqrt{h_{t}}$.
+
+Nell'esempio proposto in **R**, la stima di $c$ corrisponde a **mu** e quella di $a_{0}$ a **omega**; per $a_{1}$ abbiamo **alpha1** e per $b_{1}$ **beta1**, mentre **norm** significa che il processo white noise è assunto gaussiano. Sottolineiamo che, a differenza di quanto d'uso in letteratura e in altre librerie **R**, la sintassi `garch(1,1)` di **garchFit** attribuisce il primo ordine della sequenza all'ARCH e il secondo al GARCH; in altre parole, l'ARCH(1) equivale qui alla sintassi `garch(1,0)` e non il contrario.
+
+Discutiamo il resto dell'output su una nuova stima, che ora include l'autoregressivo nell'equazione della media
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modg2 <- garchFit(~arma(1,0)+garch(1,1), data=bmw, cond.dist="norm", trace=F)
+summary(modg2)
+```
+
+### Python
+
+```{python}
+modg2 = arch_model(bmw, mean="AR", lags=1, vol="GARCH", p=1, q=1, dist="normal").fit(disp="off")
+print(modg2.summary())
+```
+
+### SAS
+
+```sas
+/* NLAG=1: termine autoregressivo di ordine 1 */
+proc autoreg data=bmw;
+  model rendimento = / nlag=1 garch=(p=1, q=1) normal archtest;
+  output out=bmwstima cev=varianza r=residuo;
+run;
+```
+:::
+
+Notiamo l'aggiunta del coefficiente **ar1**, cioè la stima di $\phi_{1}$. Naturalmente, prima di specificare un qualche modello ARMA dobbiamo condurre le usuali analisi preliminari, qui non riportate per brevità; allo stesso modo, se dovessimo scoprire la necessità di differenziare, è un'operazione che dovremmo compiere prima della specificazione e della stima del modello.
+
+L'output elenca anche alcuni criteri di scelta per il confronto tra modelli: oltre ai classici AIC e BIC troviamo i meno utilizzati SIC (un altro criterio di Schwarz da non confondere con il BIC) e HQIC (*Hannan-Quinn information criterion*); i valori sono normalizzati, cioè divisi per il numero delle osservazioni. Anche la log-verosimiglianza è presentata con e senza normalizzazione.
+
+Nell'output di **R** sono inclusi anche alcuni utili test statistici sui residui standardizzati e sui residui quadrati. Il test di Jarque-Bera rifiuta l'ipotesi di normalità del processo di innovazione white noise (in sostanza $u_{t}$), mentre il test di Ljung-Box, sia sui residui sia sui residui quadrati ai diversi lag indicati, accetta l'ipotesi nulla di assenza di autocorrelazione seriale; nella stessa direzione va il test LM-ARCH di Engle. In conclusione, il modello proposto e stimato sembra descrivere bene le caratteristiche della serie BMW, decisamente meglio della versione precedente che, senza il filtro dell'AR(1), come evidenziato dalla diversa conclusione dei test di Ljung-Box sui residui, e a prescindere dalla dipendenza in varianza, non coglieva adeguatamente la dipendenza seriale in media.
+
+Il comando seguente produce la Figura 11.11, che riporta la stima della deviazione standard in base all'ultima specificazione analizzata
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.11 – Stima della deviazione standard della serie BMW"
+#| fig-height: 4
+plot(modg2@sigma.t, type="l", main="Stima della deviazione standard")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.11 – Stima della deviazione standard della serie BMW"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(modg2.conditional_volatility.to_numpy() / 100, color="black", linewidth=0.4)
+plt.title("Stima della deviazione standard")
+plt.show()
+```
+
+### SAS
+
+```sas
+data bmwstima;
+  set bmwstima;
+  t = _n_;
+  sd = sqrt(varianza);
+run;
+proc sgplot data=bmwstima;
+  title "Stima della deviazione standard";
+  series x=t y=sd / lineattrs=(thickness=1);
+run;
+```
+:::
+
+mentre il comando successivo produce il qq-plot dei residui standardizzati (Figura 11.12), dal quale è evidente l'allontanamento dalla normalità, soprattutto nelle code (più pesanti)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.12 – QQ-plot dei residui standardizzati"
+sres2 <- modg2@residuals/modg2@sigma.t # residui std.
+qqnorm(sres2); qqline(sres2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.12 – QQ-plot dei residui standardizzati"
+#| results: hide
+sres2 = modg2.std_resid.dropna()   # residui std.
+plt.figure(figsize=(5, 5))
+stats.probplot(sres2, dist="norm", plot=plt)
+plt.title("Normal Q-Q Plot")
+plt.show()
+```
+
+### SAS
+
+```sas
+data bmwstima;
+  set bmwstima;
+  sres2 = residuo / sqrt(varianza);   /* residui std. */
+run;
+proc univariate data=bmwstima noprint;
+  qqplot sres2 / normal(mu=est sigma=est);
+run;
+```
+:::
+
+Dunque rimane la considerazione critica sulla forma distributiva degli errori. Poiché **fGarch** consente di cambiarla, proviamo una t di Student (standardizzata) e, come esempio, complichiamo la specificazione aggiungendo una componente MA (naturalmente la presenza o meno delle diverse componenti va valutata preliminarmente con le usuali procedure)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modg3 <- garchFit(~arma(1,1)+garch(1,1), data=bmw, cond.dist="std", trace=F)
+summary(modg3)
+```
+
+### Python
+
+```{python}
+# arch non prevede termini MA nell'equazione della media:
+# stimiamo un AR(1)+GARCH(1,1) con errori t di Student
+modg3 = arch_model(bmw, mean="AR", lags=1, vol="GARCH", p=1, q=1, dist="t").fit(disp="off")
+print(modg3.summary())
+```
+
+### SAS
+
+```sas
+/* PROC AUTOREG non prevede termini MA: AR(1)+GARCH(1,1) con errori t */
+proc autoreg data=bmw;
+  model rendimento = / nlag=1 garch=(p=1, q=1) dist=t;
+  output out=bmwstima3 cev=varianza;
+run;
+```
+:::
+
+È interessante notare che adesso il test di Ljung-Box rifiuta l'ipotesi nulla di assenza di autocorrelazione dei residui; tuttavia i p-value non sono troppo bassi, ma relativamente vicini al classico confine posto a 0,05. Tra le stime (che vale la pena confrontare tra le varie modellazioni, anche per evidenziare alcuni cambiamenti di segno e di intensità) notiamo l'aggiunta del parametro di forma della distribuzione **shape**, con un valore significativo di 4,046.
+
+La rappresentazione grafica della varianza (numericamente è la deviazione standard) di **modg3** nella Figura 11.13 non è distinguibile dalla variabilità stimata dal modello precedente **modg2** (Figura 11.11)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.13 – Stima della deviazione standard (modg3)"
+#| fig-height: 4
+ts.plot(modg3@sigma.t, main="Stima della deviazione standard")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.13 – Stima della deviazione standard (modg3)"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(modg3.conditional_volatility.to_numpy() / 100, color="black", linewidth=0.4)
+plt.title("Stima della deviazione standard")
+plt.show()
+```
+
+### SAS
+
+```sas
+data bmwstima3;
+  set bmwstima3;
+  t = _n_;
+  sd = sqrt(varianza);
+run;
+proc sgplot data=bmwstima3;
+  title "Stima della deviazione standard";
+  series x=t y=sd / lineattrs=(thickness=1);
+run;
+```
+:::
+
+Infine, il comando seguente fornisce una previsione della media (ovviamente praticamente nulla) e soprattutto della deviazione standard, che mostra un andamento crescente
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+round(predict(modg3, n.ahead=20), 6)
+```
+
+### Python
+
+```{python}
+prev = modg3.forecast(horizon=20, reindex=False)
+previsione = pd.DataFrame({"meanForecast": prev.mean.iloc[0].to_numpy() / 100,
+                           "standardDeviation": np.sqrt(prev.variance.iloc[0].to_numpy()) / 100},
+                          index=range(1, 21))
+print(previsione.round(6))
+```
+
+### SAS
+
+```sas
+/* si aggiungono 20 periodi con rendimento mancante: per essi
+   PROC AUTOREG calcola le previsioni della media e della varianza */
+data bmwprev;
+  set bmw end=fine;
+  output;
+  if fine then do i = 1 to 20;
+    rendimento = .; output;
+  end;
+  drop i;
+run;
+proc autoreg data=bmwprev noprint;
+  model rendimento = / nlag=1 garch=(p=1, q=1) dist=t;
+  output out=prev20 p=meanForecast cev=varianza;
+run;
+data prev20;
+  set prev20;
+  if rendimento = .;
+  standardDeviation = sqrt(varianza);
+run;
+proc print data=prev20; var meanForecast standardDeviation; run;
+```
+:::
+
+A tal proposito, la Figura 11.14 confronta l'andamento della previsione a 200 giorni della deviazione standard per i modelli **modg3** (linea continua) e **modg2** (linea tratteggiata)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.14 – Confronto tra previsioni della deviazione standard"
+#| fig-height: 4
+ts.plot(predict(modg3, n.ahead=200)[,3], main="Confronto andamento della dev.std. prevista",
+        ylab="modg2 e modg3")
+lines(predict(modg2, n.ahead=200)[,3], lty=2)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.14 – Confronto tra previsioni della deviazione standard"
+#| results: hide
+sd3 = np.sqrt(modg3.forecast(horizon=200, reindex=False).variance.iloc[0].to_numpy()) / 100
+sd2 = np.sqrt(modg2.forecast(horizon=200, reindex=False).variance.iloc[0].to_numpy()) / 100
+plt.figure(figsize=(8, 4))
+plt.plot(range(1, 201), sd3, color="black")
+plt.plot(range(1, 201), sd2, color="black", linestyle="--")
+plt.title("Confronto andamento della dev.std. prevista"); plt.ylabel("modg2 e modg3")
+plt.show()
+```
+
+### SAS
+
+```sas
+/* stesso schema del blocco precedente con 200 periodi aggiuntivi,
+   stimando i due modelli (normale e t) e unendo le previsioni */
+data bmwprev;
+  set bmw end=fine;
+  output;
+  if fine then do i = 1 to 200;
+    rendimento = .; output;
+  end;
+  drop i;
+run;
+proc autoreg data=bmwprev noprint;
+  model rendimento = / nlag=1 garch=(p=1, q=1) dist=t;
+  output out=p3 cev=v3;
+run;
+proc autoreg data=bmwprev noprint;
+  model rendimento = / nlag=1 garch=(p=1, q=1);
+  output out=p2 cev=v2;
+run;
+data confronto;
+  merge p3(keep=rendimento v3) p2(keep=v2);
+  if rendimento = .;
+  h + 1;
+  sd3 = sqrt(v3); sd2 = sqrt(v2);
+run;
+proc sgplot data=confronto;
+  title "Confronto andamento della dev.std. prevista";
+  series x=h y=sd3 / legendlabel="modg3";
+  series x=h y=sd2 / legendlabel="modg2" lineattrs=(pattern=dash);
+run;
+```
+:::
+
+Sul punto non ci dilunghiamo oltre.
+
+## 11.7 Distribuzioni asimmetriche e modelli APARCH {#sec-aparch}
+
+Abbiamo svolto qualche esempio di applicazione GARCH con e senza componente ARMA, con e senza l'assunzione di normalità; in particolare, abbiamo ipotizzato una distribuzione t di Student (standardizzata) per tenere conto della presenza di code più spesse. Tuttavia, possiamo assumere altre forme distributive, come una normale asimmetrica, una t di Student asimmetrica o una GED (*generalized error distribution*), con o senza asimmetria.
+
+Il comando seguente stima il GARCH(1,1) con normale asimmetrica (per semplicità abbiamo omesso la componente ARMA)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modg4 <- garchFit(~garch(1,1), data=bmw, cond.dist="snorm", trace=F); modg4
+```
+
+### Python
+
+```{python}
+# la libreria arch non prevede la normale asimmetrica;
+# la distribuzione asimmetrica disponibile è la t di Hansen ("skewt"),
+# usata nel blocco successivo
+```
+
+### SAS
+
+```sas
+/* PROC AUTOREG prevede soltanto errori normali (default) o t (DIST=T):
+   le distribuzioni asimmetriche non sono disponibili */
+```
+:::
+
+Abbiamo riportato soltanto le stime dei parametri del modello. Notiamo il valore significativo dell'asimmetria **skew**. Analogamente, per la t di Student asimmetrica (ora abbiamo sia **shape** sia **skew**)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modg5 <- garchFit(~garch(1,1), data=bmw, cond.dist="sstd", trace=F); modg5
+```
+
+### Python
+
+```{python}
+# t asimmetrica di Hansen: eta corrisponde a shape, lambda misura l'asimmetria
+# (lambda = 0 nel caso simmetrico, mentre in fGarch skew = 1)
+modg5 = arch_model(bmw, mean="Constant", vol="GARCH", p=1, q=1, dist="skewt").fit(disp="off")
+print(modg5.params.round(6))
+```
+
+### SAS
+
+```sas
+/* non disponibile in PROC AUTOREG: si veda il blocco precedente */
+```
+:::
+
+I dati BMW non consentono di provare la distribuzione GED e la GED asimmetrica a causa della mancata convergenza dell'algoritmo; sul punto comunque torneremo poco avanti con specifici esempi. Va detto che esiste anche la possibilità di forzare la stima agendo sulle opzioni dell'algoritmo di calcolo, ma andremmo oltre lo scopo di mantenere il testo a un livello introduttivo. In ogni caso, con la GED l'output non è strutturato diversamente: avremo sempre un parametro di forma **shape**, mentre con la GED asimmetrica avremo sia **shape** sia **skew**, analogamente a quanto presentato poco sopra.
+
+La possibilità di ricorrere a forme distributive differenti accresce notevolmente la possibilità di trovare un buon modello, che riesca a tenere debitamente conto delle peculiarità delle serie finanziarie, soprattutto in corrispondenza delle code della distribuzione degli errori. Tuttavia, uno degli aspetti più interessanti della modellistica GARCH è la possibilità di specificare il modello in modo da considerare l'effetto *leverage*: in molti casi i rendimenti negativi influenzano la volatilità più dei rendimenti positivi, poiché la riduzione dei prezzi determina appunto un aumento della leva finanziaria delle imprese e, dunque, dell'incertezza e della volatilità.
+
+Per quanto già detto, possiamo scrivere la struttura del nostro ARMA+GARCH con qualche modifica di notazione e qualche semplificazione rispetto alla formulazione (11.12)
+
+$$
+\begin{gathered}y_{t}=\mu +\sum_{i=1}^{m} \phi_{i}y_{t-i}+\sum_{j=1}^{n} \theta_{j}\varepsilon_{t-j}+\varepsilon_{t} \\ \varepsilon_{t}=\sigma_{t}u_{t} \\ \sigma_{t}^{2}=\omega +\sum_{i=1}^{p} \alpha_{i}\varepsilon_{t-i}^{2}+\sum_{j=1}^{q} \beta_{j}\sigma_{t-j}^{2}\end{gathered}
+\tag{11.14}
+$$
+
+evidenziando la presenza del solo processo $u_{t}$ (non serve $v_{t}$), distribuito in un qualche modo i.i.d.(0,1), e con $\sqrt{h_{t}}\equiv \sigma_{t}$.
+
+Il passo in avanti consiste nel rendere più complessa la forma del GARCH nel cosiddetto modello APARCH($p$,$q$)
+
+$$
+\sigma_{t}^{\delta}=\omega +\sum_{i=1}^{p} \alpha_{i}(|\varepsilon_{t-i}|-\gamma_{i}\varepsilon_{t-i})^{\delta}+\sum_{j=1}^{q} \beta_{j}\sigma_{t-j}^{\delta}
+\tag{11.15}
+$$
+
+dove $\delta >0$, con parametri di leverage $-1<\gamma_{i}<1$. Di fatto, in questa formulazione, il modello contiene come casi particolari una serie di varianti GARCH.
+
+Procediamo con alcuni esempi su una seconda serie di rendimenti dell'indice SP500, contenuta nel file *sp500dge.Rdata* (per Python e SAS *sp500dge.csv*)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+load("data/sp500dge.Rdata")
+modA1 <- garchFit(~ arma(0,1) + aparch(1,1), data = ts(100 * sp500dge),
+                  trace = FALSE, cond.dist="snorm")
+summary(modA1)
+```
+
+### Python
+
+```{python}
+# arch non prevede termini MA né la normale asimmetrica: usiamo un AR(1)
+# per la media e la t asimmetrica, con un APARCH(1,1) per la varianza
+dge = pd.read_csv("data/sp500dge.csv", sep=";", decimal=",")["rendimento"] * 100
+modA1 = arch_model(dge, mean="AR", lags=1, vol="APARCH", p=1, o=1, q=1,
+                   dist="skewt").fit(disp="off")
+print(modA1.summary())
+```
+
+### SAS
+
+```sas
+/* APARCH = power GARCH (TYPE=PGARCH) di PROC AUTOREG,
+   con delta = 2*LAMBDA e gamma = PSI */
+data dge;
+  infile "data/sp500dge.csv" dlm=";" firstobs=2;
+  input r :commax32.;
+  rendimento = 100*r;
+  t = _n_;
+run;
+proc autoreg data=dge;
+  model rendimento = / nlag=1 garch=(p=1, q=1, type=pgarch);
+  output out=dgeA1 cev=varianza;
+run;
+```
+:::
+
+L'esempio include una componente MA nel modello per la media, mentre la distribuzione degli errori è assunta di tipo normale asimmetrico, ed è quindi ottenuta anche la stima di **skew**. La lettura dell'output e l'interpretazione delle stime sono del tutto analoghe ai casi precedenti. Qui, in particolare, notiamo i parametri **gamma1** e **delta**, le cui stime significative si riferiscono all'effetto leverage e alla potenza a esponente della deviazione standard: non possiamo trattare allo stesso modo rendimenti positivi e rendimenti negativi, perché incidono diversamente sulla volatilità dell'indice SP500; inoltre la variabilità è stimata in termini di deviazione standard con una potenza intermedia tra 1 e 2. Questa formulazione APARCH del modello per la varianza è piuttosto flessibile e generale; la relativa stima della volatilità, in termini di deviazione standard, è rappresentata nella Figura 11.15
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.15 – Stima della volatilità per il modello modA1"
+#| fig-height: 4
+ts.plot(volatility(modA1), main="modA1")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.15 – Stima della volatilità per il modello modA1"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(modA1.conditional_volatility.to_numpy(), color="black", linewidth=0.3)
+plt.title("modA1")
+plt.show()
+```
+
+### SAS
+
+```sas
+data dgeA1;
+  set dgeA1;
+  sd = sqrt(varianza);
+run;
+proc sgplot data=dgeA1;
+  title "modA1";
+  series x=t y=sd / lineattrs=(thickness=1);
+run;
+```
+:::
+
+L'aggiunta di alcune restrizioni sui parametri APARCH caratterizza noti casi particolari; di seguito ne richiamiamo alcuni ove, per semplicità didattica, consideriamo soltanto il modello per la varianza con distribuzione normale standard, riportando nel testo esclusivamente le stime dei parametri.
+
+La restrizione **delta=1** e **leverage=false** specifica il cosiddetto modello di variabilità di Taylor-Schwert (TS-GARCH)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA2 <- garchFit(~aparch(1,1), delta = 1, include.delta=F, data = ts(100 * sp500dge),
+                  leverage= F, trace= F)
+summary(modA2)
+```
+
+### Python
+
+```{python}
+def stime(m):
+    """Stime, errori standard e p-value dei parametri."""
+    return pd.DataFrame({"stima": m.params, "s.e.": m.std_err, "p-value": m.pvalues}).round(6)
+
+# power=1: equazione per la deviazione standard (TS-GARCH); arch impone
+# alpha+beta<1, vincolo qui attivo, per cui le stime differiscono da fGarch
+modA2 = arch_model(dge, vol="GARCH", p=1, q=1, power=1.0).fit(disp="off")
+print(stime(modA2))
+```
+
+### SAS
+
+```sas
+/* PGARCH con delta=1 (LAMBDA=0.5) e senza leverage (PSI1=0);
+   verificare i nomi dei parametri nell'output della versione in uso */
+proc autoreg data=dge;
+  model rendimento = / garch=(p=1, q=1, type=pgarch);
+  restrict LAMBDA = 0.5, PSI1 = 0;
+run;
+```
+:::
+
+La restrizione **delta=1** e **leverage=true** definisce invece il modello *threshold* GARCH (TGARCH)
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA3 <- garchFit(~aparch(1,1), delta = 1, include.delta=F, leverage = TRUE,
+                  data = ts(100 * sp500dge), trace = F)
+summary(modA3)
+```
+
+### Python
+
+```{python}
+# o=1 aggiunge il termine asimmetrico (TARCH/ZARCH)
+modA3 = arch_model(dge, vol="GARCH", p=1, o=1, q=1, power=1.0).fit(disp="off")
+print(stime(modA3))
+```
+
+### SAS
+
+```sas
+proc autoreg data=dge;
+  model rendimento = / garch=(p=1, q=1, type=pgarch);
+  restrict LAMBDA = 0.5;
+run;
+```
+:::
+
+Nel caso **delta=2** con **leverage=true** il modello assume la variante GJR-GARCH
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA4 <- garchFit(~aparch(1,1), delta=2, include.delta=F, leverage = T,
+                  data = ts(100 * sp500dge), trace = F)
+summary(modA4)
+```
+
+### Python
+
+```{python}
+# GJR-GARCH: in arch il termine asimmetrico è gamma*eps^2*I(eps<0), per cui
+# alpha_arch = alpha*(1-gamma)^2 e gamma_arch = alpha*((1+gamma)^2-(1-gamma)^2)
+modA4 = arch_model(dge, vol="GARCH", p=1, o=1, q=1).fit(disp="off")
+print(stime(modA4))
+```
+
+### SAS
+
+```sas
+/* modello a soglia di Glosten, Jagannathan e Runkle */
+proc autoreg data=dge;
+  model rendimento = / garch=(p=1, q=1, type=gjr);
+run;
+```
+:::
+
+mentre la specificazione con **delta=2** e **leverage=false** ci riconduce al classico GARCH
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA5 <- garchFit(~aparch(1,1), delta=2, include.delta=F, leverage=F,
+                  data = ts(100 * sp500dge), trace = F)
+summary(modA5)
+```
+
+### Python
+
+```{python}
+modA5 = arch_model(dge, vol="GARCH", p=1, q=1).fit(disp="off")
+print(stime(modA5))
+```
+
+### SAS
+
+```sas
+proc autoreg data=dge;
+  model rendimento = / garch=(p=1, q=1);
+run;
+```
+:::
+
+Chiaramente, tutti i modelli possono essere stimati con forme distributive degli errori diverse dalla normale standard di default, anche rimuovendo la condizione di simmetria. A tal proposito, il precedente **modA1** ha presentato le stime di un APARCH(1,1) con normale asimmetrica; svolgiamo ora un altro esempio ipotizzando una distribuzione degli errori di tipo t di Student standardizzata asimmetrica, senza ulteriori specificazioni sul resto dei parametri
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA6 <- garchFit(~ aparch(1,1), data = ts(100 * sp500dge), trace = F, cond.dist = "sstd")
+summary(modA6)
+```
+
+### Python
+
+```{python}
+modA6 = arch_model(dge, vol="APARCH", p=1, o=1, q=1, dist="skewt").fit(disp="off")
+print(stime(modA6))
+```
+
+### SAS
+
+```sas
+/* PGARCH con errori t (simmetrici) */
+proc autoreg data=dge;
+  model rendimento = / garch=(p=1, q=1, type=pgarch) dist=t;
+  output out=dgeA6 cev=varianza;
+run;
+```
+:::
+
+Notiamo qui l'aggiunta del valore di forma **shape**, ovviamente assente con la distribuzione normale. La corrispondente stima della deviazione standard è riportata nella Figura 11.16, graficamente del tutto indistinguibile dall'analoga Figura 11.15 riferita al modello **modA1**; precisiamo che stiamo rappresentando la stima di $\sigma_{t}$ e non quella di $h_{t}\equiv \sigma_{t}^{\delta}$, la cui scala dipende dalla stima di $\delta$.
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.16 – Stima della volatilità per il modello modA6"
+#| fig-height: 4
+ts.plot(volatility(modA6), main="modA6")
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.16 – Stima della volatilità per il modello modA6"
+#| results: hide
+plt.figure(figsize=(8, 4))
+plt.plot(modA6.conditional_volatility.to_numpy(), color="black", linewidth=0.3)
+plt.title("modA6")
+plt.show()
+```
+
+### SAS
+
+```sas
+data dgeA6;
+  set dgeA6;
+  sd = sqrt(varianza);
+run;
+proc sgplot data=dgeA6;
+  title "modA6";
+  series x=t y=sd / lineattrs=(thickness=1);
+run;
+```
+:::
+
+Infine, assumiamo una distribuzione GED asimmetrica, attribuendo un valore a priori al parametro di forma, nel nostro esempio uguale a 3
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+modA7 <- garchFit(~aparch(1,1), cond.dist = "sged", shape = 3, include.shape = FALSE,
+                  data = ts(100 * sp500dge), trace = F)
+summary(modA7)
+```
+
+### Python
+
+```{python}
+# arch prevede soltanto la GED simmetrica, con parametro di forma nu stimato
+modA7 = arch_model(dge, vol="APARCH", p=1, o=1, q=1, dist="ged").fit(disp="off")
+print(stime(modA7))
+```
+
+### SAS
+
+```sas
+/* la GED non è disponibile in PROC AUTOREG */
+```
+:::
+
+L'output ha l'usuale interpretazione. L'andamento della volatilità appare simile nei vari modelli qui proposti: ci sono differenze nei valori, ma piuttosto contenute; ciò non implica che sia poco differenziata anche la performance previsiva della volatilità. A tal proposito, la Figura 11.17 confronta le previsioni a 200 giorni della deviazione standard per tre dei modelli proposti, **modA1**, **modA2** e **modA4**
+
+::: {.panel-tabset group="language"}
+### R
+
+```{r}
+#| fig-cap: "Figura 11.17 – Performance previsiva di tre modelli"
+#| fig-height: 4
+ts.plot(predict(modA2, n.ahead=200)[,3], lty=2, main="Previsioni della deviazione standard")
+lines(predict(modA1, n.ahead=200)[,3], lty=1)
+lines(predict(modA4, n.ahead=200)[,3], lty=4)
+```
+
+### Python
+
+```{python}
+#| fig-cap: "Figura 11.17 – Performance previsiva di tre modelli"
+#| results: hide
+# per i modelli con potenza diversa da 2 arch calcola le previsioni per simulazione
+def sd_prev(m, h=200):
+    metodo = "analytic" if m.model.volatility.__class__.__name__ == "GARCH" and \
+             m.model.volatility.power == 2.0 else "simulation"
+    f = m.forecast(horizon=h, method=metodo, simulations=2000, reindex=False,
+                   random_state=np.random.RandomState(1))
+    return np.sqrt(f.variance.iloc[0].to_numpy())
+
+plt.figure(figsize=(8, 4))
+plt.plot(range(1, 201), sd_prev(modA2), color="black", linestyle="--")
+plt.plot(range(1, 201), sd_prev(modA1), color="black")
+plt.plot(range(1, 201), sd_prev(modA4), color="black", linestyle="-.")
+plt.title("Previsioni della deviazione standard")
+plt.show()
+```
+
+### SAS
+
+```sas
+/* previsioni a 200 giorni della varianza condizionata (si veda la Figura 11.14) */
+data dgeprev;
+  set dge end=fine;
+  output;
+  if fine then do i = 1 to 200;
+    rendimento = .; t + 1; output;
+  end;
+  drop i;
+run;
+proc autoreg data=dgeprev noprint;
+  model rendimento = / nlag=1 garch=(p=1, q=1, type=pgarch);
+  output out=f1 cev=v1;
+run;
+proc autoreg data=dgeprev noprint;
+  model rendimento = / garch=(p=1, q=1, type=pgarch);
+  restrict LAMBDA = 0.5, PSI1 = 0;
+  output out=f2 cev=v2;
+run;
+proc autoreg data=dgeprev noprint;
+  model rendimento = / garch=(p=1, q=1, type=gjr);
+  output out=f4 cev=v4;
+run;
+data prev200;
+  merge f1(keep=t rendimento v1) f2(keep=v2) f4(keep=v4);
+  if rendimento = .;
+  sd1 = sqrt(v1); sd2 = sqrt(v2); sd4 = sqrt(v4);
+run;
+proc sgplot data=prev200;
+  title "Previsioni della deviazione standard";
+  series x=t y=sd2 / legendlabel="modA2" lineattrs=(pattern=dash);
+  series x=t y=sd1 / legendlabel="modA1";
+  series x=t y=sd4 / legendlabel="modA4" lineattrs=(pattern=dashdot);
+run;
+```
+:::
+
+Naturalmente in queste prove non abbiamo ricercato il modello migliore né una specifica formulazione da sottoporre a test, non stiamo ragionando sulla componente ARMA della media né verificando la bontà dei residui standardizzati, ma stiamo solo mostrando al lettore la flessibilità offerta dalle specificazioni GARCH, in ragione della notevole complessità evolutiva delle serie finanziarie. Inoltre, la famiglia dei modelli GARCH è molto ampia e va ben oltre i principali modelli qui presentati, per quanto questi siano tra i più noti e usati.
+
+In questo capitolo abbiamo omesso molti particolari e mantenuto la discussione a un livello descrittivo coerente con gli scopi del testo; dobbiamo necessariamente rinviare ogni ulteriore approfondimento a una trattazione più formale e tecnica.
